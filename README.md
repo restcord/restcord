@@ -54,4 +54,6 @@ Raw documentation can be found in the [`docs`](./docs) directory.
 
 We are open to contributions. However, please make sure you follow our coding standards (PSR-4 autoloading and custom styling). We use StyleCI to format our code.
  
+*Yes, I stole some of my docs from DiscordPHP* 
+ 
 [1]: https://github.com/teamreflex/DiscordPHP
