@@ -46,9 +46,9 @@ $discord = new DiscordClient(['token' => 'bot-token']);
 var_dump($discord->guild->getGuild(['guild.id' => 108439985920704512]));
 ```
  
-## Documentation
+## [Documentation](./docs)
 
-Raw documentation can be found in the [`docs`](./docs) directory.
+Documentation can be found [here](./docs).
 
 ## Contributing
 
