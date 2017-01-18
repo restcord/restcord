@@ -2,9 +2,6 @@ language: php
 
 sudo: false
 
-git:
-    depth: 1
-
 matrix:
     include:
         # Use the newer stack for HHVM as HHVM does not support Precise anymore since a long time and so Precise has an outdated version
