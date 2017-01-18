@@ -1,3 +1,8 @@
+---
+title: Documentation
+layout: post
+---
+
 # Documentation
 
 Documentation is currently broken down by category.
