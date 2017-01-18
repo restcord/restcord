@@ -6,8 +6,8 @@
         "php":                               "^7.0",
         "guzzlehttp/guzzle":                 "^6.2",
         "guzzlehttp/guzzle-services":        "^1.0",
-        "symfony/options-resolver":          "^3.2",
-        "rtheunissen/guzzle-log-middleware": "^0.4.0",
+        "symfony/options-resolver":          "^2.6|^3.2",
+        "rtheunissen/guzzle-log-middleware": "^0.4",
         "monolog/monolog":                   "^1.22",
         "twig/twig":                         "~2.0"
     },
@@ -24,6 +24,6 @@
         }
     ],
     "require-dev": {
-        "symfony/console": "^3.2"
+        "symfony/console": "^2.6|^3.2"
     }
 }
