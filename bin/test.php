@@ -1,12 +1,14 @@
 <?php
 
 /*
- * This file is part of php-restcord.
- *
- * (c) Aaron Scherer <aequasi@gmail.com>
+ * Copyright 2017 Aaron Scherer
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
  */
 
 require __DIR__.'/../vendor/autoload.php';
@@ -17,7 +19,7 @@ use RestCord\DiscordClient;
 $client = new DiscordClient(
     [
         'token'            => $argv[1],
-        'throwOnRatelimit' => true
+        'throwOnRatelimit' => true,
     ]
 );
 
@@ -31,7 +33,7 @@ try {
         $client->channel->createMessage(
             [
                 'channel.id' => (int) $argv[3],
-                'content'    => 'Test Message from travis'
+                'content'    => 'Test Message from travis',
             ]
         );
     }
