@@ -1,7 +1,7 @@
 RESTCord - PHP Edition
 ======================
 
-[![Discord Chat](https://img.shields.io/badge/chat-Discord%20API-blue.svg)](https://discord.gg/0SBTUU1wZTX4Mjwn)
+[![Build Status](https://travis-ci.org/restcord/restcord.svg?branch=master)](https://travis-ci.org/restcord/restcord) [![Discord Chat](https://img.shields.io/badge/chat-Discord%20API-blue.svg)](https://discord.gg/0SBTUU1wZTX4Mjwn)
 
 What is this?
 ------------
