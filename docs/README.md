@@ -41,7 +41,7 @@ include __DIR__.'/vendor/autoload.php';
 
 use Restcord\DiscordClient;
 
-$discord = new DiscordClient(['token' => 'bot-token']);
+$discord = new DiscordClient(['token' => 'bot-token']); // Token is required
 
 var_dump($discord->guild->getGuild(['guild.id' => 108439985920704512]));
 ```
@@ -52,8 +52,24 @@ API Documentation can be found [here](http://www.restcord.com/api).
 
 ## Contributing
 
-We are open to contributions. However, please make sure you follow our coding standards (PSR-4 autoloading and custom styling). We use StyleCI to format our code.
+We are open to contributions. However, please make sure you follow our coding standards (PSR-4 autoloading and custom styling).
+We use StyleCI to format our code. Contributing is a little strange with this library. We use [a service definition generator][2]
+to create a service description for guzzle. All of the logic in this repo is built off of the service description in the
+src/Resources directory.
+
+To build a new service definition, just run:
+
+```bash
+$ ./bin/downloadServiceDefinition <version number>
+```
+
+To build new docs, run:
+
+```bash
+$ ./bin/buildDocs <version number>
+```
  
 *Yes, I stole some of my docs from DiscordPHP* 
  
 [1]: https://github.com/teamreflex/DiscordPHP
+[2]: https://github.com/aequasi/discord-service-definition-generator
