@@ -1,6 +1,6 @@
 ---
-title: Documentation
 layout: default
+title: Documentation
 ---
 
 # Documentation
