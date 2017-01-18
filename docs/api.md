@@ -14,6 +14,7 @@ Documentation is currently broken down by category.
 ```php
 $client->channel->getChannel($parameters);
 ```
+
 #### Description
 
 Get a channel by ID.
@@ -42,6 +43,7 @@ Can Return:
 ```php
 $client->channel->modifyChannel($parameters);
 ```
+
 #### Description
 
 Update a channels settings. Requires the &#039;MANAGE_GUILD&#039; permission for the guild.  Fires a Channel Update Gateway event. For the PATCH method, all the JSON Params are optional.
@@ -74,6 +76,7 @@ Can Return:
 ```php
 $client->channel->deletecloseChannel($parameters);
 ```
+
 #### Description
 
 Delete a guild channel, or close a private message. Requires the &#039;MANAGE_CHANNELS&#039; permission for the guild.  Fires a Channel Delete Gateway event.
@@ -102,6 +105,7 @@ Can Return:
 ```php
 $client->channel->getChannelMessages($parameters);
 ```
+
 #### Description
 
 If operating on a guild channel, this endpoint requires the &#039;READ_MESSAGES&#039; permission to be present on the current user.
@@ -131,6 +135,7 @@ Returns the messages for a channel.
 ```php
 $client->channel->getChannelMessage($parameters);
 ```
+
 #### Description
 
 If operating on a guild channel, this endpoints requires the &#039;READ_MESSAGE_HISTORY&#039; permission to be present on the current user.
@@ -157,6 +162,7 @@ Returns a specific message in the channel.
 ```php
 $client->channel->createMessage($parameters);
 ```
+
 #### Description
 
 Post a message to a guild text or DM channel. If operating on a guild channel, this endpoint requires the &#039;SEND_MESSAGES&#039; permission to be present on the current user.  Fires a Message Create Gateway event. See message formatting for more information on how to properly format messages.
@@ -189,6 +195,7 @@ Can Return:
 ```php
 $client->channel->createReaction($parameters);
 ```
+
 #### Description
 
 Create a reaction for the message. If nobody else has reacted to the message using this emoji, this endpoint requires the &#039;ADD_REACTIONS&#039; permission to be present on the current user.
@@ -216,6 +223,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->deleteOwnReaction($parameters);
 ```
+
 #### Description
 
 Delete a reaction the current user has made for the message.
@@ -243,6 +251,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->deleteUserReaction($parameters);
 ```
+
 #### Description
 
 Deletes another user&#039;s reaction. This endpoint requires the &#039;MANAGE_MESSAGES&#039; permission to be present on the current user.
@@ -271,6 +280,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->getReactions($parameters);
 ```
+
 #### Description
 
 Get a list of users that reacted with this emoji.
@@ -300,6 +310,7 @@ Can Return:
 ```php
 $client->channel->deleteAllReactions($parameters);
 ```
+
 #### Description
 
 Deletes all reactions on a message. This endpoint requires the &#039;MANAGE_MESSAGES&#039; permission to be present on the current user.
@@ -326,6 +337,7 @@ Possibly No Response
 ```php
 $client->channel->editMessage($parameters);
 ```
+
 #### Description
 
 Edit a previously sent message. You can only edit messages that have been sent by the current user.  Fires a Message Update Gateway event.
@@ -355,6 +367,7 @@ Can Return:
 ```php
 $client->channel->deleteMessage($parameters);
 ```
+
 #### Description
 
 Delete a message. If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the &#039;MANAGE_MESSAGES&#039; permission.  Fires a Message Delete Gateway event.
@@ -381,6 +394,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->bulkDeleteMessages($parameters);
 ```
+
 #### Description
 
 Delete multiple messages in a single request. This endpoint can only be used on guild channels and requires the &#039;MANAGE_MESSAGES&#039; permission.  Fires multiple Message Delete Gateway events.
@@ -407,6 +421,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->bulkDeleteMessagesDeprecated($parameters);
 ```
+
 #### Description
 
 Same as above, but this endpoint is deprecated.
@@ -432,6 +447,7 @@ Possibly No Response
 ```php
 $client->channel->editChannelPermissions($parameters);
 ```
+
 #### Description
 
 Edit the channel permission overwrites for a user or role in a channel. Only usable for guild channels. Requires the &#039;MANAGE_ROLES&#039; permission.  For more information about permissions, see permissions.
@@ -461,6 +477,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->getChannelInvites($parameters);
 ```
+
 #### Description
 
 Only usable for guild channels. Requires the &#039;MANAGE_CHANNELS&#039; permission.
@@ -489,6 +506,7 @@ Can Return:
 ```php
 $client->channel->createChannelInvite($parameters);
 ```
+
 #### Description
 
 Create a new invite object for the channel. Only usable for guild channels. Requires the CREATE_INSTANT_INVITE permission. All JSON paramaters for this route are optional, however the request body is not. If you are not sending any fields, you still have to send an empty JSON object ({}).
@@ -520,6 +538,7 @@ Can Return:
 ```php
 $client->channel->deleteChannelPermission($parameters);
 ```
+
 #### Description
 
 Delete a channel permission overwrite for a user or role in a channel. Only usable for guild channels. Requires the &#039;MANAGE_ROLES&#039; permission.  For more information about permissions, see permissions
@@ -546,6 +565,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->triggerTypingIndicator($parameters);
 ```
+
 #### Description
 
 Post a typing indicator for the specified channel. Generally bots should not implement this route. However, if a bot is responding to a command and expects the computation to take a few seconds, this endpoint may be called to let the user know that the bot is processing their message.  Fires a Typing Start Gateway event.
@@ -571,6 +591,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->getPinnedMessages($parameters);
 ```
+
 #### Description
 
 
@@ -598,6 +619,7 @@ Can Return:
 ```php
 $client->channel->addPinnedChannelMessage($parameters);
 ```
+
 #### Description
 
 Pin a message in a channel. Requires the &#039;MANAGE_MESSAGES&#039; permission.
@@ -624,6 +646,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->deletePinnedChannelMessage($parameters);
 ```
+
 #### Description
 
 Delete a pinned message in a channel. Requires the &#039;MANAGE_MESSAGES&#039; permission.
@@ -650,6 +673,7 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->groupDmAddRecipient($parameters);
 ```
+
 #### Description
 
 Adds a recipient to a Group DM using their access token
@@ -678,6 +702,7 @@ Possibly No Response
 ```php
 $client->channel->groupDmRemoveRecipient($parameters);
 ```
+
 #### Description
 
 Removes a recipient from a Group DM
@@ -706,6 +731,7 @@ Possibly No Response
 ```php
 $client->guild->createGuild($parameters);
 ```
+
 #### Description
 
 Create a new guild.  Fires a Guild Create Gateway event.
@@ -739,6 +765,7 @@ Can Return:
 ```php
 $client->guild->getGuild($parameters);
 ```
+
 #### Description
 
 
@@ -766,6 +793,7 @@ Can Return:
 ```php
 $client->guild->modifyGuild($parameters);
 ```
+
 #### Description
 
 Modify a guild&#039;s settings.  Fires a Guild Update Gateway event.
@@ -802,6 +830,7 @@ Can Return:
 ```php
 $client->guild->deleteGuild($parameters);
 ```
+
 #### Description
 
 Delete a guild permanently. User must be owner.  Fires a Guild Delete Gateway event.
@@ -829,6 +858,7 @@ Can Return:
 ```php
 $client->guild->getGuildChannels($parameters);
 ```
+
 #### Description
 
 
@@ -856,6 +886,7 @@ Can Return:
 ```php
 $client->guild->createGuildChannel($parameters);
 ```
+
 #### Description
 
 Create a new channel object for the guild. Requires the &#039;MANAGE_CHANNELS&#039; permission.  Fires a Channel Create Gateway event.
@@ -888,6 +919,7 @@ Can Return:
 ```php
 $client->guild->modifyGuildChannelPositions($parameters);
 ```
+
 #### Description
 
 Modify the positions of a set of channel objects for the guild. Requires &#039;MANAGE_CHANNELS&#039; permission.  Fires multiple Channel Update Gateway events.
@@ -917,6 +949,7 @@ Can Return:
 ```php
 $client->guild->getGuildMember($parameters);
 ```
+
 #### Description
 
 
@@ -945,6 +978,7 @@ Can Return:
 ```php
 $client->guild->listGuildMembers($parameters);
 ```
+
 #### Description
 
 
@@ -974,6 +1008,7 @@ Can Return:
 ```php
 $client->guild->addGuildMember($parameters);
 ```
+
 #### Description
 
 Adds a user to the guild, provided you have a valid oauth2 access token for the user with the guilds.join scope.  Fires a Guild Member Add Gateway event. Requires the bot to have the CREATE_INSTANT_INVITE permission.
@@ -1007,6 +1042,7 @@ Can Return:
 ```php
 $client->guild->modifyGuildMember($parameters);
 ```
+
 #### Description
 
 Modify attributes of a guild member.  Fires a Guild Member Update Gateway event.
@@ -1038,6 +1074,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->addGuildMemberRole($parameters);
 ```
+
 #### Description
 
 Adds a role to a guild member. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Member Update Gateway event.
@@ -1065,6 +1102,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->removeGuildMemberRole($parameters);
 ```
+
 #### Description
 
 Removes a role from a guild member. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Member Update Gateway event.
@@ -1092,6 +1130,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->removeGuildMember($parameters);
 ```
+
 #### Description
 
 Remove a member from a guild. Requires &#039;KICK_MEMBERS&#039; permission.  Fires a Guild Member Remove Gateway event.
@@ -1118,6 +1157,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->getGuildBans($parameters);
 ```
+
 #### Description
 
 Requires the &#039;BAN_MEMBERS&#039; permission.
@@ -1145,6 +1185,7 @@ Can Return:
 ```php
 $client->guild->createGuildBan($parameters);
 ```
+
 #### Description
 
 Create a guild ban, and optionally delete previous messages sent by the banned user. Requires the &#039;BAN_MEMBERS&#039; permission.  Fires a Guild Ban Add Gateway event.
@@ -1172,6 +1213,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->removeGuildBan($parameters);
 ```
+
 #### Description
 
 Remove the ban for a user. Requires the &#039;BAN_MEMBERS&#039; permissions.  Fires a Guild Ban Remove Gateway event.
@@ -1198,6 +1240,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->getGuildRoles($parameters);
 ```
+
 #### Description
 
 Requires the &#039;MANAGE_ROLES&#039; permission.
@@ -1225,6 +1268,7 @@ Can Return:
 ```php
 $client->guild->createGuildRole($parameters);
 ```
+
 #### Description
 
 Create a new empty role object for the guild. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Role Create Gateway event.
@@ -1252,6 +1296,7 @@ Can Return:
 ```php
 $client->guild->modifyGuildRolePositions($parameters);
 ```
+
 #### Description
 
 Modify the positions of a set of role objects for the guild. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires multiple Guild Role Update Gateway events.
@@ -1281,6 +1326,7 @@ Can Return:
 ```php
 $client->guild->modifyGuildRole($parameters);
 ```
+
 #### Description
 
 Modify a guild role. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Role Update Gateway event.
@@ -1315,6 +1361,7 @@ Can Return:
 ```php
 $client->guild->deleteGuildRole($parameters);
 ```
+
 #### Description
 
 Delete a guild role. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Role Delete Gateway event.
@@ -1343,6 +1390,7 @@ Can Return:
 ```php
 $client->guild->getGuildPruneCount($parameters);
 ```
+
 #### Description
 
 Requires the &#039;KICK_MEMBERS&#039; permission.
@@ -1369,6 +1417,7 @@ Returns an object with one &#039;pruned&#039; key indicating the number of membe
 ```php
 $client->guild->beginGuildPrune($parameters);
 ```
+
 #### Description
 
 Begin a prune operation. Requires the &#039;KICK_MEMBERS&#039; permission.  Fires multiple Guild Member Remove Gateway events.
@@ -1395,6 +1444,7 @@ Returns an object with one &#039;pruned&#039; key indicating the number of membe
 ```php
 $client->guild->getGuildVoiceRegions($parameters);
 ```
+
 #### Description
 
 Unlike the similar /voice route, this returns VIP servers when the guild is VIP-enabled.
@@ -1422,6 +1472,7 @@ Can Return:
 ```php
 $client->guild->getGuildInvites($parameters);
 ```
+
 #### Description
 
 Requires the &#039;MANAGE_GUILD&#039; permission.
@@ -1450,6 +1501,7 @@ Can Return:
 ```php
 $client->guild->getGuildIntegrations($parameters);
 ```
+
 #### Description
 
 Requires the &#039;MANAGE_GUILD&#039; permission.
@@ -1477,6 +1529,7 @@ Can Return:
 ```php
 $client->guild->createGuildIntegration($parameters);
 ```
+
 #### Description
 
 Attach an integration object from the current user to the guild. Requires the &#039;MANAGE_GUILD&#039; permission.  Fires a Guild Integrations Update Gateway event.
@@ -1504,6 +1557,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->modifyGuildIntegration($parameters);
 ```
+
 #### Description
 
 Modify the behavior and settings of a integration object for the guild. Requires the &#039;MANAGE_GUILD&#039; permission.  Fires a Guild Integrations Update Gateway event.
@@ -1533,6 +1587,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->deleteGuildIntegration($parameters);
 ```
+
 #### Description
 
 Delete the attached integration object for the guild. Requires the &#039;MANAGE_GUILD&#039; permission.  Fires a Guild Integrations Update Gateway event.
@@ -1559,6 +1614,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->syncGuildIntegration($parameters);
 ```
+
 #### Description
 
 Sync an integration. Requires the &#039;MANAGE_GUILD&#039; permission.
@@ -1585,6 +1641,7 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->getGuildEmbed($parameters);
 ```
+
 #### Description
 
 Requires the &#039;MANAGE_GUILD&#039; permission.
@@ -1612,6 +1669,7 @@ Can Return:
 ```php
 $client->guild->modifyGuildEmbed($parameters);
 ```
+
 #### Description
 
 Modify a guild embed object for the guild. All attributes may be passed in with JSON and modified. Requires the &#039;MANAGE_GUILD&#039; permission.
@@ -1641,6 +1699,7 @@ Can Return:
 ```php
 $client->invite->getInvite($parameters);
 ```
+
 #### Description
 
 
@@ -1668,6 +1727,7 @@ Can Return:
 ```php
 $client->invite->deleteInvite($parameters);
 ```
+
 #### Description
 
 Delete an invite. Requires the MANAGE_CHANNELS permission.
@@ -1695,6 +1755,7 @@ Can Return:
 ```php
 $client->invite->acceptInvite($parameters);
 ```
+
 #### Description
 
 Accept an invite. This is not available to bot accounts, and requires the guilds.join OAuth2 scope to accept on behalf of normal users.
@@ -1724,6 +1785,7 @@ Can Return:
 ```php
 $client->user->getCurrentUser($parameters);
 ```
+
 #### Description
 
 For OAuth2, this requires the identify scope, which will return the object without an email, and optionally the email scope, which returns the object with an email.
@@ -1748,6 +1810,7 @@ Can Return:
 ```php
 $client->user->getUser($parameters);
 ```
+
 #### Description
 
 
@@ -1775,6 +1838,7 @@ Can Return:
 ```php
 $client->user->modifyCurrentUser($parameters);
 ```
+
 #### Description
 
 Modify the requestors user account settings.
@@ -1803,6 +1867,7 @@ Can Return:
 ```php
 $client->user->getCurrentUserGuilds($parameters);
 ```
+
 #### Description
 
 Requires the guilds OAuth2 scope.
@@ -1827,6 +1892,7 @@ Can Return:
 ```php
 $client->user->leaveGuild($parameters);
 ```
+
 #### Description
 
 Leave a guild.
@@ -1849,6 +1915,7 @@ Returns a 204 empty response on success.
 ```php
 $client->user->getUserDms($parameters);
 ```
+
 #### Description
 
 
@@ -1873,6 +1940,7 @@ Can Return:
 ```php
 $client->user->createDm($parameters);
 ```
+
 #### Description
 
 Create a new DM channel with a user.
@@ -1900,6 +1968,7 @@ Can Return:
 ```php
 $client->user->createGroupDm($parameters);
 ```
+
 #### Description
 
 Create a new group DM channel with multiple users.
@@ -1928,6 +1997,7 @@ Can Return:
 ```php
 $client->user->getUsersConnections($parameters);
 ```
+
 #### Description
 
 Requires the connections OAuth2 scope.
@@ -1954,6 +2024,7 @@ Can Return:
 ```php
 $client->voice->listVoiceRegions($parameters);
 ```
+
 #### Description
 
 
@@ -1980,6 +2051,7 @@ Can Return:
 ```php
 $client->webhook->createWebhook($parameters);
 ```
+
 #### Description
 
 Create a new webhook.
@@ -2009,6 +2081,7 @@ Can Return:
 ```php
 $client->webhook->getChannelWebhooks($parameters);
 ```
+
 #### Description
 
 
@@ -2036,6 +2109,7 @@ Can Return:
 ```php
 $client->webhook->getGuildWebhooks($parameters);
 ```
+
 #### Description
 
 
@@ -2063,6 +2137,7 @@ Can Return:
 ```php
 $client->webhook->getWebhook($parameters);
 ```
+
 #### Description
 
 
@@ -2090,6 +2165,7 @@ Can Return:
 ```php
 $client->webhook->getWebhookWithToken($parameters);
 ```
+
 #### Description
 
 Same as above, except this call does not require authentication and returns no user in the webhook object.
@@ -2116,6 +2192,7 @@ Possibly No Response
 ```php
 $client->webhook->modifyWebhook($parameters);
 ```
+
 #### Description
 
 Modify a webhook.
@@ -2145,6 +2222,7 @@ Can Return:
 ```php
 $client->webhook->modifyWebhookWithToken($parameters);
 ```
+
 #### Description
 
 Same as above, except this call does not require authentication and returns no user in the webhook object.
@@ -2171,6 +2249,7 @@ Possibly No Response
 ```php
 $client->webhook->deleteWebhook($parameters);
 ```
+
 #### Description
 
 Delete a webhook permanently. User must be owner.
@@ -2196,6 +2275,7 @@ Returns a 204 NO CONTENT response on success.
 ```php
 $client->webhook->deleteWebhookWithToken($parameters);
 ```
+
 #### Description
 
 Same as above, except this call does not require authentication.
@@ -2222,6 +2302,7 @@ Possibly No Response
 ```php
 $client->webhook->executeWebhook($parameters);
 ```
+
 #### Description
 
 This endpoint supports both JSON and form data bodies. It does require multipart/form-data requests instead of the normal JSON request type when uploading files. Make sure you set your Content-Type to multipart/form-data if you&#039;re doing that. Note that in that case, the embeds field cannot be used, but you can pass an url-encoded JSON body as a form value for payload_json.
@@ -2249,6 +2330,7 @@ Possibly No Response
 ```php
 $client->webhook->executeSlackcompatibleWebhook($parameters);
 ```
+
 #### Description
 
 Refer to Slack&#039;s documentation for more information. We do not support Slack&#039;s channel, icon_emoji, mrkdwn, or mrkdwn_in properties.
@@ -2276,6 +2358,7 @@ Possibly No Response
 ```php
 $client->webhook->executeGithubcompatibleWebhook($parameters);
 ```
+
 #### Description
 
 Add a new webhook to your GitHub repo (in the repo&#039;s settings), and use this endpoint as the &quot;Payload URL.&quot; You can choose what events your Discord channel receives by choosing the &quot;Let me select individual events&quot; option and selecting individual events for the new webhook you&#039;re configuring.
@@ -2305,6 +2388,7 @@ Possibly No Response
 ```php
 $client->gateway->getGateway($parameters);
 ```
+
 #### Description
 
 Bots that want to dynamically/automatically spawn shard processes should use this endpoint to determine the number of processes to run. This route should be called once, and the result cached/passed to all processes. This value is not guarenteed to be the same per-call.
@@ -2329,6 +2413,7 @@ Returns an object with the same information as Get Gateway, plus a shards key, c
 ```php
 $client->oauth2->getCurrentApplicationInformation($parameters);
 ```
+
 #### Description
 
 
