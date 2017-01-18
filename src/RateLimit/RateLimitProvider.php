@@ -37,7 +37,7 @@ class RateLimitProvider
         $route = $request->getMethod().'-'.$request->getUri();
 
         if (isset($this->routes[$route])) {
-            return $this->routes[$route]['lastRequest'] ?? null;
+            return isset($this->routes[$route]['lastRequest']) ? $this->routes[$route]['lastRequest'] : null;
         }
     }
 
