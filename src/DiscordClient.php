@@ -96,7 +96,7 @@ class DiscordClient
      *
      * @return GuzzleClient
      */
-    public function __get(string $name): GuzzleClient
+    public function __get($name)
     {
         if (!isset($this->categories[$name])) {
             throw new \Exception('No category with the name: '.$name);
@@ -142,7 +142,7 @@ class DiscordClient
      *
      * @return array
      */
-    private function validateOptions(array $options): array
+    private function validateOptions(array $options)
     {
         $resolver = new OptionsResolver();
         $resolver->setDefaults(
@@ -161,7 +161,7 @@ class DiscordClient
         return $resolver->resolve($options);
     }
 
-    private function prepareOperations(array $operations): array
+    private function prepareOperations(array $operations)
     {
         foreach ($operations as $operation => &$config) {
             $config['uri'] = ltrim($config['url'], '/');
