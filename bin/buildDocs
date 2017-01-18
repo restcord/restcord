@@ -43,7 +43,7 @@ $twig->addExtension(new Twig_Extension_Debug());
             );
 
             $markdown = $twig->render('docs.md.twig', ['definition' => $definition]);
-            file_put_contents($path.'/index.md', $markdown);
+            file_put_contents($path.'/api.md', $markdown);
 
             $style->success('Finished. Docs built in: '.realpath($path));
         }
