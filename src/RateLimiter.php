@@ -1,18 +1,20 @@
 <?php
 
 /*
- * This file is part of php-restcord.
- *
- * (c) Aaron Scherer <aequasi@gmail.com>
+ * Copyright 2017 Aaron Scherer
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
  */
 
 namespace RestCord;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -118,9 +120,9 @@ class RateLimiter
         return vsprintf(
             "[%s] %s %s will be delayed by {$delay}us",
             [
-                gmdate("d/M/Y:H:i:s O"),
+                gmdate('d/M/Y:H:i:s O'),
                 $request->getMethod(),
-                $request->getUri()
+                $request->getUri(),
             ]
         );
     }
