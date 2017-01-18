@@ -1,12 +1,14 @@
 <?php
 
 /*
- * This file is part of php-restcord.
- *
- * (c) Aaron Scherer <aequasi@gmail.com>
+ * Copyright 2017 Aaron Scherer
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
  */
 
 namespace RestCord;
@@ -37,15 +39,13 @@ class RateLimitProvider
         if (isset($this->routes[$route])) {
             return $this->routes[$route]['lastRequest'] ?? null;
         }
-
-        return null;
     }
 
     /**
      * Used to set the current time as the last request time to be queried when
      * the next request is attempted.
      *
-     * @param RequestInterface  $request
+     * @param RequestInterface $request
      */
     public function setLastRequestTime(RequestInterface $request)
     {
