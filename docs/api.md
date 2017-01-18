@@ -1,3 +1,8 @@
+---
+title: Documentation
+layout: default
+---
+
 # Documentation
 
 Documentation is currently broken down by category.
