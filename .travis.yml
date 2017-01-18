@@ -18,4 +18,4 @@ matrix:
 
 script:
     - ./bin/lint src
-    - ./bin/stupidFunctionalTest.php $token $guild_id $channel_id
+    - php ./bin/stupidFunctionalTest.php $token $guild_id $channel_id
