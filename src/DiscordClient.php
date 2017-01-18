@@ -142,6 +142,7 @@ class DiscordClient
         )
             ->setRequired('token')
             ->setAllowedTypes('token', ['string'])
+            ->setAllowedTypes('throwOnRatelimit', ['bool'])
             ->setAllowedTypes('logger', [Logger::class])
             ->setAllowedTypes('version', ['string']);
 

@@ -44,7 +44,19 @@ use Restcord\DiscordClient;
 $discord = new DiscordClient(['token' => 'bot-token']); // Token is required
 
 var_dump($discord->guild->getGuild(['guild.id' => 108439985920704512]));
+
 ```
+
+## Options
+
+Below is a table of the options available to the discord client
+
+Name | Type | Required | Default | Description
+--- | --- | --- | --- | ---
+token | string | Yes | ~ | Your bot token
+version | string | No | `1.0.0` | The version of the API to use. Should probably be left alone
+logger | Monolog\Logger | false | `new Logger('Logger')` | An instance of a Monolog\Logger
+throwOnRatelimit | bool | false | false | Whether or not an exception is thrown when a ratelimit is supposed to hit
  
 ## [API Documentation](http://www.restcord.com/api)
 
