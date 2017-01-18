@@ -40,6 +40,11 @@ class DiscordClient
     public $categories = [];
 
     /**
+     * @var Logger
+     */
+    private $logger;
+
+    /**
      * Client constructor.
      *
      * @param array $options
@@ -47,25 +52,33 @@ class DiscordClient
     public function __construct(array $options = [])
     {
         $this->options = $this->validateOptions($options);
+        $this->logger  = $this->options['logger'];
 
         $stack = HandlerStack::create();
         $stack->push(
+            new RateLimiter(
+                new RateLimitProvider(),
+                $this->options,
+                $this->logger
+            )
+        );
+        $stack->push(
             Middleware::log(
-                new Logger('Logger'),
+                $this->logger,
                 new MessageFormatter('{response}')
             )
         );
         $stack->push(
             Middleware::log(
-                new Logger('Logger'),
-                new MessageFormatter('{method} {uri} - {request}')
+                $this->logger,
+                new MessageFormatter('{request}')
             )
         );
         $client = new Client(
             [
                 'headers' => [
-                    'Authorization'  => 'Bot '.$this->options['token'],
-                    'User-Agent'     => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->options['version']})",
+                    'Authorization' => 'Bot '.$this->options['token'],
+                    'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->options['version']})",
                 ],
                 'handler' => $stack,
             ]
@@ -122,13 +135,15 @@ class DiscordClient
         $resolver = new OptionsResolver();
         $resolver->setDefaults(
             [
-                'version' => '1.0.0',
+                'version'          => '1.0.0',
+                'logger'           => new Logger('Logger'),
+                'throwOnRatelimit' => false,
             ]
-        );
-
-        $resolver->setRequired('token');
-        $resolver->setAllowedTypes('token', ['string']);
-        $resolver->setAllowedTypes('version', ['string']);
+        )
+            ->setRequired('token')
+            ->setAllowedTypes('token', ['string'])
+            ->setAllowedTypes('logger', [Logger::class])
+            ->setAllowedTypes('version', ['string']);
 
         return $resolver->resolve($options);
     }
