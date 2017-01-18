@@ -20,6 +20,8 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
 use Monolog\Logger;
+use RestCord\RateLimit\RateLimiter;
+use RestCord\RateLimit\RateLimitProvider;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

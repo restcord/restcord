@@ -11,7 +11,7 @@
  * @license     MIT
  */
 
-namespace RestCord;
+namespace RestCord\RateLimit;
 
 /**
  * @author Aaron Scherer <aequasi@gmail.com>
