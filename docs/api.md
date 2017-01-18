@@ -31,10 +31,9 @@ channel.id | snowflake | false | *null*
 Returns a guild channel or dm channel object.
 
 Can Return:
+
 * guild channel
 * dm channel
-
-
 
 ---
 
@@ -65,9 +64,8 @@ channel.id | snowflake | false | *null*
 Returns a guild channel on success, and a 400 BAD REQUEST on invalid parameters.
 
 Can Return:
+
 * guild channel
-
-
 
 ---
 
@@ -93,10 +91,9 @@ channel.id | snowflake | false | *null*
 Returns a guild channel or dm channel object on success.
 
 Can Return:
+
 * guild channel
 * dm channel
-
-
 
 ---
 
@@ -126,8 +123,6 @@ channel.id | snowflake | false | *null*
 Returns the messages for a channel.
 
 
-
-
 ---
 
 ### Get Channel Message - `getChannelMessage`
@@ -151,8 +146,6 @@ message.id | snowflake | false | *null*
 #### Response
 
 Returns a specific message in the channel.
-
-
 
 
 ---
@@ -184,9 +177,8 @@ channel.id | snowflake | false | *null*
 Returns a message object.
 
 Can Return:
+
 * message
-
-
 
 ---
 
@@ -214,8 +206,6 @@ emoji | string | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Delete Own Reaction - `deleteOwnReaction`
@@ -240,8 +230,6 @@ emoji | string | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -271,8 +259,6 @@ user.id | snowflake | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Get Reactions - `getReactions`
@@ -299,9 +285,8 @@ emoji | string | false | *null*
 Returns an array of user objects on success.
 
 Can Return:
+
 * user
-
-
 
 ---
 
@@ -326,8 +311,6 @@ message.id | snowflake | false | *null*
 #### Response
 
 Possibly No Response
-
-
 
 
 ---
@@ -356,9 +339,8 @@ message.id | snowflake | false | *null*
 Returns a message object.
 
 Can Return:
+
 * message
-
-
 
 ---
 
@@ -383,8 +365,6 @@ message.id | snowflake | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -412,8 +392,6 @@ channel.id | snowflake | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Bulk Delete Messages (deprecated) - `bulkDeleteMessagesDeprecated`
@@ -436,8 +414,6 @@ channel.id | snowflake | false | *null*
 #### Response
 
 Possibly No Response
-
-
 
 
 ---
@@ -468,8 +444,6 @@ overwrite.id | string | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Get Channel Invites - `getChannelInvites`
@@ -494,10 +468,9 @@ channel.id | snowflake | false | *null*
 Returns a list of invite objects (with invite metadata) for the channel.
 
 Can Return:
+
 * invite
 * invite metadata
-
-
 
 ---
 
@@ -527,9 +500,8 @@ channel.id | snowflake | false | *null*
 Returns an invite object.
 
 Can Return:
+
 * invite
-
-
 
 ---
 
@@ -556,8 +528,6 @@ overwrite.id | string | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Trigger Typing Indicator - `triggerTypingIndicator`
@@ -580,8 +550,6 @@ channel.id | snowflake | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -608,9 +576,8 @@ channel.id | snowflake | false | *null*
 Returns all pinned messages in the channel as an array of message objects.
 
 Can Return:
+
 * message
-
-
 
 ---
 
@@ -637,8 +604,6 @@ message.id | snowflake | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Delete Pinned Channel Message - `deletePinnedChannelMessage`
@@ -662,8 +627,6 @@ message.id | snowflake | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -693,8 +656,6 @@ user.id | snowflake | false | *null*
 Possibly No Response
 
 
-
-
 ---
 
 ### Group DM Remove Recipient - `groupDmRemoveRecipient`
@@ -718,8 +679,6 @@ user.id | snowflake | false | *null*
 #### Response
 
 Possibly No Response
-
-
 
 
 ---
@@ -754,9 +713,8 @@ channels | array | false | *null*
 Returns a guild object on success.
 
 Can Return:
+
 * guild
-
-
 
 ---
 
@@ -782,9 +740,8 @@ guild.id | snowflake | false | *null*
 Returns the new guild object for the given id.
 
 Can Return:
+
 * guild
-
-
 
 ---
 
@@ -819,9 +776,8 @@ guild.id | snowflake | false | *null*
 Returns the updated guild object on success.
 
 Can Return:
+
 * guild
-
-
 
 ---
 
@@ -847,9 +803,8 @@ guild.id | snowflake | false | *null*
 Returns the guild object on success.
 
 Can Return:
+
 * guild
-
-
 
 ---
 
@@ -875,9 +830,8 @@ guild.id | snowflake | false | *null*
 Returns a list of guild channel objects.
 
 Can Return:
+
 * channel
-
-
 
 ---
 
@@ -908,9 +862,8 @@ guild.id | snowflake | false | *null*
 Returns the new channel object on success.
 
 Can Return:
+
 * channel
-
-
 
 ---
 
@@ -938,9 +891,8 @@ guild.id | snowflake | false | *null*
 Returns a list of all of the guild&#039;s channel objects on success.
 
 Can Return:
+
 * channel
-
-
 
 ---
 
@@ -967,9 +919,8 @@ user.id | snowflake | false | *null*
 Returns a guild member object for the specified user.
 
 Can Return:
+
 * guild member
-
-
 
 ---
 
@@ -997,9 +948,8 @@ guild.id | snowflake | false | *null*
 Returns a list of guild member objects that are members of the guild.
 
 Can Return:
+
 * guild member
-
-
 
 ---
 
@@ -1031,9 +981,8 @@ user.id | snowflake | false | *null*
 Returns a 201 Created with the guild member as the body.
 
 Can Return:
+
 * guild member
-
-
 
 ---
 
@@ -1065,8 +1014,6 @@ user.id | snowflake | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Add Guild Member Role - `addGuildMemberRole`
@@ -1091,8 +1038,6 @@ role.id | string | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -1121,8 +1066,6 @@ role.id | string | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Remove Guild Member - `removeGuildMember`
@@ -1146,8 +1089,6 @@ user.id | snowflake | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -1174,9 +1115,8 @@ guild.id | snowflake | false | *null*
 Returns a list of user objects that are banned from this guild.
 
 Can Return:
+
 * user
-
-
 
 ---
 
@@ -1204,8 +1144,6 @@ user.id | snowflake | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Remove Guild Ban - `removeGuildBan`
@@ -1229,8 +1167,6 @@ user.id | snowflake | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -1257,9 +1193,8 @@ guild.id | snowflake | false | *null*
 Returns a list of role objects for the guild.
 
 Can Return:
+
 * role
-
-
 
 ---
 
@@ -1285,9 +1220,8 @@ guild.id | snowflake | false | *null*
 Returns the new role object on success.
 
 Can Return:
+
 * role
-
-
 
 ---
 
@@ -1315,9 +1249,8 @@ guild.id | snowflake | false | *null*
 Returns a list of all of the guild&#039;s role objects on success.
 
 Can Return:
+
 * role
-
-
 
 ---
 
@@ -1350,9 +1283,8 @@ role.id | string | false | *null*
 Returns the updated role on success.
 
 Can Return:
+
 * role
-
-
 
 ---
 
@@ -1379,9 +1311,8 @@ role.id | string | false | *null*
 Returns the role on success.
 
 Can Return:
+
 * role
-
-
 
 ---
 
@@ -1406,8 +1337,6 @@ guild.id | snowflake | false | *null*
 #### Response
 
 Returns an object with one &#039;pruned&#039; key indicating the number of members that would be removed in a prune operation.
-
-
 
 
 ---
@@ -1435,8 +1364,6 @@ guild.id | snowflake | false | *null*
 Returns an object with one &#039;pruned&#039; key indicating the number of members that were removed in the prune operation.
 
 
-
-
 ---
 
 ### Get Guild Voice Regions - `getGuildVoiceRegions`
@@ -1461,9 +1388,8 @@ guild.id | snowflake | false | *null*
 Returns a list of voice region objects for the guild.
 
 Can Return:
+
 * voice region
-
-
 
 ---
 
@@ -1489,10 +1415,9 @@ guild.id | snowflake | false | *null*
 Returns a list of invite objects (with invite metadata) for the guild.
 
 Can Return:
+
 * invite
 * invite metadata
-
-
 
 ---
 
@@ -1518,9 +1443,8 @@ guild.id | snowflake | false | *null*
 Returns a list of integration objects for the guild.
 
 Can Return:
+
 * integration
-
-
 
 ---
 
@@ -1546,8 +1470,6 @@ guild.id | snowflake | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -1578,8 +1500,6 @@ integration.id | string | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Delete Guild Integration - `deleteGuildIntegration`
@@ -1603,8 +1523,6 @@ integration.id | string | false | *null*
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -1632,8 +1550,6 @@ integration.id | string | false | *null*
 Returns a 204 empty response on success.
 
 
-
-
 ---
 
 ### Get Guild Embed - `getGuildEmbed`
@@ -1658,9 +1574,8 @@ guild.id | snowflake | false | *null*
 Returns the guild embed object.
 
 Can Return:
+
 * guild embed
-
-
 
 ---
 
@@ -1686,9 +1601,8 @@ guild.id | snowflake | false | *null*
 Returns the updated guild embed object.
 
 Can Return:
+
 * guild embed
-
-
 
 ---
 
@@ -1716,9 +1630,8 @@ invite.code | string | false | *null*
 Returns an invite object for the given code.
 
 Can Return:
+
 * invite object
-
-
 
 ---
 
@@ -1744,9 +1657,8 @@ invite.code | string | false | *null*
 Returns an invite object on success.
 
 Can Return:
+
 * invite object
-
-
 
 ---
 
@@ -1772,9 +1684,8 @@ invite.code | string | false | *null*
 Returns an invite object on success.
 
 Can Return:
+
 * invite object
-
-
 
 ---
 
@@ -1799,9 +1710,8 @@ No Parameters
 Returns the user object of the requester&#039;s account.
 
 Can Return:
+
 * user
-
-
 
 ---
 
@@ -1827,9 +1737,8 @@ user.id | snowflake | false | *null*
 Returns a user for a given user ID.
 
 Can Return:
+
 * user
-
-
 
 ---
 
@@ -1856,9 +1765,8 @@ avatar | avatar data | false | *null*
 Returns a user object on success.
 
 Can Return:
+
 * user
-
-
 
 ---
 
@@ -1881,9 +1789,8 @@ No Parameters
 Returns a list of user guild objects the current user is a member of.
 
 Can Return:
+
 * user guild
-
-
 
 ---
 
@@ -1904,8 +1811,6 @@ No Parameters
 #### Response
 
 Returns a 204 empty response on success.
-
-
 
 
 ---
@@ -1929,9 +1834,8 @@ No Parameters
 Returns a list of DM channel objects.
 
 Can Return:
+
 * DM
-
-
 
 ---
 
@@ -1957,9 +1861,8 @@ recipient_id | snowflake | false | *null*
 Returns a DM channel object.
 
 Can Return:
+
 * DM channel
-
-
 
 ---
 
@@ -1986,9 +1889,8 @@ nicks | dict | false | *null*
 Returns a DM channel object.
 
 Can Return:
+
 * DM channel
-
-
 
 ---
 
@@ -2011,9 +1913,8 @@ No Parameters
 Returns a list of connection objects.
 
 Can Return:
+
 * connection
-
-
 
 ---
 
@@ -2038,9 +1939,8 @@ No Parameters
 Returns an array of voice region objects that can be used when creating servers.
 
 Can Return:
+
 * voice region
-
-
 
 ---
 
@@ -2070,9 +1970,8 @@ channel.id | snowflake | false | *null*
 Returns a webhook object on success.
 
 Can Return:
+
 * webhook
-
-
 
 ---
 
@@ -2098,9 +1997,8 @@ channel.id | snowflake | false | *null*
 Returns a list of channel webhook objects.
 
 Can Return:
+
 * webhook
-
-
 
 ---
 
@@ -2126,9 +2024,8 @@ guild.id | snowflake | false | *null*
 Returns a list of guild webhook objects.
 
 Can Return:
+
 * webhook
-
-
 
 ---
 
@@ -2154,9 +2051,8 @@ webhook.id | string | false | *null*
 Returns the new webhook object for the given id.
 
 Can Return:
+
 * webhook
-
-
 
 ---
 
@@ -2181,8 +2077,6 @@ webhook.token | string | false | *null*
 #### Response
 
 Possibly No Response
-
-
 
 
 ---
@@ -2211,9 +2105,8 @@ webhook.id | string | false | *null*
 Returns the updated webhook object on success.
 
 Can Return:
+
 * webhook
-
-
 
 ---
 
@@ -2240,8 +2133,6 @@ webhook.token | string | false | *null*
 Possibly No Response
 
 
-
-
 ---
 
 ### Delete Webhook - `deleteWebhook`
@@ -2264,8 +2155,6 @@ webhook.id | string | false | *null*
 #### Response
 
 Returns a 204 NO CONTENT response on success.
-
-
 
 
 ---
@@ -2291,8 +2180,6 @@ webhook.token | string | false | *null*
 #### Response
 
 Possibly No Response
-
-
 
 
 ---
@@ -2321,8 +2208,6 @@ webhook.token | string | false | *null*
 Possibly No Response
 
 
-
-
 ---
 
 ### Execute Slack-Compatible Webhook - `executeSlackcompatibleWebhook`
@@ -2347,8 +2232,6 @@ webhook.token | string | false | *null*
 #### Response
 
 Possibly No Response
-
-
 
 
 ---
@@ -2377,8 +2260,6 @@ webhook.token | string | false | *null*
 Possibly No Response
 
 
-
-
 ---
 
 ## Gateway
@@ -2402,8 +2283,6 @@ No Parameters
 Returns an object with the same information as Get Gateway, plus a shards key, containing the recommended number of shards to connect with (as an integer).
 
 
-
-
 ---
 
 ## Oauth2
@@ -2425,8 +2304,6 @@ No Parameters
 #### Response
 
 Returns the bot&#039;s OAuth2 application info.
-
-
 
 
 ---
