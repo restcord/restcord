@@ -46,9 +46,9 @@ $discord = new DiscordClient(['token' => 'bot-token']);
 var_dump($discord->guild->getGuild(['guild.id' => 108439985920704512]));
 ```
  
-## [API Documentation](http://www.restcord.com/api.html)
+## [API Documentation](http://www.restcord.com/api)
 
-API Documentation can be found [here](http://www.restcord.com/api.html).
+API Documentation can be found [here](http://www.restcord.com/api).
 
 ## Contributing
 
