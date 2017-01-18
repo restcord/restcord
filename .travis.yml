@@ -16,6 +16,9 @@ matrix:
         - php: 7.1
     fast_finish: true
 
+install:
+    - composer install
+
 script:
     - ./bin/lint src
     - php ./bin/stupidFunctionalTest.php $token $guild_id $channel_id
