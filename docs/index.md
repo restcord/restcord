@@ -9,18 +9,18 @@ Documentation is currently broken down by category.
 ```php
 $client->channel->getChannel($parameters);
 ```
-##### Description
+#### Description
 
 Get a channel by ID.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a guild channel or dm channel object.
 
@@ -37,11 +37,11 @@ Can Return:
 ```php
 $client->channel->modifyChannel($parameters);
 ```
-##### Description
+#### Description
 
 Update a channels settings. Requires the &#039;MANAGE_GUILD&#039; permission for the guild.  Fires a Channel Update Gateway event. For the PATCH method, all the JSON Params are optional.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -53,7 +53,7 @@ bitrate | integer | false | *null*
 user_limit | integer | false | *null*
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a guild channel on success, and a 400 BAD REQUEST on invalid parameters.
 
@@ -69,18 +69,18 @@ Can Return:
 ```php
 $client->channel->deletecloseChannel($parameters);
 ```
-##### Description
+#### Description
 
 Delete a guild channel, or close a private message. Requires the &#039;MANAGE_CHANNELS&#039; permission for the guild.  Fires a Channel Delete Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a guild channel or dm channel object on success.
 
@@ -97,11 +97,11 @@ Can Return:
 ```php
 $client->channel->getChannelMessages($parameters);
 ```
-##### Description
+#### Description
 
 If operating on a guild channel, this endpoint requires the &#039;READ_MESSAGES&#039; permission to be present on the current user.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -112,7 +112,7 @@ after | snowflake | false | absent
 limit | integer | false | 50
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns the messages for a channel.
 
@@ -126,11 +126,11 @@ Returns the messages for a channel.
 ```php
 $client->channel->getChannelMessage($parameters);
 ```
-##### Description
+#### Description
 
 If operating on a guild channel, this endpoints requires the &#039;READ_MESSAGE_HISTORY&#039; permission to be present on the current user.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -138,7 +138,7 @@ Name | Type | Required | Default
 channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a specific message in the channel.
 
@@ -152,11 +152,11 @@ Returns a specific message in the channel.
 ```php
 $client->channel->createMessage($parameters);
 ```
-##### Description
+#### Description
 
 Post a message to a guild text or DM channel. If operating on a guild channel, this endpoint requires the &#039;SEND_MESSAGES&#039; permission to be present on the current user.  Fires a Message Create Gateway event. See message formatting for more information on how to properly format messages.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -168,7 +168,7 @@ file | file contents | false | *null*
 embed | embed object | false | *null*
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a message object.
 
@@ -184,11 +184,11 @@ Can Return:
 ```php
 $client->channel->createReaction($parameters);
 ```
-##### Description
+#### Description
 
 Create a reaction for the message. If nobody else has reacted to the message using this emoji, this endpoint requires the &#039;ADD_REACTIONS&#039; permission to be present on the current user.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -197,7 +197,7 @@ channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 emoji | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -211,11 +211,11 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->deleteOwnReaction($parameters);
 ```
-##### Description
+#### Description
 
 Delete a reaction the current user has made for the message.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -224,7 +224,7 @@ channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 emoji | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -238,11 +238,11 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->deleteUserReaction($parameters);
 ```
-##### Description
+#### Description
 
 Deletes another user&#039;s reaction. This endpoint requires the &#039;MANAGE_MESSAGES&#039; permission to be present on the current user.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -252,7 +252,7 @@ message.id | snowflake | false | *null*
 emoji | string | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -266,11 +266,11 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->getReactions($parameters);
 ```
-##### Description
+#### Description
 
 Get a list of users that reacted with this emoji.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -279,7 +279,7 @@ channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 emoji | string | false | *null*
 
-##### Response
+#### Response
 
 Returns an array of user objects on success.
 
@@ -295,11 +295,11 @@ Can Return:
 ```php
 $client->channel->deleteAllReactions($parameters);
 ```
-##### Description
+#### Description
 
 Deletes all reactions on a message. This endpoint requires the &#039;MANAGE_MESSAGES&#039; permission to be present on the current user.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -307,7 +307,7 @@ Name | Type | Required | Default
 channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -321,11 +321,11 @@ Possibly No Response
 ```php
 $client->channel->editMessage($parameters);
 ```
-##### Description
+#### Description
 
 Edit a previously sent message. You can only edit messages that have been sent by the current user.  Fires a Message Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -334,7 +334,7 @@ content | string | false | *null*
 channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a message object.
 
@@ -350,11 +350,11 @@ Can Return:
 ```php
 $client->channel->deleteMessage($parameters);
 ```
-##### Description
+#### Description
 
 Delete a message. If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the &#039;MANAGE_MESSAGES&#039; permission.  Fires a Message Delete Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -362,7 +362,7 @@ Name | Type | Required | Default
 channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -376,11 +376,11 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->bulkDeleteMessages($parameters);
 ```
-##### Description
+#### Description
 
 Delete multiple messages in a single request. This endpoint can only be used on guild channels and requires the &#039;MANAGE_MESSAGES&#039; permission.  Fires multiple Message Delete Gateway events.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -388,7 +388,7 @@ Name | Type | Required | Default
 messages | array | false | *null*
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -402,18 +402,18 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->bulkDeleteMessagesDeprecated($parameters);
 ```
-##### Description
+#### Description
 
 Same as above, but this endpoint is deprecated.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -427,11 +427,11 @@ Possibly No Response
 ```php
 $client->channel->editChannelPermissions($parameters);
 ```
-##### Description
+#### Description
 
 Edit the channel permission overwrites for a user or role in a channel. Only usable for guild channels. Requires the &#039;MANAGE_ROLES&#039; permission.  For more information about permissions, see permissions.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -442,7 +442,7 @@ type | string | false | *null*
 channel.id | snowflake | false | *null*
 overwrite.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -456,18 +456,18 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->getChannelInvites($parameters);
 ```
-##### Description
+#### Description
 
 Only usable for guild channels. Requires the &#039;MANAGE_CHANNELS&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of invite objects (with invite metadata) for the channel.
 
@@ -484,11 +484,11 @@ Can Return:
 ```php
 $client->channel->createChannelInvite($parameters);
 ```
-##### Description
+#### Description
 
 Create a new invite object for the channel. Only usable for guild channels. Requires the CREATE_INSTANT_INVITE permission. All JSON paramaters for this route are optional, however the request body is not. If you are not sending any fields, you still have to send an empty JSON object ({}).
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -499,7 +499,7 @@ temporary | bool | false | false
 unique | bool | false | false
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns an invite object.
 
@@ -515,11 +515,11 @@ Can Return:
 ```php
 $client->channel->deleteChannelPermission($parameters);
 ```
-##### Description
+#### Description
 
 Delete a channel permission overwrite for a user or role in a channel. Only usable for guild channels. Requires the &#039;MANAGE_ROLES&#039; permission.  For more information about permissions, see permissions
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -527,7 +527,7 @@ Name | Type | Required | Default
 channel.id | snowflake | false | *null*
 overwrite.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -541,18 +541,18 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->triggerTypingIndicator($parameters);
 ```
-##### Description
+#### Description
 
 Post a typing indicator for the specified channel. Generally bots should not implement this route. However, if a bot is responding to a command and expects the computation to take a few seconds, this endpoint may be called to let the user know that the bot is processing their message.  Fires a Typing Start Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -566,18 +566,18 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->getPinnedMessages($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns all pinned messages in the channel as an array of message objects.
 
@@ -593,11 +593,11 @@ Can Return:
 ```php
 $client->channel->addPinnedChannelMessage($parameters);
 ```
-##### Description
+#### Description
 
 Pin a message in a channel. Requires the &#039;MANAGE_MESSAGES&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -605,7 +605,7 @@ Name | Type | Required | Default
 channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -619,11 +619,11 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->deletePinnedChannelMessage($parameters);
 ```
-##### Description
+#### Description
 
 Delete a pinned message in a channel. Requires the &#039;MANAGE_MESSAGES&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -631,7 +631,7 @@ Name | Type | Required | Default
 channel.id | snowflake | false | *null*
 message.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -645,11 +645,11 @@ Returns a 204 empty response on success.
 ```php
 $client->channel->groupDmAddRecipient($parameters);
 ```
-##### Description
+#### Description
 
 Adds a recipient to a Group DM using their access token
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -659,7 +659,7 @@ nick | string | false | *null*
 channel.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -673,11 +673,11 @@ Possibly No Response
 ```php
 $client->channel->groupDmRemoveRecipient($parameters);
 ```
-##### Description
+#### Description
 
 Removes a recipient from a Group DM
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -685,7 +685,7 @@ Name | Type | Required | Default
 channel.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -701,11 +701,11 @@ Possibly No Response
 ```php
 $client->guild->createGuild($parameters);
 ```
-##### Description
+#### Description
 
 Create a new guild.  Fires a Guild Create Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -718,7 +718,7 @@ default_message_notifications | integer | false | *null*
 roles | array | false | *null*
 channels | array | false | *null*
 
-##### Response
+#### Response
 
 Returns a guild object on success.
 
@@ -734,18 +734,18 @@ Can Return:
 ```php
 $client->guild->getGuild($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns the new guild object for the given id.
 
@@ -761,11 +761,11 @@ Can Return:
 ```php
 $client->guild->modifyGuild($parameters);
 ```
-##### Description
+#### Description
 
 Modify a guild&#039;s settings.  Fires a Guild Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -781,7 +781,7 @@ owner_id | snowflake | false | *null*
 splash | string | false | *null*
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns the updated guild object on success.
 
@@ -797,18 +797,18 @@ Can Return:
 ```php
 $client->guild->deleteGuild($parameters);
 ```
-##### Description
+#### Description
 
 Delete a guild permanently. User must be owner.  Fires a Guild Delete Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns the guild object on success.
 
@@ -824,18 +824,18 @@ Can Return:
 ```php
 $client->guild->getGuildChannels($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of guild channel objects.
 
@@ -851,11 +851,11 @@ Can Return:
 ```php
 $client->guild->createGuildChannel($parameters);
 ```
-##### Description
+#### Description
 
 Create a new channel object for the guild. Requires the &#039;MANAGE_CHANNELS&#039; permission.  Fires a Channel Create Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -867,7 +867,7 @@ user_limit | integer | false | *null*
 permission_overwrites | array | false | *null*
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns the new channel object on success.
 
@@ -883,11 +883,11 @@ Can Return:
 ```php
 $client->guild->modifyGuildChannelPositions($parameters);
 ```
-##### Description
+#### Description
 
 Modify the positions of a set of channel objects for the guild. Requires &#039;MANAGE_CHANNELS&#039; permission.  Fires multiple Channel Update Gateway events.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -896,7 +896,7 @@ id | snowflake | false | *null*
 position | integer | false | *null*
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of all of the guild&#039;s channel objects on success.
 
@@ -912,11 +912,11 @@ Can Return:
 ```php
 $client->guild->getGuildMember($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -924,7 +924,7 @@ Name | Type | Required | Default
 guild.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a guild member object for the specified user.
 
@@ -940,11 +940,11 @@ Can Return:
 ```php
 $client->guild->listGuildMembers($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -953,7 +953,7 @@ limit | integer | false | 1
 after | integer | false | 0
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of guild member objects that are members of the guild.
 
@@ -969,11 +969,11 @@ Can Return:
 ```php
 $client->guild->addGuildMember($parameters);
 ```
-##### Description
+#### Description
 
 Adds a user to the guild, provided you have a valid oauth2 access token for the user with the guilds.join scope.  Fires a Guild Member Add Gateway event. Requires the bot to have the CREATE_INSTANT_INVITE permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -986,7 +986,7 @@ deaf | bool | false | *null*
 guild.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 201 Created with the guild member as the body.
 
@@ -1002,11 +1002,11 @@ Can Return:
 ```php
 $client->guild->modifyGuildMember($parameters);
 ```
-##### Description
+#### Description
 
 Modify attributes of a guild member.  Fires a Guild Member Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1019,7 +1019,7 @@ channel_id | snowflake | false | *null*
 guild.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1033,11 +1033,11 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->addGuildMemberRole($parameters);
 ```
-##### Description
+#### Description
 
 Adds a role to a guild member. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Member Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1046,7 +1046,7 @@ guild.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 role.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1060,11 +1060,11 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->removeGuildMemberRole($parameters);
 ```
-##### Description
+#### Description
 
 Removes a role from a guild member. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Member Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1073,7 +1073,7 @@ guild.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 role.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1087,11 +1087,11 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->removeGuildMember($parameters);
 ```
-##### Description
+#### Description
 
 Remove a member from a guild. Requires &#039;KICK_MEMBERS&#039; permission.  Fires a Guild Member Remove Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1099,7 +1099,7 @@ Name | Type | Required | Default
 guild.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1113,18 +1113,18 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->getGuildBans($parameters);
 ```
-##### Description
+#### Description
 
 Requires the &#039;BAN_MEMBERS&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of user objects that are banned from this guild.
 
@@ -1140,11 +1140,11 @@ Can Return:
 ```php
 $client->guild->createGuildBan($parameters);
 ```
-##### Description
+#### Description
 
 Create a guild ban, and optionally delete previous messages sent by the banned user. Requires the &#039;BAN_MEMBERS&#039; permission.  Fires a Guild Ban Add Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1153,7 +1153,7 @@ delete-message-days | integer | false | *null*
 guild.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1167,11 +1167,11 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->removeGuildBan($parameters);
 ```
-##### Description
+#### Description
 
 Remove the ban for a user. Requires the &#039;BAN_MEMBERS&#039; permissions.  Fires a Guild Ban Remove Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1179,7 +1179,7 @@ Name | Type | Required | Default
 guild.id | snowflake | false | *null*
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1193,18 +1193,18 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->getGuildRoles($parameters);
 ```
-##### Description
+#### Description
 
 Requires the &#039;MANAGE_ROLES&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of role objects for the guild.
 
@@ -1220,18 +1220,18 @@ Can Return:
 ```php
 $client->guild->createGuildRole($parameters);
 ```
-##### Description
+#### Description
 
 Create a new empty role object for the guild. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Role Create Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns the new role object on success.
 
@@ -1247,11 +1247,11 @@ Can Return:
 ```php
 $client->guild->modifyGuildRolePositions($parameters);
 ```
-##### Description
+#### Description
 
 Modify the positions of a set of role objects for the guild. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires multiple Guild Role Update Gateway events.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1260,7 +1260,7 @@ id | snowflake | false | *null*
 position | integer | false | *null*
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of all of the guild&#039;s role objects on success.
 
@@ -1276,11 +1276,11 @@ Can Return:
 ```php
 $client->guild->modifyGuildRole($parameters);
 ```
-##### Description
+#### Description
 
 Modify a guild role. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Role Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1294,7 +1294,7 @@ mentionable | bool | false | *null*
 guild.id | snowflake | false | *null*
 role.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns the updated role on success.
 
@@ -1310,11 +1310,11 @@ Can Return:
 ```php
 $client->guild->deleteGuildRole($parameters);
 ```
-##### Description
+#### Description
 
 Delete a guild role. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Role Delete Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1322,7 +1322,7 @@ Name | Type | Required | Default
 guild.id | snowflake | false | *null*
 role.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns the role on success.
 
@@ -1338,11 +1338,11 @@ Can Return:
 ```php
 $client->guild->getGuildPruneCount($parameters);
 ```
-##### Description
+#### Description
 
 Requires the &#039;KICK_MEMBERS&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1350,7 +1350,7 @@ Name | Type | Required | Default
 days | integer | false | *null*
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns an object with one &#039;pruned&#039; key indicating the number of members that would be removed in a prune operation.
 
@@ -1364,11 +1364,11 @@ Returns an object with one &#039;pruned&#039; key indicating the number of membe
 ```php
 $client->guild->beginGuildPrune($parameters);
 ```
-##### Description
+#### Description
 
 Begin a prune operation. Requires the &#039;KICK_MEMBERS&#039; permission.  Fires multiple Guild Member Remove Gateway events.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1376,7 +1376,7 @@ Name | Type | Required | Default
 days | integer | false | *null*
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns an object with one &#039;pruned&#039; key indicating the number of members that were removed in the prune operation.
 
@@ -1390,18 +1390,18 @@ Returns an object with one &#039;pruned&#039; key indicating the number of membe
 ```php
 $client->guild->getGuildVoiceRegions($parameters);
 ```
-##### Description
+#### Description
 
 Unlike the similar /voice route, this returns VIP servers when the guild is VIP-enabled.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of voice region objects for the guild.
 
@@ -1417,18 +1417,18 @@ Can Return:
 ```php
 $client->guild->getGuildInvites($parameters);
 ```
-##### Description
+#### Description
 
 Requires the &#039;MANAGE_GUILD&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of invite objects (with invite metadata) for the guild.
 
@@ -1445,18 +1445,18 @@ Can Return:
 ```php
 $client->guild->getGuildIntegrations($parameters);
 ```
-##### Description
+#### Description
 
 Requires the &#039;MANAGE_GUILD&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of integration objects for the guild.
 
@@ -1472,11 +1472,11 @@ Can Return:
 ```php
 $client->guild->createGuildIntegration($parameters);
 ```
-##### Description
+#### Description
 
 Attach an integration object from the current user to the guild. Requires the &#039;MANAGE_GUILD&#039; permission.  Fires a Guild Integrations Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1485,7 +1485,7 @@ type | string | false | *null*
 id | snowflake | false | *null*
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1499,11 +1499,11 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->modifyGuildIntegration($parameters);
 ```
-##### Description
+#### Description
 
 Modify the behavior and settings of a integration object for the guild. Requires the &#039;MANAGE_GUILD&#039; permission.  Fires a Guild Integrations Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1514,7 +1514,7 @@ enable_emoticons | bool | false | *null*
 guild.id | snowflake | false | *null*
 integration.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1528,11 +1528,11 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->deleteGuildIntegration($parameters);
 ```
-##### Description
+#### Description
 
 Delete the attached integration object for the guild. Requires the &#039;MANAGE_GUILD&#039; permission.  Fires a Guild Integrations Update Gateway event.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1540,7 +1540,7 @@ Name | Type | Required | Default
 guild.id | snowflake | false | *null*
 integration.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1554,11 +1554,11 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->syncGuildIntegration($parameters);
 ```
-##### Description
+#### Description
 
 Sync an integration. Requires the &#039;MANAGE_GUILD&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1566,7 +1566,7 @@ Name | Type | Required | Default
 guild.id | snowflake | false | *null*
 integration.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1580,18 +1580,18 @@ Returns a 204 empty response on success.
 ```php
 $client->guild->getGuildEmbed($parameters);
 ```
-##### Description
+#### Description
 
 Requires the &#039;MANAGE_GUILD&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns the guild embed object.
 
@@ -1607,18 +1607,18 @@ Can Return:
 ```php
 $client->guild->modifyGuildEmbed($parameters);
 ```
-##### Description
+#### Description
 
 Modify a guild embed object for the guild. All attributes may be passed in with JSON and modified. Requires the &#039;MANAGE_GUILD&#039; permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns the updated guild embed object.
 
@@ -1636,18 +1636,18 @@ Can Return:
 ```php
 $client->invite->getInvite($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 invite.code | string | false | *null*
 
-##### Response
+#### Response
 
 Returns an invite object for the given code.
 
@@ -1663,18 +1663,18 @@ Can Return:
 ```php
 $client->invite->deleteInvite($parameters);
 ```
-##### Description
+#### Description
 
 Delete an invite. Requires the MANAGE_CHANNELS permission.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 invite.code | string | false | *null*
 
-##### Response
+#### Response
 
 Returns an invite object on success.
 
@@ -1690,18 +1690,18 @@ Can Return:
 ```php
 $client->invite->acceptInvite($parameters);
 ```
-##### Description
+#### Description
 
 Accept an invite. This is not available to bot accounts, and requires the guilds.join OAuth2 scope to accept on behalf of normal users.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 invite.code | string | false | *null*
 
-##### Response
+#### Response
 
 Returns an invite object on success.
 
@@ -1719,15 +1719,15 @@ Can Return:
 ```php
 $client->user->getCurrentUser($parameters);
 ```
-##### Description
+#### Description
 
 For OAuth2, this requires the identify scope, which will return the object without an email, and optionally the email scope, which returns the object with an email.
 
-##### Parameters
+#### Parameters
 
 No Parameters
 
-##### Response
+#### Response
 
 Returns the user object of the requester&#039;s account.
 
@@ -1743,18 +1743,18 @@ Can Return:
 ```php
 $client->user->getUser($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 user.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a user for a given user ID.
 
@@ -1770,11 +1770,11 @@ Can Return:
 ```php
 $client->user->modifyCurrentUser($parameters);
 ```
-##### Description
+#### Description
 
 Modify the requestors user account settings.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1782,7 +1782,7 @@ Name | Type | Required | Default
 username | string | false | *null*
 avatar | avatar data | false | *null*
 
-##### Response
+#### Response
 
 Returns a user object on success.
 
@@ -1798,15 +1798,15 @@ Can Return:
 ```php
 $client->user->getCurrentUserGuilds($parameters);
 ```
-##### Description
+#### Description
 
 Requires the guilds OAuth2 scope.
 
-##### Parameters
+#### Parameters
 
 No Parameters
 
-##### Response
+#### Response
 
 Returns a list of user guild objects the current user is a member of.
 
@@ -1822,15 +1822,15 @@ Can Return:
 ```php
 $client->user->leaveGuild($parameters);
 ```
-##### Description
+#### Description
 
 Leave a guild.
 
-##### Parameters
+#### Parameters
 
 No Parameters
 
-##### Response
+#### Response
 
 Returns a 204 empty response on success.
 
@@ -1844,15 +1844,15 @@ Returns a 204 empty response on success.
 ```php
 $client->user->getUserDms($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 No Parameters
 
-##### Response
+#### Response
 
 Returns a list of DM channel objects.
 
@@ -1868,18 +1868,18 @@ Can Return:
 ```php
 $client->user->createDm($parameters);
 ```
-##### Description
+#### Description
 
 Create a new DM channel with a user.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 recipient_id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a DM channel object.
 
@@ -1895,11 +1895,11 @@ Can Return:
 ```php
 $client->user->createGroupDm($parameters);
 ```
-##### Description
+#### Description
 
 Create a new group DM channel with multiple users.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1907,7 +1907,7 @@ Name | Type | Required | Default
 access_tokens | array | false | *null*
 nicks | dict | false | *null*
 
-##### Response
+#### Response
 
 Returns a DM channel object.
 
@@ -1923,15 +1923,15 @@ Can Return:
 ```php
 $client->user->getUsersConnections($parameters);
 ```
-##### Description
+#### Description
 
 Requires the connections OAuth2 scope.
 
-##### Parameters
+#### Parameters
 
 No Parameters
 
-##### Response
+#### Response
 
 Returns a list of connection objects.
 
@@ -1949,15 +1949,15 @@ Can Return:
 ```php
 $client->voice->listVoiceRegions($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 No Parameters
 
-##### Response
+#### Response
 
 Returns an array of voice region objects that can be used when creating servers.
 
@@ -1975,11 +1975,11 @@ Can Return:
 ```php
 $client->webhook->createWebhook($parameters);
 ```
-##### Description
+#### Description
 
 Create a new webhook.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -1988,7 +1988,7 @@ name | string | false | *null*
 avatar | string | false | *null*
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a webhook object on success.
 
@@ -2004,18 +2004,18 @@ Can Return:
 ```php
 $client->webhook->getChannelWebhooks($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of channel webhook objects.
 
@@ -2031,18 +2031,18 @@ Can Return:
 ```php
 $client->webhook->getGuildWebhooks($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | false | *null*
 
-##### Response
+#### Response
 
 Returns a list of guild webhook objects.
 
@@ -2058,18 +2058,18 @@ Can Return:
 ```php
 $client->webhook->getWebhook($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 webhook.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns the new webhook object for the given id.
 
@@ -2085,11 +2085,11 @@ Can Return:
 ```php
 $client->webhook->getWebhookWithToken($parameters);
 ```
-##### Description
+#### Description
 
 Same as above, except this call does not require authentication and returns no user in the webhook object.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -2097,7 +2097,7 @@ Name | Type | Required | Default
 webhook.id | string | false | *null*
 webhook.token | string | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -2111,11 +2111,11 @@ Possibly No Response
 ```php
 $client->webhook->modifyWebhook($parameters);
 ```
-##### Description
+#### Description
 
 Modify a webhook.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -2124,7 +2124,7 @@ name | string | false | *null*
 avatar | string | false | *null*
 webhook.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns the updated webhook object on success.
 
@@ -2140,11 +2140,11 @@ Can Return:
 ```php
 $client->webhook->modifyWebhookWithToken($parameters);
 ```
-##### Description
+#### Description
 
 Same as above, except this call does not require authentication and returns no user in the webhook object.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -2152,7 +2152,7 @@ Name | Type | Required | Default
 webhook.id | string | false | *null*
 webhook.token | string | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -2166,18 +2166,18 @@ Possibly No Response
 ```php
 $client->webhook->deleteWebhook($parameters);
 ```
-##### Description
+#### Description
 
 Delete a webhook permanently. User must be owner.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
 webhook.id | string | false | *null*
 
-##### Response
+#### Response
 
 Returns a 204 NO CONTENT response on success.
 
@@ -2191,11 +2191,11 @@ Returns a 204 NO CONTENT response on success.
 ```php
 $client->webhook->deleteWebhookWithToken($parameters);
 ```
-##### Description
+#### Description
 
 Same as above, except this call does not require authentication.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -2203,7 +2203,7 @@ Name | Type | Required | Default
 webhook.id | string | false | *null*
 webhook.token | string | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -2217,11 +2217,11 @@ Possibly No Response
 ```php
 $client->webhook->executeWebhook($parameters);
 ```
-##### Description
+#### Description
 
 This endpoint supports both JSON and form data bodies. It does require multipart/form-data requests instead of the normal JSON request type when uploading files. Make sure you set your Content-Type to multipart/form-data if you&#039;re doing that. Note that in that case, the embeds field cannot be used, but you can pass an url-encoded JSON body as a form value for payload_json.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -2230,7 +2230,7 @@ wait | bool | false | *null*
 webhook.id | string | false | *null*
 webhook.token | string | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -2244,11 +2244,11 @@ Possibly No Response
 ```php
 $client->webhook->executeSlackcompatibleWebhook($parameters);
 ```
-##### Description
+#### Description
 
 Refer to Slack&#039;s documentation for more information. We do not support Slack&#039;s channel, icon_emoji, mrkdwn, or mrkdwn_in properties.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -2257,7 +2257,7 @@ wait | bool | false | *null*
 webhook.id | string | false | *null*
 webhook.token | string | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -2271,11 +2271,11 @@ Possibly No Response
 ```php
 $client->webhook->executeGithubcompatibleWebhook($parameters);
 ```
-##### Description
+#### Description
 
 Add a new webhook to your GitHub repo (in the repo&#039;s settings), and use this endpoint as the &quot;Payload URL.&quot; You can choose what events your Discord channel receives by choosing the &quot;Let me select individual events&quot; option and selecting individual events for the new webhook you&#039;re configuring.
 
-##### Parameters
+#### Parameters
 
 
 Name | Type | Required | Default
@@ -2284,7 +2284,7 @@ wait | bool | false | *null*
 webhook.id | string | false | *null*
 webhook.token | string | false | *null*
 
-##### Response
+#### Response
 
 Possibly No Response
 
@@ -2300,15 +2300,15 @@ Possibly No Response
 ```php
 $client->gateway->getGateway($parameters);
 ```
-##### Description
+#### Description
 
 Bots that want to dynamically/automatically spawn shard processes should use this endpoint to determine the number of processes to run. This route should be called once, and the result cached/passed to all processes. This value is not guarenteed to be the same per-call.
 
-##### Parameters
+#### Parameters
 
 No Parameters
 
-##### Response
+#### Response
 
 Returns an object with the same information as Get Gateway, plus a shards key, containing the recommended number of shards to connect with (as an integer).
 
@@ -2324,15 +2324,15 @@ Returns an object with the same information as Get Gateway, plus a shards key, c
 ```php
 $client->oauth2->getCurrentApplicationInformation($parameters);
 ```
-##### Description
+#### Description
 
 
 
-##### Parameters
+#### Parameters
 
 No Parameters
 
-##### Response
+#### Response
 
 Returns the bot&#039;s OAuth2 application info.
 

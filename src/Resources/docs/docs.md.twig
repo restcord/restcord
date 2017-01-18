@@ -11,11 +11,11 @@ Documentation is currently broken down by category.
 ```php
 $client->{{ category }}->{{ operation }}($parameters);
 ```
-##### Description
+#### Description
 
 {{ config.description }}
 
-##### Parameters
+#### Parameters
 
 {% if config.parameters|length > 0 %}
 
@@ -28,7 +28,7 @@ Name | Type | Required | Default
 No Parameters
 {% endif %}
 
-##### Response
+#### Response
 
 {{ config.responseNote|default("Possibly No Response") }}
 
