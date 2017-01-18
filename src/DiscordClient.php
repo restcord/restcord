@@ -67,13 +67,13 @@ class DiscordClient
         $stack->push(
             Middleware::log(
                 $this->logger,
-                new MessageFormatter('{response}')
+                new MessageFormatter('{response}', $this->options['token'])
             )
         );
         $stack->push(
             Middleware::log(
                 $this->logger,
-                new MessageFormatter('{request}')
+                new MessageFormatter('{request}', $this->options['token'])
             )
         );
         $client = new Client(
