@@ -30,8 +30,8 @@ $twig->addExtension(new Twig_Extension_Debug());
             $style->title("Building Docs for: ".$input->getArgument('version'));
 
             $path = __DIR__.'/../docs/';
-            if (!file_exists($path.'/categories')) {
-                mkdir($path.'/categories', 02775, true);
+            if (!file_exists($path)) {
+                mkdir($path, 02775, true);
             }
             $path = realpath($path);
 
@@ -42,11 +42,8 @@ $twig->addExtension(new Twig_Extension_Debug());
                 true
             );
 
-            foreach ($definition['operations'] as $category => $operations) {
-                $markdown = $twig->render('category.md.twig', ['category' => $category, 'operations' => $operations]);
-
-                file_put_contents($path.'/categories/'.$category.'.md', $markdown);
-            }
+            $markdown = $twig->render('docs.md.twig', ['definition' => $definition]);
+            file_put_contents($path.'/index.md', $markdown);
 
             $style->success('Finished. Docs built in: '.realpath($path));
         }

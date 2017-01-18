@@ -1,0 +1,47 @@
+# Documentation
+
+Documentation is currently broken down by category.
+
+{% for category, operations in definition.operations %}
+## {{ category|title }}
+
+{% for operation, config in operations %}
+### {{ config.name }} - `{{ operation }}`
+
+```php
+$client->{{ category }}->{{ operation }}($parameters);
+```
+##### Description
+
+{{ config.description }}
+
+##### Parameters
+
+{% if config.parameters|length > 0 %}
+
+Name | Type | Required | Default
+--- | --- | --- | ---
+{% for name, parameter in config.parameters %}
+{{ name }} | {{ parameter.type }} | {{ parameter.required|default('false') }} | {{ parameter.default|default('*null*') }}
+{% endfor %}
+{% else %}
+No Parameters
+{% endif %}
+
+##### Response
+
+{{ config.responseNote|default("Possibly No Response") }}
+
+{% if config.responseTypes|length > 0 %}
+Can Return:
+{% for type in config.responseTypes %}
+* {{ type.name }}
+{% endfor %}
+{% endif %}
+
+{{ config.parameters.length }}
+
+---
+
+{% endfor %}
+{% endfor %}
