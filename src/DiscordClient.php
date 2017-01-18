@@ -122,10 +122,10 @@ class DiscordClient
                 'getResponse' => [
                     'type'                 => 'object',
                     'additionalProperties' => [
-                        'location' => 'json'
-                    ]
-                ]
-            ]
+                        'location' => 'json',
+                    ],
+                ],
+            ],
         ];
         foreach ($description['operations'] as $category => $operations) {
             $this->categories[$category] = new GuzzleClient(
