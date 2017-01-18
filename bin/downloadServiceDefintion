@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of php-restcord.
+ *
+ * (c) Aaron Scherer <aequasi@gmail.com>
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ */
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+(new Application('Download Service Definitions', '1.0.0'))
+    ->register('downloadServiceDefinition')
+    ->addArgument('version', InputArgument::REQUIRED, 'Version to download')
+    ->setCode(
+        function (InputInterface $input, OutputInterface $output) {
+            $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
+            $style->title("Downloading Service Definition for: ".$input->getArgument('version'));
+
+            $file = __DIR__.'/../src/Resources/service_description-v'.$input->getArgument('version').'.json';
+            file_put_contents(
+                $file,
+                \GuzzleHttp\json_encode(
+                    \GuzzleHttp\json_decode(
+                        file_get_contents('https://discord-service-definition.herokuapp.com/')
+                    ),
+                    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+                )
+            );
+
+            $style->success('Finished. Downloaded to: '.$file);
+        }
+    )
+    ->getApplication()
+    ->setDefaultCommand('downloadServiceDefinition', true)
+    ->run();

@@ -1,0 +1,56 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of php-restcord.
+ *
+ * (c) Aaron Scherer <aequasi@gmail.com>
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ */
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+$loader = new Twig_Loader_Filesystem(__DIR__.'/../src/Resources/docs/');
+$twig   = new Twig_Environment($loader, ['debug' => true]);
+$twig->addExtension(new Twig_Extension_Debug());
+
+(new Application('Build Docs', '1.0.0'))
+    ->register('buildDocs')
+    ->addArgument('version', InputArgument::REQUIRED, 'Version to download')
+    ->setCode(
+        function (InputInterface $input, OutputInterface $output) use ($twig) {
+            $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
+            $style->title("Building Docs for: ".$input->getArgument('version'));
+
+            $path = __DIR__.'/../docs/';
+            if (!file_exists($path.'/categories')) {
+                mkdir($path.'/categories', 02775, true);
+            }
+            $path = realpath($path);
+
+            $definition = \GuzzleHttp\json_decode(
+                file_get_contents(
+                    __DIR__.'/../src/Resources/service_description-v'.$input->getArgument('version').'.json'
+                ),
+                true
+            );
+
+            foreach ($definition['operations'] as $category => $operations) {
+                $markdown = $twig->render('category.md.twig', ['category' => $category, 'operations' => $operations]);
+
+                file_put_contents($path.'/categories/'.$category.'.md', $markdown);
+            }
+
+            $style->success('Finished. Docs built in: '.realpath($path));
+        }
+    )
+    ->getApplication()
+    ->setDefaultCommand('buildDocs', true)
+    ->run();

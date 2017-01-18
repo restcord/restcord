@@ -1,0 +1,29 @@
+{
+    "name":        "restcord/restcord",
+    "description": "REST Library for the Discord API",
+    "type":        "library",
+    "require":     {
+        "php":                               "^7.0",
+        "guzzlehttp/guzzle":                 "^6.2",
+        "guzzlehttp/guzzle-services":        "^1.0",
+        "symfony/options-resolver":          "^3.2",
+        "rtheunissen/guzzle-log-middleware": "^0.4.0",
+        "monolog/monolog":                   "^1.22",
+        "twig/twig":                         "~2.0"
+    },
+    "autoload":    {
+        "psr-4": {
+            "RestCord\\": "src/"
+        }
+    },
+    "license":     "MIT",
+    "authors":     [
+        {
+            "name":  "Aaron Scherer",
+            "email": "aequasi@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/console": "^3.2"
+    }
+}
