@@ -7,9 +7,8 @@
         "guzzlehttp/guzzle":                 "^6.2",
         "guzzlehttp/guzzle-services":        "^1.0",
         "symfony/options-resolver":          "^2.6|^3.2",
-        "rtheunissen/guzzle-log-middleware": "^0.4",
         "monolog/monolog":                   "^1.22",
-        "twig/twig":                         "~2.0"
+        "twig/twig":                         "^1.20|^2.0"
     },
     "autoload":    {
         "psr-4": {
