@@ -1,19 +1,21 @@
 <?php
 
 /*
- * This file is part of php-restcord.
- *
- * (c) Aaron Scherer <aequasi@gmail.com>
+ * Copyright 2017 Aaron Scherer
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
  */
 
 namespace RestCord;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
@@ -62,8 +64,8 @@ class DiscordClient
         $client = new Client(
             [
                 'headers' => [
-                    'Authorization' => 'Bot '.$this->options['token'],
-                    'User-Agent'     => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->options['version']})"
+                    'Authorization'  => 'Bot '.$this->options['token'],
+                    'User-Agent'     => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->options['version']})",
                 ],
                 'handler' => $stack,
             ]
@@ -75,8 +77,9 @@ class DiscordClient
     /**
      * @param string $name
      *
-     * @return GuzzleClient
      * @throws \Exception
+     *
+     * @return GuzzleClient
      */
     public function __get(string $name): GuzzleClient
     {
@@ -119,7 +122,7 @@ class DiscordClient
         $resolver = new OptionsResolver();
         $resolver->setDefaults(
             [
-                'version' => '1.0.0'
+                'version' => '1.0.0',
             ]
         );
 
