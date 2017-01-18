@@ -28,15 +28,5 @@ $guild = $client->guild->getGuild(['guild.id' => (int) $argv[2]]);
 
 Assertion::eq(108432868149035008, $guild['owner_id']);
 
-try {
-    for ($i = 0; $i < 15; $i++) {
-        $client->channel->createMessage(
-            [
-                'channel.id' => (int) $argv[3],
-                'content'    => 'Test Message from travis',
-            ]
-        );
-    }
-} catch (\GuzzleHttp\Command\Exception\CommandException $e) {
-    Assertion::true($e->getPrevious() instanceof \RestCord\RateLimit\RatelimitException);
-}
+$user = $client->user->getUser(['user.id' => (int) $guild['owner_id']]);
+Assertion::eq(7079, $user['discriminator']);
