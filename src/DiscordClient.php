@@ -118,11 +118,21 @@ class DiscordClient
         $base = [
             'baseUri' => $description['baseUri'],
             'version' => $description['version'],
+            'models'  => [
+                'getResponse' => [
+                    'type'                 => 'object',
+                    'additionalProperties' => [
+                        'location' => 'json'
+                    ]
+                ]
+            ]
         ];
         foreach ($description['operations'] as $category => $operations) {
             $this->categories[$category] = new GuzzleClient(
                 $client,
-                new Description(array_merge($base, ['operations' => $this->prepareOperations($operations)]))
+                new Description(
+                    array_merge($base, ['operations' => $this->prepareOperations($operations)])
+                )
             );
         }
     }
@@ -159,6 +169,8 @@ class DiscordClient
 
             $config['httpMethod'] = strtoupper($config['method']);
             unset($config['method']);
+
+            $config['responseModel'] = 'getResponse';
 
             foreach ($config['parameters'] as $parameter => &$parameterConfig) {
                 if ($parameterConfig['type'] === 'snowflake') {

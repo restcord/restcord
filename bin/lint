@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Finding all php files"
+
+# iterate
+while test ${#} -gt 0
+do
+    echo ""
+    echo "<<< In '$1' >>>"
+    find -L $1 -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+    echo "=================="
+
+    shift
+done

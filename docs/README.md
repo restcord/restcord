@@ -23,7 +23,8 @@ Getting Started
 
 ### Installing
 
-RESTCord is installed using [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates. We require a minimum PHP version of PHP 7.0.0, however it is recomended that you use PHP 7.1. 
+RESTCord is installed using [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates.
+We require a minimum PHP version of PHP 5.6.0, however it is recommended that you use PHP 7.1. PHP 5.6 will be deprecated soon.
 
 This library has not been tested with HHVM.
 
@@ -57,7 +58,7 @@ Name | Type | Required | Default | Description
 --- | --- | --- | --- | ---
 token | string | Yes | ~ | Your bot token
 version | string | No | `1.0.0` | The version of the API to use. Should probably be left alone
-logger | Monolog\Logger | false | `new Logger('Logger')` | An instance of a Monolog\Logger
+logger | Monolog\Logger | false | `new Logger` | An instance of a Monolog\Logger
 throwOnRatelimit | bool | false | false | Whether or not an exception is thrown when a ratelimit is supposed to hit
  
 ## [API Documentation](http://www.restcord.com/api)

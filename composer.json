@@ -3,7 +3,7 @@
     "description": "REST Library for the Discord API",
     "type":        "library",
     "require":     {
-        "php":                               "^7.0",
+        "php":                               "^5.6|^7.0",
         "guzzlehttp/guzzle":                 "^6.2",
         "guzzlehttp/guzzle-services":        "^1.0",
         "symfony/options-resolver":          "^2.6|^3.2",
@@ -24,6 +24,7 @@
         }
     ],
     "require-dev": {
-        "symfony/console": "^2.6|^3.2"
+        "symfony/console": "^2.6|^3.2",
+        "beberlei/assert": "^2.7"
     }
 }
