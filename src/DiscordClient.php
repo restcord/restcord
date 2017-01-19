@@ -16,6 +16,7 @@ namespace RestCord;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Monolog\Logger;
@@ -73,16 +74,17 @@ class DiscordClient
         $stack->push(
             Middleware::log(
                 $this->logger,
-                new MessageFormatter('{request}', $this->options['token'])
+                new MessageFormatter('{url} {request}', $this->options['token'])
             )
         );
         $client = new Client(
             [
-                'headers' => [
+                'headers'     => [
                     'Authorization' => 'Bot '.$this->options['token'],
                     'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->options['version']})",
                 ],
-                'handler' => $stack,
+                'http_errors' => false,
+                'handler'     => $stack,
             ]
         );
 
@@ -116,7 +118,7 @@ class DiscordClient
         );
 
         $base = [
-            'baseUri' => $description['baseUri'],
+            'baseUri' => $this->options['apiUrl'],
             'version' => $description['version'],
             'models'  => [
                 'getResponse' => [
@@ -150,10 +152,12 @@ class DiscordClient
                 'version'          => '1.0.0',
                 'logger'           => new Logger('Logger'),
                 'throwOnRatelimit' => false,
+                'apiUrl'           => 'https://discordapp.com/api/'
             ]
         )
             ->setRequired('token')
             ->setAllowedTypes('token', ['string'])
+            ->setAllowedTypes('apiUrl', ['string'])
             ->setAllowedTypes('throwOnRatelimit', ['bool'])
             ->setAllowedTypes('logger', ['\Monolog\Logger'])
             ->setAllowedTypes('version', ['string']);
@@ -175,6 +179,9 @@ class DiscordClient
             foreach ($config['parameters'] as $parameter => &$parameterConfig) {
                 if ($parameterConfig['type'] === 'snowflake') {
                     $parameterConfig['type'] = 'integer';
+                }
+                if ($parameterConfig['type'] === 'bool') {
+                    $parameterConfig['type'] = 'boolean';
                 }
             }
         }

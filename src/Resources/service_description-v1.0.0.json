@@ -1,647 +1,28 @@
 {
-    "baseUri": "https://discordapp.com/api/",
+    "baseUri": "https://discordapp.com/api",
     "version": 1,
     "operations": {
-        "channel": {
-            "getChannel": {
-                "category": "channel",
-                "name": "Get Channel",
-                "description": "Get a channel by ID.",
-                "method": "GET",
-                "responseNote": "Returns a guild channel or dm channel object.",
-                "responseTypes": [
-                    {
-                        "name": "guild channel",
-                        "type": "guild-channel"
-                    },
-                    {
-                        "name": "dm channel",
-                        "type": "dm-channel"
-                    }
-                ],
-                "url": "/channels/{channel.id}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "modifyChannel": {
-                "category": "channel",
-                "name": "Modify Channel",
-                "description": "Update a channels settings. Requires the 'MANAGE_GUILD' permission for the guild.  Fires a Channel Update Gateway event. For the PATCH method, all the JSON Params are optional.",
-                "method": "PUT",
-                "responseNote": "Returns a guild channel on success, and a 400 BAD REQUEST on invalid parameters.",
-                "responseTypes": [
-                    {
-                        "name": "guild channel",
-                        "type": "guild-channel"
-                    }
-                ],
-                "url": "/channels/{channel.id}",
-                "parameters": {
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "2-100 character channel name"
-                    },
-                    "position": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the position of the channel in the left-hand listing"
-                    },
-                    "topic": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "0-1024 character channel topic"
-                    },
-                    "bitrate": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the bitrate (in bits) of the voice channel; 8000 to 96000 (128000 for VIP servers)"
-                    },
-                    "user_limit": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the user limit of the voice channel; 0 refers to no limit, 1 to 99 refers to a user limit"
-                    },
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "deletecloseChannel": {
-                "category": "channel",
-                "name": "Delete/Close Channel",
-                "description": "Delete a guild channel, or close a private message. Requires the 'MANAGE_CHANNELS' permission for the guild.  Fires a Channel Delete Gateway event.",
-                "method": "DELETE",
-                "responseNote": "Returns a guild channel or dm channel object on success.",
-                "responseTypes": [
-                    {
-                        "name": "guild channel",
-                        "type": "guild-channel"
-                    },
-                    {
-                        "name": "dm channel",
-                        "type": "dm-channel"
-                    }
-                ],
-                "url": "/channels/{channel.id}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "getChannelMessages": {
-                "category": "channel",
-                "name": "Get Channel Messages",
-                "description": "If operating on a guild channel, this endpoint requires the 'READ_MESSAGES' permission to be present on the current user.",
-                "method": "GET",
-                "responseNote": "Returns the messages for a channel.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/messages",
-                "parameters": {
-                    "around": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "get messages around this message ID",
-                        "default": "absent"
-                    },
-                    "before": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "get messages before this message ID",
-                        "default": "absent"
-                    },
-                    "after": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "get messages after this message ID",
-                        "default": "absent"
-                    },
-                    "limit": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "max number of messages to return (1-100)",
-                        "default": "50"
-                    },
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "getChannelMessage": {
-                "category": "channel",
-                "name": "Get Channel Message",
-                "description": "If operating on a guild channel, this endpoints requires the 'READ_MESSAGE_HISTORY' permission to be present on the current user.",
-                "method": "GET",
-                "responseNote": "Returns a specific message in the channel.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/messages/{message.id}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "createMessage": {
-                "category": "channel",
-                "name": "Create Message",
-                "description": "Post a message to a guild text or DM channel. If operating on a guild channel, this endpoint requires the 'SEND_MESSAGES' permission to be present on the current user.  Fires a Message Create Gateway event. See message formatting for more information on how to properly format messages.",
-                "method": "POST",
-                "responseNote": "Returns a message object.",
-                "responseTypes": [
-                    {
-                        "name": "message",
-                        "type": "message"
-                    }
-                ],
-                "url": "/channels/{channel.id}/messages",
-                "parameters": {
-                    "content": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the message contents (up to 2000 characters)"
-                    },
-                    "nonce": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "a nonce that can be used for optimistic message sending"
-                    },
-                    "tts": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "true if this is a TTS message"
-                    },
-                    "file": {
-                        "location": "json",
-                        "type": "file contents",
-                        "description": "the contents of the file being sent"
-                    },
-                    "embed": {
-                        "location": "json",
-                        "type": "embed object",
-                        "description": "embedded rich content"
-                    },
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "createReaction": {
-                "category": "channel",
-                "name": "Create Reaction",
-                "description": "Create a reaction for the message. If nobody else has reacted to the message using this emoji, this endpoint requires the 'ADD_REACTIONS' permission to be present on the current user.",
-                "method": "PUT",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "emoji": {
-                        "type": "string",
-                        "location": "uri"
-                    }
-                }
-            },
-            "deleteOwnReaction": {
-                "category": "channel",
-                "name": "Delete Own Reaction",
-                "description": "Delete a reaction the current user has made for the message.",
-                "method": "DELETE",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "emoji": {
-                        "type": "string",
-                        "location": "uri"
-                    }
-                }
-            },
-            "deleteUserReaction": {
-                "category": "channel",
-                "name": "Delete User Reaction",
-                "description": "Deletes another user's reaction. This endpoint requires the 'MANAGE_MESSAGES' permission to be present on the current user.",
-                "method": "DELETE",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/{user.id}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "emoji": {
-                        "type": "string",
-                        "location": "uri"
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "getReactions": {
-                "category": "channel",
-                "name": "Get Reactions",
-                "description": "Get a list of users that reacted with this emoji.",
-                "method": "GET",
-                "responseNote": "Returns an array of user objects on success.",
-                "responseTypes": [
-                    {
-                        "name": "user",
-                        "type": "user"
-                    }
-                ],
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "emoji": {
-                        "type": "string",
-                        "location": "uri"
-                    }
-                }
-            },
-            "deleteAllReactions": {
-                "category": "channel",
-                "name": "Delete All Reactions",
-                "description": "Deletes all reactions on a message. This endpoint requires the 'MANAGE_MESSAGES' permission to be present on the current user.",
-                "method": "DELETE",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "editMessage": {
-                "category": "channel",
-                "name": "Edit Message",
-                "description": "Edit a previously sent message. You can only edit messages that have been sent by the current user.  Fires a Message Update Gateway event.",
+        "guild": {
+            "updateNick": {
+                "category": "guild",
+                "name": "Update Current Users' Nickname",
+                "description": "Updates the bots nickname in a server",
                 "method": "PATCH",
-                "responseNote": "Returns a message object.",
-                "responseTypes": [
-                    {
-                        "name": "message",
-                        "type": "message"
-                    }
-                ],
-                "url": "/channels/{channel.id}/messages/{message.id}",
-                "parameters": {
-                    "content": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the new message contents"
-                    },
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "deleteMessage": {
-                "category": "channel",
-                "name": "Delete Message",
-                "description": "Delete a message. If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the 'MANAGE_MESSAGES' permission.  Fires a Message Delete Gateway event.",
-                "method": "DELETE",
-                "responseNote": "Returns a 204 empty response on success.",
+                "responseNote": "Returns the nick",
                 "responseTypes": [],
-                "url": "/channels/{channel.id}/messages/{message.id}",
+                "url": "/guilds/{guild.id}/members/@me/nick",
                 "parameters": {
-                    "channel.id": {
+                    "guild.id": {
                         "type": "snowflake",
                         "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "bulkDeleteMessages": {
-                "category": "channel",
-                "name": "Bulk Delete Messages",
-                "description": "Delete multiple messages in a single request. This endpoint can only be used on guild channels and requires the 'MANAGE_MESSAGES' permission.  Fires multiple Message Delete Gateway events.",
-                "method": "POST",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/messages/bulk-delete",
-                "parameters": {
-                    "messages": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "an array of message ids to delete"
-                    },
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "bulkDeleteMessagesDeprecated": {
-                "category": "channel",
-                "name": "Bulk Delete Messages (deprecated)",
-                "description": "Same as above, but this endpoint is deprecated.",
-                "method": "POST",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/messages/bulk_delete",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "editChannelPermissions": {
-                "category": "channel",
-                "name": "Edit Channel Permissions",
-                "description": "Edit the channel permission overwrites for a user or role in a channel. Only usable for guild channels. Requires the 'MANAGE_ROLES' permission.  For more information about permissions, see permissions.",
-                "method": "PUT",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/permissions/{overwrite.id}",
-                "parameters": {
-                    "allow": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the bitwise value of all allowed permissions"
-                    },
-                    "deny": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the bitwise value of all disallowed permissions"
-                    },
-                    "type": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "\"member\" for a user or \"role\" for a role"
-                    },
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "overwrite.id": {
-                        "type": "string",
-                        "location": "uri"
-                    }
-                }
-            },
-            "getChannelInvites": {
-                "category": "channel",
-                "name": "Get Channel Invites",
-                "description": "Only usable for guild channels. Requires the 'MANAGE_CHANNELS' permission.",
-                "method": "GET",
-                "responseNote": "Returns a list of invite objects (with invite metadata) for the channel.",
-                "responseTypes": [
-                    {
-                        "name": "invite",
-                        "type": "invite"
-                    },
-                    {
-                        "name": "invite metadata",
-                        "type": "invite-metadata"
-                    }
-                ],
-                "url": "/channels/{channel.id}/invites",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "createChannelInvite": {
-                "category": "channel",
-                "name": "Create Channel Invite",
-                "description": "Create a new invite object for the channel. Only usable for guild channels. Requires the CREATE_INSTANT_INVITE permission. All JSON paramaters for this route are optional, however the request body is not. If you are not sending any fields, you still have to send an empty JSON object ({}).",
-                "method": "POST",
-                "responseNote": "Returns an invite object.",
-                "responseTypes": [
-                    {
-                        "name": "invite",
-                        "type": "invite"
-                    }
-                ],
-                "url": "/channels/{channel.id}/invites",
-                "parameters": {
-                    "max_age": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "duration of invite in seconds before expiry, or 0 for never",
-                        "default": "86400 (24 hours)"
-                    },
-                    "max_uses": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "max number of uses or 0 for unlimited",
-                        "default": "0"
-                    },
-                    "temporary": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether this invite only grants temporary membership",
-                        "default": "false"
-                    },
-                    "unique": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if true, don't try to reuse a similar invite (useful for creating many unique one time use invites)",
-                        "default": "false"
-                    },
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "deleteChannelPermission": {
-                "category": "channel",
-                "name": "Delete Channel Permission",
-                "description": "Delete a channel permission overwrite for a user or role in a channel. Only usable for guild channels. Requires the 'MANAGE_ROLES' permission.  For more information about permissions, see permissions",
-                "method": "DELETE",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/permissions/{overwrite.id}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "overwrite.id": {
-                        "type": "string",
-                        "location": "uri"
-                    }
-                }
-            },
-            "triggerTypingIndicator": {
-                "category": "channel",
-                "name": "Trigger Typing Indicator",
-                "description": "Post a typing indicator for the specified channel. Generally bots should not implement this route. However, if a bot is responding to a command and expects the computation to take a few seconds, this endpoint may be called to let the user know that the bot is processing their message.  Fires a Typing Start Gateway event.",
-                "method": "POST",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/typing",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "getPinnedMessages": {
-                "category": "channel",
-                "name": "Get Pinned Messages",
-                "description": "",
-                "method": "GET",
-                "responseNote": "Returns all pinned messages in the channel as an array of message objects.",
-                "responseTypes": [
-                    {
-                        "name": "message",
-                        "type": "message"
-                    }
-                ],
-                "url": "/channels/{channel.id}/pins",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "addPinnedChannelMessage": {
-                "category": "channel",
-                "name": "Add Pinned Channel Message",
-                "description": "Pin a message in a channel. Requires the 'MANAGE_MESSAGES' permission.",
-                "method": "PUT",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/pins/{message.id}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "deletePinnedChannelMessage": {
-                "category": "channel",
-                "name": "Delete Pinned Channel Message",
-                "description": "Delete a pinned message in a channel. Requires the 'MANAGE_MESSAGES' permission.",
-                "method": "DELETE",
-                "responseNote": "Returns a 204 empty response on success.",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/pins/{message.id}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            },
-            "groupDmAddRecipient": {
-                "category": "channel",
-                "name": "Group DM Add Recipient",
-                "description": "Adds a recipient to a Group DM using their access token",
-                "method": "PUT",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/recipients/{user.id}",
-                "parameters": {
-                    "access_token": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "access token of a user that has granted your app the gdm.join scope"
                     },
                     "nick": {
-                        "location": "json",
                         "type": "string",
-                        "description": "nickname of the user being added"
-                    },
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri"
+                        "description": "Nickname to set",
+                        "location": "json"
                     }
                 }
             },
-            "groupDmRemoveRecipient": {
-                "category": "channel",
-                "name": "Group DM Remove Recipient",
-                "description": "Removes a recipient from a Group DM",
-                "method": "DELETE",
-                "responseTypes": [],
-                "url": "/channels/{channel.id}/recipients/{user.id}",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri"
-                    }
-                }
-            }
-        },
-        "guild": {
             "createGuild": {
                 "category": "guild",
                 "name": "Create Guild",
@@ -1554,6 +935,645 @@
                 "url": "/guilds/{guild.id}/embed",
                 "parameters": {
                     "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            }
+        },
+        "channel": {
+            "getChannel": {
+                "category": "channel",
+                "name": "Get Channel",
+                "description": "Get a channel by ID.",
+                "method": "GET",
+                "responseNote": "Returns a guild channel or dm channel object.",
+                "responseTypes": [
+                    {
+                        "name": "guild channel",
+                        "type": "guild-channel"
+                    },
+                    {
+                        "name": "dm channel",
+                        "type": "dm-channel"
+                    }
+                ],
+                "url": "/channels/{channel.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "modifyChannel": {
+                "category": "channel",
+                "name": "Modify Channel",
+                "description": "Update a channels settings. Requires the 'MANAGE_GUILD' permission for the guild.  Fires a Channel Update Gateway event. For the PATCH method, all the JSON Params are optional.",
+                "method": "PUT",
+                "responseNote": "Returns a guild channel on success, and a 400 BAD REQUEST on invalid parameters.",
+                "responseTypes": [
+                    {
+                        "name": "guild channel",
+                        "type": "guild-channel"
+                    }
+                ],
+                "url": "/channels/{channel.id}",
+                "parameters": {
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "2-100 character channel name"
+                    },
+                    "position": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the position of the channel in the left-hand listing"
+                    },
+                    "topic": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "0-1024 character channel topic"
+                    },
+                    "bitrate": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the bitrate (in bits) of the voice channel; 8000 to 96000 (128000 for VIP servers)"
+                    },
+                    "user_limit": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the user limit of the voice channel; 0 refers to no limit, 1 to 99 refers to a user limit"
+                    },
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "deletecloseChannel": {
+                "category": "channel",
+                "name": "Delete/Close Channel",
+                "description": "Delete a guild channel, or close a private message. Requires the 'MANAGE_CHANNELS' permission for the guild.  Fires a Channel Delete Gateway event.",
+                "method": "DELETE",
+                "responseNote": "Returns a guild channel or dm channel object on success.",
+                "responseTypes": [
+                    {
+                        "name": "guild channel",
+                        "type": "guild-channel"
+                    },
+                    {
+                        "name": "dm channel",
+                        "type": "dm-channel"
+                    }
+                ],
+                "url": "/channels/{channel.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "getChannelMessages": {
+                "category": "channel",
+                "name": "Get Channel Messages",
+                "description": "If operating on a guild channel, this endpoint requires the 'READ_MESSAGES' permission to be present on the current user.",
+                "method": "GET",
+                "responseNote": "Returns the messages for a channel.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages",
+                "parameters": {
+                    "around": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "get messages around this message ID",
+                        "default": "absent"
+                    },
+                    "before": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "get messages before this message ID",
+                        "default": "absent"
+                    },
+                    "after": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "get messages after this message ID",
+                        "default": "absent"
+                    },
+                    "limit": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "max number of messages to return (1-100)",
+                        "default": "50"
+                    },
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "getChannelMessage": {
+                "category": "channel",
+                "name": "Get Channel Message",
+                "description": "If operating on a guild channel, this endpoints requires the 'READ_MESSAGE_HISTORY' permission to be present on the current user.",
+                "method": "GET",
+                "responseNote": "Returns a specific message in the channel.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages/{message.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "createMessage": {
+                "category": "channel",
+                "name": "Create Message",
+                "description": "Post a message to a guild text or DM channel. If operating on a guild channel, this endpoint requires the 'SEND_MESSAGES' permission to be present on the current user.  Fires a Message Create Gateway event. See message formatting for more information on how to properly format messages.",
+                "method": "POST",
+                "responseNote": "Returns a message object.",
+                "responseTypes": [
+                    {
+                        "name": "message",
+                        "type": "message"
+                    }
+                ],
+                "url": "/channels/{channel.id}/messages",
+                "parameters": {
+                    "content": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the message contents (up to 2000 characters)"
+                    },
+                    "nonce": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "a nonce that can be used for optimistic message sending"
+                    },
+                    "tts": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "true if this is a TTS message"
+                    },
+                    "file": {
+                        "location": "json",
+                        "type": "file contents",
+                        "description": "the contents of the file being sent"
+                    },
+                    "embed": {
+                        "location": "json",
+                        "type": "embed object",
+                        "description": "embedded rich content"
+                    },
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "createReaction": {
+                "category": "channel",
+                "name": "Create Reaction",
+                "description": "Create a reaction for the message. If nobody else has reacted to the message using this emoji, this endpoint requires the 'ADD_REACTIONS' permission to be present on the current user.",
+                "method": "PUT",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "emoji": {
+                        "type": "string",
+                        "location": "uri"
+                    }
+                }
+            },
+            "deleteOwnReaction": {
+                "category": "channel",
+                "name": "Delete Own Reaction",
+                "description": "Delete a reaction the current user has made for the message.",
+                "method": "DELETE",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "emoji": {
+                        "type": "string",
+                        "location": "uri"
+                    }
+                }
+            },
+            "deleteUserReaction": {
+                "category": "channel",
+                "name": "Delete User Reaction",
+                "description": "Deletes another user's reaction. This endpoint requires the 'MANAGE_MESSAGES' permission to be present on the current user.",
+                "method": "DELETE",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/{user.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "emoji": {
+                        "type": "string",
+                        "location": "uri"
+                    },
+                    "user.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "getReactions": {
+                "category": "channel",
+                "name": "Get Reactions",
+                "description": "Get a list of users that reacted with this emoji.",
+                "method": "GET",
+                "responseNote": "Returns an array of user objects on success.",
+                "responseTypes": [
+                    {
+                        "name": "user",
+                        "type": "user"
+                    }
+                ],
+                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "emoji": {
+                        "type": "string",
+                        "location": "uri"
+                    }
+                }
+            },
+            "deleteAllReactions": {
+                "category": "channel",
+                "name": "Delete All Reactions",
+                "description": "Deletes all reactions on a message. This endpoint requires the 'MANAGE_MESSAGES' permission to be present on the current user.",
+                "method": "DELETE",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages/{message.id}/reactions",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "editMessage": {
+                "category": "channel",
+                "name": "Edit Message",
+                "description": "Edit a previously sent message. You can only edit messages that have been sent by the current user.  Fires a Message Update Gateway event.",
+                "method": "PATCH",
+                "responseNote": "Returns a message object.",
+                "responseTypes": [
+                    {
+                        "name": "message",
+                        "type": "message"
+                    }
+                ],
+                "url": "/channels/{channel.id}/messages/{message.id}",
+                "parameters": {
+                    "content": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the new message contents"
+                    },
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "deleteMessage": {
+                "category": "channel",
+                "name": "Delete Message",
+                "description": "Delete a message. If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the 'MANAGE_MESSAGES' permission.  Fires a Message Delete Gateway event.",
+                "method": "DELETE",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages/{message.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "bulkDeleteMessages": {
+                "category": "channel",
+                "name": "Bulk Delete Messages",
+                "description": "Delete multiple messages in a single request. This endpoint can only be used on guild channels and requires the 'MANAGE_MESSAGES' permission.  Fires multiple Message Delete Gateway events.",
+                "method": "POST",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages/bulk-delete",
+                "parameters": {
+                    "messages": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "an array of message ids to delete"
+                    },
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "bulkDeleteMessagesDeprecated": {
+                "category": "channel",
+                "name": "Bulk Delete Messages (deprecated)",
+                "description": "Same as above, but this endpoint is deprecated.",
+                "method": "POST",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/messages/bulk_delete",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "editChannelPermissions": {
+                "category": "channel",
+                "name": "Edit Channel Permissions",
+                "description": "Edit the channel permission overwrites for a user or role in a channel. Only usable for guild channels. Requires the 'MANAGE_ROLES' permission.  For more information about permissions, see permissions.",
+                "method": "PUT",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/permissions/{overwrite.id}",
+                "parameters": {
+                    "allow": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the bitwise value of all allowed permissions"
+                    },
+                    "deny": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the bitwise value of all disallowed permissions"
+                    },
+                    "type": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "\"member\" for a user or \"role\" for a role"
+                    },
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "overwrite.id": {
+                        "type": "string",
+                        "location": "uri"
+                    }
+                }
+            },
+            "getChannelInvites": {
+                "category": "channel",
+                "name": "Get Channel Invites",
+                "description": "Only usable for guild channels. Requires the 'MANAGE_CHANNELS' permission.",
+                "method": "GET",
+                "responseNote": "Returns a list of invite objects (with invite metadata) for the channel.",
+                "responseTypes": [
+                    {
+                        "name": "invite",
+                        "type": "invite"
+                    },
+                    {
+                        "name": "invite metadata",
+                        "type": "invite-metadata"
+                    }
+                ],
+                "url": "/channels/{channel.id}/invites",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "createChannelInvite": {
+                "category": "channel",
+                "name": "Create Channel Invite",
+                "description": "Create a new invite object for the channel. Only usable for guild channels. Requires the CREATE_INSTANT_INVITE permission. All JSON paramaters for this route are optional, however the request body is not. If you are not sending any fields, you still have to send an empty JSON object ({}).",
+                "method": "POST",
+                "responseNote": "Returns an invite object.",
+                "responseTypes": [
+                    {
+                        "name": "invite",
+                        "type": "invite"
+                    }
+                ],
+                "url": "/channels/{channel.id}/invites",
+                "parameters": {
+                    "max_age": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "duration of invite in seconds before expiry, or 0 for never",
+                        "default": "86400 (24 hours)"
+                    },
+                    "max_uses": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "max number of uses or 0 for unlimited",
+                        "default": "0"
+                    },
+                    "temporary": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether this invite only grants temporary membership",
+                        "default": "false"
+                    },
+                    "unique": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "if true, don't try to reuse a similar invite (useful for creating many unique one time use invites)",
+                        "default": "false"
+                    },
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "deleteChannelPermission": {
+                "category": "channel",
+                "name": "Delete Channel Permission",
+                "description": "Delete a channel permission overwrite for a user or role in a channel. Only usable for guild channels. Requires the 'MANAGE_ROLES' permission.  For more information about permissions, see permissions",
+                "method": "DELETE",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/permissions/{overwrite.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "overwrite.id": {
+                        "type": "string",
+                        "location": "uri"
+                    }
+                }
+            },
+            "triggerTypingIndicator": {
+                "category": "channel",
+                "name": "Trigger Typing Indicator",
+                "description": "Post a typing indicator for the specified channel. Generally bots should not implement this route. However, if a bot is responding to a command and expects the computation to take a few seconds, this endpoint may be called to let the user know that the bot is processing their message.  Fires a Typing Start Gateway event.",
+                "method": "POST",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/typing",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "getPinnedMessages": {
+                "category": "channel",
+                "name": "Get Pinned Messages",
+                "description": "",
+                "method": "GET",
+                "responseNote": "Returns all pinned messages in the channel as an array of message objects.",
+                "responseTypes": [
+                    {
+                        "name": "message",
+                        "type": "message"
+                    }
+                ],
+                "url": "/channels/{channel.id}/pins",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "addPinnedChannelMessage": {
+                "category": "channel",
+                "name": "Add Pinned Channel Message",
+                "description": "Pin a message in a channel. Requires the 'MANAGE_MESSAGES' permission.",
+                "method": "PUT",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/pins/{message.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "deletePinnedChannelMessage": {
+                "category": "channel",
+                "name": "Delete Pinned Channel Message",
+                "description": "Delete a pinned message in a channel. Requires the 'MANAGE_MESSAGES' permission.",
+                "method": "DELETE",
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/pins/{message.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "message.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "groupDmAddRecipient": {
+                "category": "channel",
+                "name": "Group DM Add Recipient",
+                "description": "Adds a recipient to a Group DM using their access token",
+                "method": "PUT",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/recipients/{user.id}",
+                "parameters": {
+                    "access_token": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "access token of a user that has granted your app the gdm.join scope"
+                    },
+                    "nick": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "nickname of the user being added"
+                    },
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "user.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    }
+                }
+            },
+            "groupDmRemoveRecipient": {
+                "category": "channel",
+                "name": "Group DM Remove Recipient",
+                "description": "Removes a recipient from a Group DM",
+                "method": "DELETE",
+                "responseTypes": [],
+                "url": "/channels/{channel.id}/recipients/{user.id}",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri"
+                    },
+                    "user.id": {
                         "type": "snowflake",
                         "location": "uri"
                     }

@@ -30,3 +30,10 @@ Assertion::eq(108432868149035008, $guild['owner_id']);
 
 $user = $client->user->getUser(['user.id' => (int) $guild['owner_id']]);
 Assertion::eq(7079, $user['discriminator']);
+
+$client->guild->updateNick(
+    [
+        'guild.id' => (int) $argv[2],
+        'nick'     => "Build at: " . time()
+    ]
+);
