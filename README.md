@@ -8,84 +8,9 @@ What is this?
 
 This is a PHP library for the Discord API. This library is limited to the basic REST api that Discord provides.
 If you are doing anything heavy, or fancy, you should probably look at [the other php library][1].
- 
- 
-FAQ
----
 
-1. Can I run DiscordPHP on a webserver (e.g. Apache, nginx)?
-    - Yes. There are caveats though. Some of the requests aren't super fast, and can slow down your users responses. You should cache as much as you can.
-2. Can I use this to create a bot?
-    - Yes, but not the typical kind. This does not spawn a long running process, or connect to the websocket gateway like the other lib does.
-    
-Getting Started
----------------
+## [Documentation](http://www.restcord.com/api)
 
-### Installing
+Documentation can be found [here](http://www.restcord.com/api).
 
-RESTCord is installed using [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates.
-We require a minimum PHP version of PHP 5.4.0, however it is recommended that you use at least PHP 7.0. PHP 5 will be deprecated soon.
-
-This library has not been tested with HHVM.
-
-1. Run `composer require restcord/restcord`. This will install the lastest release.
-	- If you would like, you can also install the development branch by running `composer require restcord/restcord dev-develop`.
-2. Include the Composer autoload file at the top of your main file:
-	- `include __DIR__.'/vendor/autoload.php';`
-3. Use it!
-
-Basic Example
--------------
-
-```php
-<?php
-
-include __DIR__.'/vendor/autoload.php';
-
-use Restcord\DiscordClient;
-
-$discord = new DiscordClient(['token' => 'bot-token']); // Token is required
-
-var_dump($discord->guild->getGuild(['guild.id' => 108439985920704512]));
-
-```
-
-## Options
-
-Below is a table of the options available to the discord client
-
-Name | Type | Required | Default | Description
---- | --- | --- | --- | ---
-token | string | Yes | ~ | Your bot token
-version | string | No | `1.0.0` | The version of the API to use. Should probably be left alone
-logger | Monolog\Logger | false | `new Logger` | An instance of a Monolog\Logger
-throwOnRatelimit | bool | false | false | Whether or not an exception is thrown when a ratelimit is supposed to hit
-apiUrl | string | false | https://discordapp.com/api/ | Should leave this alone.
- 
-## [API Documentation](http://www.restcord.com/api)
-
-API Documentation can be found [here](http://www.restcord.com/api).
-
-## Contributing
-
-We are open to contributions. However, please make sure you follow our coding standards (PSR-4 autoloading and custom styling).
-We use StyleCI to format our code. Contributing is a little strange with this library. We use [a service definition generator][2]
-to create a service description for guzzle. All of the logic in this repo is built off of the service description in the
-src/Resources directory.
-
-To build a new service definition, just run:
-
-```bash
-$ ./bin/downloadServiceDefinition <version number>
-```
-
-To build new docs, run:
-
-```bash
-$ ./bin/buildDocs <version number>
-```
- 
-*Yes, I stole some of my docs from DiscordPHP* 
- 
 [1]: https://github.com/teamreflex/DiscordPHP
-[2]: https://github.com/aequasi/discord-service-definition-generator
