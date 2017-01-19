@@ -16,7 +16,6 @@ namespace RestCord;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Monolog\Logger;
@@ -152,7 +151,7 @@ class DiscordClient
                 'version'          => '1.0.0',
                 'logger'           => new Logger('Logger'),
                 'throwOnRatelimit' => false,
-                'apiUrl'           => 'https://discordapp.com/api/'
+                'apiUrl'           => 'https://discordapp.com/api/',
             ]
         )
             ->setRequired('token')
