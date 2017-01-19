@@ -34,6 +34,6 @@ Assertion::eq(7079, $user['discriminator']);
 $client->guild->updateNick(
     [
         'guild.id' => (int) $argv[2],
-        'nick'     => "Build at: " . time()
+        'nick'     => 'Build at: '.time(),
     ]
 );
