@@ -1,5 +1,5 @@
 ---
-title: RESTCord - PHP Edition
+title: RestCord - PHP Edition
 ---
 
 [![Build Status](https://travis-ci.org/restcord/restcord.svg?branch=master)](https://travis-ci.org/restcord/restcord) [![Discord Chat](https://img.shields.io/badge/chat-Discord%20API-blue.svg)](https://discord.gg/0SBTUU1wZTX4Mjwn)
@@ -24,7 +24,7 @@ Getting Started
 
 ### Installing
 
-RESTCord is installed using [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates.
+RestCord is installed using [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates.
 We require a minimum PHP version of PHP 5.4.0, however it is recommended that you use at least PHP 7.0. PHP 5 will be deprecated soon.
 
 This library has not been tested with HHVM.
