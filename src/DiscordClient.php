@@ -204,5 +204,4 @@ class DiscordClient
             $parameterConfig['type'] = 'array';
         }
     }
-
 }
