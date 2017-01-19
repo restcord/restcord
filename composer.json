@@ -24,6 +24,11 @@
     ],
     "require-dev": {
         "symfony/console": "^2.6|^3.2",
-        "beberlei/assert": "^2.7"
+        "beberlei/assert": "^2.7",
+        "aequasi/git-hook-handler": "^1.0"
+    },
+    "scripts": {
+        "pre-update-cmd":  "Aequasi\\HookHandler\\HookScript::install",
+        "pre-install-cmd": "Aequasi\\HookHandler\\HookScript::install"
     }
 }

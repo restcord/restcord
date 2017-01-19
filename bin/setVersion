@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of php-restcord.
+ *
+ * (c) Aaron Scherer <aequasi@gmail.com>
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ */
+
+require __DIR__.'/../vendor/autoload.php';
+
+// https://gist.github.com/stevegrunwell/3363975
+function get_current_git_commit($branch = 'master')
+{
+    if ($hash = file_get_contents(sprintf('.git/refs/heads/%s', $branch))) {
+        return $hash;
+    } else {
+        return false;
+    }
+}
+
+file_put_contents(__DIR__ .'/../VERSION', get_current_git_commit());

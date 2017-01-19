@@ -145,13 +145,14 @@ class DiscordClient
      */
     private function validateOptions(array $options)
     {
+        $currentVersion = 6;
         $resolver = new OptionsResolver();
         $resolver->setDefaults(
             [
-                'version'          => '1.0.0',
+                'version'          => $currentVersion,
                 'logger'           => new Logger('Logger'),
                 'throwOnRatelimit' => false,
-                'apiUrl'           => 'https://discordapp.com/api/',
+                'apiUrl'           => 'https://discordapp.com/api/v' . $currentVersion,
             ]
         )
             ->setRequired('token')
@@ -159,7 +160,7 @@ class DiscordClient
             ->setAllowedTypes('apiUrl', ['string'])
             ->setAllowedTypes('throwOnRatelimit', ['bool'])
             ->setAllowedTypes('logger', ['\Monolog\Logger'])
-            ->setAllowedTypes('version', ['string']);
+            ->setAllowedTypes('version', ['string', 'integer']);
 
         return $resolver->resolve($options);
     }
