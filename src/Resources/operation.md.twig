@@ -1,27 +1,20 @@
 ---
-layout: default
-title: Documentation
+title: {{ config.name|title }}
+category: {{ category|title }}
+order: {{ order }}
 ---
 
-# Documentation
-
-Documentation is currently broken down by category.
-
-{% for category, operations in definition.operations %}
-## {{ category|title }}
-
-{% for operation, config in operations %}
-### {{ config.name }} - `{{ operation }}`
+# `{{ operation }}`
 
 ```php
 $client->{{ category }}->{{ operation }}($parameters);
 ```
 
-#### Description
+## Description
 
 {{ config.description }}
 
-#### Parameters
+## Parameters
 
 {% if config.parameters|length > 0 %}
 
@@ -34,7 +27,7 @@ Name | Type | Required | Default
 No Parameters
 {% endif %}
 
-#### Response
+## Response
 
 {{ config.responseNote|default("Possibly No Response") }}
 
@@ -45,8 +38,3 @@ Can Return:
 * {{ type.name }}
 {% endfor %}
 {% endif %}
-
----
-
-{% endfor %}
-{% endfor %}

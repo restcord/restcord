@@ -1,2 +1,59 @@
-theme: jekyll-theme-leap-day
+# ----
+# Site
+
+title: RestCord
+url: "http://restcord.com"
 baseurl: ""
+google_analytics_key: UA-90584770-1
+show_full_navigation: false
+
+# Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
+logo: /siteicon.png
+description: Documentation for RestCord
+author:
+  name: Aaron
+  email: aequasi@gmail.com
+  twitter: aequasi
+social:
+  name: RestCord
+  links:
+    - https://github.com/restcord/restcord
+
+# -----
+# Build
+
+permalink: pretty
+
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENCE
+
+collections:
+  docs:
+    title: Documentation
+    permalink: /:path/
+    output: true
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+  -
+    scope:
+      path: ""
+      type: "docs"
+    values:
+      seo:
+        type: Article
+      _comments:
+        category: Group navigation links with this field
+        order: Used to sort links in the navigation

@@ -1,91 +1,67 @@
-RESTCord - PHP Edition
-======================
+# Edition
 
-[![Build Status](https://travis-ci.org/restcord/restcord.svg?branch=master)](https://travis-ci.org/restcord/restcord) [![Discord Chat](https://img.shields.io/badge/chat-Discord%20API-blue.svg)](https://discord.gg/0SBTUU1wZTX4Mjwn)
+Product documentation template for Jekyll. Browse through a [live demo](https://long-pig.cloudvent.net/).
+Start documenting your product, application, service or website with this configurable theme.
 
-What is this?
-------------
+![Edition template screenshot](images/_screenshot.png)
 
-This is a PHP library for the Discord API. This library is limited to the basic REST api that Discord provides.
-If you are doing anything heavy, or fancy, you should probably look at [the other php library][1].
- 
- 
-FAQ
----
+Edition was made by [CloudCannon](http://cloudcannon.com/), the Cloud CMS for Jekyll.
+Find more templates and themes at [Jekyll Tips](http://jekyll.tips/templates/).
 
-1. Can I run DiscordPHP on a webserver (e.g. Apache, nginx)?
-    - Yes. There are caveats though. Some of the requests aren't super fast, and can slow down your users responses. You should cache as much as you can.
-2. Can I use this to create a bot?
-    - Yes, but not the typical kind. This does not spawn a long running process, or connect to the websocket gateway like the other lib does.
-    
-Getting Started
----------------
+Learn Jekyll with step-by-step tutorials and videos at [Jekyll Tips](http://jekyll.tips/).
 
-### Installing
+## Features
 
-RESTCord is installed using [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates.
-We require a minimum PHP version of PHP 5.4.0, however it is recommended that you use at least PHP 7.0. PHP 5 will be deprecated soon.
+* Two column layout
+* Full text search
+* Pre-styled components
+* Auto-generated navigation based on category
+* Optimised for editing in [CloudCannon](http://cloudcannon.com/)
+* Change log
+* RSS/Atom feed
+* SEO tags
+* Google Analytics
 
-This library has not been tested with HHVM.
+## Setup
 
-1. Run `composer require restcord/restcord`. This will install the lastest release.
-	- If you would like, you can also install the development branch by running `composer require restcord/restcord dev-develop`.
-2. Include the Composer autoload file at the top of your main file:
-	- `include __DIR__.'/vendor/autoload.php';`
-3. Use it!
+1. Add your site and author details in `_config.yml`.
+2. Get a workflow going to see your site's output (with [CloudCannon](https://app.cloudcannon.com/) or Jekyll locally).
 
-Basic Example
--------------
+## Develop
 
-```php
-<?php
+Edition was built with [Jekyll](http://jekyllrb.com/) version 3.3.1, but should support newer versions as well.
 
-include __DIR__.'/vendor/autoload.php';
+Install the dependencies with [Bundler](http://bundler.io/):
 
-use Restcord\DiscordClient;
+~~~bash
+$ bundle install
+~~~
 
-$discord = new DiscordClient(['token' => 'bot-token']); // Token is required
+Run `jekyll` commands through Bundler to ensure you're using the right versions:
 
-var_dump($discord->guild->getGuild(['guild.id' => 108439985920704512]));
+~~~bash
+$ bundle exec jekyll serve
+~~~
 
-```
+## Editing
 
-## Options
+Edition is already optimised for adding, updating and removing documentation pages in CloudCannon.
 
-Below is a table of the options available to the discord client
+### Documentation pages
 
-Name | Type | Required | Default | Description
---- | --- | --- | --- | ---
-token | string | Yes | ~ | Your bot token
-version | string | No | `1.0.0` | The version of the API to use. Should probably be left alone
-logger | Monolog\Logger | false | `new Logger` | An instance of a Monolog\Logger
-throwOnRatelimit | bool | false | false | Whether or not an exception is thrown when a ratelimit is supposed to hit
-apiUrl | string | false | https://discordapp.com/api | Should leave this alone.
- 
-## [API Documentation](http://www.restcord.com/api)
+* Add, update or remove a documentation page in the *Documentation* collection.
+* Change the category of a documentation page to move it to another section in the navigation.
+* Documentation pages are organised in the navigation by category, with URLs based on the path inside the `_docs` folder.
 
-API Documentation can be found [here](http://www.restcord.com/api).
+### Change log
 
-## Contributing
+* Add, update or remove change log entries from your posts.
+* Tag entries as minor or major in the front matter.
 
-We are open to contributions. However, please make sure you follow our coding standards (PSR-4 autoloading and custom styling).
-We use StyleCI to format our code. Contributing is a little strange with this library. We use [a service definition generator][2]
-to create a service description for guzzle. All of the logic in this repo is built off of the service description in the
-src/Resources directory.
+### Search
 
-To build a new service definition, just run:
+* Add `excluded_in_search: true` to any documentation page's front matter to exclude that page in the search results.
 
-```bash
-$ ./bin/downloadServiceDefinition <version number>
-```
+### Navigation
 
-To build new docs, run:
-
-```bash
-$ ./bin/buildDocs <version number>
-```
- 
-*Yes, I stole some of my docs from DiscordPHP* 
- 
-[1]: https://github.com/teamreflex/DiscordPHP
-[2]: https://github.com/aequasi/discord-service-definition-generator
+* Change `site.show_full_navigation` to control all or only the current navigation group being open.

@@ -21,6 +21,18 @@ $loader = new Twig_Loader_Filesystem(__DIR__.'/../src/Resources/');
 $twig   = new Twig_Environment($loader, ['debug' => true]);
 $twig->addExtension(new Twig_Extension_Debug());
 
+function recursiveRemoveDirectory($directory)
+{
+    foreach (glob("{$directory}/*") as $file) {
+        if (is_dir($file)) {
+            recursiveRemoveDirectory($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($directory);
+}
+
 (new Application('Build Docs', '1.0.0'))
     ->register('buildDocs')
     ->addArgument('version', InputArgument::REQUIRED, 'Version to download')
@@ -29,10 +41,9 @@ $twig->addExtension(new Twig_Extension_Debug());
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
             $style->title("Building Docs for: ".$input->getArgument('version'));
 
-            $path = __DIR__.'/../docs/';
-            if (!file_exists($path)) {
-                mkdir($path, 02775, true);
-            }
+            $path = __DIR__.'/../doc/_docs';
+            recursiveRemoveDirectory($path);
+            mkdir($path, 02775, true);
             $path = realpath($path);
 
             $definition = \GuzzleHttp\json_decode(
@@ -42,8 +53,28 @@ $twig->addExtension(new Twig_Extension_Debug());
                 true
             );
 
-            $markdown = $twig->render('docs.md.twig', ['definition' => $definition]);
-            file_put_contents($path.'/api.md', $markdown);
+            foreach ($definition['operations'] as $category => $operations) {
+                $i = 1;
+                foreach ($operations as $operation => $config) {
+                    $filePath = $path.'/'.ucwords($category).'/';
+                    if (!file_exists($filePath)) {
+                        mkdir($filePath, 02775, true);
+                    }
+
+                    $markdown = $twig->render(
+                        'operation.md.twig',
+                        [
+                            'category'  => $category,
+                            'operation' => $operation,
+                            'config'    => $config,
+                            'order'     => $i
+                        ]
+                    );
+
+                    file_put_contents($filePath.str_replace('/', ' or ', $config['name']).'.md', $markdown);
+                    $i++;
+                }
+            }
 
             $style->success('Finished. Docs built in: '.realpath($path));
         }

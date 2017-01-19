@@ -1,5 +1,6 @@
-RESTCord - PHP Edition
-======================
+---
+title: RESTCord - PHP Edition
+---
 
 [![Build Status](https://travis-ci.org/restcord/restcord.svg?branch=master)](https://travis-ci.org/restcord/restcord) [![Discord Chat](https://img.shields.io/badge/chat-Discord%20API-blue.svg)](https://discord.gg/0SBTUU1wZTX4Mjwn)
 
@@ -58,9 +59,9 @@ Name | Type | Required | Default | Description
 --- | --- | --- | --- | ---
 token | string | Yes | ~ | Your bot token
 version | string | No | `1.0.0` | The version of the API to use. Should probably be left alone
-logger | Monolog\Logger | false | `new Logger` | An instance of a Monolog\Logger
-throwOnRatelimit | bool | false | false | Whether or not an exception is thrown when a ratelimit is supposed to hit
-apiUrl | string | false | https://discordapp.com/api/ | Should leave this alone.
+logger | Monolog\Logger | false | `new Logger('Logger')` | An instance of a Monolog\Logger
+throwOnRatelimit | bool | false | `false` | Whether or not an exception is thrown when a ratelimit is supposed to hit
+apiUrl | string | false | `https://discordapp.com/api/` | Should leave this alone.
  
 ## [API Documentation](http://www.restcord.com/api)
 

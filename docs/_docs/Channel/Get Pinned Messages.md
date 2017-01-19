@@ -1,0 +1,30 @@
+---
+title: Get Pinned Messages
+category: Channel
+order: 21
+---
+
+# `getPinnedMessages`
+
+```php
+$client->channel->getPinnedMessages($parameters);
+```
+
+## Description
+
+
+
+## Parameters
+
+
+Name | Type | Required | Default
+--- | --- | --- | ---
+channel.id | snowflake | false | *null*
+
+## Response
+
+Returns all pinned messages in the channel as an array of message objects.
+
+Can Return:
+
+* message
