@@ -80,7 +80,7 @@ class DiscordClient
             [
                 'headers'     => [
                     'Authorization' => 'Bot '.$this->options['token'],
-                    'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->options['version']})",
+                    'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                 ],
                 'http_errors' => false,
                 'handler'     => $stack,
@@ -165,6 +165,11 @@ class DiscordClient
         return $resolver->resolve($options);
     }
 
+    /**
+     * @param array $operations
+     *
+     * @return array
+     */
     private function prepareOperations(array $operations)
     {
         foreach ($operations as $operation => &$config) {
@@ -187,6 +192,9 @@ class DiscordClient
         return $operations;
     }
 
+    /**
+     * @param array $parameterConfig
+     */
     private function updateParameterTypes(array &$parameterConfig)
     {
         if ($parameterConfig['type'] === 'snowflake') {
@@ -204,5 +212,13 @@ class DiscordClient
         if (stripos($parameterConfig['type'], 'object') !== false) {
             $parameterConfig['type'] = 'array';
         }
+    }
+
+    /**
+     * @return string
+     */
+    private function getVersion()
+    {
+        return file_get_contents(__DIR__.'/../VERSION');
     }
 }
