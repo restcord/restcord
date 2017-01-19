@@ -19,9 +19,9 @@ Delete a reaction the current user has made for the message.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | 1 | *null*
-message.id | snowflake | 1 | *null*
-emoji | string | 1 | *null*
+channel.id | snowflake | true | *null*
+message.id | snowflake | true | *null*
+emoji | string | true | *null*
 
 ## Response
 

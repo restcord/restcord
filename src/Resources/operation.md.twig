@@ -3,6 +3,16 @@ title: {{ config.name|title }}
 category: {{ category|title }}
 order: {{ order }}
 ---
+{% macro renderDefault(input) %}
+{% set value = input|default('*null*') %}
+{% if value is same as(true) %}true{% elseif value is same as(false) %}false{% else %}{{ value }}{% endif %}
+{% endmacro %}
+{% import _self as macros %}
+{% macro renderRequired(input) %}
+{% set value = input|default(false) %}
+{% if value is same as(true) %}true{% elseif value is same as(false) %}false{% endif %}
+{% endmacro %}
+{% import _self as macros %}
 
 # `{{ operation }}`
 
@@ -21,7 +31,7 @@ $client->{{ category }}->{{ operation }}($parameters);
 Name | Type | Required | Default
 --- | --- | --- | ---
 {% for name, parameter in config.parameters %}
-{{ name }} | {{ parameter.type }} | {{ parameter.required|default('false') }} | {{ parameter.default|default('*null*') }}
+{{ name }} | {{ parameter.type }} | {{ macros.renderRequired(parameter.required) }} | {{ macros.renderDefault(parameter.default) }}
 {% endfor %}
 {% else %}
 No Parameters

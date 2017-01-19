@@ -19,7 +19,7 @@ Requires the &#039;MANAGE_GUILD&#039; permission.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
 
 ## Response
 

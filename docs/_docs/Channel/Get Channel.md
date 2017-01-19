@@ -19,7 +19,7 @@ Get a channel by ID.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
 
 ## Response
 

@@ -19,7 +19,7 @@ Same as above, but this endpoint is deprecated.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
 
 ## Response
 

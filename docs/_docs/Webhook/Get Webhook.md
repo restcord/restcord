@@ -19,7 +19,7 @@ $client->webhook->getWebhook($parameters);
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-webhook.id | string | 1 | *null*
+webhook.id | string | true | *null*
 
 ## Response
 

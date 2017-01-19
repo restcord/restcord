@@ -23,7 +23,7 @@ max_age | integer | false | 86400 (24 hours)
 max_uses | integer | false | 0
 temporary | bool | false | false
 unique | bool | false | false
-channel.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
 
 ## Response
 

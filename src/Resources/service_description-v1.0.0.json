@@ -40,37 +40,44 @@
                     "name": {
                         "location": "json",
                         "type": "string",
-                        "description": "name of the guild (2-100 characters)"
+                        "description": "name of the guild (2-100 characters)",
+                        "required": false
                     },
                     "region": {
                         "location": "json",
                         "type": "string",
-                        "description": "{voice_region.id} for voice"
+                        "description": "{voice_region.id} for voice",
+                        "required": false
                     },
                     "icon": {
                         "location": "json",
                         "type": "string",
-                        "description": "base64 128x128 jpeg image for the guild icon"
+                        "description": "base64 128x128 jpeg image for the guild icon",
+                        "required": false
                     },
                     "verification_level": {
                         "location": "json",
                         "type": "integer",
-                        "description": "guild verification level"
+                        "description": "guild verification level",
+                        "required": false
                     },
                     "default_message_notifications": {
                         "location": "json",
                         "type": "integer",
-                        "description": "default message notifications setting"
+                        "description": "default message notifications setting",
+                        "required": false
                     },
                     "roles": {
                         "location": "json",
                         "type": "array",
-                        "description": "new guild roles"
+                        "description": "new guild roles",
+                        "required": false
                     },
                     "channels": {
                         "location": "json",
                         "type": "array",
-                        "description": "new guild's channels"
+                        "description": "new guild's channels",
+                        "required": false
                     }
                 }
             },
@@ -112,47 +119,56 @@
                     "name": {
                         "location": "json",
                         "type": "string",
-                        "description": "guild name"
+                        "description": "guild name",
+                        "required": false
                     },
                     "region": {
                         "location": "json",
                         "type": "string",
-                        "description": "guild {voice_region.id}"
+                        "description": "guild {voice_region.id}",
+                        "required": false
                     },
                     "verification_level": {
                         "location": "json",
                         "type": "integer",
-                        "description": "guild verification level"
+                        "description": "guild verification level",
+                        "required": false
                     },
                     "default_message_notifications": {
                         "location": "json",
                         "type": "integer",
-                        "description": "default message notifications setting"
+                        "description": "default message notifications setting",
+                        "required": false
                     },
                     "afk_channel_id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "id for afk channel"
+                        "description": "id for afk channel",
+                        "required": false
                     },
                     "afk_timeout": {
                         "location": "json",
                         "type": "integer",
-                        "description": "afk timeout in seconds"
+                        "description": "afk timeout in seconds",
+                        "required": false
                     },
                     "icon": {
                         "location": "json",
                         "type": "string",
-                        "description": "base64 128x128 jpeg image for the guild icon"
+                        "description": "base64 128x128 jpeg image for the guild icon",
+                        "required": false
                     },
                     "owner_id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "user id to transfer guild ownership to (must be owner)"
+                        "description": "user id to transfer guild ownership to (must be owner)",
+                        "required": false
                     },
                     "splash": {
                         "location": "json",
                         "type": "string",
-                        "description": "base64 128x128 jpeg image for the guild splash (VIP only)"
+                        "description": "base64 128x128 jpeg image for the guild splash (VIP only)",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -220,27 +236,32 @@
                     "name": {
                         "location": "json",
                         "type": "string",
-                        "description": "channel name (2-100 characters)"
+                        "description": "channel name (2-100 characters)",
+                        "required": false
                     },
                     "type": {
                         "location": "json",
                         "type": "string",
-                        "description": "\"voice\" or \"text\""
+                        "description": "\"voice\" or \"text\"",
+                        "required": false
                     },
                     "bitrate": {
                         "location": "json",
                         "type": "integer",
-                        "description": "the bitrate (in bits) of the voice channel (voice only)"
+                        "description": "the bitrate (in bits) of the voice channel (voice only)",
+                        "required": false
                     },
                     "user_limit": {
                         "location": "json",
                         "type": "integer",
-                        "description": "the user limit of the voice channel (voice only)"
+                        "description": "the user limit of the voice channel (voice only)",
+                        "required": false
                     },
                     "permission_overwrites": {
                         "location": "json",
                         "type": "array",
-                        "description": "the channel's permission overwrites"
+                        "description": "the channel's permission overwrites",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -266,12 +287,14 @@
                     "id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "channel id"
+                        "description": "channel id",
+                        "required": false
                     },
                     "position": {
                         "location": "json",
                         "type": "integer",
-                        "description": "sorting position of the channel"
+                        "description": "sorting position of the channel",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -324,13 +347,15 @@
                         "location": "json",
                         "type": "integer",
                         "description": "max number of members to return (1-1000)",
-                        "default": "1"
+                        "default": "1",
+                        "required": false
                     },
                     "after": {
                         "location": "json",
                         "type": "integer",
                         "description": "the highest user id in the previous page",
-                        "default": "0"
+                        "default": "0",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -356,27 +381,32 @@
                     "access_token": {
                         "location": "json",
                         "type": "string",
-                        "description": "an oauth2 access token granted with the guilds.join to the bot's application for the user you want to add to the guild"
+                        "description": "an oauth2 access token granted with the guilds.join to the bot's application for the user you want to add to the guild",
+                        "required": false
                     },
                     "nick": {
                         "location": "json",
                         "type": "string",
-                        "description": "value to set users nickname too"
+                        "description": "value to set users nickname too",
+                        "required": false
                     },
                     "roles": {
                         "location": "json",
                         "type": "array",
-                        "description": "array of roles the member is assigned"
+                        "description": "array of roles the member is assigned",
+                        "required": false
                     },
                     "mute": {
                         "location": "json",
                         "type": "bool",
-                        "description": "if the user is muted"
+                        "description": "if the user is muted",
+                        "required": false
                     },
                     "deaf": {
                         "location": "json",
                         "type": "bool",
-                        "description": "if the user is deafened"
+                        "description": "if the user is deafened",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -402,27 +432,32 @@
                     "nick": {
                         "location": "json",
                         "type": "string",
-                        "description": "value to set users nickname too"
+                        "description": "value to set users nickname too",
+                        "required": false
                     },
                     "roles": {
                         "location": "json",
                         "type": "array",
-                        "description": "array of roles the member is assigned"
+                        "description": "array of roles the member is assigned",
+                        "required": false
                     },
                     "mute": {
                         "location": "json",
                         "type": "bool",
-                        "description": "if the user is muted"
+                        "description": "if the user is muted",
+                        "required": false
                     },
                     "deaf": {
                         "location": "json",
                         "type": "bool",
-                        "description": "if the user is deafened"
+                        "description": "if the user is deafened",
+                        "required": false
                     },
                     "channel_id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "id of channel to move user to (if they are connected to voice)"
+                        "description": "id of channel to move user to (if they are connected to voice)",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -542,7 +577,8 @@
                     "delete-message-days": {
                         "location": "json",
                         "type": "integer",
-                        "description": "number of days to delete messages for (0-7)"
+                        "description": "number of days to delete messages for (0-7)",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -636,12 +672,14 @@
                     "id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "role"
+                        "description": "role",
+                        "required": false
                     },
                     "position": {
                         "location": "json",
                         "type": "integer",
-                        "description": "sorting position of the role"
+                        "description": "sorting position of the role",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -667,32 +705,38 @@
                     "name": {
                         "location": "json",
                         "type": "string",
-                        "description": "name of the role"
+                        "description": "name of the role",
+                        "required": false
                     },
                     "permissions": {
                         "location": "json",
                         "type": "integer",
-                        "description": "bitwise of the enabled/disabled permissions"
+                        "description": "bitwise of the enabled/disabled permissions",
+                        "required": false
                     },
                     "position": {
                         "location": "json",
                         "type": "integer",
-                        "description": "sorting position of the role"
+                        "description": "sorting position of the role",
+                        "required": false
                     },
                     "color": {
                         "location": "json",
                         "type": "integer",
-                        "description": "RGB color value"
+                        "description": "RGB color value",
+                        "required": false
                     },
                     "hoist": {
                         "location": "json",
                         "type": "bool",
-                        "description": "whether the role should be displayed separately in the sidebar"
+                        "description": "whether the role should be displayed separately in the sidebar",
+                        "required": false
                     },
                     "mentionable": {
                         "location": "json",
                         "type": "bool",
-                        "description": "whether the role should be mentionable"
+                        "description": "whether the role should be mentionable",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -744,7 +788,8 @@
                     "days": {
                         "location": "json",
                         "type": "integer",
-                        "description": "number of days to count prune for (1 or more)"
+                        "description": "number of days to count prune for (1 or more)",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -765,7 +810,8 @@
                     "days": {
                         "location": "json",
                         "type": "integer",
-                        "description": "number of days to prune (1 or more)"
+                        "description": "number of days to prune (1 or more)",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -853,12 +899,14 @@
                     "type": {
                         "location": "json",
                         "type": "string",
-                        "description": "the integration type"
+                        "description": "the integration type",
+                        "required": false
                     },
                     "id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "the integration id"
+                        "description": "the integration id",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -879,17 +927,20 @@
                     "expire_behavior": {
                         "location": "json",
                         "type": "integer",
-                        "description": "the behavior when an integration subscription lapses (see the integration object documentation)"
+                        "description": "the behavior when an integration subscription lapses (see the integration object documentation)",
+                        "required": false
                     },
                     "expire_grace_period": {
                         "location": "json",
                         "type": "integer",
-                        "description": "period (in seconds) where the integration will ignore lapsed subscriptions"
+                        "description": "period (in seconds) where the integration will ignore lapsed subscriptions",
+                        "required": false
                     },
                     "enable_emoticons": {
                         "location": "json",
                         "type": "bool",
-                        "description": "whether emoticons should be synced for this integration (twitch only currently)"
+                        "description": "whether emoticons should be synced for this integration (twitch only currently)",
+                        "required": false
                     },
                     "guild.id": {
                         "type": "snowflake",
@@ -1031,27 +1082,32 @@
                     "name": {
                         "location": "json",
                         "type": "string",
-                        "description": "2-100 character channel name"
+                        "description": "2-100 character channel name",
+                        "required": false
                     },
                     "position": {
                         "location": "json",
                         "type": "integer",
-                        "description": "the position of the channel in the left-hand listing"
+                        "description": "the position of the channel in the left-hand listing",
+                        "required": false
                     },
                     "topic": {
                         "location": "json",
                         "type": "string",
-                        "description": "0-1024 character channel topic"
+                        "description": "0-1024 character channel topic",
+                        "required": false
                     },
                     "bitrate": {
                         "location": "json",
                         "type": "integer",
-                        "description": "the bitrate (in bits) of the voice channel; 8000 to 96000 (128000 for VIP servers)"
+                        "description": "the bitrate (in bits) of the voice channel; 8000 to 96000 (128000 for VIP servers)",
+                        "required": false
                     },
                     "user_limit": {
                         "location": "json",
                         "type": "integer",
-                        "description": "the user limit of the voice channel; 0 refers to no limit, 1 to 99 refers to a user limit"
+                        "description": "the user limit of the voice channel; 0 refers to no limit, 1 to 99 refers to a user limit",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -1098,25 +1154,29 @@
                         "location": "json",
                         "type": "snowflake",
                         "description": "get messages around this message ID",
-                        "default": "absent"
+                        "default": "absent",
+                        "required": false
                     },
                     "before": {
                         "location": "json",
                         "type": "snowflake",
                         "description": "get messages before this message ID",
-                        "default": "absent"
+                        "default": "absent",
+                        "required": false
                     },
                     "after": {
                         "location": "json",
                         "type": "snowflake",
                         "description": "get messages after this message ID",
-                        "default": "absent"
+                        "default": "absent",
+                        "required": false
                     },
                     "limit": {
                         "location": "json",
                         "type": "integer",
                         "description": "max number of messages to return (1-100)",
-                        "default": "50"
+                        "default": "50",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -1163,27 +1223,32 @@
                     "content": {
                         "location": "json",
                         "type": "string",
-                        "description": "the message contents (up to 2000 characters)"
+                        "description": "the message contents (up to 2000 characters)",
+                        "required": false
                     },
                     "nonce": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "a nonce that can be used for optimistic message sending"
+                        "description": "a nonce that can be used for optimistic message sending",
+                        "required": false
                     },
                     "tts": {
                         "location": "json",
                         "type": "bool",
-                        "description": "true if this is a TTS message"
+                        "description": "true if this is a TTS message",
+                        "required": false
                     },
                     "file": {
                         "location": "json",
                         "type": "file contents",
-                        "description": "the contents of the file being sent"
+                        "description": "the contents of the file being sent",
+                        "required": false
                     },
                     "embed": {
                         "location": "json",
                         "type": "embed object",
-                        "description": "embedded rich content"
+                        "description": "embedded rich content",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -1343,7 +1408,8 @@
                     "content": {
                         "location": "json",
                         "type": "string",
-                        "description": "the new message contents"
+                        "description": "the new message contents",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -1390,7 +1456,8 @@
                     "messages": {
                         "location": "json",
                         "type": "array",
-                        "description": "an array of message ids to delete"
+                        "description": "an array of message ids to delete",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -1426,17 +1493,20 @@
                     "allow": {
                         "location": "json",
                         "type": "integer",
-                        "description": "the bitwise value of all allowed permissions"
+                        "description": "the bitwise value of all allowed permissions",
+                        "required": false
                     },
                     "deny": {
                         "location": "json",
                         "type": "integer",
-                        "description": "the bitwise value of all disallowed permissions"
+                        "description": "the bitwise value of all disallowed permissions",
+                        "required": false
                     },
                     "type": {
                         "location": "json",
                         "type": "string",
-                        "description": "\"member\" for a user or \"role\" for a role"
+                        "description": "\"member\" for a user or \"role\" for a role",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -1493,25 +1563,29 @@
                         "location": "json",
                         "type": "integer",
                         "description": "duration of invite in seconds before expiry, or 0 for never",
-                        "default": "86400 (24 hours)"
+                        "default": "86400 (24 hours)",
+                        "required": false
                     },
                     "max_uses": {
                         "location": "json",
                         "type": "integer",
                         "description": "max number of uses or 0 for unlimited",
-                        "default": "0"
+                        "default": "0",
+                        "required": false
                     },
                     "temporary": {
                         "location": "json",
                         "type": "bool",
                         "description": "whether this invite only grants temporary membership",
-                        "default": "false"
+                        "default": "false",
+                        "required": false
                     },
                     "unique": {
                         "location": "json",
                         "type": "bool",
                         "description": "if true, don't try to reuse a similar invite (useful for creating many unique one time use invites)",
-                        "default": "false"
+                        "default": "false",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -1631,12 +1705,14 @@
                     "access_token": {
                         "location": "json",
                         "type": "string",
-                        "description": "access token of a user that has granted your app the gdm.join scope"
+                        "description": "access token of a user that has granted your app the gdm.join scope",
+                        "required": false
                     },
                     "nick": {
                         "location": "json",
                         "type": "string",
-                        "description": "nickname of the user being added"
+                        "description": "nickname of the user being added",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -1790,12 +1866,14 @@
                     "username": {
                         "location": "json",
                         "type": "string",
-                        "description": "users username, if changed may cause the users discriminator to be randomized."
+                        "description": "users username, if changed may cause the users discriminator to be randomized.",
+                        "required": false
                     },
                     "avatar": {
                         "location": "json",
                         "type": "avatar data",
-                        "description": "if passed, modifies the user's avatar"
+                        "description": "if passed, modifies the user's avatar",
+                        "required": false
                     }
                 }
             },
@@ -1856,7 +1934,8 @@
                     "recipient_id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "the recipient to open a DM channel with"
+                        "description": "the recipient to open a DM channel with",
+                        "required": false
                     }
                 }
             },
@@ -1877,12 +1956,14 @@
                     "access_tokens": {
                         "location": "json",
                         "type": "array",
-                        "description": "access tokens of users that have granted your app the gdm.join scope"
+                        "description": "access tokens of users that have granted your app the gdm.join scope",
+                        "required": false
                     },
                     "nicks": {
                         "location": "json",
                         "type": "dict",
-                        "description": "a dictionary of user ids to their respective nicknames"
+                        "description": "a dictionary of user ids to their respective nicknames",
+                        "required": false
                     }
                 }
             },
@@ -1937,12 +2018,14 @@
                     "name": {
                         "location": "json",
                         "type": "string",
-                        "description": "name of the webhook (2-100 characters)"
+                        "description": "name of the webhook (2-100 characters)",
+                        "required": false
                     },
                     "avatar": {
                         "location": "json",
                         "type": "string",
-                        "description": "base64 128x128 jpeg image for the default webhook avatar"
+                        "description": "base64 128x128 jpeg image for the default webhook avatar",
+                        "required": false
                     },
                     "channel.id": {
                         "type": "snowflake",
@@ -2051,12 +2134,14 @@
                     "name": {
                         "location": "json",
                         "type": "string",
-                        "description": "the default name of the webhook"
+                        "description": "the default name of the webhook",
+                        "required": false
                     },
                     "avatar": {
                         "location": "json",
                         "type": "string",
-                        "description": "base64 128x128 jpeg image for the default webhook avatar"
+                        "description": "base64 128x128 jpeg image for the default webhook avatar",
+                        "required": false
                     },
                     "webhook.id": {
                         "type": "string",
@@ -2132,7 +2217,8 @@
                     "wait": {
                         "location": "json",
                         "type": "bool",
-                        "description": "waits for server confirmation of message send before response, and returns the created message body (defaults to false; when false a message that is not saved does not return an error)"
+                        "description": "waits for server confirmation of message send before response, and returns the created message body (defaults to false; when false a message that is not saved does not return an error)",
+                        "required": false
                     },
                     "webhook.id": {
                         "type": "string",
@@ -2157,7 +2243,8 @@
                     "wait": {
                         "location": "json",
                         "type": "bool",
-                        "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)"
+                        "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
+                        "required": false
                     },
                     "webhook.id": {
                         "type": "string",
@@ -2182,7 +2269,8 @@
                     "wait": {
                         "location": "json",
                         "type": "bool",
-                        "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)"
+                        "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
+                        "required": false
                     },
                     "webhook.id": {
                         "type": "string",
@@ -2231,47 +2319,58 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "the id of this channel (will be equal to the guild if it's the \"general\" channel)"
+                        "description": "the id of this channel (will be equal to the guild if it's the \"general\" channel)",
+                        "required": false
                     },
                     "guild_id": {
                         "type": "snowflake",
-                        "description": "the id of the guild"
+                        "description": "the id of the guild",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "the name of the channel (2-100 characters)"
+                        "description": "the name of the channel (2-100 characters)",
+                        "required": false
                     },
                     "type": {
                         "type": "string",
-                        "description": "\"text\" or \"voice\""
+                        "description": "\"text\" or \"voice\"",
+                        "required": false
                     },
                     "position": {
                         "type": "integer",
-                        "description": "sorting position of the channel"
+                        "description": "sorting position of the channel",
+                        "required": false
                     },
                     "is_private": {
                         "type": "bool",
-                        "description": "should always be false for guild channels"
+                        "description": "should always be false for guild channels",
+                        "required": false
                     },
                     "permission_overwrites": {
                         "type": "array",
-                        "description": "an array of overwrite objects"
+                        "description": "an array of overwrite objects",
+                        "required": false
                     },
                     "topic": {
                         "type": "string",
-                        "description": "the channel topic (0-1024 characters)"
+                        "description": "the channel topic (0-1024 characters)",
+                        "required": false
                     },
                     "last_message_id": {
                         "type": "snowflake",
-                        "description": "the id of the last message sent in this channel"
+                        "description": "the id of the last message sent in this channel",
+                        "required": false
                     },
                     "bitrate": {
                         "type": "integer",
-                        "description": "the bitrate (in bits) of the voice channel"
+                        "description": "the bitrate (in bits) of the voice channel",
+                        "required": false
                     },
                     "user_limit": {
                         "type": "integer",
-                        "description": "the user limit of the voice channel"
+                        "description": "the user limit of the voice channel",
+                        "required": false
                     }
                 }
             },
@@ -2282,19 +2381,23 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "the id of this private message"
+                        "description": "the id of this private message",
+                        "required": false
                     },
                     "is_private": {
                         "type": "bool",
-                        "description": "should always be true for DM channels"
+                        "description": "should always be true for DM channels",
+                        "required": false
                     },
                     "recipient": {
                         "type": "object",
-                        "description": "the user object of the DM recipient"
+                        "description": "the user object of the DM recipient",
+                        "required": false
                     },
                     "last_message_id": {
                         "type": "snowflake",
-                        "description": "the id of the last message sent in this DM"
+                        "description": "the id of the last message sent in this DM",
+                        "required": false
                     }
                 }
             },
@@ -2305,67 +2408,83 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "id of the message"
+                        "description": "id of the message",
+                        "required": false
                     },
                     "channel_id": {
                         "type": "snowflake",
-                        "description": "id of the channel the message was sent in"
+                        "description": "id of the channel the message was sent in",
+                        "required": false
                     },
                     "author*": {
                         "type": "a user object",
-                        "description": "the author of this message (the author of a message is not guaranteed to be a user*)"
+                        "description": "the author of this message (the author of a message is not guaranteed to be a user*)",
+                        "required": false
                     },
                     "content": {
                         "type": "string",
-                        "description": "contents of the message"
+                        "description": "contents of the message",
+                        "required": false
                     },
                     "timestamp": {
                         "type": "timestamp",
-                        "description": "when this message was sent"
+                        "description": "when this message was sent",
+                        "required": false
                     },
                     "edited_timestamp": {
                         "type": "?timestamp",
-                        "description": "when this message was edited (or null if never)"
+                        "description": "when this message was edited (or null if never)",
+                        "required": false
                     },
                     "tts": {
                         "type": "bool",
-                        "description": "whether this was a TTS message"
+                        "description": "whether this was a TTS message",
+                        "required": false
                     },
                     "mention_everyone": {
                         "type": "bool",
-                        "description": "whether this message mentions everyone"
+                        "description": "whether this message mentions everyone",
+                        "required": false
                     },
                     "mentions": {
                         "type": "array",
-                        "description": "users specifically mentioned in the message"
+                        "description": "users specifically mentioned in the message",
+                        "required": false
                     },
                     "mention_roles": {
                         "type": "array",
-                        "description": "roles specifically mentioned in this message"
+                        "description": "roles specifically mentioned in this message",
+                        "required": false
                     },
                     "attachments": {
                         "type": "array",
-                        "description": "any attached files"
+                        "description": "any attached files",
+                        "required": false
                     },
                     "embeds": {
                         "type": "array",
-                        "description": "any embedded content"
+                        "description": "any embedded content",
+                        "required": false
                     },
                     "reactions": {
                         "type": "array",
-                        "description": "reactions to the message"
+                        "description": "reactions to the message",
+                        "required": false
                     },
                     "nonce": {
                         "type": "?snowflake",
-                        "description": "used for validating a message was sent"
+                        "description": "used for validating a message was sent",
+                        "required": false
                     },
                     "pinned": {
                         "type": "bool",
-                        "description": "whether this message is pinned"
+                        "description": "whether this message is pinned",
+                        "required": false
                     },
                     "webhook_id": {
                         "type": "string",
-                        "description": "if the message is generated by a webhook, this is the webhook's id"
+                        "description": "if the message is generated by a webhook, this is the webhook's id",
+                        "required": false
                     }
                 }
             },
@@ -2376,15 +2495,18 @@
                 "properties": {
                     "count": {
                         "type": "integer",
-                        "description": "times this emoji has been used to react"
+                        "description": "times this emoji has been used to react",
+                        "required": false
                     },
                     "me": {
                         "type": "bool",
-                        "description": "whether the current user reacted using this emoji"
+                        "description": "whether the current user reacted using this emoji",
+                        "required": false
                     },
                     "emoji": {
                         "type": "emoji object",
-                        "description": "emoji information"
+                        "description": "emoji information",
+                        "required": false
                     }
                 }
             },
@@ -2395,19 +2517,23 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "role or user id"
+                        "description": "role or user id",
+                        "required": false
                     },
                     "type": {
                         "type": "string",
-                        "description": "either \"role\" or \"member\""
+                        "description": "either \"role\" or \"member\"",
+                        "required": false
                     },
                     "allow": {
                         "type": "integer",
-                        "description": "permission bit set"
+                        "description": "permission bit set",
+                        "required": false
                     },
                     "deny": {
                         "type": "integer",
-                        "description": "permission bit set"
+                        "description": "permission bit set",
+                        "required": false
                     }
                 }
             },
@@ -2418,55 +2544,68 @@
                 "properties": {
                     "title": {
                         "type": "string",
-                        "description": "title of embed"
+                        "description": "title of embed",
+                        "required": false
                     },
                     "type": {
                         "type": "string",
-                        "description": "type of embed (always \"rich\" for webhook embeds)"
+                        "description": "type of embed (always \"rich\" for webhook embeds)",
+                        "required": false
                     },
                     "description": {
                         "type": "string",
-                        "description": "description of embed"
+                        "description": "description of embed",
+                        "required": false
                     },
                     "url": {
                         "type": "string",
-                        "description": "url of embed"
+                        "description": "url of embed",
+                        "required": false
                     },
                     "timestamp": {
                         "type": "date",
-                        "description": "timestamp of embed content"
+                        "description": "timestamp of embed content",
+                        "required": false
                     },
                     "color": {
                         "type": "integer",
-                        "description": "color code of the embed"
+                        "description": "color code of the embed",
+                        "required": false
                     },
                     "footer": {
                         "type": "embed footer object",
-                        "description": "footer information"
+                        "description": "footer information",
+                        "required": false
                     },
                     "image": {
                         "type": "embed image object",
-                        "description": "image information"
+                        "description": "image information",
+                        "required": false
                     },
                     "thumbnail": {
                         "type": "embed thumbnail object",
-                        "description": "thumbnail information"
+                        "description": "thumbnail information",
+                        "required": false
                     },
                     "video": {
                         "type": "embed video object",
-                        "description": "video information"
+                        "description": "video information",
+                        "required": false
                     },
                     "provider": {
                         "type": "embed provider object",
-                        "description": "provider information"
+                        "description": "provider information",
+                        "required": false
                     },
                     "author": {
                         "type": "embed author object",
-                        "description": "author information"
+                        "description": "author information",
+                        "required": false
                     },
                     "fields": {
                         "type": "array",
-                        "description": "fields information"
+                        "description": "fields information",
+                        "required": false
                     }
                 }
             },
@@ -2477,31 +2616,38 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "attachment id"
+                        "description": "attachment id",
+                        "required": false
                     },
                     "filename": {
                         "type": "string",
-                        "description": "name of file attached"
+                        "description": "name of file attached",
+                        "required": false
                     },
                     "size": {
                         "type": "integer",
-                        "description": "size of file in bytes"
+                        "description": "size of file in bytes",
+                        "required": false
                     },
                     "url": {
                         "type": "string",
-                        "description": "source url of file"
+                        "description": "source url of file",
+                        "required": false
                     },
                     "proxy_url": {
                         "type": "string",
-                        "description": "a proxied url of file"
+                        "description": "a proxied url of file",
+                        "required": false
                     },
                     "height": {
                         "type": "?integer",
-                        "description": "height of file (if image)"
+                        "description": "height of file (if image)",
+                        "required": false
                     },
                     "width": {
                         "type": "?integer",
-                        "description": "width of file (if image)"
+                        "description": "width of file (if image)",
+                        "required": false
                     }
                 }
             }
@@ -2514,99 +2660,123 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "guild id"
+                        "description": "guild id",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "guild name (2-100 characters)"
+                        "description": "guild name (2-100 characters)",
+                        "required": false
                     },
                     "icon": {
                         "type": "string",
-                        "description": "icon hash"
+                        "description": "icon hash",
+                        "required": false
                     },
                     "splash": {
                         "type": "string",
-                        "description": "splash hash"
+                        "description": "splash hash",
+                        "required": false
                     },
                     "owner_id": {
                         "type": "snowflake",
-                        "description": "id of owner"
+                        "description": "id of owner",
+                        "required": false
                     },
                     "region": {
                         "type": "string",
-                        "description": "{voice_region.id}"
+                        "description": "{voice_region.id}",
+                        "required": false
                     },
                     "afk_channel_id": {
                         "type": "snowflake",
-                        "description": "id of afk channel"
+                        "description": "id of afk channel",
+                        "required": false
                     },
                     "afk_timeout": {
                         "type": "integer",
-                        "description": "afk timeout in seconds"
+                        "description": "afk timeout in seconds",
+                        "required": false
                     },
                     "embed_enabled": {
                         "type": "bool",
-                        "description": "is this guild embeddable (e.g. widget)"
+                        "description": "is this guild embeddable (e.g. widget)",
+                        "required": false
                     },
                     "embed_channel_id": {
                         "type": "snowflake",
-                        "description": "id of embedded channel"
+                        "description": "id of embedded channel",
+                        "required": false
                     },
                     "verification_level": {
                         "type": "integer",
-                        "description": "level of verification"
+                        "description": "level of verification",
+                        "required": false
                     },
                     "default_message_notifications": {
                         "type": "integer",
-                        "description": "default message notifications level"
+                        "description": "default message notifications level",
+                        "required": false
                     },
                     "roles": {
                         "type": "array",
-                        "description": "array of role objects"
+                        "description": "array of role objects",
+                        "required": false
                     },
                     "emojis": {
                         "type": "array",
-                        "description": "array of emoji objects"
+                        "description": "array of emoji objects",
+                        "required": false
                     },
                     "features": {
                         "type": "array",
-                        "description": "array of guild features"
+                        "description": "array of guild features",
+                        "required": false
                     },
                     "mfa_level": {
                         "type": "integer",
-                        "description": "required MFA level for the guild"
+                        "description": "required MFA level for the guild",
+                        "required": false
                     },
                     "joined_at *": {
                         "type": "datetime",
-                        "description": "date this guild was joined at"
+                        "description": "date this guild was joined at",
+                        "required": false
                     },
                     "large *": {
                         "type": "bool",
-                        "description": "whether this is considered a large guild"
+                        "description": "whether this is considered a large guild",
+                        "required": false
                     },
                     "unavailable *": {
                         "type": "bool",
-                        "description": "is this guild unavailable"
+                        "description": "is this guild unavailable",
+                        "required": false
                     },
                     "member_count": {
                         "type": "integer",
-                        "description": "total number of members in this guild"
+                        "description": "total number of members in this guild",
+                        "required": false
                     },
                     "voice_states *": {
                         "type": "array",
-                        "description": "array of voice state objects (without the guild_id key)"
+                        "description": "array of voice state objects (without the guild_id key)",
+                        "required": false
                     },
                     "members *": {
                         "type": "array",
-                        "description": "array of guild member objects"
+                        "description": "array of guild member objects",
+                        "required": false
                     },
                     "channels *": {
                         "type": "array",
-                        "description": "array of channel objects"
+                        "description": "array of channel objects",
+                        "required": false
                     },
                     "presences *": {
                         "type": "array",
-                        "description": "array of simple presence objects, which share the same fields as Presence Update event sans a roles or guild_id key"
+                        "description": "array of simple presence objects, which share the same fields as Presence Update event sans a roles or guild_id key",
+                        "required": false
                     }
                 }
             },
@@ -2617,11 +2787,13 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "guild id"
+                        "description": "guild id",
+                        "required": false
                     },
                     "unavailable": {
                         "type": "bool",
-                        "description": "should always be true"
+                        "description": "should always be true",
+                        "required": false
                     }
                 }
             },
@@ -2632,11 +2804,13 @@
                 "properties": {
                     "enabled": {
                         "type": "bool",
-                        "description": "if the embed is enabled"
+                        "description": "if the embed is enabled",
+                        "required": false
                     },
                     "channel_id": {
                         "type": "snowflake",
-                        "description": "the embed channel id"
+                        "description": "the embed channel id",
+                        "required": false
                     }
                 }
             },
@@ -2647,27 +2821,33 @@
                 "properties": {
                     "user": {
                         "type": "object",
-                        "description": "user object"
+                        "description": "user object",
+                        "required": false
                     },
                     "nick": {
                         "type": "string?",
-                        "description": "this users guild nickname (if one is set)"
+                        "description": "this users guild nickname (if one is set)",
+                        "required": false
                     },
                     "roles": {
                         "type": "array",
-                        "description": "array of role object id's"
+                        "description": "array of role object id's",
+                        "required": false
                     },
                     "joined_at": {
                         "type": "datetime",
-                        "description": "date the user joined the guild"
+                        "description": "date the user joined the guild",
+                        "required": false
                     },
                     "deaf": {
                         "type": "bool",
-                        "description": "if the user is deafened"
+                        "description": "if the user is deafened",
+                        "required": false
                     },
                     "mute": {
                         "type": "bool",
-                        "description": "if the user is muted"
+                        "description": "if the user is muted",
+                        "required": false
                     }
                 }
             },
@@ -2678,47 +2858,58 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "integration id"
+                        "description": "integration id",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "integration name"
+                        "description": "integration name",
+                        "required": false
                     },
                     "type": {
                         "type": "string",
-                        "description": "integration type (twitch, youtube, etc)"
+                        "description": "integration type (twitch, youtube, etc)",
+                        "required": false
                     },
                     "enabled": {
                         "type": "bool",
-                        "description": "is this integration enabled"
+                        "description": "is this integration enabled",
+                        "required": false
                     },
                     "syncing": {
                         "type": "bool",
-                        "description": "is this integration syncing"
+                        "description": "is this integration syncing",
+                        "required": false
                     },
                     "role_id": {
                         "type": "snowflake",
-                        "description": "id that this integration uses for \"subscribers\""
+                        "description": "id that this integration uses for \"subscribers\"",
+                        "required": false
                     },
                     "expire_behavior": {
                         "type": "integer",
-                        "description": "the behavior of expiring subscribers"
+                        "description": "the behavior of expiring subscribers",
+                        "required": false
                     },
                     "expire_grace_period": {
                         "type": "integer",
-                        "description": "the grace period before expiring subscribers"
+                        "description": "the grace period before expiring subscribers",
+                        "required": false
                     },
                     "user": {
                         "type": "user object",
-                        "description": "user for this integration"
+                        "description": "user for this integration",
+                        "required": false
                     },
                     "account": {
                         "type": "account object",
-                        "description": "integration account information"
+                        "description": "integration account information",
+                        "required": false
                     },
                     "synced_at": {
                         "type": "timestamp",
-                        "description": "when this integration was last synced"
+                        "description": "when this integration was last synced",
+                        "required": false
                     }
                 }
             },
@@ -2729,11 +2920,13 @@
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "id of the account"
+                        "description": "id of the account",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "name of the account"
+                        "description": "name of the account",
+                        "required": false
                     }
                 }
             },
@@ -2744,23 +2937,28 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "emoji id"
+                        "description": "emoji id",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "emoji name"
+                        "description": "emoji name",
+                        "required": false
                     },
                     "roles": {
                         "type": "array",
-                        "description": "roles this emoji is active for"
+                        "description": "roles this emoji is active for",
+                        "required": false
                     },
                     "require_colons": {
                         "type": "bool",
-                        "description": "whether this emoji must be wrapped in colons"
+                        "description": "whether this emoji must be wrapped in colons",
+                        "required": false
                     },
                     "managed": {
                         "type": "bool",
-                        "description": "whether this emoji is managed"
+                        "description": "whether this emoji is managed",
+                        "required": false
                     }
                 }
             }
@@ -2773,15 +2971,18 @@
                 "properties": {
                     "code": {
                         "type": "string",
-                        "description": "the invite code (unique ID)"
+                        "description": "the invite code (unique ID)",
+                        "required": false
                     },
                     "guild": {
                         "type": "a invite guild object",
-                        "description": "the guild this invite is for"
+                        "description": "the guild this invite is for",
+                        "required": false
                     },
                     "channel": {
                         "type": "a invite channel object",
-                        "description": "the channel this invite is for"
+                        "description": "the channel this invite is for",
+                        "required": false
                     }
                 }
             },
@@ -2792,31 +2993,38 @@
                 "properties": {
                     "inviter": {
                         "type": "a user object",
-                        "description": "user who created the invite"
+                        "description": "user who created the invite",
+                        "required": false
                     },
                     "uses": {
                         "type": "integer",
-                        "description": "number of times this invite has been used"
+                        "description": "number of times this invite has been used",
+                        "required": false
                     },
                     "max_uses": {
                         "type": "integer",
-                        "description": "max number of times this invite can be used"
+                        "description": "max number of times this invite can be used",
+                        "required": false
                     },
                     "max_age": {
                         "type": "integer",
-                        "description": "duration (in seconds) after which the invite expires"
+                        "description": "duration (in seconds) after which the invite expires",
+                        "required": false
                     },
                     "temporary": {
                         "type": "bool",
-                        "description": "whether this invite only grants temporary membership"
+                        "description": "whether this invite only grants temporary membership",
+                        "required": false
                     },
                     "created_at": {
                         "type": "datetime",
-                        "description": "when this invite was created"
+                        "description": "when this invite was created",
+                        "required": false
                     },
                     "revoked": {
                         "type": "bool",
-                        "description": "whether this invite is revoked"
+                        "description": "whether this invite is revoked",
+                        "required": false
                     }
                 }
             },
@@ -2827,19 +3035,23 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "id of the guild"
+                        "description": "id of the guild",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "name of the guild"
+                        "description": "name of the guild",
+                        "required": false
                     },
                     "splash": {
                         "type": "string",
-                        "description": "hash of the guild splash (or null)"
+                        "description": "hash of the guild splash (or null)",
+                        "required": false
                     },
                     "icon": {
                         "type": "string",
-                        "description": "hash of the guild icon (or null)"
+                        "description": "hash of the guild icon (or null)",
+                        "required": false
                     }
                 }
             },
@@ -2850,15 +3062,18 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "id of the channel"
+                        "description": "id of the channel",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "name of the channel"
+                        "description": "name of the channel",
+                        "required": false
                     },
                     "type": {
                         "type": "string",
-                        "description": "'text' or 'voice'"
+                        "description": "'text' or 'voice'",
+                        "required": false
                     }
                 }
             }
@@ -2871,35 +3086,43 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "the user's id"
+                        "description": "the user's id",
+                        "required": false
                     },
                     "username": {
                         "type": "string",
-                        "description": "the user's username, not unique across the platform"
+                        "description": "the user's username, not unique across the platform",
+                        "required": false
                     },
                     "discriminator": {
                         "type": "string",
-                        "description": "the user's 4-digit discord-tag"
+                        "description": "the user's 4-digit discord-tag",
+                        "required": false
                     },
                     "avatar": {
                         "type": "string",
-                        "description": "the user's avatar hash"
+                        "description": "the user's avatar hash",
+                        "required": false
                     },
                     "bot": {
                         "type": "bool",
-                        "description": "whether the user belongs to an OAuth2 application"
+                        "description": "whether the user belongs to an OAuth2 application",
+                        "required": false
                     },
                     "mfa_enabled": {
                         "type": "bool",
-                        "description": "whether the user has two factor enabled on their account"
+                        "description": "whether the user has two factor enabled on their account",
+                        "required": false
                     },
                     "verified": {
                         "type": "bool",
-                        "description": "whether the email on this account has been verified"
+                        "description": "whether the email on this account has been verified",
+                        "required": false
                     },
                     "email": {
                         "type": "string",
-                        "description": "the user's email"
+                        "description": "the user's email",
+                        "required": false
                     }
                 }
             },
@@ -2910,23 +3133,28 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "guild.id"
+                        "description": "guild.id",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "guild.name"
+                        "description": "guild.name",
+                        "required": false
                     },
                     "icon": {
                         "type": "string",
-                        "description": "guild.icon"
+                        "description": "guild.icon",
+                        "required": false
                     },
                     "owner": {
                         "type": "bool",
-                        "description": "true if the user is an owner of the guild"
+                        "description": "true if the user is an owner of the guild",
+                        "required": false
                     },
                     "permissions": {
                         "type": "integer",
-                        "description": "bitwise of the user's enabled/disabled permissions"
+                        "description": "bitwise of the user's enabled/disabled permissions",
+                        "required": false
                     }
                 }
             },
@@ -2937,23 +3165,28 @@
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "id of the connection account"
+                        "description": "id of the connection account",
+                        "required": false
                     },
                     "name": {
                         "type": "string",
-                        "description": "the username of the connection account"
+                        "description": "the username of the connection account",
+                        "required": false
                     },
                     "type": {
                         "type": "string",
-                        "description": "the service of the connection (twitch, youtube)"
+                        "description": "the service of the connection (twitch, youtube)",
+                        "required": false
                     },
                     "revoked": {
                         "type": "bool",
-                        "description": "whether the connection is revoked"
+                        "description": "whether the connection is revoked",
+                        "required": false
                     },
                     "integrations": {
                         "type": "array",
-                        "description": "an array of partial server integrations"
+                        "description": "an array of partial server integrations",
+                        "required": false
                     }
                 }
             }
@@ -2966,39 +3199,48 @@
                 "properties": {
                     "guild_id": {
                         "type": "snowflake?",
-                        "description": "the guild id this voice state is for"
+                        "description": "the guild id this voice state is for",
+                        "required": false
                     },
                     "channel_id": {
                         "type": "snowflake",
-                        "description": "the channel id this user is connected to"
+                        "description": "the channel id this user is connected to",
+                        "required": false
                     },
                     "user_id": {
                         "type": "snowflake",
-                        "description": "the user id this voice state is for"
+                        "description": "the user id this voice state is for",
+                        "required": false
                     },
                     "session_id": {
                         "type": "string",
-                        "description": "the session id for this voice state"
+                        "description": "the session id for this voice state",
+                        "required": false
                     },
                     "deaf": {
                         "type": "bool",
-                        "description": "whether this user is deafened by the server"
+                        "description": "whether this user is deafened by the server",
+                        "required": false
                     },
                     "mute": {
                         "type": "bool",
-                        "description": "whether this user is muted by the server"
+                        "description": "whether this user is muted by the server",
+                        "required": false
                     },
                     "self_deaf": {
                         "type": "bool",
-                        "description": "whether this user is locally deafened"
+                        "description": "whether this user is locally deafened",
+                        "required": false
                     },
                     "self_mute": {
                         "type": "bool",
-                        "description": "whether this user is locally muted"
+                        "description": "whether this user is locally muted",
+                        "required": false
                     },
                     "suppress": {
                         "type": "bool",
-                        "description": "whether this user is muted by the current user"
+                        "description": "whether this user is muted by the current user",
+                        "required": false
                     }
                 }
             }
@@ -3011,31 +3253,38 @@
                 "properties": {
                     "id": {
                         "type": "snowflake",
-                        "description": "the id of the webhook"
+                        "description": "the id of the webhook",
+                        "required": false
                     },
                     "guild_id": {
                         "type": "snowflake?",
-                        "description": "the guild id this webhook is for"
+                        "description": "the guild id this webhook is for",
+                        "required": false
                     },
                     "channel_id": {
                         "type": "snowflake",
-                        "description": "the channel id this webhook is for"
+                        "description": "the channel id this webhook is for",
+                        "required": false
                     },
                     "user": {
                         "type": "User?",
-                        "description": "the user this webhook was created by (not returned when getting a webhook with its token)"
+                        "description": "the user this webhook was created by (not returned when getting a webhook with its token)",
+                        "required": false
                     },
                     "name": {
                         "type": "?string",
-                        "description": "the default name of the webhook"
+                        "description": "the default name of the webhook",
+                        "required": false
                     },
                     "avatar": {
                         "type": "?string",
-                        "description": "the default avatar of the webhook"
+                        "description": "the default avatar of the webhook",
+                        "required": false
                     },
                     "token": {
                         "type": "string",
-                        "description": "the secure token of the webhook"
+                        "description": "the secure token of the webhook",
+                        "required": false
                     }
                 }
             }

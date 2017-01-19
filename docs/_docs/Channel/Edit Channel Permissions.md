@@ -22,8 +22,8 @@ Name | Type | Required | Default
 allow | integer | false | *null*
 deny | integer | false | *null*
 type | string | false | *null*
-channel.id | snowflake | 1 | *null*
-overwrite.id | string | 1 | *null*
+channel.id | snowflake | true | *null*
+overwrite.id | string | true | *null*
 
 ## Response
 

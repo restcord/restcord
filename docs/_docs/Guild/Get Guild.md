@@ -19,7 +19,7 @@ $client->guild->getGuild($parameters);
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
 
 ## Response
 

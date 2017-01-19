@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 type | string | false | *null*
 id | snowflake | false | *null*
-guild.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
 
 ## Response
 

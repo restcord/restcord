@@ -19,7 +19,7 @@ Delete an invite. Requires the MANAGE_CHANNELS permission.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-invite.code | string | 1 | *null*
+invite.code | string | true | *null*
 
 ## Response
 

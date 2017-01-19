@@ -24,7 +24,7 @@ nonce | snowflake | false | *null*
 tts | bool | false | *null*
 file | file contents | false | *null*
 embed | embed object | false | *null*
-channel.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
 
 ## Response
 

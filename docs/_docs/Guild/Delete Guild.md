@@ -19,7 +19,7 @@ Delete a guild permanently. User must be owner.  Fires a Guild Delete Gateway ev
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
 
 ## Response
 

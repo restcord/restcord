@@ -19,7 +19,7 @@ Only usable for guild channels. Requires the &#039;MANAGE_CHANNELS&#039; permiss
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
 
 ## Response
 

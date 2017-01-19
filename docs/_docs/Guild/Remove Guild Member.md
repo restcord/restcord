@@ -19,8 +19,8 @@ Remove a member from a guild. Requires &#039;KICK_MEMBERS&#039; permission.  Fir
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
-user.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 
 ## Response
 

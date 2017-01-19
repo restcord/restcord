@@ -21,8 +21,8 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 access_token | string | false | *null*
 nick | string | false | *null*
-channel.id | snowflake | 1 | *null*
-user.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 
 ## Response
 

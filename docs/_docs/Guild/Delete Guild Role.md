@@ -19,8 +19,8 @@ Delete a guild role. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
-role.id | string | 1 | *null*
+guild.id | snowflake | true | *null*
+role.id | string | true | *null*
 
 ## Response
 

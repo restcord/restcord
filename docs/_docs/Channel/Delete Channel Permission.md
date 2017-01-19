@@ -19,8 +19,8 @@ Delete a channel permission overwrite for a user or role in a channel. Only usab
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | 1 | *null*
-overwrite.id | string | 1 | *null*
+channel.id | snowflake | true | *null*
+overwrite.id | string | true | *null*
 
 ## Response
 

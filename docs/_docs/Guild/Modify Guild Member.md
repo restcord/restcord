@@ -24,8 +24,8 @@ roles | array | false | *null*
 mute | bool | false | *null*
 deaf | bool | false | *null*
 channel_id | snowflake | false | *null*
-guild.id | snowflake | 1 | *null*
-user.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 
 ## Response
 

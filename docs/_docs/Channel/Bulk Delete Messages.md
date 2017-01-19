@@ -20,7 +20,7 @@ Delete multiple messages in a single request. This endpoint can only be used on 
 Name | Type | Required | Default
 --- | --- | --- | ---
 messages | array | false | *null*
-channel.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
 
 ## Response
 

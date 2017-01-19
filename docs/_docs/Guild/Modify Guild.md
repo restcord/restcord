@@ -28,7 +28,7 @@ afk_timeout | integer | false | *null*
 icon | string | false | *null*
 owner_id | snowflake | false | *null*
 splash | string | false | *null*
-guild.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
 
 ## Response
 

@@ -20,8 +20,8 @@ Add a new webhook to your GitHub repo (in the repo&#039;s settings), and use thi
 Name | Type | Required | Default
 --- | --- | --- | ---
 wait | bool | false | *null*
-webhook.id | string | 1 | *null*
-webhook.token | string | 1 | *null*
+webhook.id | string | true | *null*
+webhook.token | string | true | *null*
 
 ## Response
 

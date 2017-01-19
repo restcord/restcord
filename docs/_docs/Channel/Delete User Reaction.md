@@ -19,10 +19,10 @@ Deletes another user&#039;s reaction. This endpoint requires the &#039;MANAGE_ME
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | 1 | *null*
-message.id | snowflake | 1 | *null*
-emoji | string | 1 | *null*
-user.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
+message.id | snowflake | true | *null*
+emoji | string | true | *null*
+user.id | snowflake | true | *null*
 
 ## Response
 

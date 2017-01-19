@@ -19,8 +19,8 @@ Same as above, except this call does not require authentication.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-webhook.id | string | 1 | *null*
-webhook.token | string | 1 | *null*
+webhook.id | string | true | *null*
+webhook.token | string | true | *null*
 
 ## Response
 

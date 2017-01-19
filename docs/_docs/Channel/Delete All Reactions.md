@@ -19,8 +19,8 @@ Deletes all reactions on a message. This endpoint requires the &#039;MANAGE_MESS
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | 1 | *null*
-message.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
+message.id | snowflake | true | *null*
 
 ## Response
 

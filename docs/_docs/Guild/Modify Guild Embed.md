@@ -19,7 +19,7 @@ Modify a guild embed object for the guild. All attributes may be passed in with 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
 
 ## Response
 

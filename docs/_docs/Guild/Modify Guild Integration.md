@@ -22,8 +22,8 @@ Name | Type | Required | Default
 expire_behavior | integer | false | *null*
 expire_grace_period | integer | false | *null*
 enable_emoticons | bool | false | *null*
-guild.id | snowflake | 1 | *null*
-integration.id | string | 1 | *null*
+guild.id | snowflake | true | *null*
+integration.id | string | true | *null*
 
 ## Response
 

@@ -19,8 +19,8 @@ Delete a pinned message in a channel. Requires the &#039;MANAGE_MESSAGES&#039; p
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | 1 | *null*
-message.id | snowflake | 1 | *null*
+channel.id | snowflake | true | *null*
+message.id | snowflake | true | *null*
 
 ## Response
 

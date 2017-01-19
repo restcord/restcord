@@ -20,8 +20,8 @@ Create a guild ban, and optionally delete previous messages sent by the banned u
 Name | Type | Required | Default
 --- | --- | --- | ---
 delete-message-days | integer | false | *null*
-guild.id | snowflake | 1 | *null*
-user.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 
 ## Response
 

@@ -19,9 +19,9 @@ Removes a role from a guild member. Requires the &#039;MANAGE_ROLES&#039; permis
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
-user.id | snowflake | 1 | *null*
-role.id | string | 1 | *null*
+guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
+role.id | string | true | *null*
 
 ## Response
 

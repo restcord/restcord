@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 name | string | false | *null*
 avatar | string | false | *null*
-webhook.id | string | 1 | *null*
+webhook.id | string | true | *null*
 
 ## Response
 

@@ -19,7 +19,7 @@ Accept an invite. This is not available to bot accounts, and requires the guilds
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-invite.code | string | 1 | *null*
+invite.code | string | true | *null*
 
 ## Response
 

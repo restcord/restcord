@@ -19,8 +19,8 @@ Remove the ban for a user. Requires the &#039;BAN_MEMBERS&#039; permissions.  Fi
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
-user.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 
 ## Response
 

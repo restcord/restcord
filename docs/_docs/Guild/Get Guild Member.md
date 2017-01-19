@@ -19,8 +19,8 @@ $client->guild->getGuildMember($parameters);
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | 1 | *null*
-user.id | snowflake | 1 | *null*
+guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 
 ## Response
 

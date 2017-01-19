@@ -176,15 +176,33 @@ class DiscordClient
             $config['responseModel'] = 'getResponse';
 
             foreach ($config['parameters'] as $parameter => &$parameterConfig) {
-                if ($parameterConfig['type'] === 'snowflake') {
-                    $parameterConfig['type'] = 'integer';
-                }
-                if ($parameterConfig['type'] === 'bool') {
-                    $parameterConfig['type'] = 'boolean';
+                $this->updateParameterTypes($parameterConfig);
+                if (!isset($parameterConfig['required'])) {
+                    $parameterConfig['required'] = false;
                 }
             }
         }
 
         return $operations;
     }
+
+    private function updateParameterTypes(array &$parameterConfig)
+    {
+        if ($parameterConfig['type'] === 'snowflake') {
+            $parameterConfig['type'] = 'integer';
+        }
+
+        if ($parameterConfig['type'] === 'bool') {
+            $parameterConfig['type'] = 'boolean';
+        }
+
+        if ($parameterConfig['type'] === 'file contents') {
+            $parameterConfig['type'] = 'string';
+        }
+
+        if (stripos($parameterConfig['type'], 'object') !== false) {
+            $parameterConfig['type'] = 'array';
+        }
+    }
+
 }
