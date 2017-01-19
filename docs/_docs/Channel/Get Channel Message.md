@@ -19,8 +19,8 @@ If operating on a guild channel, this endpoints requires the &#039;READ_MESSAGE_
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | false | *null*
-message.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
+message.id | snowflake | 1 | *null*
 
 ## Response
 

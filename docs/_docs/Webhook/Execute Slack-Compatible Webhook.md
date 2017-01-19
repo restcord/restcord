@@ -20,8 +20,8 @@ Refer to Slack&#039;s documentation for more information. We do not support Slac
 Name | Type | Required | Default
 --- | --- | --- | ---
 wait | bool | false | *null*
-webhook.id | string | false | *null*
-webhook.token | string | false | *null*
+webhook.id | string | 1 | *null*
+webhook.token | string | 1 | *null*
 
 ## Response
 

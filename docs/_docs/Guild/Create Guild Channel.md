@@ -24,7 +24,7 @@ type | string | false | *null*
 bitrate | integer | false | *null*
 user_limit | integer | false | *null*
 permission_overwrites | array | false | *null*
-guild.id | snowflake | false | *null*
+guild.id | snowflake | 1 | *null*
 
 ## Response
 

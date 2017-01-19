@@ -19,7 +19,7 @@ $client->invite->getInvite($parameters);
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-invite.code | string | false | *null*
+invite.code | string | 1 | *null*
 
 ## Response
 

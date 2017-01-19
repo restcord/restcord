@@ -19,8 +19,8 @@ Delete the attached integration object for the guild. Requires the &#039;MANAGE_
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | false | *null*
-integration.id | string | false | *null*
+guild.id | snowflake | 1 | *null*
+integration.id | string | 1 | *null*
 
 ## Response
 

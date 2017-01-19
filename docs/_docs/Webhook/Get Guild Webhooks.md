@@ -19,7 +19,7 @@ $client->webhook->getGuildWebhooks($parameters);
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | false | *null*
+guild.id | snowflake | 1 | *null*
 
 ## Response
 

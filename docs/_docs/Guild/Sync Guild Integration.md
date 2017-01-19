@@ -19,8 +19,8 @@ Sync an integration. Requires the &#039;MANAGE_GUILD&#039; permission.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | false | *null*
-integration.id | string | false | *null*
+guild.id | snowflake | 1 | *null*
+integration.id | string | 1 | *null*
 
 ## Response
 

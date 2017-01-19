@@ -19,7 +19,7 @@ Delete a webhook permanently. User must be owner.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-webhook.id | string | false | *null*
+webhook.id | string | 1 | *null*
 
 ## Response
 

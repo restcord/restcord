@@ -25,8 +25,8 @@ position | integer | false | *null*
 color | integer | false | *null*
 hoist | bool | false | *null*
 mentionable | bool | false | *null*
-guild.id | snowflake | false | *null*
-role.id | string | false | *null*
+guild.id | snowflake | 1 | *null*
+role.id | string | 1 | *null*
 
 ## Response
 

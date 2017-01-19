@@ -19,8 +19,8 @@ Pin a message in a channel. Requires the &#039;MANAGE_MESSAGES&#039; permission.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | false | *null*
-message.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
+message.id | snowflake | 1 | *null*
 
 ## Response
 

@@ -19,7 +19,7 @@ $client->webhook->getChannelWebhooks($parameters);
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
 
 ## Response
 

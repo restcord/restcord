@@ -20,7 +20,7 @@ Begin a prune operation. Requires the &#039;KICK_MEMBERS&#039; permission.  Fire
 Name | Type | Required | Default
 --- | --- | --- | ---
 days | integer | false | *null*
-guild.id | snowflake | false | *null*
+guild.id | snowflake | 1 | *null*
 
 ## Response
 

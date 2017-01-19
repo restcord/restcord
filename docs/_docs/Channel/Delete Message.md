@@ -19,8 +19,8 @@ Delete a message. If operating on a guild channel and trying to delete a message
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | false | *null*
-message.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
+message.id | snowflake | 1 | *null*
 
 ## Response
 

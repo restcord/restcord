@@ -19,7 +19,7 @@ Unlike the similar /voice route, this returns VIP servers when the guild is VIP-
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | false | *null*
+guild.id | snowflake | 1 | *null*
 
 ## Response
 

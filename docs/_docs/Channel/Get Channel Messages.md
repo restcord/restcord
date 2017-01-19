@@ -23,7 +23,7 @@ around | snowflake | false | absent
 before | snowflake | false | absent
 after | snowflake | false | absent
 limit | integer | false | 50
-channel.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
 
 ## Response
 

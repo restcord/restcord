@@ -41,7 +41,7 @@ function recursiveRemoveDirectory($directory)
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
             $style->title("Building Docs for: ".$input->getArgument('version'));
 
-            $path = __DIR__.'/../doc/_docs';
+            $path = __DIR__.'/../docs/_docs';
             recursiveRemoveDirectory($path);
             mkdir($path, 02775, true);
             $path = realpath($path);

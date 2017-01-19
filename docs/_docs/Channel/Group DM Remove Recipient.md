@@ -19,8 +19,8 @@ Removes a recipient from a Group DM
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | false | *null*
-user.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
+user.id | snowflake | 1 | *null*
 
 ## Response
 

@@ -90,7 +90,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -155,7 +156,8 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -175,7 +177,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -195,7 +198,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -240,7 +244,8 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -270,7 +275,8 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -290,11 +296,13 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -326,7 +334,8 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -371,11 +380,13 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -415,11 +426,13 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -434,15 +447,18 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "role.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -457,15 +473,18 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "role.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -480,11 +499,13 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -504,7 +525,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -524,11 +546,13 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -543,11 +567,13 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -567,7 +593,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -587,7 +614,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -617,7 +645,8 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -667,11 +696,13 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "role.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -691,11 +722,13 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "role.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -715,7 +748,8 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -735,7 +769,8 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -755,7 +790,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -779,7 +815,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -799,7 +836,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -824,7 +862,8 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -854,11 +893,13 @@
                     },
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "integration.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -873,11 +914,13 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "integration.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -892,11 +935,13 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "integration.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -916,7 +961,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -936,7 +982,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             }
@@ -962,7 +1009,8 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1007,7 +1055,8 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1031,7 +1080,8 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1070,7 +1120,8 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1085,11 +1136,13 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1134,7 +1187,8 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1149,15 +1203,18 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "emoji": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1172,15 +1229,18 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "emoji": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1195,19 +1255,23 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "emoji": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1227,15 +1291,18 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "emoji": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1249,11 +1316,13 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1278,11 +1347,13 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1297,11 +1368,13 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1321,7 +1394,8 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1335,7 +1409,8 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1365,11 +1440,13 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "overwrite.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1393,7 +1470,8 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1437,7 +1515,8 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1452,11 +1531,13 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "overwrite.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1471,7 +1552,8 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1491,7 +1573,8 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1506,11 +1589,13 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1525,11 +1610,13 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "message.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1553,11 +1640,13 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1571,11 +1660,13 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             }
@@ -1597,7 +1688,8 @@
                 "parameters": {
                     "invite.code": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1617,7 +1709,8 @@
                 "parameters": {
                     "invite.code": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1637,7 +1730,8 @@
                 "parameters": {
                     "invite.code": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             }
@@ -1674,7 +1768,8 @@
                 "parameters": {
                     "user.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1851,7 +1946,8 @@
                     },
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1871,7 +1967,8 @@
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1891,7 +1988,8 @@
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1911,7 +2009,8 @@
                 "parameters": {
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1925,11 +2024,13 @@
                 "parameters": {
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "webhook.token": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1959,7 +2060,8 @@
                     },
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1973,11 +2075,13 @@
                 "parameters": {
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "webhook.token": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -1992,7 +2096,8 @@
                 "parameters": {
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -2006,11 +2111,13 @@
                 "parameters": {
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "webhook.token": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -2029,11 +2136,13 @@
                     },
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "webhook.token": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -2052,11 +2161,13 @@
                     },
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "webhook.token": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             },
@@ -2075,11 +2186,13 @@
                     },
                     "webhook.id": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
                     "webhook.token": {
                         "type": "string",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     }
                 }
             }

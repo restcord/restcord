@@ -24,7 +24,7 @@ position | integer | false | *null*
 topic | string | false | *null*
 bitrate | integer | false | *null*
 user_limit | integer | false | *null*
-channel.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
 
 ## Response
 

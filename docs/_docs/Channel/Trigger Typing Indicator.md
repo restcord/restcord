@@ -19,7 +19,7 @@ Post a typing indicator for the specified channel. Generally bots should not imp
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
 
 ## Response
 

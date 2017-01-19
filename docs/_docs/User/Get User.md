@@ -19,7 +19,7 @@ $client->user->getUser($parameters);
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-user.id | snowflake | false | *null*
+user.id | snowflake | 1 | *null*
 
 ## Response
 

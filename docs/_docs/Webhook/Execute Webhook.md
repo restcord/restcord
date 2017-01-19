@@ -20,8 +20,8 @@ This endpoint supports both JSON and form data bodies. It does require multipart
 Name | Type | Required | Default
 --- | --- | --- | ---
 wait | bool | false | *null*
-webhook.id | string | false | *null*
-webhook.token | string | false | *null*
+webhook.id | string | 1 | *null*
+webhook.token | string | 1 | *null*
 
 ## Response
 

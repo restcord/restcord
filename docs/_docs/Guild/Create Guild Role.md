@@ -19,7 +19,7 @@ Create a new empty role object for the guild. Requires the &#039;MANAGE_ROLES&#0
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-guild.id | snowflake | false | *null*
+guild.id | snowflake | 1 | *null*
 
 ## Response
 

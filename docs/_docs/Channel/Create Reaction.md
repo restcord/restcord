@@ -19,9 +19,9 @@ Create a reaction for the message. If nobody else has reacted to the message usi
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | false | *null*
-message.id | snowflake | false | *null*
-emoji | string | false | *null*
+channel.id | snowflake | 1 | *null*
+message.id | snowflake | 1 | *null*
+emoji | string | 1 | *null*
 
 ## Response
 

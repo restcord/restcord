@@ -19,7 +19,7 @@ Delete a guild channel, or close a private message. Requires the &#039;MANAGE_CH
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-channel.id | snowflake | false | *null*
+channel.id | snowflake | 1 | *null*
 
 ## Response
 

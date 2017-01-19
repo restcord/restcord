@@ -24,8 +24,8 @@ nick | string | false | *null*
 roles | array | false | *null*
 mute | bool | false | *null*
 deaf | bool | false | *null*
-guild.id | snowflake | false | *null*
-user.id | snowflake | false | *null*
+guild.id | snowflake | 1 | *null*
+user.id | snowflake | 1 | *null*
 
 ## Response
 
