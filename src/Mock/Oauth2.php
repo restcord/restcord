@@ -17,7 +17,6 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 class Oauth2 extends GuzzleClient
 {
-
     /**
      * @param array $options id, name, icon, description, rpc_origins?, bot_public, bot_requires_code_grant, owner
      *
@@ -27,5 +26,4 @@ class Oauth2 extends GuzzleClient
     {
         return $options;
     }
-    
 }
