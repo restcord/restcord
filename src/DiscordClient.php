@@ -28,6 +28,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Aaron Scherer <aequasi@gmail.com>
  *
  * Client Class
+ * @property GuzzleClient channel
+ * @property GuzzleClient gateway
+ * @property GuzzleClient guild
+ * @property GuzzleClient invite
+ * @property GuzzleClient oauth2
+ * @property GuzzleClient user
+ * @property GuzzleClient voice
+ * @property GuzzleClient webhook
  */
 class DiscordClient
 {

@@ -37,6 +37,15 @@ This library has not been tested with HHVM.
 	- `include __DIR__.'/vendor/autoload.php';`
 3. Use it!
 
+Getting Started
+---------------
+
+There's an example below, and more listed in the menu to the left. The `Restcord\DiscordClient` is broken out into 
+categories just like the api itself: channel, gateway, guild, invite, oauth2, user, voice, and webhook.
+
+You can view the methods of each of these categories by selecting the menu items on the left.
+
+
 Basic Example
 -------------
 
