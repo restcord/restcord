@@ -17,7 +17,6 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 class Channel extends GuzzleClient
 {
-
     /**
      * @param array $options channel.id
      *
@@ -27,8 +26,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options name, position, topic, bitrate, user_limit, channel.id
      *
@@ -38,8 +36,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id
      *
@@ -49,8 +46,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options around, before, after, limit, channel.id
      *
@@ -60,8 +56,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id
      *
@@ -71,8 +66,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options content, nonce, tts, file, embed, channel.id
      *
@@ -82,8 +76,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id, emoji
      *
@@ -93,8 +86,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id, emoji
      *
@@ -104,8 +96,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id, emoji, user.id
      *
@@ -115,8 +106,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id, emoji
      *
@@ -126,8 +116,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id
      *
@@ -137,8 +126,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options content, channel.id, message.id
      *
@@ -148,8 +136,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id
      *
@@ -159,8 +146,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options messages, channel.id
      *
@@ -170,8 +156,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id
      *
@@ -181,8 +166,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options allow, deny, type, channel.id, overwrite.id
      *
@@ -192,8 +176,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id
      *
@@ -203,8 +186,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options max_age, max_uses, temporary, unique, channel.id
      *
@@ -214,8 +196,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, overwrite.id
      *
@@ -225,8 +206,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id
      *
@@ -236,8 +216,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id
      *
@@ -247,8 +226,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id
      *
@@ -258,8 +236,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, message.id
      *
@@ -269,8 +246,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options access_token, nick, channel.id, user.id
      *
@@ -280,8 +256,7 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id, user.id
      *
@@ -291,5 +266,4 @@ class Channel extends GuzzleClient
     {
         return $options;
     }
-    
 }
