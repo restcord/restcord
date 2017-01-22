@@ -4,7 +4,8 @@ title: Examples
 
 ---
 
-## Basic Example
+Basic Example
+-------------
 
 This example just creates a client, and grabs a guild object by ID.
 
@@ -22,7 +23,8 @@ var_dump($discord->guild->getGuild(['guild.id' => 81384788765712384]));
 
 ---
 
-## Send Message
+Send Message
+------------
 
 In order to send a message, your bot needs to have connected to Discords websocket gateway at least once.
 This is not something you can do with this library. 
@@ -41,7 +43,8 @@ var_dump($discord->guild->getGuild(['guild.id' => 81384788765712384]));
 
 ---
 
-## Get Guild Roles
+Get Guild Roles
+---------------
 
 This fetches the roles of a guild.
 
