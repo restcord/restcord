@@ -14,7 +14,7 @@ If you are doing anything heavy, or fancy, you should probably look at [the othe
 FAQ
 ---
 
-1. Can I run DiscordPHP on a webserver (e.g. Apache, nginx)?
+1. Can I run RestCord on a webserver (e.g. Apache, nginx)?
     - Yes. There are caveats though. Some of the requests aren't super fast, and can slow down your users responses. You should cache as much as you can.
 2. Can I use this to create a bot?
     - Yes, but not the typical kind. This does not spawn a long running process, or connect to the websocket gateway like the other lib does.
