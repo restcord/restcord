@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Embed
 category: Guild
-order: 34
+order: 35
 ---
 
 # `modifyGuildEmbed`

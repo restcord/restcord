@@ -1,7 +1,7 @@
 ---
 title: Get Guild Integrations
 category: Guild
-order: 28
+order: 29
 ---
 
 # `getGuildIntegrations`

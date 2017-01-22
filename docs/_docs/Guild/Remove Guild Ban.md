@@ -1,7 +1,7 @@
 ---
 title: Remove Guild Ban
 category: Guild
-order: 18
+order: 19
 ---
 
 # `removeGuildBan`

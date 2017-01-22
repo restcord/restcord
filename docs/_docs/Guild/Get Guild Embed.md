@@ -1,7 +1,7 @@
 ---
 title: Get Guild Embed
 category: Guild
-order: 33
+order: 34
 ---
 
 # `getGuildEmbed`

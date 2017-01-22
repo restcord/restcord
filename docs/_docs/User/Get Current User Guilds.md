@@ -16,7 +16,12 @@ Requires the guilds OAuth2 scope.
 
 ## Parameters
 
-No Parameters
+
+Name | Type | Required | Default
+--- | --- | --- | ---
+before | snowflake | false | absent
+after | snowflake | false | absent
+limit | integer | false | 100
 
 ## Response
 

@@ -1,7 +1,7 @@
 ---
 title: Get Guild Invites
 category: Guild
-order: 27
+order: 28
 ---
 
 # `getGuildInvites`

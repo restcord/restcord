@@ -1,7 +1,7 @@
 ---
 title: Begin Guild Prune
 category: Guild
-order: 25
+order: 26
 ---
 
 # `beginGuildPrune`

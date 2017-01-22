@@ -16,7 +16,17 @@ $client->oauth2->getCurrentApplicationInformation($parameters);
 
 ## Parameters
 
-No Parameters
+
+Name | Type | Required | Default
+--- | --- | --- | ---
+id | snowflake | false | *null*
+name | string | false | *null*
+icon | string? | false | *null*
+description | string? | false | *null*
+rpc_origins? | array | false | *null*
+bot_public | boolean | false | *null*
+bot_requires_code_grant | boolean | false | *null*
+owner | User | false | *null*
 
 ## Response
 

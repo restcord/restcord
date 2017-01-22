@@ -1,7 +1,7 @@
 ---
 title: Add Guild Member Role
 category: Guild
-order: 13
+order: 14
 ---
 
 # `addGuildMemberRole`

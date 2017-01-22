@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Integration
 category: Guild
-order: 30
+order: 31
 ---
 
 # `modifyGuildIntegration`

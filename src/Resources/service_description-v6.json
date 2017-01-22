@@ -1,6 +1,6 @@
 {
-    "baseUri": "https://discordapp.com/api",
-    "version": 1,
+    "baseUri": "https://discordapp.com/api/v6",
+    "version": 6,
     "operations": {
         "guild": {
             "updateNick": {
@@ -387,7 +387,7 @@
                     "nick": {
                         "location": "json",
                         "type": "string",
-                        "description": "value to set users nickname too",
+                        "description": "value to set users nickname to",
                         "required": false
                     },
                     "roles": {
@@ -432,7 +432,7 @@
                     "nick": {
                         "location": "json",
                         "type": "string",
-                        "description": "value to set users nickname too",
+                        "description": "value to set users nickname to",
                         "required": false
                     },
                     "roles": {
@@ -465,6 +465,28 @@
                         "required": true
                     },
                     "user.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                }
+            },
+            "modifyCurrentUser'sNick": {
+                "category": "guild",
+                "name": "Modify Current User's Nick",
+                "description": "Modifies the nickname of the current user in a guild.  Fires a Guild Member Update Gateway event.",
+                "method": "PATCH",
+                "responseNote": "Returns a 200 with the nickname on success.",
+                "responseTypes": [],
+                "url": "/guilds/{guild.id}/@me",
+                "parameters": {
+                    "nick": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "value to set users nickname to",
+                        "required": false
+                    },
+                    "guild.id": {
                         "type": "snowflake",
                         "location": "uri",
                         "required": true
@@ -637,7 +659,7 @@
             "createGuildRole": {
                 "category": "guild",
                 "name": "Create Guild Role",
-                "description": "Create a new empty role object for the guild. Requires the 'MANAGE_ROLES' permission.  Fires a Guild Role Create Gateway event.",
+                "description": "Create a new role for the guild. Requires the 'MANAGE_ROLES' permission.  Fires a Guild Role Create Gateway event. All JSON params are optional.",
                 "method": "POST",
                 "responseNote": "Returns the new role object on success.",
                 "responseTypes": [
@@ -648,6 +670,41 @@
                 ],
                 "url": "/guilds/{guild.id}/roles",
                 "parameters": {
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the role",
+                        "default": "\"new role\"",
+                        "required": false
+                    },
+                    "permissions": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "bitwise of the enabled/disabled permissions",
+                        "default": "@everyone permissions in guild",
+                        "required": false
+                    },
+                    "color": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "RGB color value",
+                        "default": "0",
+                        "required": false
+                    },
+                    "hoist": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether the role should be displayed separately in the sidebar",
+                        "default": "false",
+                        "required": false
+                    },
+                    "mentionable": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether the role should be mentionable",
+                        "default": "false",
+                        "required": false
+                    },
                     "guild.id": {
                         "type": "snowflake",
                         "location": "uri",
@@ -714,12 +771,6 @@
                         "description": "bitwise of the enabled/disabled permissions",
                         "required": false
                     },
-                    "position": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "sorting position of the role",
-                        "required": false
-                    },
                     "color": {
                         "location": "json",
                         "type": "integer",
@@ -755,13 +806,8 @@
                 "name": "Delete Guild Role",
                 "description": "Delete a guild role. Requires the 'MANAGE_ROLES' permission.  Fires a Guild Role Delete Gateway event.",
                 "method": "DELETE",
-                "responseNote": "Returns the role on success.",
-                "responseTypes": [
-                    {
-                        "name": "role",
-                        "type": "PERMISSION/role"
-                    }
-                ],
+                "responseNote": "Returns a 204 empty response on success.",
+                "responseTypes": [],
                 "url": "/guilds/{guild.id}/roles/{role.id}",
                 "parameters": {
                     "guild.id": {
@@ -1890,7 +1936,29 @@
                     }
                 ],
                 "url": "/users//@me",
-                "parameters": {}
+                "parameters": {
+                    "before": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "get guilds before this guild ID",
+                        "default": "absent",
+                        "required": false
+                    },
+                    "after": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "get guilds after this guild ID",
+                        "default": "absent",
+                        "required": false
+                    },
+                    "limit": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "max number of guilds to return (1-100)",
+                        "default": "100",
+                        "required": false
+                    }
+                }
             },
             "leaveGuild": {
                 "category": "user",
@@ -2306,7 +2374,56 @@
                 "responseNote": "Returns the bot's OAuth2 application info.",
                 "responseTypes": [],
                 "url": "/@me",
-                "parameters": {}
+                "parameters": {
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the id of the app",
+                        "required": false
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the name of the app",
+                        "required": false
+                    },
+                    "icon": {
+                        "location": "json",
+                        "type": "string?",
+                        "description": "the icon hash of the app",
+                        "required": false
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string?",
+                        "description": "the description of the app",
+                        "required": false
+                    },
+                    "rpc_origins?": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "an array of rpc origin url strings, if rpc is enabled",
+                        "required": false
+                    },
+                    "bot_public": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "when false only app owner can join the app's bot to guilds",
+                        "required": false
+                    },
+                    "bot_requires_code_grant": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "when true the app's bot will only join upon completion of the full oauth2 code grant flow",
+                        "required": false
+                    },
+                    "owner": {
+                        "location": "json",
+                        "type": "User",
+                        "description": "partial user object containing info on the owner of the application",
+                        "required": false
+                    }
+                }
             }
         }
     },

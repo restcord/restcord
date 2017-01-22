@@ -1,7 +1,7 @@
 ---
 title: Create Guild Ban
 category: Guild
-order: 17
+order: 18
 ---
 
 # `createGuildBan`

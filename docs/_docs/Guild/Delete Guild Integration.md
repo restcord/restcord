@@ -1,7 +1,7 @@
 ---
 title: Delete Guild Integration
 category: Guild
-order: 31
+order: 32
 ---
 
 # `deleteGuildIntegration`

@@ -1,7 +1,7 @@
 ---
 title: Remove Guild Member
 category: Guild
-order: 15
+order: 16
 ---
 
 # `removeGuildMember`

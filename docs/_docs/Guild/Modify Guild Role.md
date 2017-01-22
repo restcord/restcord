@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Role
 category: Guild
-order: 22
+order: 23
 ---
 
 # `modifyGuildRole`
@@ -21,7 +21,6 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 name | string | false | *null*
 permissions | integer | false | *null*
-position | integer | false | *null*
 color | integer | false | *null*
 hoist | bool | false | *null*
 mentionable | bool | false | *null*

@@ -1,7 +1,7 @@
 ---
 title: Sync Guild Integration
 category: Guild
-order: 32
+order: 33
 ---
 
 # `syncGuildIntegration`

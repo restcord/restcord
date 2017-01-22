@@ -1,7 +1,7 @@
 ---
 title: Delete Guild Role
 category: Guild
-order: 23
+order: 24
 ---
 
 # `deleteGuildRole`
@@ -24,8 +24,5 @@ role.id | string | true | *null*
 
 ## Response
 
-Returns the role on success.
+Returns a 204 empty response on success.
 
-Can Return:
-
-* role
