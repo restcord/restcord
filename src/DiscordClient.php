@@ -28,6 +28,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Aaron Scherer <aequasi@gmail.com>
  *
  * Client Class
+ *
  * @property GuzzleClient channel
  * @property GuzzleClient gateway
  * @property GuzzleClient guild
