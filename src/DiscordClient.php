@@ -146,13 +146,13 @@ class DiscordClient
     private function validateOptions(array $options)
     {
         $currentVersion = 6;
-        $resolver = new OptionsResolver();
+        $resolver       = new OptionsResolver();
         $resolver->setDefaults(
             [
                 'version'          => $currentVersion,
                 'logger'           => new Logger('Logger'),
                 'throwOnRatelimit' => false,
-                'apiUrl'           => 'https://discordapp.com/api/v' . $currentVersion,
+                'apiUrl'           => 'https://discordapp.com/api/v'.$currentVersion,
             ]
         )
             ->setRequired('token')
