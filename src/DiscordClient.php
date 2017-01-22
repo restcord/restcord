@@ -163,7 +163,7 @@ class DiscordClient
                 'logger'           => new Logger('Logger'),
                 'throwOnRatelimit' => false,
                 'apiUrl'           => 'https://discordapp.com/api/v'.$currentVersion,
-                'tokenType'        => 'None'
+                'tokenType'        => 'None',
             ]
         )
             ->setDefined(['token'])
