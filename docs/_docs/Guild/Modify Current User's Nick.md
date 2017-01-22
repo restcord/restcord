@@ -4,10 +4,10 @@ category: Guild
 order: 13
 ---
 
-# `modifyCurrentUser&#039;sNick`
+# `modifyCurrentUsersNick`
 
 ```php
-$client->guild->modifyCurrentUser&#039;sNick($parameters);
+$client->guild->modifyCurrentUsersNick($parameters);
 ```
 
 ## Description

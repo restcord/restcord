@@ -471,7 +471,7 @@
                     }
                 }
             },
-            "modifyCurrentUser'sNick": {
+            "modifyCurrentUsersNick": {
                 "category": "guild",
                 "name": "Modify Current User's Nick",
                 "description": "Modifies the nickname of the current user in a guild.  Fires a Guild Member Update Gateway event.",

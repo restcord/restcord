@@ -155,7 +155,7 @@ class Guild extends GuzzleClient
      *
      * @return array
      */
-    public function modifyCurrentUser&#039;sNick(array $options)
+    public function modifyCurrentUsersNick(array $options)
     {
         return $options;
     }
