@@ -49,7 +49,7 @@ use Restcord\DiscordClient;
 
 $discord = new DiscordClient(['token' => 'bot-token']); // Token is required
 
-var_dump($discord->guild->getGuild(['guild.id' => 108439985920704512]));
+var_dump($discord->guild->getGuild(['guild.id' => 81384788765712384]));
 
 ```
 

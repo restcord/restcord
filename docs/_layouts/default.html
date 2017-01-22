@@ -50,6 +50,12 @@
 				</ul>
 
 				<ul>
+					<li class="nav-item top-level {% if page.url == '/examples' %}current{% endif %}">
+						<a href="{{ site.baseurl }}/examples">Examples</a>
+					</li>
+				</ul>
+
+				<ul>
 					{% assign grouped = site.docs | group_by: 'category' %}
 					{% for group in grouped %}
 						<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
