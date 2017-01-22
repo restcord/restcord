@@ -30,14 +30,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * Client Class
  *
- * @property GuzzleClient channel
- * @property GuzzleClient gateway
- * @property GuzzleClient guild
- * @property GuzzleClient invite
- * @property GuzzleClient oauth2
- * @property GuzzleClient user
- * @property GuzzleClient voice
- * @property GuzzleClient webhook
+ * @property Mock\Channel channel
+ * @property Mock\Gateway gateway
+ * @property Mock\Guild guild
+ * @property Mock\Invite invite
+ * @property Mock\Oauth2 oauth2
+ * @property Mock\User user
+ * @property Mock\Voice voice
+ * @property Mock\Webhook webhook
  */
 class DiscordClient
 {
@@ -49,7 +49,7 @@ class DiscordClient
     /**
      * @var GuzzleClient[]
      */
-    public $categories = [];
+    private $categories = [];
 
     /**
      * @var Logger

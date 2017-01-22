@@ -33,16 +33,19 @@ function recursiveRemoveDirectory($directory)
     rmdir($directory);
 }
 
-(new Application('Build Docs', '1.0.0'))
-    ->register('buildDocs')
+(new Application('Build Dummy Classes', '1.0.0'))
+    ->register('buildDummyClasses')
     ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
     ->setCode(
         function (InputInterface $input, OutputInterface $output) use ($twig) {
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
-            $style->title("Building Docs for: ".$input->getArgument('version'));
+            $style->title("Building Dummy Classes for: ".$input->getArgument('version'));
 
-            $path = __DIR__.'/../docs/_docs';
-            recursiveRemoveDirectory($path);
+            $path = __DIR__.'/../src/Mock';
+            try {
+                recursiveRemoveDirectory($path);
+            } catch (\Exception $e) {
+            }
             mkdir($path, 02775, true);
             $path = realpath($path);
 
@@ -54,31 +57,19 @@ function recursiveRemoveDirectory($directory)
             );
 
             foreach ($definition['operations'] as $category => $operations) {
-                $i = 1;
-                foreach ($operations as $operation => $config) {
-                    $filePath = $path.'/'.ucwords($category).'/';
-                    if (!file_exists($filePath)) {
-                        mkdir($filePath, 02775, true);
-                    }
-
-                    $markdown = $twig->render(
-                        'operation.md.twig',
-                        [
-                            'category'  => $category,
-                            'operation' => $operation,
-                            'config'    => $config,
-                            'order'     => $i
-                        ]
-                    );
-
-                    file_put_contents($filePath.str_replace('/', ' or ', $config['name']).'.md', $markdown);
-                    $i++;
-                }
+                $class = $twig->render(
+                    'operation.php.twig',
+                    [
+                        'category'   => $category,
+                        'operations' => $operations,
+                    ]
+                );
+                file_put_contents($path.'/'.ucwords($category).'.php', $class);
             }
 
-            $style->success('Finished. Docs built in: '.realpath($path));
+            $style->success('Finished. Classes built in: '.realpath($path));
         }
     )
     ->getApplication()
-    ->setDefaultCommand('buildDocs', true)
+    ->setDefaultCommand('buildDummyClasses', true)
     ->run();
