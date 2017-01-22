@@ -22,6 +22,7 @@ use Monolog\Logger;
 use RestCord\Logging\MessageFormatter;
 use RestCord\RateLimit\RateLimiter;
 use RestCord\RateLimit\RateLimitProvider;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -162,14 +163,45 @@ class DiscordClient
                 'logger'           => new Logger('Logger'),
                 'throwOnRatelimit' => false,
                 'apiUrl'           => 'https://discordapp.com/api/v'.$currentVersion,
+                'tokenType'        => 'None'
             ]
         )
-            ->setRequired('token')
+            ->setDefined(['token'])
+            ->setAllowedValues('tokenType', ['Bot', 'User', 'OAuth', 'None'])
             ->setAllowedTypes('token', ['string'])
             ->setAllowedTypes('apiUrl', ['string'])
             ->setAllowedTypes('throwOnRatelimit', ['bool'])
             ->setAllowedTypes('logger', ['\Monolog\Logger'])
-            ->setAllowedTypes('version', ['string', 'integer']);
+            ->setAllowedTypes('version', ['string', 'integer'])
+            ->setNormalizer(
+                'token',
+                function (Options $options, $value) {
+                    if (0 === stripos($value, 'Bot ')) {
+                        $value                = substr($value, 4);
+                        $options['tokenType'] = 'Bot';
+                    }
+                    if (0 === stripos($value, 'Bearer ')) {
+                        $value                = substr($value, 7);
+                        $options['tokenType'] = 'OAuth';
+                    }
+
+                    if (empty($value)) {
+                        $options['tokenType'] = 'None';
+                    }
+
+                    return $value;
+                }
+            )
+            ->setNormalizer(
+                'tokenType',
+                function (Options $options, $value) {
+                    if ($options['token'] !== null) {
+                        $value = 'Bot';
+                    }
+
+                    return $value;
+                }
+            );
 
         return $resolver->resolve($options);
     }

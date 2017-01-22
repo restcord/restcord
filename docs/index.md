@@ -72,7 +72,7 @@ token | string | Yes | ~ | Your bot token
 version | string | No | `1.0.0` | The version of the API to use. Should probably be left alone
 logger | Monolog\Logger | false | `new Logger('Logger')` | An instance of a Monolog\Logger
 throwOnRatelimit | bool | false | `false` | Whether or not an exception is thrown when a ratelimit is supposed to hit
-apiUrl | string | false | `https://discordapp.com/api/` | Should leave this alone.
+apiUrl | string | false | `https://discordapp.com/api/v6` | Should leave this alone.
  
 ## API Documentation
 
