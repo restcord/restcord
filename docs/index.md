@@ -65,9 +65,9 @@ logger | Monolog\Logger | false | `new Logger('Logger')` | An instance of a Mono
 throwOnRatelimit | bool | false | `false` | Whether or not an exception is thrown when a ratelimit is supposed to hit
 apiUrl | string | false | `https://discordapp.com/api/` | Should leave this alone.
  
-## [API Documentation](http://www.restcord.com/api)
+## API Documentation
 
-API Documentation can be found [here](http://www.restcord.com/api).
+API Documentation can be found in the menu to the left
 
 ## Contributing
 
