@@ -17,7 +17,6 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 class Guild extends GuzzleClient
 {
-
     /**
      * @param array $options guild.id, nick
      *
@@ -27,8 +26,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options name, region, icon, verification_level, default_message_notifications, roles, channels
      *
@@ -38,8 +36,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -49,8 +46,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options name, region, verification_level, default_message_notifications, afk_channel_id, afk_timeout, icon, owner_id, splash, guild.id
      *
@@ -60,8 +56,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -71,8 +66,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -82,8 +76,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options name, type, bitrate, user_limit, permission_overwrites, guild.id
      *
@@ -93,8 +86,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options id, position, guild.id
      *
@@ -104,8 +96,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id, user.id
      *
@@ -115,8 +106,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options limit, after, guild.id
      *
@@ -126,8 +116,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options access_token, nick, roles, mute, deaf, guild.id, user.id
      *
@@ -137,8 +126,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options nick, roles, mute, deaf, channel_id, guild.id, user.id
      *
@@ -148,8 +136,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options nick, guild.id
      *
@@ -159,8 +146,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id, user.id, role.id
      *
@@ -170,8 +156,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id, user.id, role.id
      *
@@ -181,8 +166,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id, user.id
      *
@@ -192,8 +176,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -203,8 +186,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options delete-message-days, guild.id, user.id
      *
@@ -214,8 +196,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id, user.id
      *
@@ -225,8 +206,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -236,8 +216,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options name, permissions, color, hoist, mentionable, guild.id
      *
@@ -247,8 +226,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options id, position, guild.id
      *
@@ -258,8 +236,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options name, permissions, color, hoist, mentionable, guild.id, role.id
      *
@@ -269,8 +246,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id, role.id
      *
@@ -280,8 +256,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options days, guild.id
      *
@@ -291,8 +266,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options days, guild.id
      *
@@ -302,8 +276,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -313,8 +286,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -324,8 +296,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -335,8 +306,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options type, id, guild.id
      *
@@ -346,8 +316,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options expire_behavior, expire_grace_period, enable_emoticons, guild.id, integration.id
      *
@@ -357,8 +326,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id, integration.id
      *
@@ -368,8 +336,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id, integration.id
      *
@@ -379,8 +346,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -390,8 +356,7 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -401,5 +366,4 @@ class Guild extends GuzzleClient
     {
         return $options;
     }
-    
 }
