@@ -14,7 +14,7 @@ This example just creates a client, and grabs a guild object by ID.
 
 include __DIR__.'/vendor/autoload.php';
 
-use RestCord\DiscordClient;
+use Restord\DiscordClient;
 
 $discord = new DiscordClient(['token' => 'bot-token']); // Token is required
 

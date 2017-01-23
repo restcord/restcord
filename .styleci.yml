@@ -1,0 +1,19 @@
+preset: recommended
+
+risky: true
+
+linting: true
+
+enabled:
+  - strict
+  - align_equals
+  - newline_after_open_tag
+
+disabled:
+  - phpdoc_to_comment
+  - unalign_equals
+  - no_empty_phpdoc
+
+finder:
+  exclude:
+    - "src/Mock"
