@@ -17,7 +17,6 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 class Webhook extends GuzzleClient
 {
-
     /**
      * @param array $options name, avatar, channel.id
      *
@@ -27,8 +26,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options channel.id
      *
@@ -38,8 +36,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options guild.id
      *
@@ -49,8 +46,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options webhook.id
      *
@@ -60,8 +56,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options webhook.id, webhook.token
      *
@@ -71,8 +66,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options name, avatar, webhook.id
      *
@@ -82,8 +76,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options webhook.id, webhook.token
      *
@@ -93,8 +86,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options webhook.id
      *
@@ -104,8 +96,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options webhook.id, webhook.token
      *
@@ -115,8 +106,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options wait, webhook.id, webhook.token
      *
@@ -126,8 +116,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options wait, webhook.id, webhook.token
      *
@@ -137,8 +126,7 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
-    
+
     /**
      * @param array $options wait, webhook.id, webhook.token
      *
@@ -148,5 +136,4 @@ class Webhook extends GuzzleClient
     {
         return $options;
     }
-    
 }

@@ -17,7 +17,6 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 class Voice extends GuzzleClient
 {
-
     /**
      * @param array $options
      *
@@ -27,5 +26,4 @@ class Voice extends GuzzleClient
     {
         return $options;
     }
-    
 }
