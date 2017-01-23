@@ -11,12 +11,13 @@
  * @license     MIT
  */
 
-namespace Restcord\Mock;
+namespace RestCord\Mock;
 
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 class Invite extends GuzzleClient
 {
+
     /**
      * @param array $options invite.code
      *
@@ -26,7 +27,8 @@ class Invite extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options invite.code
      *
@@ -36,7 +38,8 @@ class Invite extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options invite.code
      *
@@ -46,4 +49,5 @@ class Invite extends GuzzleClient
     {
         return $options;
     }
+    
 }

@@ -11,7 +11,7 @@
  * @license     MIT
  */
 
-namespace Restcord\Mock;
+namespace RestCord\Mock;
 
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 

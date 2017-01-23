@@ -11,12 +11,13 @@
  * @license     MIT
  */
 
-namespace Restcord\Mock;
+namespace RestCord\Mock;
 
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 class Gateway extends GuzzleClient
 {
+
     /**
      * @param array $options
      *
@@ -26,4 +27,5 @@ class Gateway extends GuzzleClient
     {
         return $options;
     }
+    
 }

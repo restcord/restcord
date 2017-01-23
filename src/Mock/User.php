@@ -11,12 +11,13 @@
  * @license     MIT
  */
 
-namespace Restcord\Mock;
+namespace RestCord\Mock;
 
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 class User extends GuzzleClient
 {
+
     /**
      * @param array $options
      *
@@ -26,7 +27,8 @@ class User extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options user.id
      *
@@ -36,7 +38,8 @@ class User extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options username, avatar
      *
@@ -46,7 +49,8 @@ class User extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options before, after, limit
      *
@@ -56,7 +60,8 @@ class User extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options
      *
@@ -66,7 +71,8 @@ class User extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options
      *
@@ -76,7 +82,8 @@ class User extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options recipient_id
      *
@@ -86,7 +93,8 @@ class User extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options access_tokens, nicks
      *
@@ -96,7 +104,8 @@ class User extends GuzzleClient
     {
         return $options;
     }
-
+    
+    
     /**
      * @param array $options
      *
@@ -106,4 +115,5 @@ class User extends GuzzleClient
     {
         return $options;
     }
+    
 }
