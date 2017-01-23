@@ -14,7 +14,7 @@ This example just creates a client, and grabs a guild object by ID.
 
 include __DIR__.'/vendor/autoload.php';
 
-use Restcord\DiscordClient;
+use RestCord\DiscordClient;
 
 $discord = new DiscordClient(['token' => 'bot-token']); // Token is required
 
@@ -34,7 +34,7 @@ This is not something you can do with this library.
 
 include __DIR__.'/vendor/autoload.php';
 
-use Restcord\DiscordClient;
+use RestCord\DiscordClient;
 
 $discord = new DiscordClient(['token' => 'bot-token']); // Token is required
 
@@ -53,7 +53,7 @@ This fetches the roles of a guild.
 
 include __DIR__.'/vendor/autoload.php';
 
-use Restcord\DiscordClient;
+use RestCord\DiscordClient;
 
 $discord = new DiscordClient(['token' => 'bot-token']); // Token is required
 
