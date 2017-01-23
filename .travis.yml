@@ -13,4 +13,4 @@ install:
 
 script:
     - ./bin/lint src
-    - php ./bin/stupidFunctionalTest.php $token $guild_id $channel_id
+    - php ./bin/stupidFunctionalTest.php $token $guild_id $channel_id || (sleep 5 && php ./bin/stupidFunctionalTest.php $token $guild_id $channel_id)
