@@ -16,4 +16,4 @@ disabled:
 
 finder:
   exclude:
-    - "src/Mock"
+    - "src/Mock/*"
