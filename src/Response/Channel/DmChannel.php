@@ -14,27 +14,27 @@
 namespace RestCord\Response\Channel;
 
 /**
- * DmChannel Response class
+ * DmChannel Response class.
  */
-class DmChannel {
+class DmChannel
+{
+    /**
+     * @var int The id of this private message
+     */
+    public $id;
 
-	/**
-	 * @var int The id of this private message
-	 */
-	public $id;
+    /**
+     * @var bool Should always be true for DM channels
+     */
+    public $is_private;
 
-	/**
-	 * @var bool Should always be true for DM channels
-	 */
-	public $is_private;
+    /**
+     * @var int The id of the last message sent in this DM
+     */
+    public $last_message_id;
 
-	/**
-	 * @var int The id of the last message sent in this DM
-	 */
-	public $last_message_id;
-
-	/**
-	 * @var array The user object of the DM recipient
-	 */
-	public $recipient;
+    /**
+     * @var array The user object of the DM recipient
+     */
+    public $recipient;
 }

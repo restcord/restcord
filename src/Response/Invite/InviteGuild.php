@@ -14,27 +14,27 @@
 namespace RestCord\Response\Invite;
 
 /**
- * InviteGuild Response class
+ * InviteGuild Response class.
  */
-class InviteGuild {
+class InviteGuild
+{
+    /**
+     * @var string Hash of the guild icon (or null)
+     */
+    public $icon;
 
-	/**
-	 * @var string Hash of the guild icon (or null)
-	 */
-	public $icon;
+    /**
+     * @var int Id of the guild
+     */
+    public $id;
 
-	/**
-	 * @var int Id of the guild
-	 */
-	public $id;
+    /**
+     * @var string Name of the guild
+     */
+    public $name;
 
-	/**
-	 * @var string Name of the guild
-	 */
-	public $name;
-
-	/**
-	 * @var string Hash of the guild splash (or null)
-	 */
-	public $splash;
+    /**
+     * @var string Hash of the guild splash (or null)
+     */
+    public $splash;
 }

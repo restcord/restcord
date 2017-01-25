@@ -14,72 +14,72 @@
 namespace RestCord\Response\Channel;
 
 /**
- * Embed Response class
+ * Embed Response class.
  */
-class Embed {
+class Embed
+{
+    /**
+     * @var array Author information
+     */
+    public $author;
 
-	/**
-	 * @var array Author information
-	 */
-	public $author;
+    /**
+     * @var int Color code of the embed
+     */
+    public $color;
 
-	/**
-	 * @var int Color code of the embed
-	 */
-	public $color;
+    /**
+     * @var string Description of embed
+     */
+    public $description;
 
-	/**
-	 * @var string Description of embed
-	 */
-	public $description;
+    /**
+     * @var array Fields information
+     */
+    public $fields;
 
-	/**
-	 * @var array Fields information
-	 */
-	public $fields;
+    /**
+     * @var array Footer information
+     */
+    public $footer;
 
-	/**
-	 * @var array Footer information
-	 */
-	public $footer;
+    /**
+     * @var array Image information
+     */
+    public $image;
 
-	/**
-	 * @var array Image information
-	 */
-	public $image;
+    /**
+     * @var array Provider information
+     */
+    public $provider;
 
-	/**
-	 * @var array Provider information
-	 */
-	public $provider;
+    /**
+     * @var array Thumbnail information
+     */
+    public $thumbnail;
 
-	/**
-	 * @var array Thumbnail information
-	 */
-	public $thumbnail;
+    /**
+     * @var date Timestamp of embed content
+     */
+    public $timestamp;
 
-	/**
-	 * @var date Timestamp of embed content
-	 */
-	public $timestamp;
+    /**
+     * @var string Title of embed
+     */
+    public $title;
 
-	/**
-	 * @var string Title of embed
-	 */
-	public $title;
+    /**
+     * @var string Type of embed (always "rich" for webhook embeds)
+     */
+    public $type;
 
-	/**
-	 * @var string Type of embed (always "rich" for webhook embeds)
-	 */
-	public $type;
+    /**
+     * @var string Url of embed
+     */
+    public $url;
 
-	/**
-	 * @var string Url of embed
-	 */
-	public $url;
-
-	/**
-	 * @var array Video information
-	 */
-	public $video;
+    /**
+     * @var array Video information
+     */
+    public $video;
 }

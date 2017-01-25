@@ -14,22 +14,22 @@
 namespace RestCord\Response\Invite;
 
 /**
- * Invite Response class
+ * Invite Response class.
  */
-class Invite {
+class Invite
+{
+    /**
+     * @var array The channel this invite is for
+     */
+    public $channel;
 
-	/**
-	 * @var array The channel this invite is for
-	 */
-	public $channel;
+    /**
+     * @var string The invite code (unique ID)
+     */
+    public $code;
 
-	/**
-	 * @var string The invite code (unique ID)
-	 */
-	public $code;
-
-	/**
-	 * @var array The guild this invite is for
-	 */
-	public $guild;
+    /**
+     * @var array The guild this invite is for
+     */
+    public $guild;
 }

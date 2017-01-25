@@ -14,22 +14,22 @@
 namespace RestCord\Response\Channel;
 
 /**
- * Reaction Response class
+ * Reaction Response class.
  */
-class Reaction {
+class Reaction
+{
+    /**
+     * @var int Times this emoji has been used to react
+     */
+    public $count;
 
-	/**
-	 * @var int Times this emoji has been used to react
-	 */
-	public $count;
+    /**
+     * @var array Emoji information
+     */
+    public $emoji;
 
-	/**
-	 * @var array Emoji information
-	 */
-	public $emoji;
-
-	/**
-	 * @var bool Whether the current user reacted using this emoji
-	 */
-	public $me;
+    /**
+     * @var bool Whether the current user reacted using this emoji
+     */
+    public $me;
 }

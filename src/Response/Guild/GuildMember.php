@@ -14,37 +14,37 @@
 namespace RestCord\Response\Guild;
 
 /**
- * GuildMember Response class
+ * GuildMember Response class.
  */
-class GuildMember {
+class GuildMember
+{
+    /**
+     * @var bool If the user is deafened
+     */
+    public $deaf;
 
-	/**
-	 * @var bool If the user is deafened
-	 */
-	public $deaf;
+    /**
+     * @var \DateTime Date the user joined the guild
+     */
+    public $joined_at;
 
-	/**
-	 * @var \DateTime Date the user joined the guild
-	 */
-	public $joined_at;
+    /**
+     * @var bool If the user is muted
+     */
+    public $mute;
 
-	/**
-	 * @var bool If the user is muted
-	 */
-	public $mute;
+    /**
+     * @var string|null This users guild nickname (if one is set)
+     */
+    public $nick;
 
-	/**
-	 * @var string|null This users guild nickname (if one is set)
-	 */
-	public $nick;
+    /**
+     * @var array Array of role object id's
+     */
+    public $roles;
 
-	/**
-	 * @var array Array of role object id's
-	 */
-	public $roles;
-
-	/**
-	 * @var array User object
-	 */
-	public $user;
+    /**
+     * @var array User object
+     */
+    public $user;
 }

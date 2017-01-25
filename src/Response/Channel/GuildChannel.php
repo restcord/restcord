@@ -14,62 +14,62 @@
 namespace RestCord\Response\Channel;
 
 /**
- * GuildChannel Response class
+ * GuildChannel Response class.
  */
-class GuildChannel {
+class GuildChannel
+{
+    /**
+     * @var int The bitrate (in bits) of the voice channel
+     */
+    public $bitrate;
 
-	/**
-	 * @var int The bitrate (in bits) of the voice channel
-	 */
-	public $bitrate;
+    /**
+     * @var int The id of the guild
+     */
+    public $guild_id;
 
-	/**
-	 * @var int The id of the guild
-	 */
-	public $guild_id;
+    /**
+     * @var int The id of this channel (will be equal to the guild if it's the "general" channel)
+     */
+    public $id;
 
-	/**
-	 * @var int The id of this channel (will be equal to the guild if it's the "general" channel)
-	 */
-	public $id;
+    /**
+     * @var bool Should always be false for guild channels
+     */
+    public $is_private;
 
-	/**
-	 * @var bool Should always be false for guild channels
-	 */
-	public $is_private;
+    /**
+     * @var int The id of the last message sent in this channel
+     */
+    public $last_message_id;
 
-	/**
-	 * @var int The id of the last message sent in this channel
-	 */
-	public $last_message_id;
+    /**
+     * @var string The name of the channel (2-100 characters)
+     */
+    public $name;
 
-	/**
-	 * @var string The name of the channel (2-100 characters)
-	 */
-	public $name;
+    /**
+     * @var array An array of overwrite objects
+     */
+    public $permission_overwrites;
 
-	/**
-	 * @var array An array of overwrite objects
-	 */
-	public $permission_overwrites;
+    /**
+     * @var int Sorting position of the channel
+     */
+    public $position;
 
-	/**
-	 * @var int Sorting position of the channel
-	 */
-	public $position;
+    /**
+     * @var string The channel topic (0-1024 characters)
+     */
+    public $topic;
 
-	/**
-	 * @var string The channel topic (0-1024 characters)
-	 */
-	public $topic;
+    /**
+     * @var string "text" or "voice"
+     */
+    public $type;
 
-	/**
-	 * @var string "text" or "voice"
-	 */
-	public $type;
-
-	/**
-	 * @var int The user limit of the voice channel
-	 */
-	public $user_limit;
+    /**
+     * @var int The user limit of the voice channel
+     */
+    public $user_limit;
 }

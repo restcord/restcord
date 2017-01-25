@@ -14,42 +14,42 @@
 namespace RestCord\Response\Channel;
 
 /**
- * Attachment Response class
+ * Attachment Response class.
  */
-class Attachment {
+class Attachment
+{
+    /**
+     * @var string Name of file attached
+     */
+    public $filename;
 
-	/**
-	 * @var string Name of file attached
-	 */
-	public $filename;
+    /**
+     * @var int|null Height of file (if image)
+     */
+    public $height;
 
-	/**
-	 * @var int|null Height of file (if image)
-	 */
-	public $height;
+    /**
+     * @var int Attachment id
+     */
+    public $id;
 
-	/**
-	 * @var int Attachment id
-	 */
-	public $id;
+    /**
+     * @var string A proxied url of file
+     */
+    public $proxy_url;
 
-	/**
-	 * @var string A proxied url of file
-	 */
-	public $proxy_url;
+    /**
+     * @var int Size of file in bytes
+     */
+    public $size;
 
-	/**
-	 * @var int Size of file in bytes
-	 */
-	public $size;
+    /**
+     * @var string Source url of file
+     */
+    public $url;
 
-	/**
-	 * @var string Source url of file
-	 */
-	public $url;
-
-	/**
-	 * @var int|null Width of file (if image)
-	 */
-	public $width;
+    /**
+     * @var int|null Width of file (if image)
+     */
+    public $width;
 }

@@ -14,17 +14,17 @@
 namespace RestCord\Response\Guild;
 
 /**
- * GuildEmbed Response class
+ * GuildEmbed Response class.
  */
-class GuildEmbed {
+class GuildEmbed
+{
+    /**
+     * @var int The embed channel id
+     */
+    public $channel_id;
 
-	/**
-	 * @var int The embed channel id
-	 */
-	public $channel_id;
-
-	/**
-	 * @var bool If the embed is enabled
-	 */
-	public $enabled;
+    /**
+     * @var bool If the embed is enabled
+     */
+    public $enabled;
 }

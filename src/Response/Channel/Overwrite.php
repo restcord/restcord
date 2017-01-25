@@ -14,27 +14,27 @@
 namespace RestCord\Response\Channel;
 
 /**
- * Overwrite Response class
+ * Overwrite Response class.
  */
-class Overwrite {
+class Overwrite
+{
+    /**
+     * @var int Permission bit set
+     */
+    public $allow;
 
-	/**
-	 * @var int Permission bit set
-	 */
-	public $allow;
+    /**
+     * @var int Permission bit set
+     */
+    public $deny;
 
-	/**
-	 * @var int Permission bit set
-	 */
-	public $deny;
+    /**
+     * @var int Role or user id
+     */
+    public $id;
 
-	/**
-	 * @var int Role or user id
-	 */
-	public $id;
-
-	/**
-	 * @var string Either "role" or "member"
-	 */
-	public $type;
+    /**
+     * @var string Either "role" or "member"
+     */
+    public $type;
 }

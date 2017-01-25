@@ -14,32 +14,32 @@
 namespace RestCord\Response\User;
 
 /**
- * Connection Response class
+ * Connection Response class.
  */
-class Connection {
+class Connection
+{
+    /**
+     * @var string Id of the connection account
+     */
+    public $id;
 
-	/**
-	 * @var string Id of the connection account
-	 */
-	public $id;
+    /**
+     * @var array An array of partial server integrations
+     */
+    public $integrations;
 
-	/**
-	 * @var array An array of partial server integrations
-	 */
-	public $integrations;
+    /**
+     * @var string The username of the connection account
+     */
+    public $name;
 
-	/**
-	 * @var string The username of the connection account
-	 */
-	public $name;
+    /**
+     * @var bool Whether the connection is revoked
+     */
+    public $revoked;
 
-	/**
-	 * @var bool Whether the connection is revoked
-	 */
-	public $revoked;
-
-	/**
-	 * @var string The service of the connection (twitch, youtube)
-	 */
-	public $type;
+    /**
+     * @var string The service of the connection (twitch, youtube)
+     */
+    public $type;
 }

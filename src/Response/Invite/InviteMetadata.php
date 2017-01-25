@@ -14,42 +14,42 @@
 namespace RestCord\Response\Invite;
 
 /**
- * InviteMetadata Response class
+ * InviteMetadata Response class.
  */
-class InviteMetadata {
+class InviteMetadata
+{
+    /**
+     * @var \DateTime When this invite was created
+     */
+    public $created_at;
 
-	/**
-	 * @var \DateTime When this invite was created
-	 */
-	public $created_at;
+    /**
+     * @var array User who created the invite
+     */
+    public $inviter;
 
-	/**
-	 * @var array User who created the invite
-	 */
-	public $inviter;
+    /**
+     * @var int Duration (in seconds) after which the invite expires
+     */
+    public $max_age;
 
-	/**
-	 * @var int Duration (in seconds) after which the invite expires
-	 */
-	public $max_age;
+    /**
+     * @var int Max number of times this invite can be used
+     */
+    public $max_uses;
 
-	/**
-	 * @var int Max number of times this invite can be used
-	 */
-	public $max_uses;
+    /**
+     * @var bool Whether this invite is revoked
+     */
+    public $revoked;
 
-	/**
-	 * @var bool Whether this invite is revoked
-	 */
-	public $revoked;
+    /**
+     * @var bool Whether this invite only grants temporary membership
+     */
+    public $temporary;
 
-	/**
-	 * @var bool Whether this invite only grants temporary membership
-	 */
-	public $temporary;
-
-	/**
-	 * @var int Number of times this invite has been used
-	 */
-	public $uses;
+    /**
+     * @var int Number of times this invite has been used
+     */
+    public $uses;
 }

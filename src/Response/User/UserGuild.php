@@ -14,32 +14,32 @@
 namespace RestCord\Response\User;
 
 /**
- * UserGuild Response class
+ * UserGuild Response class.
  */
-class UserGuild {
+class UserGuild
+{
+    /**
+     * @var string Guild.icon
+     */
+    public $icon;
 
-	/**
-	 * @var string Guild.icon
-	 */
-	public $icon;
+    /**
+     * @var int Guild.id
+     */
+    public $id;
 
-	/**
-	 * @var int Guild.id
-	 */
-	public $id;
+    /**
+     * @var string Guild.name
+     */
+    public $name;
 
-	/**
-	 * @var string Guild.name
-	 */
-	public $name;
+    /**
+     * @var bool True if the user is an owner of the guild
+     */
+    public $owner;
 
-	/**
-	 * @var bool True if the user is an owner of the guild
-	 */
-	public $owner;
-
-	/**
-	 * @var int Bitwise of the user's enabled/disabled permissions
-	 */
-	public $permissions;
+    /**
+     * @var int Bitwise of the user's enabled/disabled permissions
+     */
+    public $permissions;
 }

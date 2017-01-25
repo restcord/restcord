@@ -14,22 +14,22 @@
 namespace RestCord\Response\Invite;
 
 /**
- * InviteChannel Response class
+ * InviteChannel Response class.
  */
-class InviteChannel {
+class InviteChannel
+{
+    /**
+     * @var int Id of the channel
+     */
+    public $id;
 
-	/**
-	 * @var int Id of the channel
-	 */
-	public $id;
+    /**
+     * @var string Name of the channel
+     */
+    public $name;
 
-	/**
-	 * @var string Name of the channel
-	 */
-	public $name;
-
-	/**
-	 * @var string 'text' or 'voice'
-	 */
-	public $type;
+    /**
+     * @var string 'text' or 'voice'
+     */
+    public $type;
 }

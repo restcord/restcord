@@ -14,17 +14,17 @@
 namespace RestCord\Response\Guild;
 
 /**
- * UnavailableGuild Response class
+ * UnavailableGuild Response class.
  */
-class UnavailableGuild {
+class UnavailableGuild
+{
+    /**
+     * @var int Guild id
+     */
+    public $id;
 
-	/**
-	 * @var int Guild id
-	 */
-	public $id;
-
-	/**
-	 * @var bool Should always be true
-	 */
-	public $unavailable;
+    /**
+     * @var bool Should always be true
+     */
+    public $unavailable;
 }

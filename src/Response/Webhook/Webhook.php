@@ -14,42 +14,42 @@
 namespace RestCord\Response\Webhook;
 
 /**
- * Webhook Response class
+ * Webhook Response class.
  */
-class Webhook {
+class Webhook
+{
+    /**
+     * @var string|null The default avatar of the webhook
+     */
+    public $avatar;
 
-	/**
-	 * @var string|null The default avatar of the webhook
-	 */
-	public $avatar;
+    /**
+     * @var int The channel id this webhook is for
+     */
+    public $channel_id;
 
-	/**
-	 * @var int The channel id this webhook is for
-	 */
-	public $channel_id;
+    /**
+     * @var int|null The guild id this webhook is for
+     */
+    public $guild_id;
 
-	/**
-	 * @var int|null The guild id this webhook is for
-	 */
-	public $guild_id;
+    /**
+     * @var int The id of the webhook
+     */
+    public $id;
 
-	/**
-	 * @var int The id of the webhook
-	 */
-	public $id;
+    /**
+     * @var string|null The default name of the webhook
+     */
+    public $name;
 
-	/**
-	 * @var string|null The default name of the webhook
-	 */
-	public $name;
+    /**
+     * @var string The secure token of the webhook
+     */
+    public $token;
 
-	/**
-	 * @var string The secure token of the webhook
-	 */
-	public $token;
-
-	/**
-	 * @var array|null The user this webhook was created by (not returned when getting a webhook with its token)
-	 */
-	public $user;
+    /**
+     * @var array|null The user this webhook was created by (not returned when getting a webhook with its token)
+     */
+    public $user;
 }

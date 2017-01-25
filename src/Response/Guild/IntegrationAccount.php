@@ -14,17 +14,17 @@
 namespace RestCord\Response\Guild;
 
 /**
- * IntegrationAccount Response class
+ * IntegrationAccount Response class.
  */
-class IntegrationAccount {
+class IntegrationAccount
+{
+    /**
+     * @var string Id of the account
+     */
+    public $id;
 
-	/**
-	 * @var string Id of the account
-	 */
-	public $id;
-
-	/**
-	 * @var string Name of the account
-	 */
-	public $name;
+    /**
+     * @var string Name of the account
+     */
+    public $name;
 }
