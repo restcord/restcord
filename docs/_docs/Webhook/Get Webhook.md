@@ -19,7 +19,7 @@ $client->webhook->getWebhook($parameters);
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-webhook.id | string | true | *null*
+webhook.id | snowflake | true | *null*
 
 ## Response
 

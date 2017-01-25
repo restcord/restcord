@@ -1,7 +1,7 @@
 ---
 title: Create Guild Integration
 category: Guild
-order: 30
+order: 29
 ---
 
 # `createGuildIntegration`

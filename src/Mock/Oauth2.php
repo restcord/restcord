@@ -13,17 +13,14 @@
 
 namespace RestCord\Mock;
 
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
+/**
+ * Oauth2 Intellisense Helper
+ */
+interface Oauth2 {
 
-class Oauth2 extends GuzzleClient
-{
-    /**
-     * @param array $options id, name, icon, description, rpc_origins?, bot_public, bot_requires_code_grant, owner
-     *
-     * @return array
-     */
-    public function getCurrentApplicationInformation(array $options)
-    {
-        return $options;
-    }
+	/**
+	 * @param array $options ['id' => 'snowflake', 'name' => 'string', 'icon' => 'string', 'description' => 'string', 'rpc_origins?' => 'array', 'bot_public' => 'boolean', 'bot_requires_code_grant' => 'boolean', 'owner' => 'User']
+	 * @return array Returns the bot's OAuth2 application info.
+	 */
+	public function getCurrentApplicationInformation(array $options);
 }

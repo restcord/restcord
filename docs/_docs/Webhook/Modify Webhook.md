@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 name | string | false | *null*
 avatar | string | false | *null*
-webhook.id | string | true | *null*
+webhook.id | snowflake | true | *null*
 
 ## Response
 

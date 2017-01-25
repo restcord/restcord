@@ -1,7 +1,7 @@
 ---
 title: Create Guild Channel
 category: Guild
-order: 7
+order: 6
 ---
 
 # `createGuildChannel`

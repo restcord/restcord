@@ -13,17 +13,14 @@
 
 namespace RestCord\Mock;
 
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
+/**
+ * Gateway Intellisense Helper
+ */
+interface Gateway {
 
-class Gateway extends GuzzleClient
-{
-    /**
-     * @param array $options
-     *
-     * @return array
-     */
-    public function getGateway(array $options)
-    {
-        return $options;
-    }
+	/**
+	 * @param array $options []
+	 * @return array Returns an object with the same information as Get Gateway, plus a shards key, containing the recommended number of shards to connect with (as an integer).
+	 */
+	public function getGateway(array $options);
 }

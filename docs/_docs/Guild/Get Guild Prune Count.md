@@ -1,7 +1,7 @@
 ---
 title: Get Guild Prune Count
 category: Guild
-order: 25
+order: 24
 ---
 
 # `getGuildPruneCount`

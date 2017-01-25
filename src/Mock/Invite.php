@@ -13,37 +13,26 @@
 
 namespace RestCord\Mock;
 
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
+/**
+ * Invite Intellisense Helper
+ */
+interface Invite {
 
-class Invite extends GuzzleClient
-{
-    /**
-     * @param array $options invite.code
-     *
-     * @return array
-     */
-    public function getInvite(array $options)
-    {
-        return $options;
-    }
+	/**
+	 * @param array $options ['invite.code' => 'string']
+	 * @return array Returns an invite object on success.
+	 */
+	public function acceptInvite(array $options);
 
-    /**
-     * @param array $options invite.code
-     *
-     * @return array
-     */
-    public function deleteInvite(array $options)
-    {
-        return $options;
-    }
+	/**
+	 * @param array $options ['invite.code' => 'string']
+	 * @return array Returns an invite object on success.
+	 */
+	public function deleteInvite(array $options);
 
-    /**
-     * @param array $options invite.code
-     *
-     * @return array
-     */
-    public function acceptInvite(array $options)
-    {
-        return $options;
-    }
+	/**
+	 * @param array $options ['invite.code' => 'string']
+	 * @return array Returns an invite object for the given code.
+	 */
+	public function getInvite(array $options);
 }

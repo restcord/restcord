@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Member
 category: Guild
-order: 12
+order: 11
 ---
 
 # `modifyGuildMember`

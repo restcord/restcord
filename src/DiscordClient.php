@@ -32,11 +32,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @property Mock\Channel channel
  * @property Mock\Gateway gateway
- * @property Mock\Guild guild
- * @property Mock\Invite invite
- * @property Mock\Oauth2 oauth2
- * @property Mock\User user
- * @property Mock\Voice voice
+ * @property Mock\Guild   guild
+ * @property Mock\Invite  invite
+ * @property Mock\Oauth2  oauth2
+ * @property Mock\User    user
+ * @property Mock\Voice   voice
  * @property Mock\Webhook webhook
  */
 class DiscordClient
@@ -74,6 +74,7 @@ class DiscordClient
                 $this->logger
             )
         );
+
         $stack->push(
             Middleware::log(
                 $this->logger,
@@ -91,6 +92,7 @@ class DiscordClient
                 'headers'     => [
                     'Authorization' => 'Bot '.$this->options['token'],
                     'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
+                    'Content-Type'  => 'application/json'
                 ],
                 'http_errors' => false,
                 'handler'     => $stack,
@@ -98,54 +100,6 @@ class DiscordClient
         );
 
         $this->buildDescriptions($client);
-    }
-
-    /**
-     * @param string $name
-     *
-     * @throws \Exception
-     *
-     * @return GuzzleClient
-     */
-    public function __get($name)
-    {
-        if (!isset($this->categories[$name])) {
-            throw new \Exception('No category with the name: '.$name);
-        }
-
-        return $this->categories[$name];
-    }
-
-    /**
-     * @param Client $client
-     */
-    private function buildDescriptions(Client $client)
-    {
-        $description = \GuzzleHttp\json_decode(
-            file_get_contents(__DIR__.'/Resources/service_description-v'.$this->options['version'].'.json'),
-            true
-        );
-
-        $base = [
-            'baseUri' => $this->options['apiUrl'],
-            'version' => $description['version'],
-            'models'  => [
-                'getResponse' => [
-                    'type'                 => 'object',
-                    'additionalProperties' => [
-                        'location' => 'json',
-                    ],
-                ],
-            ],
-        ];
-        foreach ($description['operations'] as $category => $operations) {
-            $this->categories[$category] = new GuzzleClient(
-                $client,
-                new Description(
-                    array_merge($base, ['operations' => $this->prepareOperations($operations)])
-                )
-            );
-        }
     }
 
     /**
@@ -207,6 +161,47 @@ class DiscordClient
     }
 
     /**
+     * @param string $name
+     *
+     * @throws \Exception
+     *
+     * @return GuzzleClient
+     */
+    public function __get($name)
+    {
+        if (!isset($this->categories[$name])) {
+            throw new \Exception('No category with the name: '.$name);
+        }
+
+        return $this->categories[$name];
+    }
+
+    /**
+     * @param Client $client
+     */
+    private function buildDescriptions(Client $client)
+    {
+        $description = \GuzzleHttp\json_decode(
+            file_get_contents(__DIR__.'/Resources/service_description-v'.$this->options['version'].'.json'),
+            true
+        );
+
+        $base = [
+            'baseUri' => $this->options['apiUrl'],
+            'version' => $description['version'],
+            'models'  => $this->prepareModels($description['models']),
+        ];
+        foreach ($description['operations'] as $category => $operations) {
+            $this->categories[$category] = new GuzzleClient(
+                $client,
+                new Description(
+                    array_merge($base, ['operations' => $this->prepareOperations($operations)])
+                )
+            );
+        }
+    }
+
+    /**
      * @param array $operations
      *
      * @return array
@@ -220,7 +215,14 @@ class DiscordClient
             $config['httpMethod'] = strtoupper($config['method']);
             unset($config['method']);
 
-            $config['responseModel'] = 'getResponse';
+            if (sizeof($config['responseTypes']) === 1) {
+                $class = 'RestCord\\Response\\'.ucwords($config['category']).'\\';
+                $class .= str_replace(' ', '', ucwords($config['responseTypes'][0]['name']));
+
+                $config['responseModel'] = $class;
+            } else {
+                $config['responseModel'] = 'getResponse';
+            }
 
             foreach ($config['parameters'] as $parameter => &$parameterConfig) {
                 $this->updateParameterTypes($parameterConfig);
@@ -260,6 +262,47 @@ class DiscordClient
      */
     private function getVersion()
     {
-        return file_get_contents(__DIR__.'/../VERSION');
+        return trim(file_get_contents(__DIR__.'/../VERSION'));
+    }
+
+    /**
+     * @param array $toParse
+     *
+     * @return array|mixed
+     */
+    private function prepareModels(array $toParse)
+    {
+        $models = [
+            'getResponse' => [
+                'type'                 => 'object',
+                'additionalProperties' => [
+                    'location' => 'json',
+                ],
+            ],
+        ];
+
+        foreach ($toParse as $category => $m) {
+            foreach ($m as $name => $model) {
+                $class          = 'RestCord\\Response\\'.ucwords($category).'\\'.ucwords($name);
+                $models[$class] = [
+                    'type'                 => 'object',
+                    'properties'           => [],
+                    'additionalProperties' => [
+                        'location' => 'json',
+                    ],
+                ];
+
+                foreach ($model['properties'] as $n => $property) {
+                    if ($property['type'] !== 'array' && $property['type'] !== 'object') {
+                        $models[$class]['properties'][$n] = [
+                            'type'     => $property['type'],
+                            'location' => 'json'
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $models;
     }
 }

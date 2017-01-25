@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Channel Positions
 category: Guild
-order: 8
+order: 7
 ---
 
 # `modifyGuildChannelPositions`

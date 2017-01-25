@@ -13,17 +13,14 @@
 
 namespace RestCord\Mock;
 
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
+/**
+ * Voice Intellisense Helper
+ */
+interface Voice {
 
-class Voice extends GuzzleClient
-{
-    /**
-     * @param array $options
-     *
-     * @return array
-     */
-    public function listVoiceRegions(array $options)
-    {
-        return $options;
-    }
+	/**
+	 * @param array $options []
+	 * @return array Returns an array of voice region objects that can be used when creating servers.
+	 */
+	public function listVoiceRegions(array $options);
 }

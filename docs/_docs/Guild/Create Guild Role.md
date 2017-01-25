@@ -1,7 +1,7 @@
 ---
 title: Create Guild Role
 category: Guild
-order: 21
+order: 20
 ---
 
 # `createGuildRole`
@@ -20,7 +20,7 @@ Create a new role for the guild. Requires the &#039;MANAGE_ROLES&#039; permissio
 Name | Type | Required | Default
 --- | --- | --- | ---
 name | string | false | &quot;new role&quot;
-permissions | integer | false | @everyone permissions in guild
+permissions | integer | false | *null*
 color | integer | false | 0
 hoist | bool | false | false
 mentionable | bool | false | false

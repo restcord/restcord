@@ -1,7 +1,7 @@
 ---
 title: Modify Current User&#039;s Nick
 category: Guild
-order: 13
+order: 12
 ---
 
 # `modifyCurrentUsersNick`

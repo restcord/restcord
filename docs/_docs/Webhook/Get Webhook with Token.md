@@ -19,7 +19,7 @@ Same as above, except this call does not require authentication and returns no u
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-webhook.id | string | true | *null*
+webhook.id | snowflake | true | *null*
 webhook.token | string | true | *null*
 
 ## Response

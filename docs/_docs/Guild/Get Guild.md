@@ -1,7 +1,7 @@
 ---
 title: Get Guild
 category: Guild
-order: 3
+order: 2
 ---
 
 # `getGuild`

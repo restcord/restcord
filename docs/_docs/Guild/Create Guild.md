@@ -1,7 +1,7 @@
 ---
 title: Create Guild
 category: Guild
-order: 2
+order: 1
 ---
 
 # `createGuild`

@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Role Positions
 category: Guild
-order: 22
+order: 21
 ---
 
 # `modifyGuildRolePositions`

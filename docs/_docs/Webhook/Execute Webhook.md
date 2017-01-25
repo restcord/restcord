@@ -20,7 +20,7 @@ This endpoint supports both JSON and form data bodies. It does require multipart
 Name | Type | Required | Default
 --- | --- | --- | ---
 wait | bool | false | *null*
-webhook.id | string | true | *null*
+webhook.id | snowflake | true | *null*
 webhook.token | string | true | *null*
 
 ## Response

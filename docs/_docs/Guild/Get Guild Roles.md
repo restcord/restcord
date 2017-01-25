@@ -1,7 +1,7 @@
 ---
 title: Get Guild Roles
 category: Guild
-order: 20
+order: 19
 ---
 
 # `getGuildRoles`

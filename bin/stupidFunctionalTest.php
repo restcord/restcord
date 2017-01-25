@@ -23,7 +23,6 @@ $client = new DiscordClient(
     ]
 );
 
-/** @var \GuzzleHttp\Command\Result $guild */
 $guild = $client->guild->getGuild(['guild.id' => (int) $argv[2]]);
 
 Assertion::eq(108432868149035008, $guild['owner_id']);
@@ -34,6 +33,10 @@ Assertion::eq(7079, $user['discriminator']);
 $client->guild->updateNick(
     [
         'guild.id' => (int) $argv[2],
+
         'nick'     => 'Build at: '.time(),
     ]
 );
+
+$users = $client->guild->listGuildMembers(['guild.id' => 146037311753289737]);
+Assertion::eq(108432868149035008, $users[0]['user']['id']);

@@ -1,7 +1,7 @@
 ---
 title: Delete Guild
 category: Guild
-order: 5
+order: 4
 ---
 
 # `deleteGuild`

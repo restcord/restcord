@@ -12,6 +12,11 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+use gossi\codegen\generator\CodeGenerator;
+use gossi\codegen\model\PhpInterface;
+use gossi\codegen\model\PhpMethod;
+use gossi\codegen\model\PhpParameter;
+use gossi\codegen\model\PhpProperty;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,6 +25,22 @@ use Symfony\Component\Console\Output\OutputInterface;
 $loader = new Twig_Loader_Filesystem(__DIR__.'/../src/Resources/');
 $twig   = new Twig_Environment($loader, ['debug' => true]);
 $twig->addExtension(new Twig_Extension_Debug());
+
+$license = <<<EOF
+<?php
+
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+\n
+EOF;
 
 function recursiveRemoveDirectory($directory)
 {
@@ -37,7 +58,7 @@ function recursiveRemoveDirectory($directory)
     ->register('buildDummyClasses')
     ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
     ->setCode(
-        function (InputInterface $input, OutputInterface $output) use ($twig) {
+        function (InputInterface $input, OutputInterface $output) use ($twig, $license) {
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
             $style->title("Building Dummy Classes for: ".$input->getArgument('version'));
 
@@ -56,15 +77,53 @@ function recursiveRemoveDirectory($directory)
                 true
             );
 
+            $generator = new CodeGenerator();
             foreach ($definition['operations'] as $category => $operations) {
-                $class = $twig->render(
-                    'operation.php.twig',
-                    [
-                        'category'   => $category,
-                        'operations' => $operations,
-                    ]
+
+                $class = new PhpInterface();
+                $class->setQualifiedName('RestCord\\Mock\\'.ucwords($category));
+                $class->setDescription(ucwords($category)." Intellisense Helper");
+                $class->setMethods(
+                    array_map(
+                        function ($name, $operation) use ($class, $category) {
+                            $options = new PhpParameter('options');
+                            $options->setType(
+                                'array',
+                                '['.implode(
+                                    ', ',
+                                    array_map(
+                                        function ($name, $parameter) {
+                                            return "'".$name."' => '".$parameter['type']."'";
+                                        },
+                                        array_keys($operation['parameters']),
+                                        $operation['parameters']
+                                    )
+                                ).']'
+                            );
+
+                            $returnType = 'array';
+                            if (sizeof($operation['responseTypes']) == 1) {
+                                $returnType = '\\RestCord\\Response\\'.ucwords($category).'\\';
+                                $returnType .= ucwords($operation['responseTypes'][0]['name']);
+                                if (!class_exists(($returnType))) {
+                                    $returnType = 'array';
+                                } else {
+                                }
+                            }
+
+                            $method = new PhpMethod($name);
+                            $method->setType($returnType, $operation['responseNote'] ?? '');
+                            $method->setParameters([$options]);
+                            $method->setVisibility('public');
+
+                            return $method;
+                        },
+                        array_keys($operations),
+                        $operations
+                    )
                 );
-                file_put_contents($path.'/'.ucwords($category).'.php', $class);
+
+                file_put_contents($path.'/'.ucwords($category).'.php', $license.$generator->generate($class));
             }
 
             $style->success('Finished. Classes built in: '.realpath($path));

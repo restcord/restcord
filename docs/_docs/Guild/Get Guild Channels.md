@@ -1,7 +1,7 @@
 ---
 title: Get Guild Channels
 category: Guild
-order: 6
+order: 5
 ---
 
 # `getGuildChannels`

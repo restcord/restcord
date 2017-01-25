@@ -1,7 +1,7 @@
 ---
 title: Modify Guild
 category: Guild
-order: 4
+order: 3
 ---
 
 # `modifyGuild`

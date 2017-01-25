@@ -24,6 +24,8 @@
     ],
     "require-dev": {
         "symfony/console": "^2.6|^3.2",
-        "beberlei/assert": "^2.7"
+        "beberlei/assert": "^2.7",
+        "gossi/php-code-generator": "^0.4.1",
+        "symfony/var-dumper": "^3.2"
     }
 }

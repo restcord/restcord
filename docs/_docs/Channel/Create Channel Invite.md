@@ -19,7 +19,7 @@ Create a new invite object for the channel. Only usable for guild channels. Requ
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-max_age | integer | false | 86400 (24 hours)
+max_age | integer | false | 86400
 max_uses | integer | false | 0
 temporary | bool | false | false
 unique | bool | false | false
