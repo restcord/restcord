@@ -216,7 +216,7 @@ class DiscordClient
             unset($config['method']);
 
             if (sizeof($config['responseTypes']) === 1) {
-                $class = 'RestCord\\Response\\'.ucwords($config['category']).'\\';
+                $class = ucwords($config['category']).'\\';
                 $class .= str_replace(' ', '', ucwords($config['responseTypes'][0]['name']));
 
                 $config['responseModel'] = $class;
@@ -283,7 +283,7 @@ class DiscordClient
 
         foreach ($toParse as $category => $m) {
             foreach ($m as $name => $model) {
-                $class          = 'RestCord\\Response\\'.ucwords($category).'\\'.ucwords($name);
+                $class          = ucwords($category).'\\'.ucwords($name);
                 $models[$class] = [
                     'type'                 => 'object',
                     'properties'           => [],
