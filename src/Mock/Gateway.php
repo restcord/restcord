@@ -14,13 +14,14 @@
 namespace RestCord\Mock;
 
 /**
- * Gateway Intellisense Helper
+ * Gateway Intellisense Helper.
  */
-interface Gateway {
-
-	/**
-	 * @param array $options []
-	 * @return array Returns an object with the same information as Get Gateway, plus a shards key, containing the recommended number of shards to connect with (as an integer).
-	 */
-	public function getGateway(array $options);
+interface Gateway
+{
+    /**
+     * @param array $options []
+     *
+     * @return array Returns an object with the same information as Get Gateway, plus a shards key, containing the recommended number of shards to connect with (as an integer).
+     */
+    public function getGateway(array $options);
 }

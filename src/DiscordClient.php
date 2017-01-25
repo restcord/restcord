@@ -92,7 +92,7 @@ class DiscordClient
                 'headers'     => [
                     'Authorization' => 'Bot '.$this->options['token'],
                     'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
-                    'Content-Type'  => 'application/json'
+                    'Content-Type'  => 'application/json',
                 ],
                 'http_errors' => false,
                 'handler'     => $stack,
@@ -296,7 +296,7 @@ class DiscordClient
                     if ($property['type'] !== 'array' && $property['type'] !== 'object') {
                         $models[$class]['properties'][$n] = [
                             'type'     => $property['type'],
-                            'location' => 'json'
+                            'location' => 'json',
                         ];
                     }
                 }
