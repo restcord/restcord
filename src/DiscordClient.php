@@ -215,7 +215,7 @@ class DiscordClient
             $config['httpMethod'] = strtoupper($config['method']);
             unset($config['method']);
 
-            if (sizeof($config['responseTypes']) === 1) {
+            if (count($config['responseTypes']) === 1) {
                 $class = ucwords($config['category']).'\\';
                 $class .= str_replace(' ', '', ucwords($config['responseTypes'][0]['name']));
 
