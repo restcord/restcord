@@ -90,7 +90,7 @@ class DiscordClient
         $client = new Client(
             [
                 'headers'     => [
-                    'Authorization' => 'Bot '.$this->options['token'],
+                    'Authorization' => $this->options['tokenType'].' '.$this->options['token'],
                     'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                     'Content-Type'  => 'application/json',
                 ],

@@ -38,5 +38,6 @@ $client->guild->updateNick(
     ]
 );
 
-$users = $client->guild->listGuildMembers(['guild.id' => 146037311753289737]);
+$users = $client->guild->listGuildMembers(['guild.id' => 146037311753289737, 'limit' => 3]);
 Assertion::eq(108432868149035008, $users[0]['user']['id']);
+dump(sizeof($users));

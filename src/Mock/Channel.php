@@ -14,182 +14,157 @@
 namespace RestCord\Mock;
 
 /**
- * Channel Intellisense Helper.
+ * Channel Intellisense Helper
  */
-interface Channel
-{
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function addPinnedChannelMessage(array $options);
+interface Channel {
 
-    /**
-     * @param array $options ['messages' => 'array', 'channel.id' => 'snowflake']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function bulkDeleteMessages(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function addPinnedChannelMessage(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake']
-     *
-     * @return array
-     */
-    public function bulkDeleteMessagesDeprecated(array $options);
+	/**
+	 * @param array $options ['messages' => 'array', 'channel.id' => 'snowflake']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function bulkDeleteMessages(array $options);
 
-    /**
-     * @param array $options ['max_age' => 'integer', 'max_uses' => 'integer', 'temporary' => 'bool', 'unique' => 'bool', 'channel.id' => 'snowflake']
-     *
-     * @return array Returns an invite object.
-     */
-    public function createChannelInvite(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake']
+	 * @return array
+	 */
+	public function bulkDeleteMessagesDeprecated(array $options);
 
-    /**
-     * @param array $options ['content' => 'string', 'nonce' => 'snowflake', 'tts' => 'bool', 'file' => 'file contents', 'embed' => 'object', 'channel.id' => 'snowflake']
-     *
-     * @return \RestCord\Response\Channel\Message Returns a message object.
-     */
-    public function createMessage(array $options);
+	/**
+	 * @param array $options ['max_age' => 'integer', 'max_uses' => 'integer', 'temporary' => 'bool', 'unique' => 'bool', 'channel.id' => 'snowflake']
+	 * @return array Returns an invite object.
+	 */
+	public function createChannelInvite(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function createReaction(array $options);
+	/**
+	 * @param array $options ['content' => 'string', 'nonce' => 'snowflake', 'tts' => 'bool', 'file' => 'file contents', 'embed' => 'object', 'channel.id' => 'snowflake']
+	 * @return array Returns a message object.
+	 */
+	public function createMessage(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
-     *
-     * @return array
-     */
-    public function deleteAllReactions(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function createReaction(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'overwrite.id' => 'string']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function deleteChannelPermission(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
+	 * @return array
+	 */
+	public function deleteAllReactions(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake']
-     *
-     * @return array Returns a guild channel or dm channel object on success.
-     */
-    public function deletecloseChannel(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'overwrite.id' => 'string']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function deleteChannelPermission(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function deleteMessage(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake']
+	 * @return array Returns a guild channel or dm channel object on success.
+	 */
+	public function deletecloseChannel(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function deleteOwnReaction(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function deleteMessage(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function deletePinnedChannelMessage(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function deleteOwnReaction(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string', 'user.id' => 'snowflake']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function deleteUserReaction(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function deletePinnedChannelMessage(array $options);
 
-    /**
-     * @param array $options ['allow' => 'integer', 'deny' => 'integer', 'type' => 'string', 'channel.id' => 'snowflake', 'overwrite.id' => 'string']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function editChannelPermissions(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string', 'user.id' => 'snowflake']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function deleteUserReaction(array $options);
 
-    /**
-     * @param array $options ['content' => 'string', 'channel.id' => 'snowflake', 'message.id' => 'snowflake']
-     *
-     * @return \RestCord\Response\Channel\Message Returns a message object.
-     */
-    public function editMessage(array $options);
+	/**
+	 * @param array $options ['allow' => 'integer', 'deny' => 'integer', 'type' => 'string', 'channel.id' => 'snowflake', 'overwrite.id' => 'string']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function editChannelPermissions(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake']
-     *
-     * @return array Returns a guild channel or dm channel object.
-     */
-    public function getChannel(array $options);
+	/**
+	 * @param array $options ['content' => 'string', 'channel.id' => 'snowflake', 'message.id' => 'snowflake']
+	 * @return array Returns a message object.
+	 */
+	public function editMessage(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake']
-     *
-     * @return array Returns a list of invite objects (with invite metadata) for the channel.
-     */
-    public function getChannelInvites(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake']
+	 * @return array Returns a guild channel or dm channel object.
+	 */
+	public function getChannel(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
-     *
-     * @return array Returns a specific message in the channel.
-     */
-    public function getChannelMessage(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake']
+	 * @return array Returns a list of invite objects (with invite metadata) for the channel.
+	 */
+	public function getChannelInvites(array $options);
 
-    /**
-     * @param array $options ['around' => 'snowflake', 'before' => 'snowflake', 'after' => 'snowflake', 'limit' => 'integer', 'channel.id' => 'snowflake']
-     *
-     * @return array Returns the messages for a channel.
-     */
-    public function getChannelMessages(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
+	 * @return array Returns a specific message in the channel.
+	 */
+	public function getChannelMessage(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake']
-     *
-     * @return \RestCord\Response\Channel\Message Returns all pinned messages in the channel as an array of message objects.
-     */
-    public function getPinnedMessages(array $options);
+	/**
+	 * @param array $options ['around' => 'snowflake', 'before' => 'snowflake', 'after' => 'snowflake', 'limit' => 'integer', 'channel.id' => 'snowflake']
+	 * @return array Returns the messages for a channel.
+	 */
+	public function getChannelMessages(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string']
-     *
-     * @return array Returns an array of user objects on success.
-     */
-    public function getReactions(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake']
+	 * @return array Returns all pinned messages in the channel as an array of message objects.
+	 */
+	public function getPinnedMessages(array $options);
 
-    /**
-     * @param array $options ['access_token' => 'string', 'nick' => 'string', 'channel.id' => 'snowflake', 'user.id' => 'snowflake']
-     *
-     * @return array
-     */
-    public function groupDmAddRecipient(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string']
+	 * @return array Returns an array of user objects on success.
+	 */
+	public function getReactions(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake', 'user.id' => 'snowflake']
-     *
-     * @return array
-     */
-    public function groupDmRemoveRecipient(array $options);
+	/**
+	 * @param array $options ['access_token' => 'string', 'nick' => 'string', 'channel.id' => 'snowflake', 'user.id' => 'snowflake']
+	 * @return array
+	 */
+	public function groupDmAddRecipient(array $options);
 
-    /**
-     * @param array $options ['name' => 'string', 'position' => 'integer', 'topic' => 'string', 'bitrate' => 'integer', 'user_limit' => 'integer', 'channel.id' => 'snowflake']
-     *
-     * @return array Returns a guild channel on success, and a 400 BAD REQUEST on invalid parameters.
-     */
-    public function modifyChannel(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake', 'user.id' => 'snowflake']
+	 * @return array
+	 */
+	public function groupDmRemoveRecipient(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake']
-     *
-     * @return array Returns a 204 empty response on success.
-     */
-    public function triggerTypingIndicator(array $options);
+	/**
+	 * @param array $options ['name' => 'string', 'position' => 'integer', 'topic' => 'string', 'bitrate' => 'integer', 'user_limit' => 'integer', 'channel.id' => 'snowflake']
+	 * @return array Returns a guild channel on success, and a 400 BAD REQUEST on invalid parameters.
+	 */
+	public function modifyChannel(array $options);
+
+	/**
+	 * @param array $options ['channel.id' => 'snowflake']
+	 * @return array Returns a 204 empty response on success.
+	 */
+	public function triggerTypingIndicator(array $options);
 }
