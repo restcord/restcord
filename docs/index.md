@@ -33,7 +33,7 @@ We require a minimum PHP version of PHP 5.4.0, however it is recommended that yo
 This library has not been tested with HHVM.
 
 1. Run `composer require restcord/restcord`. This will install the lastest release.
-	- If you would like, you can also install the development branch by running `composer require restcord/restcord dev-develop`.
+	- If you would like, you can also install the development branch by running `composer require restcord/restcord dev-master`.
 2. Include the Composer autoload file at the top of your main file:
 	- `include __DIR__.'/vendor/autoload.php';`
 3. Use it!
