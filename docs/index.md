@@ -19,7 +19,8 @@ FAQ
 2. Can I use this to create a bot?
     - Yes, but not the typical kind. This does not spawn a long running process, or connect to the websocket gateway like the other lib does.
 3. It wont let me send messages. Whats up?
-    - You have to have your bot connect to the websocket gateway at LEAST once before you can create messages.
+    - You have to have your bot connect to the websocket gateway at LEAST once before you can create messages. You can do that by
+    using [this form](/gateway), or opening up `./docs/gateway.html` in your browser.
 
 Getting Started
 ---------------
