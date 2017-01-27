@@ -25,14 +25,8 @@
             });
 
             function submitForm() {
-                console.log('Connecting to gateway');
                 var TOKEN = document.getElementById('token').value;
                 var ws    = new WebSocket("wss://gateway.discord.gg/?encoding=json&v=6");
-
-                console.log(TOKEN);
-                ws.addEventListener('open', function() {
-                    console.log("Gateway Connected!");
-                });
 
                 ws.onopen    = function() {return console.log("OPEN!")};
                 ws.onerror   = console.error.bind(console);
@@ -43,7 +37,6 @@
                         if (0 === b.op) {
                             return;
                         }
-                        console.log(b);
 
                         if (b.op === 10) {
                             ws.send(JSON.stringify({
