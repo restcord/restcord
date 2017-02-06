@@ -22,8 +22,8 @@ Name | Type | Required | Default
 name | string | false | &quot;new role&quot;
 permissions | integer | false | *null*
 color | integer | false | 0
-hoist | bool | false | false
-mentionable | bool | false | false
+hoist | bool | false | *null*
+mentionable | bool | false | *null*
 guild.id | snowflake | true | *null*
 
 ## Response

@@ -21,8 +21,8 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 max_age | integer | false | 86400
 max_uses | integer | false | 0
-temporary | bool | false | false
-unique | bool | false | false
+temporary | bool | false | *null*
+unique | bool | false | *null*
 channel.id | snowflake | true | *null*
 
 ## Response

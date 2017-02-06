@@ -388,12 +388,14 @@
                         "location": "json",
                         "type": "bool",
                         "description": "if the user is muted",
+                        "default": false,
                         "required": false
                     },
                     "deaf": {
                         "location": "json",
                         "type": "bool",
                         "description": "if the user is deafened",
+                        "default": false,
                         "required": false
                     },
                     "guild.id": {
@@ -433,12 +435,14 @@
                         "location": "json",
                         "type": "bool",
                         "description": "if the user is muted",
+                        "default": false,
                         "required": false
                     },
                     "deaf": {
                         "location": "json",
                         "type": "bool",
                         "description": "if the user is deafened",
+                        "default": false,
                         "required": false
                     },
                     "channel_id": {
@@ -466,7 +470,7 @@
                 "method": "PATCH",
                 "responseNote": "Returns a 200 with the nickname on success.",
                 "responseTypes": [],
-                "url": "/guilds/{guild.id}/@me",
+                "url": "/guilds/{guild.id}/members/@me/nick",
                 "parameters": {
                     "nick": {
                         "location": "json",
@@ -684,14 +688,14 @@
                         "location": "json",
                         "type": "bool",
                         "description": "whether the role should be displayed separately in the sidebar",
-                        "default": "false",
+                        "default": false,
                         "required": false
                     },
                     "mentionable": {
                         "location": "json",
                         "type": "bool",
                         "description": "whether the role should be mentionable",
-                        "default": "false",
+                        "default": false,
                         "required": false
                     },
                     "guild.id": {
@@ -773,12 +777,14 @@
                         "location": "json",
                         "type": "bool",
                         "description": "whether the role should be displayed separately in the sidebar",
+                        "default": false,
                         "required": false
                     },
                     "mentionable": {
                         "location": "json",
                         "type": "bool",
                         "description": "whether the role should be mentionable",
+                        "default": false,
                         "required": false
                     },
                     "guild.id": {
@@ -982,6 +988,7 @@
                         "location": "json",
                         "type": "bool",
                         "description": "whether emoticons should be synced for this integration (twitch only currently)",
+                        "default": false,
                         "required": false
                     },
                     "guild.id": {
@@ -1301,6 +1308,7 @@
                         "location": "json",
                         "type": "bool",
                         "description": "true if this is a TTS message",
+                        "default": false,
                         "required": false
                     },
                     "file": {
@@ -1644,14 +1652,14 @@
                         "location": "json",
                         "type": "bool",
                         "description": "whether this invite only grants temporary membership",
-                        "default": "false",
+                        "default": false,
                         "required": false
                     },
                     "unique": {
                         "location": "json",
                         "type": "bool",
                         "description": "if true, don't try to reuse a similar invite (useful for creating many unique one time use invites)",
-                        "default": "false",
+                        "default": false,
                         "required": false
                     },
                     "channel.id": {
@@ -1892,7 +1900,7 @@
                         "type": "user"
                     }
                 ],
-                "url": "/users//@me",
+                "url": "/users/{@me}",
                 "parameters": {}
             },
             "getUser": {
@@ -1928,7 +1936,7 @@
                         "type": "user"
                     }
                 ],
-                "url": "/users//@me",
+                "url": "/users/{@me}",
                 "parameters": {
                     "username": {
                         "location": "json",
@@ -1956,7 +1964,7 @@
                         "type": "user-guild"
                     }
                 ],
-                "url": "/users//@me",
+                "url": "/users/{@me}/guilds",
                 "parameters": {
                     "before": {
                         "location": "query",
@@ -1988,8 +1996,14 @@
                 "method": "DELETE",
                 "responseNote": "Returns a 204 empty response on success.",
                 "responseTypes": [],
-                "url": "/users//@me",
-                "parameters": {}
+                "url": "/users/{@me}/guilds/{guild.id}",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                }
             },
             "getUserDms": {
                 "category": "user",
@@ -2003,7 +2017,7 @@
                         "type": "dm-channel"
                     }
                 ],
-                "url": "/users//@me",
+                "url": "/users/{@me}/channels",
                 "parameters": {}
             },
             "createDm": {
@@ -2018,7 +2032,7 @@
                         "type": "dm-channel"
                     }
                 ],
-                "url": "/users//@me",
+                "url": "/users/{@me}/channels",
                 "parameters": {
                     "recipient_id": {
                         "location": "json",
@@ -2040,7 +2054,7 @@
                         "type": "dm-channel"
                     }
                 ],
-                "url": "/users//@me",
+                "url": "/users/{@me}/channels",
                 "parameters": {
                     "access_tokens": {
                         "location": "json",
@@ -2068,7 +2082,7 @@
                         "type": "connection"
                     }
                 ],
-                "url": "/users//@me",
+                "url": "/users/{@me}/connections",
                 "parameters": {}
             }
         },
@@ -2307,6 +2321,7 @@
                         "location": "json",
                         "type": "bool",
                         "description": "waits for server confirmation of message send before response, and returns the created message body (defaults to false; when false a message that is not saved does not return an error)",
+                        "default": false,
                         "required": false
                     },
                     "webhook.id": {
@@ -2333,6 +2348,7 @@
                         "location": "json",
                         "type": "bool",
                         "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
+                        "default": false,
                         "required": false
                     },
                     "webhook.id": {
@@ -2359,6 +2375,7 @@
                         "location": "json",
                         "type": "bool",
                         "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
+                        "default": false,
                         "required": false
                     },
                     "webhook.id": {
@@ -2394,7 +2411,7 @@
                 "method": "GET",
                 "responseNote": "Returns the bot's OAuth2 application info.",
                 "responseTypes": [],
-                "url": "/@me",
+                "url": "/oauth2/applications/@me",
                 "parameters": {
                     "id": {
                         "location": "query",
@@ -2432,12 +2449,14 @@
                         "location": "query",
                         "type": "boolean",
                         "description": "when false only app owner can join the app's bot to guilds",
+                        "default": false,
                         "required": false
                     },
                     "bot_requires_code_grant": {
                         "location": "query",
                         "type": "boolean",
                         "description": "when true the app's bot will only join upon completion of the full oauth2 code grant flow",
+                        "default": false,
                         "required": false
                     },
                     "owner": {
@@ -2451,6 +2470,375 @@
         }
     },
     "models": {
+        "guild": {
+            "guild": {
+                "category": "guild",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "snowflake",
+                        "description": "guild id",
+                        "required": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "guild name (2-100 characters)",
+                        "required": false
+                    },
+                    "icon": {
+                        "type": "string",
+                        "description": "icon hash",
+                        "required": false
+                    },
+                    "splash": {
+                        "type": "string",
+                        "description": "splash hash",
+                        "required": false
+                    },
+                    "owner_id": {
+                        "type": "snowflake",
+                        "description": "id of owner",
+                        "required": false
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "{voice_region.id}",
+                        "required": false
+                    },
+                    "afk_channel_id": {
+                        "type": "snowflake",
+                        "description": "id of afk channel",
+                        "required": false
+                    },
+                    "afk_timeout": {
+                        "type": "integer",
+                        "description": "afk timeout in seconds",
+                        "default": null,
+                        "required": false
+                    },
+                    "embed_enabled": {
+                        "type": "bool",
+                        "description": "is this guild embeddable (e.g. widget)",
+                        "default": false,
+                        "required": false
+                    },
+                    "embed_channel_id": {
+                        "type": "snowflake",
+                        "description": "id of embedded channel",
+                        "required": false
+                    },
+                    "verification_level": {
+                        "type": "integer",
+                        "description": "level of verification",
+                        "default": null,
+                        "required": false
+                    },
+                    "default_message_notifications": {
+                        "type": "integer",
+                        "description": "default message notifications level",
+                        "default": null,
+                        "required": false
+                    },
+                    "roles": {
+                        "type": "array",
+                        "description": "array of role objects",
+                        "required": false
+                    },
+                    "emojis": {
+                        "type": "array",
+                        "description": "array of emoji objects",
+                        "required": false
+                    },
+                    "features": {
+                        "type": "array",
+                        "description": "array of guild features",
+                        "required": false
+                    },
+                    "mfa_level": {
+                        "type": "integer",
+                        "description": "required MFA level for the guild",
+                        "default": null,
+                        "required": false
+                    },
+                    "joined_at ": {
+                        "type": "datetime",
+                        "description": "date this guild was joined at",
+                        "required": false
+                    },
+                    "large ": {
+                        "type": "bool",
+                        "description": "whether this is considered a large guild",
+                        "default": false,
+                        "required": false
+                    },
+                    "unavailable ": {
+                        "type": "bool",
+                        "description": "is this guild unavailable",
+                        "default": false,
+                        "required": false
+                    },
+                    "member_count": {
+                        "type": "integer",
+                        "description": "total number of members in this guild",
+                        "default": null,
+                        "required": false
+                    },
+                    "voice_states ": {
+                        "type": "array",
+                        "description": "array of voice state objects (without the guild_id key)",
+                        "required": false
+                    },
+                    "members ": {
+                        "type": "array",
+                        "description": "array of guild member objects",
+                        "required": false
+                    },
+                    "channels ": {
+                        "type": "array",
+                        "description": "array of channel objects",
+                        "required": false
+                    },
+                    "presences ": {
+                        "type": "array",
+                        "description": "array of simple presence objects, which share the same fields as Presence Update event sans a roles or guild_id key",
+                        "required": false
+                    }
+                }
+            },
+            "unavailableGuild": {
+                "category": "guild",
+                "description": "Represents an Offline Guild, or a Guild whose information has not been provided through Guild Create events during the Gateway connect.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "snowflake",
+                        "description": "guild id",
+                        "required": false
+                    },
+                    "unavailable": {
+                        "type": "bool",
+                        "description": "should always be true",
+                        "default": false,
+                        "required": false
+                    }
+                }
+            },
+            "guildEmbed": {
+                "category": "guild",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "enabled": {
+                        "type": "bool",
+                        "description": "if the embed is enabled",
+                        "default": false,
+                        "required": false
+                    },
+                    "channel_id": {
+                        "type": "snowflake",
+                        "description": "the embed channel id",
+                        "required": false
+                    }
+                }
+            },
+            "guildMember": {
+                "category": "guild",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "object",
+                        "description": "user object",
+                        "required": false
+                    },
+                    "nick": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "this users guild nickname (if one is set)",
+                        "required": false
+                    },
+                    "roles": {
+                        "type": "array",
+                        "description": "array of role object id's",
+                        "required": false
+                    },
+                    "joined_at": {
+                        "type": "datetime",
+                        "description": "date the user joined the guild",
+                        "required": false
+                    },
+                    "deaf": {
+                        "type": "bool",
+                        "description": "if the user is deafened",
+                        "default": false,
+                        "required": false
+                    },
+                    "mute": {
+                        "type": "bool",
+                        "description": "if the user is muted",
+                        "default": false,
+                        "required": false
+                    }
+                }
+            },
+            "integration": {
+                "category": "guild",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "snowflake",
+                        "description": "integration id",
+                        "required": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "integration name",
+                        "required": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "integration type (twitch, youtube, etc)",
+                        "required": false
+                    },
+                    "enabled": {
+                        "type": "bool",
+                        "description": "is this integration enabled",
+                        "default": false,
+                        "required": false
+                    },
+                    "syncing": {
+                        "type": "bool",
+                        "description": "is this integration syncing",
+                        "default": false,
+                        "required": false
+                    },
+                    "role_id": {
+                        "type": "snowflake",
+                        "description": "id that this integration uses for \"subscribers\"",
+                        "required": false
+                    },
+                    "expire_behavior": {
+                        "type": "integer",
+                        "description": "the behavior of expiring subscribers",
+                        "default": null,
+                        "required": false
+                    },
+                    "expire_grace_period": {
+                        "type": "integer",
+                        "description": "the grace period before expiring subscribers",
+                        "default": null,
+                        "required": false
+                    },
+                    "user": {
+                        "type": "object",
+                        "description": "user for this integration",
+                        "required": false
+                    },
+                    "account": {
+                        "type": "object",
+                        "description": "integration account information",
+                        "required": false
+                    },
+                    "synced_at": {
+                        "type": "timestamp",
+                        "description": "when this integration was last synced",
+                        "required": false
+                    }
+                }
+            },
+            "integrationAccount": {
+                "category": "guild",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "id of the account",
+                        "required": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "name of the account",
+                        "required": false
+                    }
+                }
+            },
+            "emoji": {
+                "category": "guild",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "snowflake",
+                        "description": "emoji id",
+                        "required": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "emoji name",
+                        "required": false
+                    },
+                    "roles": {
+                        "type": "array",
+                        "description": "roles this emoji is active for",
+                        "required": false
+                    },
+                    "require_colons": {
+                        "type": "bool",
+                        "description": "whether this emoji must be wrapped in colons",
+                        "default": false,
+                        "required": false
+                    },
+                    "managed": {
+                        "type": "bool",
+                        "description": "whether this emoji is managed",
+                        "default": false,
+                        "required": false
+                    }
+                }
+            },
+            "role": {
+                "category": "guild",
+                "description": "Roles represent a set of permissions attached to a group of users. Roles have unique names, colors, and can be pinned to the side bar, causing their members to be listed separately. Roles are unique per guild, and can have separate permission profiles for the global context (guild) and channel context.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "snowflake",
+                        "description": "role id"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "role name"
+                    },
+                    "color": {
+                        "type": "integer",
+                        "description": "integer representation of hexadecimal color code"
+                    },
+                    "hoist": {
+                        "type": "bool",
+                        "description": "if this role is pinned in the user listing"
+                    },
+                    "position": {
+                        "type": "integer",
+                        "description": "position of this role"
+                    },
+                    "permissions": {
+                        "type": "integer",
+                        "description": "permission bit set"
+                    },
+                    "managed": {
+                        "type": "bool",
+                        "description": "whether this role is managed by an integration"
+                    },
+                    "mentionable": {
+                        "type": "bool",
+                        "description": "whether this role is mentionable"
+                    }
+                }
+            }
+        },
         "channel": {
             "guildChannel": {
                 "category": "channel",
@@ -2486,6 +2874,7 @@
                     "is_private": {
                         "type": "bool",
                         "description": "should always be false for guild channels",
+                        "default": false,
                         "required": false
                     },
                     "permission_overwrites": {
@@ -2530,6 +2919,7 @@
                     "is_private": {
                         "type": "bool",
                         "description": "should always be true for DM channels",
+                        "default": false,
                         "required": false
                     },
                     "recipient": {
@@ -2583,11 +2973,13 @@
                     "tts": {
                         "type": "bool",
                         "description": "whether this was a TTS message",
+                        "default": false,
                         "required": false
                     },
                     "mention_everyone": {
                         "type": "bool",
                         "description": "whether this message mentions everyone",
+                        "default": false,
                         "required": false
                     },
                     "mentions": {
@@ -2624,6 +3016,7 @@
                     "pinned": {
                         "type": "bool",
                         "description": "whether this message is pinned",
+                        "default": false,
                         "required": false
                     },
                     "webhook_id": {
@@ -2647,6 +3040,7 @@
                     "me": {
                         "type": "bool",
                         "description": "whether the current user reacted using this emoji",
+                        "default": false,
                         "required": false
                     },
                     "emoji": {
@@ -2806,325 +3200,6 @@
                 }
             }
         },
-        "guild": {
-            "guild": {
-                "category": "guild",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "snowflake",
-                        "description": "guild id",
-                        "required": false
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "guild name (2-100 characters)",
-                        "required": false
-                    },
-                    "icon": {
-                        "type": "string",
-                        "description": "icon hash",
-                        "required": false
-                    },
-                    "splash": {
-                        "type": "string",
-                        "description": "splash hash",
-                        "required": false
-                    },
-                    "owner_id": {
-                        "type": "snowflake",
-                        "description": "id of owner",
-                        "required": false
-                    },
-                    "region": {
-                        "type": "string",
-                        "description": "{voice_region.id}",
-                        "required": false
-                    },
-                    "afk_channel_id": {
-                        "type": "snowflake",
-                        "description": "id of afk channel",
-                        "required": false
-                    },
-                    "afk_timeout": {
-                        "type": "integer",
-                        "description": "afk timeout in seconds",
-                        "default": null,
-                        "required": false
-                    },
-                    "embed_enabled": {
-                        "type": "bool",
-                        "description": "is this guild embeddable (e.g. widget)",
-                        "required": false
-                    },
-                    "embed_channel_id": {
-                        "type": "snowflake",
-                        "description": "id of embedded channel",
-                        "required": false
-                    },
-                    "verification_level": {
-                        "type": "integer",
-                        "description": "level of verification",
-                        "default": null,
-                        "required": false
-                    },
-                    "default_message_notifications": {
-                        "type": "integer",
-                        "description": "default message notifications level",
-                        "default": null,
-                        "required": false
-                    },
-                    "roles": {
-                        "type": "array",
-                        "description": "array of role objects",
-                        "required": false
-                    },
-                    "emojis": {
-                        "type": "array",
-                        "description": "array of emoji objects",
-                        "required": false
-                    },
-                    "features": {
-                        "type": "array",
-                        "description": "array of guild features",
-                        "required": false
-                    },
-                    "mfa_level": {
-                        "type": "integer",
-                        "description": "required MFA level for the guild",
-                        "default": null,
-                        "required": false
-                    },
-                    "joined_at ": {
-                        "type": "datetime",
-                        "description": "date this guild was joined at",
-                        "required": false
-                    },
-                    "large ": {
-                        "type": "bool",
-                        "description": "whether this is considered a large guild",
-                        "required": false
-                    },
-                    "unavailable ": {
-                        "type": "bool",
-                        "description": "is this guild unavailable",
-                        "required": false
-                    },
-                    "member_count": {
-                        "type": "integer",
-                        "description": "total number of members in this guild",
-                        "default": null,
-                        "required": false
-                    },
-                    "voice_states ": {
-                        "type": "array",
-                        "description": "array of voice state objects (without the guild_id key)",
-                        "required": false
-                    },
-                    "members ": {
-                        "type": "array",
-                        "description": "array of guild member objects",
-                        "required": false
-                    },
-                    "channels ": {
-                        "type": "array",
-                        "description": "array of channel objects",
-                        "required": false
-                    },
-                    "presences ": {
-                        "type": "array",
-                        "description": "array of simple presence objects, which share the same fields as Presence Update event sans a roles or guild_id key",
-                        "required": false
-                    }
-                }
-            },
-            "unavailableGuild": {
-                "category": "guild",
-                "description": "Represents an Offline Guild, or a Guild whose information has not been provided through Guild Create events during the Gateway connect.",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "snowflake",
-                        "description": "guild id",
-                        "required": false
-                    },
-                    "unavailable": {
-                        "type": "bool",
-                        "description": "should always be true",
-                        "required": false
-                    }
-                }
-            },
-            "guildEmbed": {
-                "category": "guild",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "enabled": {
-                        "type": "bool",
-                        "description": "if the embed is enabled",
-                        "required": false
-                    },
-                    "channel_id": {
-                        "type": "snowflake",
-                        "description": "the embed channel id",
-                        "required": false
-                    }
-                }
-            },
-            "guildMember": {
-                "category": "guild",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "user": {
-                        "type": "object",
-                        "description": "user object",
-                        "required": false
-                    },
-                    "nick": {
-                        "type": "string",
-                        "nullable": true,
-                        "description": "this users guild nickname (if one is set)",
-                        "required": false
-                    },
-                    "roles": {
-                        "type": "array",
-                        "description": "array of role object id's",
-                        "required": false
-                    },
-                    "joined_at": {
-                        "type": "datetime",
-                        "description": "date the user joined the guild",
-                        "required": false
-                    },
-                    "deaf": {
-                        "type": "bool",
-                        "description": "if the user is deafened",
-                        "required": false
-                    },
-                    "mute": {
-                        "type": "bool",
-                        "description": "if the user is muted",
-                        "required": false
-                    }
-                }
-            },
-            "integration": {
-                "category": "guild",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "snowflake",
-                        "description": "integration id",
-                        "required": false
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "integration name",
-                        "required": false
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "integration type (twitch, youtube, etc)",
-                        "required": false
-                    },
-                    "enabled": {
-                        "type": "bool",
-                        "description": "is this integration enabled",
-                        "required": false
-                    },
-                    "syncing": {
-                        "type": "bool",
-                        "description": "is this integration syncing",
-                        "required": false
-                    },
-                    "role_id": {
-                        "type": "snowflake",
-                        "description": "id that this integration uses for \"subscribers\"",
-                        "required": false
-                    },
-                    "expire_behavior": {
-                        "type": "integer",
-                        "description": "the behavior of expiring subscribers",
-                        "default": null,
-                        "required": false
-                    },
-                    "expire_grace_period": {
-                        "type": "integer",
-                        "description": "the grace period before expiring subscribers",
-                        "default": null,
-                        "required": false
-                    },
-                    "user": {
-                        "type": "object",
-                        "description": "user for this integration",
-                        "required": false
-                    },
-                    "account": {
-                        "type": "object",
-                        "description": "integration account information",
-                        "required": false
-                    },
-                    "synced_at": {
-                        "type": "timestamp",
-                        "description": "when this integration was last synced",
-                        "required": false
-                    }
-                }
-            },
-            "integrationAccount": {
-                "category": "guild",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "id of the account",
-                        "required": false
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "name of the account",
-                        "required": false
-                    }
-                }
-            },
-            "emoji": {
-                "category": "guild",
-                "description": "",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "snowflake",
-                        "description": "emoji id",
-                        "required": false
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "emoji name",
-                        "required": false
-                    },
-                    "roles": {
-                        "type": "array",
-                        "description": "roles this emoji is active for",
-                        "required": false
-                    },
-                    "require_colons": {
-                        "type": "bool",
-                        "description": "whether this emoji must be wrapped in colons",
-                        "required": false
-                    },
-                    "managed": {
-                        "type": "bool",
-                        "description": "whether this emoji is managed",
-                        "required": false
-                    }
-                }
-            }
-        },
         "invite": {
             "invite": {
                 "category": "invite",
@@ -3179,6 +3254,7 @@
                     "temporary": {
                         "type": "bool",
                         "description": "whether this invite only grants temporary membership",
+                        "default": false,
                         "required": false
                     },
                     "created_at": {
@@ -3189,6 +3265,7 @@
                     "revoked": {
                         "type": "bool",
                         "description": "whether this invite is revoked",
+                        "default": false,
                         "required": false
                     }
                 }
@@ -3272,16 +3349,19 @@
                     "bot": {
                         "type": "bool",
                         "description": "whether the user belongs to an OAuth2 application",
+                        "default": false,
                         "required": false
                     },
                     "mfa_enabled": {
                         "type": "bool",
                         "description": "whether the user has two factor enabled on their account",
+                        "default": false,
                         "required": false
                     },
                     "verified": {
                         "type": "bool",
                         "description": "whether the email on this account has been verified",
+                        "default": false,
                         "required": false
                     },
                     "email": {
@@ -3314,6 +3394,7 @@
                     "owner": {
                         "type": "bool",
                         "description": "true if the user is an owner of the guild",
+                        "default": false,
                         "required": false
                     },
                     "permissions": {
@@ -3347,6 +3428,7 @@
                     "revoked": {
                         "type": "bool",
                         "description": "whether the connection is revoked",
+                        "default": false,
                         "required": false
                     },
                     "integrations": {
@@ -3387,26 +3469,31 @@
                     "deaf": {
                         "type": "bool",
                         "description": "whether this user is deafened by the server",
+                        "default": false,
                         "required": false
                     },
                     "mute": {
                         "type": "bool",
                         "description": "whether this user is muted by the server",
+                        "default": false,
                         "required": false
                     },
                     "self_deaf": {
                         "type": "bool",
                         "description": "whether this user is locally deafened",
+                        "default": false,
                         "required": false
                     },
                     "self_mute": {
                         "type": "bool",
                         "description": "whether this user is locally muted",
+                        "default": false,
                         "required": false
                     },
                     "suppress": {
                         "type": "bool",
                         "description": "whether this user is muted by the current user",
+                        "default": false,
                         "required": false
                     }
                 }

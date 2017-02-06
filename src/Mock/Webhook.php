@@ -14,91 +14,79 @@
 namespace RestCord\Mock;
 
 /**
- * Webhook Intellisense Helper.
+ * Webhook Intellisense Helper
  */
-interface Webhook
-{
-    /**
-     * @param array $options ['name' => 'string', 'avatar' => 'string', 'channel.id' => 'snowflake']
-     *
-     * @return array Returns a webhook object on success.
-     */
-    public function createWebhook(array $options);
+interface Webhook {
 
-    /**
-     * @param array $options ['webhook.id' => 'snowflake']
-     *
-     * @return array Returns a 204 NO CONTENT response on success.
-     */
-    public function deleteWebhook(array $options);
+	/**
+	 * @param array $options ['name' => 'string', 'avatar' => 'string', 'channel.id' => 'snowflake']
+	 * @return array Returns a webhook object on success.
+	 */
+	public function createWebhook(array $options);
 
-    /**
-     * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string']
-     *
-     * @return array
-     */
-    public function deleteWebhookWithToken(array $options);
+	/**
+	 * @param array $options ['webhook.id' => 'snowflake']
+	 * @return array Returns a 204 NO CONTENT response on success.
+	 */
+	public function deleteWebhook(array $options);
 
-    /**
-     * @param array $options ['wait' => 'bool', 'webhook.id' => 'snowflake', 'webhook.token' => 'string']
-     *
-     * @return array
-     */
-    public function executeGithubcompatibleWebhook(array $options);
+	/**
+	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string']
+	 * @return array
+	 */
+	public function deleteWebhookWithToken(array $options);
 
-    /**
-     * @param array $options ['wait' => 'bool', 'webhook.id' => 'snowflake', 'webhook.token' => 'string']
-     *
-     * @return array
-     */
-    public function executeSlackcompatibleWebhook(array $options);
+	/**
+	 * @param array $options ['wait' => 'bool', 'webhook.id' => 'snowflake', 'webhook.token' => 'string']
+	 * @return array
+	 */
+	public function executeGithubcompatibleWebhook(array $options);
 
-    /**
-     * @param array $options ['wait' => 'bool', 'webhook.id' => 'snowflake', 'webhook.token' => 'string']
-     *
-     * @return array
-     */
-    public function executeWebhook(array $options);
+	/**
+	 * @param array $options ['wait' => 'bool', 'webhook.id' => 'snowflake', 'webhook.token' => 'string']
+	 * @return array
+	 */
+	public function executeSlackcompatibleWebhook(array $options);
 
-    /**
-     * @param array $options ['channel.id' => 'snowflake']
-     *
-     * @return array Returns a list of channel webhook objects.
-     */
-    public function getChannelWebhooks(array $options);
+	/**
+	 * @param array $options ['wait' => 'bool', 'webhook.id' => 'snowflake', 'webhook.token' => 'string']
+	 * @return array
+	 */
+	public function executeWebhook(array $options);
 
-    /**
-     * @param array $options ['guild.id' => 'snowflake']
-     *
-     * @return array Returns a list of guild webhook objects.
-     */
-    public function getGuildWebhooks(array $options);
+	/**
+	 * @param array $options ['channel.id' => 'snowflake']
+	 * @return array Returns a list of channel webhook objects.
+	 */
+	public function getChannelWebhooks(array $options);
 
-    /**
-     * @param array $options ['webhook.id' => 'snowflake']
-     *
-     * @return array Returns the new webhook object for the given id.
-     */
-    public function getWebhook(array $options);
+	/**
+	 * @param array $options ['guild.id' => 'snowflake']
+	 * @return array Returns a list of guild webhook objects.
+	 */
+	public function getGuildWebhooks(array $options);
 
-    /**
-     * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string']
-     *
-     * @return array
-     */
-    public function getWebhookWithToken(array $options);
+	/**
+	 * @param array $options ['webhook.id' => 'snowflake']
+	 * @return array Returns the new webhook object for the given id.
+	 */
+	public function getWebhook(array $options);
 
-    /**
-     * @param array $options ['name' => 'string', 'avatar' => 'string', 'webhook.id' => 'snowflake']
-     *
-     * @return array Returns the updated webhook object on success.
-     */
-    public function modifyWebhook(array $options);
+	/**
+	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string']
+	 * @return array
+	 */
+	public function getWebhookWithToken(array $options);
 
-    /**
-     * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string']
-     *
-     * @return array
-     */
-    public function modifyWebhookWithToken(array $options);
+	/**
+	 * @param array $options ['name' => 'string', 'avatar' => 'string', 'webhook.id' => 'snowflake']
+	 * @return array Returns the updated webhook object on success.
+	 */
+	public function modifyWebhook(array $options);
+
+	/**
+	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string']
+	 * @return array
+	 */
+	public function modifyWebhookWithToken(array $options);
 }
