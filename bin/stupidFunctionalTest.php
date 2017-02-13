@@ -40,9 +40,11 @@ $client->guild->updateNick(
 
 $users = $client->guild->listGuildMembers(['guild.id' => 146037311753289737, 'limit' => 25]);
 Assertion::eq(108432868149035008, $users[0]['user']['id']);
-dump(count($users));
 
 $role = $client->guild->createGuildRole(['guild.id' => 146037311753289737, 'name' => 'Test Role']);
 Assertion::eq('Test Role', $role['name']);
 
 $response = $client->guild->deleteGuildRole(['guild.id' => 146037311753289737, 'role.id' => $role['id']]);
+
+$channels = $client->guild->getGuildChannels(['guild.id' => 146037311753289737]);
+Assertion::eq(count($channels), 9);
