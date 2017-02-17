@@ -281,7 +281,6 @@ class DiscordClient
             ],
         ];
 
-
         foreach ($toParse as $category => $m) {
             foreach ($m as $name => $model) {
                 $class          = ucwords($category).'\\'.ucwords($name);
@@ -306,7 +305,6 @@ class DiscordClient
 
         // Maps!
         $models['Guild\\Channel'] = $models['Channel\\GuildChannel'];
-
 
         return $models;
     }
