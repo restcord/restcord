@@ -19,9 +19,9 @@ Add a new webhook to your GitHub repo (in the repo&#039;s settings), and use thi
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-wait | bool | false | *null*
 webhook.id | snowflake | true | *null*
 webhook.token | string | true | *null*
+wait | bool | false | *null*
 
 ## Response
 

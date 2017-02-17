@@ -19,13 +19,13 @@ Adds a user to the guild, provided you have a valid oauth2 access token for the 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 access_token | string | false | *null*
 nick | string | false | *null*
 roles | array | false | *null*
 mute | bool | false | *null*
 deaf | bool | false | *null*
-guild.id | snowflake | true | *null*
-user.id | snowflake | true | *null*
 
 ## Response
 

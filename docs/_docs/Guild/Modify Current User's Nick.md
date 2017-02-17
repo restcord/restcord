@@ -19,8 +19,8 @@ Modifies the nickname of the current user in a guild.  Fires a Guild Member Upda
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-nick | string | false | *null*
 guild.id | snowflake | true | *null*
+nick | string | false | *null*
 
 ## Response
 

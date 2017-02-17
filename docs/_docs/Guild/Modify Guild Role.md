@@ -19,13 +19,13 @@ Modify a guild role. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a 
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
+role.id | string | true | *null*
 name | string | false | *null*
 permissions | integer | false | *null*
 color | integer | false | *null*
 hoist | bool | false | *null*
 mentionable | bool | false | *null*
-guild.id | snowflake | true | *null*
-role.id | string | true | *null*
 
 ## Response
 

@@ -19,9 +19,9 @@ Modify the positions of a set of role objects for the guild. Requires the &#039;
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
 id | snowflake | false | *null*
 position | integer | false | *null*
-guild.id | snowflake | true | *null*
 
 ## Response
 

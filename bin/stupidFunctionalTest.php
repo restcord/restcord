@@ -34,7 +34,7 @@ $client->guild->updateNick(
     [
         'guild.id' => (int) $argv[2],
 
-        'nick'     => 'Build at: '.time(),
+        'nick' => 'Build at: '.time(),
     ]
 );
 
@@ -48,3 +48,16 @@ $response = $client->guild->deleteGuildRole(['guild.id' => 146037311753289737, '
 
 $channels = $client->guild->getGuildChannels(['guild.id' => 146037311753289737]);
 Assertion::eq(count($channels), 9);
+
+/** @var \GuzzleHttp\Command\Result $response */
+$response = $client->webhook->executeWebhook(
+    [
+        'webhook.id'    => 282261441090813952,
+        'webhook.token' => 'NQY9-DzLRT0Sst7Ri5bTsjD3F5cby69PYNXcmbzXYubPbY1KQSQxbGrLIjvMJXcdEBcp',
+        'username'      => 'RestCord',
+        'embeds' => [
+            ['title' => "RestCord test at: ".date('Y-m-d H:i:s')]
+        ]
+    ]
+);
+Assertion::eq($response->count(), 0);

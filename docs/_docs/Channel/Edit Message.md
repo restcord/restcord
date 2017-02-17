@@ -19,9 +19,9 @@ Edit a previously sent message. You can only edit messages that have been sent b
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-content | string | false | *null*
 channel.id | snowflake | true | *null*
 message.id | snowflake | true | *null*
+content | string | false | *null*
 
 ## Response
 

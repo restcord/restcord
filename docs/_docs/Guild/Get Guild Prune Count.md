@@ -19,8 +19,8 @@ Requires the &#039;KICK_MEMBERS&#039; permission.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-days | integer | false | *null*
 guild.id | snowflake | true | *null*
+days | integer | false | *null*
 
 ## Response
 

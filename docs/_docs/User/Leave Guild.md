@@ -16,10 +16,7 @@ Leave a guild.
 
 ## Parameters
 
-
-Name | Type | Required | Default
---- | --- | --- | ---
-guild.id | snowflake | true | *null*
+No Parameters
 
 ## Response
 

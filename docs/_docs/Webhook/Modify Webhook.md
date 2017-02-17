@@ -19,9 +19,9 @@ Modify a webhook.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+webhook.id | snowflake | true | *null*
 name | string | false | *null*
 avatar | string | false | *null*
-webhook.id | snowflake | true | *null*
 
 ## Response
 

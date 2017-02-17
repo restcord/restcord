@@ -19,11 +19,11 @@ Create a new invite object for the channel. Only usable for guild channels. Requ
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+channel.id | snowflake | true | *null*
 max_age | integer | false | 86400
 max_uses | integer | false | 0
 temporary | bool | false | *null*
 unique | bool | false | *null*
-channel.id | snowflake | true | *null*
 
 ## Response
 

@@ -19,9 +19,15 @@ This endpoint supports both JSON and form data bodies. It does require multipart
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-wait | bool | false | *null*
 webhook.id | snowflake | true | *null*
 webhook.token | string | true | *null*
+wait | bool | false | *null*
+content | string | false | *null*
+username | string | false | *null*
+avatar_url | string | false | *null*
+tts | bool | false | *null*
+file | file contents | false | *null*
+embeds | array | false | *null*
 
 ## Response
 

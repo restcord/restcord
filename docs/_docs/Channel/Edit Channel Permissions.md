@@ -19,11 +19,11 @@ Edit the channel permission overwrites for a user or role in a channel. Only usa
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+channel.id | snowflake | true | *null*
+overwrite.id | string | true | *null*
 allow | integer | false | *null*
 deny | integer | false | *null*
 type | string | false | *null*
-channel.id | snowflake | true | *null*
-overwrite.id | string | true | *null*
 
 ## Response
 

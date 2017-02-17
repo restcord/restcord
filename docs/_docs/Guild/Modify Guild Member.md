@@ -19,13 +19,13 @@ Modify attributes of a guild member.  Fires a Guild Member Update Gateway event.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 nick | string | false | *null*
 roles | array | false | *null*
 mute | bool | false | *null*
 deaf | bool | false | *null*
 channel_id | snowflake | false | *null*
-guild.id | snowflake | true | *null*
-user.id | snowflake | true | *null*
 
 ## Response
 

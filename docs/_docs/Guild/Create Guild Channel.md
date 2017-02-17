@@ -19,12 +19,12 @@ Create a new channel object for the guild. Requires the &#039;MANAGE_CHANNELS&#0
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
 name | string | false | *null*
 type | string | false | *null*
 bitrate | integer | false | *null*
 user_limit | integer | false | *null*
 permission_overwrites | array | false | *null*
-guild.id | snowflake | true | *null*
 
 ## Response
 

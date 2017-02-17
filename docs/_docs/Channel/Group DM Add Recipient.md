@@ -19,10 +19,10 @@ Adds a recipient to a Group DM using their access token
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-access_token | string | false | *null*
-nick | string | false | *null*
 channel.id | snowflake | true | *null*
 user.id | snowflake | true | *null*
+access_token | string | false | *null*
+nick | string | false | *null*
 
 ## Response
 

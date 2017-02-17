@@ -19,11 +19,11 @@ If operating on a guild channel, this endpoint requires the &#039;READ_MESSAGES&
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+channel.id | snowflake | true | *null*
 around | snowflake | false | absent
 before | snowflake | false | absent
 after | snowflake | false | absent
 limit | integer | false | 50
-channel.id | snowflake | true | *null*
 
 ## Response
 

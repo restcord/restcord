@@ -19,6 +19,7 @@ Modify a guild&#039;s settings.  Fires a Guild Update Gateway event.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
 name | string | false | *null*
 region | string | false | *null*
 verification_level | integer | false | *null*
@@ -28,7 +29,6 @@ afk_timeout | integer | false | *null*
 icon | string | false | *null*
 owner_id | snowflake | false | *null*
 splash | string | false | *null*
-guild.id | snowflake | true | *null*
 
 ## Response
 

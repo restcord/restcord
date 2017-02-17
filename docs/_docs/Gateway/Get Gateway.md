@@ -12,7 +12,7 @@ $client->gateway->getGateway($parameters);
 
 ## Description
 
-Bots that want to dynamically/automatically spawn shard processes should use this endpoint to determine the number of processes to run. This route should be called once, and the result cached/passed to all processes. This value is not guarenteed to be the same per-call.
+Clients should cache this value and only call this endpoint to retrieve a new URL if they are unable to properly establish a connection using the cached version of the URL.
 
 ## Parameters
 
@@ -20,5 +20,5 @@ No Parameters
 
 ## Response
 
-Returns an object with the same information as Get Gateway, plus a shards key, containing the recommended number of shards to connect with (as an integer).
+Returns an object with a single valid WSS URL, which the client can use as a basis for Connecting.
 

@@ -19,12 +19,12 @@ Update a channels settings. Requires the &#039;MANAGE_GUILD&#039; permission for
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+channel.id | snowflake | true | *null*
 name | string | false | *null*
 position | integer | false | *null*
 topic | string | false | *null*
 bitrate | integer | false | *null*
 user_limit | integer | false | *null*
-channel.id | snowflake | true | *null*
 
 ## Response
 

@@ -19,9 +19,9 @@ Attach an integration object from the current user to the guild. Requires the &#
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
 type | string | false | *null*
 id | snowflake | false | *null*
-guild.id | snowflake | true | *null*
 
 ## Response
 

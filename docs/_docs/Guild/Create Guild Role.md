@@ -19,12 +19,12 @@ Create a new role for the guild. Requires the &#039;MANAGE_ROLES&#039; permissio
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
 name | string | false | &quot;new role&quot;
 permissions | integer | false | *null*
 color | integer | false | 0
 hoist | bool | false | *null*
 mentionable | bool | false | *null*
-guild.id | snowflake | true | *null*
 
 ## Response
 

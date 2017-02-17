@@ -19,9 +19,9 @@ Modify the positions of a set of channel objects for the guild. Requires &#039;M
 
 Name | Type | Required | Default
 --- | --- | --- | ---
+guild.id | snowflake | true | *null*
 id | snowflake | false | *null*
 position | integer | false | *null*
-guild.id | snowflake | true | *null*
 
 ## Response
 
