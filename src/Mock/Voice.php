@@ -14,13 +14,14 @@
 namespace RestCord\Mock;
 
 /**
- * Voice Intellisense Helper
+ * Voice Intellisense Helper.
  */
-interface Voice {
-
-	/**
-	 * @param array $options []
-	 * @return array Returns an array of voice region objects that can be used when creating servers.
-	 */
-	public function listVoiceRegions(array $options);
+interface Voice
+{
+    /**
+     * @param array $options []
+     *
+     * @return array Returns an array of voice region objects that can be used when creating servers.
+     */
+    public function listVoiceRegions(array $options);
 }

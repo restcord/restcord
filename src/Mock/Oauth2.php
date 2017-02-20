@@ -14,13 +14,14 @@
 namespace RestCord\Mock;
 
 /**
- * Oauth2 Intellisense Helper
+ * Oauth2 Intellisense Helper.
  */
-interface Oauth2 {
-
-	/**
-	 * @param array $options []
-	 * @return array Returns the bot's OAuth2 application info.
-	 */
-	public function getCurrentApplicationInformation(array $options);
+interface Oauth2
+{
+    /**
+     * @param array $options []
+     *
+     * @return array Returns the bot's OAuth2 application info.
+     */
+    public function getCurrentApplicationInformation(array $options);
 }

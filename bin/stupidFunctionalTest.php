@@ -55,9 +55,9 @@ $response = $client->webhook->executeWebhook(
         'webhook.id'    => 282261441090813952,
         'webhook.token' => 'NQY9-DzLRT0Sst7Ri5bTsjD3F5cby69PYNXcmbzXYubPbY1KQSQxbGrLIjvMJXcdEBcp',
         'username'      => 'RestCord',
-        'embeds' => [
-            ['title' => "RestCord test at: ".date('Y-m-d H:i:s')]
-        ]
+        'embeds'        => [
+            ['title' => 'RestCord test at: '.date('Y-m-d H:i:s')],
+        ],
     ]
 );
 Assertion::eq($response->count(), 0);
