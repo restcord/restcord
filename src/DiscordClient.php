@@ -90,7 +90,7 @@ class DiscordClient
         $client = new Client(
             [
                 'headers'     => [
-                    'Authorization' => $this->options['tokenType'].' '.$this->options['token'],
+                    'Authorization' => $this->options['tokenType'].$this->options['token'],
                     'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                     'Content-Type'  => 'application/json',
                 ],
@@ -149,9 +149,15 @@ class DiscordClient
             ->setNormalizer(
                 'tokenType',
                 function (Options $options, $value) {
-                    if ($options['token'] !== null) {
+                    if ($options['token'] !== null && $value === 'None') {
                         $value = 'Bot';
                     }
+					
+					 if ($value !== 'User') {
+						 $value .= ' ';
+					 } else {
+						 $value = '';
+					 }
 
                     return $value;
                 }
