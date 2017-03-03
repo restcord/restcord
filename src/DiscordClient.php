@@ -152,12 +152,12 @@ class DiscordClient
                     if ($options['token'] !== null && $value === 'None') {
                         $value = 'Bot';
                     }
-					
-					 if ($value !== 'User') {
-						 $value .= ' ';
-					 } else {
-						 $value = '';
-					 }
+
+                    if ($value !== 'User') {
+                        $value .= ' ';
+                    } else {
+                        $value = '';
+                    }
 
                     return $value;
                 }
