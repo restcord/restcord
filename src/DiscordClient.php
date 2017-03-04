@@ -87,17 +87,17 @@ class DiscordClient
                 new MessageFormatter('{url} {request}', $this->options['token'])
             )
         );
-		$defaultGuzzleOptions = [
-			'headers'     => [
-				'Authorization' => $this->options['tokenType'].$this->options['token'],
-				'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
-				'Content-Type'  => 'application/json',
-			],
-			'http_errors' => false,
-			'handler'     => $stack,
-		];
-		$this->options['guzzleOptions'] = array_merge($this->options['guzzleOptions'], $defaultGuzzleOptions);
-		
+        $defaultGuzzleOptions = [
+            'headers'     => [
+                'Authorization' => $this->options['tokenType'].$this->options['token'],
+                'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
+                'Content-Type'  => 'application/json',
+            ],
+            'http_errors' => false,
+            'handler'     => $stack,
+        ];
+        $this->options['guzzleOptions'] = array_merge($this->options['guzzleOptions'], $defaultGuzzleOptions);
+
         $client = new Client($this->options['guzzleOptions']);
 
         $this->buildDescriptions($client);
@@ -119,7 +119,7 @@ class DiscordClient
                 'throwOnRatelimit' => false,
                 'apiUrl'           => 'https://discordapp.com/api/v'.$currentVersion,
                 'tokenType'        => 'None',
-				'guzzleOptions'    => [],
+                'guzzleOptions'    => [],
             ]
         )
             ->setDefined(['token'])
@@ -129,7 +129,7 @@ class DiscordClient
             ->setAllowedTypes('throwOnRatelimit', ['bool'])
             ->setAllowedTypes('logger', ['\Monolog\Logger'])
             ->setAllowedTypes('version', ['string', 'integer'])
-			->setAllowedTypes('guzzleOptions', ['array'])
+            ->setAllowedTypes('guzzleOptions', ['array'])
             ->setNormalizer(
                 'token',
                 function (Options $options, $value) {
@@ -155,12 +155,12 @@ class DiscordClient
                     if ($options['token'] !== null && $value === 'None') {
                         $value = 'Bot';
                     }
-					
-					 if ($value !== 'User') {
-						 $value .= ' ';
-					 } else {
-						 $value = '';
-					 }
+
+                    if ($value !== 'User') {
+                        $value .= ' ';
+                    } else {
+                        $value = '';
+                    }
 
                     return $value;
                 }
