@@ -3,17 +3,17 @@
     "description": "REST Library for the Discord API",
     "type":        "library",
     "require":     {
-        "php":                               "^5.6|^7.0",
-        "guzzlehttp/guzzle":                 "^6.2",
-        "guzzlehttp/guzzle-services":        "^1.0",
-        "symfony/options-resolver":          "^2.6|^3.2",
-        "monolog/monolog":                   "^1.22",
-        "twig/twig":                         "^1.20|^2.0",
-        "league/fractal": "^0.15.0",
-        "doctrine/annotations": "^1.4",
-        "doctrine/cache": "^1.6",
-        "doctrine/common": "^2.7",
-        "netresearch/jsonmapper": "^1.1"
+        "php":                        "^5.6|^7.0",
+        "guzzlehttp/guzzle":          "^6.2",
+        "guzzlehttp/guzzle-services": "^1.0",
+        "symfony/options-resolver":   "^2.6|^3.2",
+        "monolog/monolog":            "^1.22",
+        "twig/twig":                  "^1.20|^2.0",
+        "league/fractal":             "^0.15.0",
+        "doctrine/annotations":       "^1.3",
+        "doctrine/cache":             "^1.4",
+        "doctrine/common":            "^2.3",
+        "netresearch/jsonmapper":     "^1.1"
     },
     "autoload":    {
         "psr-4": {
@@ -28,9 +28,9 @@
         }
     ],
     "require-dev": {
-        "symfony/console": "^2.6|^3.2",
-        "beberlei/assert": "^2.7",
+        "symfony/console":          "^2.6|^3.2",
+        "beberlei/assert":          "^2.7",
         "gossi/php-code-generator": "^0.4.1",
-        "symfony/var-dumper": "^3.2"
+        "symfony/var-dumper":       "^3.2"
     }
 }
