@@ -14,72 +14,73 @@
 namespace RestCord\Model\Webhook;
 
 /**
- * Webhook Model
+ * Webhook Model.
  */
-class Webhook {
+class Webhook
+{
+    /**
+     * the default avatar of the webhook.
+     *
+     * @var string
+     */
+    public $avatar;
 
-	/**
-	 * the default avatar of the webhook
-	 * 
-	 * @var string
-	 */
-	public $avatar;
+    /**
+     * the channel id this webhook is for.
+     *
+     * @var int
+     */
+    public $channel_id;
 
-	/**
-	 * the channel id this webhook is for
-	 * 
-	 * @var int
-	 */
-	public $channel_id;
+    /**
+     * the guild id this webhook is for.
+     *
+     * @var int
+     */
+    public $guild_id;
 
-	/**
-	 * the guild id this webhook is for
-	 * 
-	 * @var int
-	 */
-	public $guild_id;
+    /**
+     * the id of the webhook.
+     *
+     * @var int
+     */
+    public $id;
 
-	/**
-	 * the id of the webhook
-	 * 
-	 * @var int
-	 */
-	public $id;
+    /**
+     * the default name of the webhook.
+     *
+     * @var string
+     */
+    public $name;
 
-	/**
-	 * the default name of the webhook
-	 * 
-	 * @var string
-	 */
-	public $name;
+    /**
+     * the secure token of the webhook.
+     *
+     * @var string
+     */
+    public $token;
 
-	/**
-	 * the secure token of the webhook
-	 * 
-	 * @var string
-	 */
-	public $token;
+    /**
+     * the user this webhook was created by (not returned when getting a webhook with its token).
+     *
+     * @var User
+     */
+    public $user;
 
-	/**
-	 * the user this webhook was created by (not returned when getting a webhook with its token)
-	 * 
-	 * @var User
-	 */
-	public $user;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }

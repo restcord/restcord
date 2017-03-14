@@ -34,10 +34,10 @@ $client = new DiscordClient(
 
 $invite = $client->channel->createChannelInvite([
     'channel.id' => (int) $argv[2],
-    'max_age'   => 5,
-    'max_uses'  => 1,
-    'unique'    => true,
-    'temporary' => false
+    'max_age'    => 5,
+    'max_uses'   => 1,
+    'unique'     => true,
+    'temporary'  => false,
 ]);
 
 $guild = $client->guild->getGuild(['guild.id' => (int) $argv[2]]);

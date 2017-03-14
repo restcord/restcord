@@ -223,8 +223,10 @@ class DiscordClient
      * @param ResponseInterface $response
      * @param CommandInterface  $command
      *
-     * @return Result|mixed
      * @throws \Exception
+     *
+     * @return Result|mixed
+     *
      * @internal param RequestInterface $request
      */
     private function convertResponseToResult(
@@ -246,7 +248,7 @@ class DiscordClient
         $firstType = $operation['responseTypes'][0];
         $class     = $this->mapBadDocs(
             sprintf(
-                "\\RestCord\\Model\\%s\\%s",
+                '\\RestCord\\Model\\%s\\%s',
                 ucwords($category),
                 ucwords(explode('/', $firstType['type'])[1])
             )
