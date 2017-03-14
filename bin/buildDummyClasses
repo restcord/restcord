@@ -104,22 +104,29 @@ function recursiveRemoveDirectory($directory)
 
                             $returnType = 'array';
                             if (isset($operation['responseTypes']) && sizeof($operation['responseTypes']) >= 1) {
-                                $firstType = $operation['responseTypes'][0];
+                                $firstType  = $operation['responseTypes'][0]['type'];
+                                $array = stripos($firstType, 'Array<') !== false;
+                                if ($array) {
+                                    $firstType = substr($firstType, 6, -1);
+                                }
+
                                 $returnType = sprintf(
                                     "\\RestCord\\Model\\%s\\%s",
                                     ucwords($category),
                                     str_replace(
                                         ' ',
                                         '',
-                                        ucwords(str_replace('-', ' ', explode('/', $firstType['type'])[1]))
+                                        ucwords(str_replace('-', ' ', explode('/', $firstType)[1]))
                                     )
                                 );
+
                                 $returnType = mapBadDocs($name, $operation, $returnType);
 
                                 if (!class_exists($returnType)) {
-                                    dump($returnType);
                                     $returnType = "\\".Result::class;
                                 }
+
+                                $returnType .= $array ? '[]' : '';
                             }
 
                             $method = new PhpMethod($name);
@@ -147,27 +154,28 @@ function recursiveRemoveDirectory($directory)
     ->setDefaultCommand('buildDummyClasses', true)
     ->run();
 
-function mapBadDocs(string $name, array $operation, string $cls): string {
+function mapBadDocs(string $name, array $operation, string $cls): string
+{
     switch ($cls) {
         case '\RestCord\Model\User\DmChannel':
-            $cls = '\RestCord\Model\Channel\DmChannel';
+            $newCls = '\RestCord\Model\Channel\DmChannel';
             break;
         case '\RestCord\Model\Channel\Invite':
         case '\RestCord\Model\Guild\Invite':
-            $cls = '\RestCord\Model\Invite\Invite';
+            $newCls = '\RestCord\Model\Invite\Invite';
             break;
         case '\RestCord\Model\Guild\GuildChannel':
-            $cls = '\RestCord\Model\Channel\GuildChannel';
+            $newCls = '\RestCord\Model\Channel\GuildChannel';
             break;
         case '\RestCord\Model\Guild\User':
         case '\RestCord\Model\Channel\User':
-            $cls = '\RestCord\Model\User\User';
+            $newCls = '\RestCord\Model\User\User';
             break;
         default:
             return $cls;
     }
 
-    trigger_error($name.' operation in '.$operation['category'].' has a bad responseType');
+    trigger_error($name.' operation in '.$operation['category'].' has a bad responseType: ' . $cls);
 
-    return $cls;
+    return $newCls;
 }

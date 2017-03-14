@@ -177,7 +177,7 @@
                 "responseTypes": [
                     {
                         "name": "channel",
-                        "type": "CHANNEL/guild-channel"
+                        "type": "Array<CHANNEL/guild-channel>"
                     }
                 ],
                 "parameters": {
@@ -246,7 +246,7 @@
                 "responseTypes": [
                     {
                         "name": "channel",
-                        "type": "CHANNEL/guild-channel"
+                        "type": "Array<CHANNEL/guild-channel>"
                     }
                 ],
                 "parameters": {
@@ -305,7 +305,7 @@
                 "responseTypes": [
                     {
                         "name": "guild member",
-                        "type": "GUILD/guild-member"
+                        "type": "Array<GUILD/guild-member>"
                     }
                 ],
                 "parameters": {
@@ -568,7 +568,7 @@
                 "responseTypes": [
                     {
                         "name": "user",
-                        "type": "USER/user"
+                        "type": "Array<USER/user>"
                     }
                 ],
                 "parameters": {
@@ -637,7 +637,7 @@
                 "responseTypes": [
                     {
                         "name": "role",
-                        "type": "PERMISSIONS/role"
+                        "type": "Array<PERMISSIONS/role>"
                     }
                 ],
                 "parameters": {
@@ -710,7 +710,7 @@
                 "responseTypes": [
                     {
                         "name": "role",
-                        "type": "PERMISSIONS/role"
+                        "type": "Array<PERMISSIONS/role>"
                     }
                 ],
                 "parameters": {
@@ -859,7 +859,7 @@
                 "responseTypes": [
                     {
                         "name": "voice region",
-                        "type": "VOICE/voice-region"
+                        "type": "Array<VOICE/voice-region>"
                     }
                 ],
                 "parameters": {
@@ -881,7 +881,7 @@
                 "responseTypes": [
                     {
                         "name": "invite",
-                        "type": "INVITE/invite"
+                        "type": "Array<INVITE/invite>"
                     },
                     {
                         "name": "invite metadata",
@@ -907,7 +907,7 @@
                 "responseTypes": [
                     {
                         "name": "integration",
-                        "type": "GUILD/integration"
+                        "type": "Array<GUILD/integration>"
                     }
                 ],
                 "parameters": {
@@ -1590,7 +1590,7 @@
                 "responseTypes": [
                     {
                         "name": "invite",
-                        "type": "INVITE/invite"
+                        "type": "Array<INVITE/invite>"
                     },
                     {
                         "name": "invite metadata",
@@ -1948,7 +1948,7 @@
                 "responseTypes": [
                     {
                         "name": "user guild",
-                        "type": "USER/user-guild"
+                        "type": "Array<USER/user-guild>"
                     }
                 ],
                 "parameters": {
@@ -2008,7 +2008,7 @@
                 "responseTypes": [
                     {
                         "name": "DM",
-                        "type": "CHANNEL/dm-channel"
+                        "type": "Array<CHANNEL/dm-channel>"
                     }
                 ],
                 "parameters": {}
@@ -2073,7 +2073,7 @@
                 "responseTypes": [
                     {
                         "name": "connection",
-                        "type": "USER/connection"
+                        "type": "Array<USER/connection>"
                     }
                 ],
                 "parameters": {}
@@ -2141,7 +2141,7 @@
                 "responseTypes": [
                     {
                         "name": "webhook",
-                        "type": "WEBHOOK/webhook"
+                        "type": "Array<WEBHOOK/webhook>"
                     }
                 ],
                 "parameters": {
@@ -2163,7 +2163,7 @@
                 "responseTypes": [
                     {
                         "name": "webhook",
-                        "type": "WEBHOOK/webhook"
+                        "type": "Array<WEBHOOK/webhook>"
                     }
                 ],
                 "parameters": {

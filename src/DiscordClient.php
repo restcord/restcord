@@ -241,7 +241,17 @@ class DiscordClient
 
         $operation = $description['operations'][$category][$command->getName()];
         if (!isset($operation['responseTypes']) || count($operation['responseTypes']) === 0) {
-            return new Result(json_decode($response->getBody()->__toString(), true));
+            try {
+                $content = $response->getBody()->__toString();
+                if (empty($content)) {
+                    $content = '{}';
+                }
+
+                return new Result(json_decode($content, true));
+            } catch (\Exception $e) {
+                dump($response->getBody()->__toString());
+                throw $e;
+            }
         }
 
         $data      = json_decode($response->getBody()->__toString());
