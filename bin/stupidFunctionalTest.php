@@ -28,7 +28,7 @@ $client = new DiscordClient(
     [
         'token'            => $argv[1],
         'throwOnRatelimit' => true,
-        'cacheDir'         => __DIR__.'/../cache'
+        'cacheDir'         => __DIR__.'/../cache',
     ]
 );
 
