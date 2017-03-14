@@ -1,7 +1,7 @@
 ---
 title: Group Dm Add Recipient
 category: Channel
-order: 24
+order: 23
 ---
 
 # `groupDmAddRecipient`

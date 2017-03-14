@@ -1,0 +1,183 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of php-restcord.
+ *
+ * (c) Aaron Scherer <aequasi@gmail.com>
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ */
+
+require __DIR__.'/../vendor/autoload.php';
+
+use gossi\codegen\generator\CodeGenerator;
+use gossi\codegen\model\PhpClass;
+use gossi\codegen\model\PhpInterface;
+use gossi\codegen\model\PhpMethod;
+use gossi\codegen\model\PhpParameter;
+use gossi\codegen\model\PhpProperty;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+$loader = new Twig_Loader_Filesystem(__DIR__.'/../src/Resources/');
+$twig   = new Twig_Environment($loader, ['debug' => true]);
+$twig->addExtension(new Twig_Extension_Debug());
+
+$license = <<<EOF
+<?php
+
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+\n
+EOF;
+
+function recursiveRemoveDirectory($directory)
+{
+    foreach (glob("{$directory}/*") as $file) {
+        if (is_dir($file)) {
+            recursiveRemoveDirectory($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($directory);
+}
+
+(new Application('Build Model Classes', '1.0.0'))
+    ->register('buildModelClasses')
+    ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
+    ->setCode(
+        function (InputInterface $input, OutputInterface $output) use ($twig, $license) {
+            $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
+            $style->title("Building Model Classes for: ".$input->getArgument('version'));
+
+            $path = __DIR__.'/../src/Model';
+            try {
+                recursiveRemoveDirectory($path);
+            } catch (\Exception $e) {
+            }
+            mkdir($path, 02775, true);
+            $path = realpath($path);
+
+            $definition = \GuzzleHttp\json_decode(
+                file_get_contents(
+                    __DIR__.'/../src/Resources/service_description-v'.$input->getArgument('version').'.json'
+                ),
+                true
+            );
+
+            $generator = new CodeGenerator();
+            foreach ($definition['models'] as $category => $models) {
+                foreach ($models as $name => $model) {
+                    $class = new PhpClass();
+                    $class->setQualifiedName('RestCord\\Model\\'.ucwords($category).'\\'.ucwords($name));
+                    $class->setDescription(ucwords($name)." Model");
+                    $class->setProperties(
+                        array_map(
+                            function ($name, $property) use ($class, $category, $model) {
+                                $prop = new PhpProperty($name);
+                                $prop->setType(normalizeType($property['type']));
+                                $prop->setDescription($property['description']);
+
+                                if (isset($property['default'])) {
+                                    $prop->setValue($property['default']);
+                                }
+
+                                return $prop;
+                            },
+                            array_keys($model['properties']),
+                            $model['properties']
+                        )
+                    );
+
+                    $constructor = new PhpMethod('__construct');
+                    $constructor->addSimpleParameter('content', 'array', null);
+                    $constructor->setBody(
+                        <<<EOF
+                        if (null === \$content) {
+    return;
+}
+                    
+foreach (\$content as \$key => \$value) {
+    \$key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', \$key))));
+    if (property_exists(\$this, \$key)) {
+        \$this->{\$key} = \$value;
+    }
+}
+EOF
+                    );
+                    $constructor->setVisibility('public');
+                    $class->setMethod($constructor);
+
+                    @mkdir($path.'/'.ucwords($category), 02775, true);
+                    file_put_contents(
+                        $path.'/'.ucwords($category).'/'.ucwords($name).'.php',
+                        $license.$generator->generate($class)
+                    );
+                }
+            }
+
+            $style->success('Finished. Classes built in: '.realpath($path));
+        }
+    )
+    ->getApplication()
+    ->setDefaultCommand('buildModelClasses', true)
+    ->run();
+
+function normalizeType(string $type): string
+{
+    switch ($type) {
+        default:
+            if (strpos($type, '/') !== false || strpos($type, 'Array<') === 0) {
+                $array = false;
+                if (strpos($type, 'Array') === 0) {
+                    $array = true;
+                    $type  = str_replace(['Array<', '>'], '', $type);
+                }
+
+                if ($type === 'snowflake') {
+                    return 'int[]';
+                }
+
+                $cls = "\\RestCord\\Model\\";
+                $tmp = explode('/', $type);
+                $cls .= ucwords($tmp[0])."\\";
+                $clean = str_replace(['-object', '-'], ['', ' '], $tmp[1]);
+                $clean = ucwords($clean);
+                $clean = str_replace(' ', '', $clean);
+
+                return $cls.$clean.($array ? '[]' : '');
+            }
+
+            return $type;
+        case 'datetime':
+            return '\DateTime';
+        case 'snowflake':
+        case 'integer':
+        case 'timestamp':
+            return 'int';
+        case 'object':
+            return 'array';
+        case 'boolean':
+            return 'bool';
+    }
+}
+
+function isTransformType(string $type): bool
+{
+    $nonTransform = ['string', 'array'];
+
+    return array_search($type, $nonTransform) === false;
+}

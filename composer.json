@@ -8,7 +8,12 @@
         "guzzlehttp/guzzle-services":        "^1.0",
         "symfony/options-resolver":          "^2.6|^3.2",
         "monolog/monolog":                   "^1.22",
-        "twig/twig":                         "^1.20|^2.0"
+        "twig/twig":                         "^1.20|^2.0",
+        "league/fractal": "^0.15.0",
+        "doctrine/annotations": "^1.4",
+        "doctrine/cache": "^1.6",
+        "doctrine/common": "^2.7",
+        "netresearch/jsonmapper": "^1.1"
     },
     "autoload":    {
         "psr-4": {

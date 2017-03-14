@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
 integration.id | string | true | *null*
-expire_behavior | integer | false | *null*
+expire_behavior | guild/integration-object | false | *null*
 expire_grace_period | integer | false | *null*
 enable_emoticons | bool | false | *null*
 

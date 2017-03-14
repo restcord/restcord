@@ -4,10 +4,10 @@ category: Webhook
 order: 11
 ---
 
-# `executeSlackcompatibleWebhook`
+# `executeSlackCompatibleWebhook`
 
 ```php
-$client->webhook->executeSlackcompatibleWebhook($parameters);
+$client->webhook->executeSlackCompatibleWebhook($parameters);
 ```
 
 ## Description
