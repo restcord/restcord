@@ -13,14 +13,12 @@
 
 namespace RestCord;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Result;
 use GuzzleHttp\HandlerStack;
-use function GuzzleHttp\json_decode;
 use GuzzleHttp\Middleware;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseInterface;
@@ -29,6 +27,7 @@ use RestCord\RateLimit\RateLimiter;
 use RestCord\RateLimit\RateLimitProvider;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use function GuzzleHttp\json_decode;
 
 /**
  * @author Aaron Scherer <aequasi@gmail.com>
@@ -225,6 +224,7 @@ class DiscordClient
      * @param CommandInterface  $command
      *
      * @return Result|mixed
+     * @throws \Exception
      * @internal param RequestInterface $request
      */
     private function convertResponseToResult(
@@ -259,7 +259,7 @@ class DiscordClient
         $mapper                   = new \JsonMapper();
         $mapper->bStrictNullTypes = false;
 
-        return $mapper->map($data, new $class);
+        return $mapper->map($data, new $class());
     }
 
     private function mapBadDocs(string $cls)
