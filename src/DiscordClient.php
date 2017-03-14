@@ -233,18 +233,25 @@ class DiscordClient
         ResponseInterface $response,
         CommandInterface $command
     ) {
+        if ($response->getStatusCode() >= 400) {
+            throw new \Exception($response->getBody()->__toString(), $response->getStatusCode());
+        }
+
         $operation = $description['operations'][$category][$command->getName()];
         if (!isset($operation['responseTypes']) || count($operation['responseTypes']) === 0) {
             return new Result(json_decode($response->getBody()->__toString(), true));
         }
 
-        $data = json_decode($response->getBody()->__toString());
+        $data      = json_decode($response->getBody()->__toString());
         $firstType = $operation['responseTypes'][0];
-        $class     = sprintf(
-            "RestCord\\Model\\%s\\%s",
-            ucwords($category),
-            ucwords(explode('/', $firstType['type'])[1])
+        $class     = $this->mapBadDocs(
+            sprintf(
+                "\\RestCord\\Model\\%s\\%s",
+                ucwords($category),
+                ucwords(explode('/', $firstType['type'])[1])
+            )
         );
+
         if (!class_exists($class)) {
             return new Result($data);
         }
@@ -253,6 +260,30 @@ class DiscordClient
         $mapper->bStrictNullTypes = false;
 
         return $mapper->map($data, new $class);
+    }
+
+    private function mapBadDocs(string $cls)
+    {
+        switch ($cls) {
+            case '\RestCord\Model\User\DmChannel':
+                $cls = '\RestCord\Model\Channel\DmChannel';
+                break;
+            case '\RestCord\Model\Channel\Invite':
+            case '\RestCord\Model\Guild\Invite':
+                $cls = '\RestCord\Model\Invite\Invite';
+                break;
+            case '\RestCord\Model\Guild\GuildChannel':
+                $cls = '\RestCord\Model\Channel\GuildChannel';
+                break;
+            case '\RestCord\Model\Guild\User':
+            case '\RestCord\Model\Channel\User':
+                $cls = '\RestCord\Model\User\User';
+                break;
+            default:
+                return $cls;
+        }
+
+        return $cls;
     }
 
     /**

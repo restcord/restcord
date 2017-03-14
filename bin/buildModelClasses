@@ -158,7 +158,10 @@ function normalizeType(string $type): string
                 $clean = ucwords($clean);
                 $clean = str_replace(' ', '', $clean);
 
-                return $cls.$clean.($array ? '[]' : '');
+                $fullClass = $cls.$clean.($array ? '[]' : '');
+                $fullClass = mapBadDocs($fullClass);
+
+                return $fullClass;
             }
 
             return $type;
@@ -180,4 +183,28 @@ function isTransformType(string $type): bool
     $nonTransform = ['string', 'array'];
 
     return array_search($type, $nonTransform) === false;
+}
+
+function mapBadDocs(string $cls): string
+{
+    switch ($cls) {
+        case '\RestCord\Model\User\DmChannel':
+            $cls = '\RestCord\Model\Channel\DmChannel';
+            break;
+        case '\RestCord\Model\Channel\Invite':
+        case '\RestCord\Model\Guild\Invite':
+            $cls = '\RestCord\Model\Invite\Invite';
+            break;
+        case '\RestCord\Model\Guild\GuildChannel':
+            $cls = '\RestCord\Model\Channel\GuildChannel';
+            break;
+        case '\RestCord\Model\Guild\User':
+        case '\RestCord\Model\Channel\User':
+            $cls = '\RestCord\Model\User\User';
+            break;
+        default:
+            return $cls;
+    }
+
+    return $cls;
 }
