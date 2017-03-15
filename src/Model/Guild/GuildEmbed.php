@@ -14,37 +14,38 @@
 namespace RestCord\Model\Guild;
 
 /**
- * GuildEmbed Model
+ * GuildEmbed Model.
  */
-class GuildEmbed {
+class GuildEmbed
+{
+    /**
+     * the embed channel id.
+     *
+     * @var int
+     */
+    public $channel_id;
 
-	/**
-	 * the embed channel id
-	 * 
-	 * @var int
-	 */
-	public $channel_id;
+    /**
+     * if the embed is enabled.
+     *
+     * @var bool
+     */
+    public $enabled = false;
 
-	/**
-	 * if the embed is enabled
-	 * 
-	 * @var bool
-	 */
-	public $enabled = false;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }
