@@ -14,79 +14,80 @@
 namespace RestCord\Model\User;
 
 /**
- * User Model
+ * User Model.
  */
-class User {
+class User
+{
+    /**
+     * the user's avatar hash.
+     *
+     * @var string
+     */
+    public $avatar;
 
-	/**
-	 * the user's avatar hash
-	 * 
-	 * @var string
-	 */
-	public $avatar;
+    /**
+     * whether the user belongs to an OAuth2 application.
+     *
+     * @var bool
+     */
+    public $bot = false;
 
-	/**
-	 * whether the user belongs to an OAuth2 application
-	 * 
-	 * @var bool
-	 */
-	public $bot = false;
+    /**
+     * the user's 4-digit discord-tag.
+     *
+     * @var string
+     */
+    public $discriminator;
 
-	/**
-	 * the user's 4-digit discord-tag
-	 * 
-	 * @var string
-	 */
-	public $discriminator;
+    /**
+     * the user's email.
+     *
+     * @var string
+     */
+    public $email;
 
-	/**
-	 * the user's email
-	 * 
-	 * @var string
-	 */
-	public $email;
+    /**
+     * the user's id.
+     *
+     * @var int
+     */
+    public $id;
 
-	/**
-	 * the user's id
-	 * 
-	 * @var int
-	 */
-	public $id;
+    /**
+     * whether the user has two factor enabled on their account.
+     *
+     * @var bool
+     */
+    public $mfa_enabled = false;
 
-	/**
-	 * whether the user has two factor enabled on their account
-	 * 
-	 * @var bool
-	 */
-	public $mfa_enabled = false;
+    /**
+     * the user's username, not unique across the platform.
+     *
+     * @var string
+     */
+    public $username;
 
-	/**
-	 * the user's username, not unique across the platform
-	 * 
-	 * @var string
-	 */
-	public $username;
+    /**
+     * whether the email on this account has been verified.
+     *
+     * @var bool
+     */
+    public $verified = false;
 
-	/**
-	 * whether the email on this account has been verified
-	 * 
-	 * @var bool
-	 */
-	public $verified = false;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }

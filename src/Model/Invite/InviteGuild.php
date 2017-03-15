@@ -14,51 +14,52 @@
 namespace RestCord\Model\Invite;
 
 /**
- * InviteGuild Model
+ * InviteGuild Model.
  */
-class InviteGuild {
+class InviteGuild
+{
+    /**
+     * hash of the guild icon (or null).
+     *
+     * @var string
+     */
+    public $icon;
 
-	/**
-	 * hash of the guild icon (or null)
-	 * 
-	 * @var string
-	 */
-	public $icon;
+    /**
+     * id of the guild.
+     *
+     * @var int
+     */
+    public $id;
 
-	/**
-	 * id of the guild
-	 * 
-	 * @var int
-	 */
-	public $id;
+    /**
+     * name of the guild.
+     *
+     * @var string
+     */
+    public $name;
 
-	/**
-	 * name of the guild
-	 * 
-	 * @var string
-	 */
-	public $name;
+    /**
+     * hash of the guild splash (or null).
+     *
+     * @var string
+     */
+    public $splash;
 
-	/**
-	 * hash of the guild splash (or null)
-	 * 
-	 * @var string
-	 */
-	public $splash;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }
