@@ -15,9 +15,14 @@
         "doctrine/common":            "^2.3",
         "netresearch/jsonmapper":     "^1.1"
     },
-    "autoload":    {
+    "autoload": {
         "psr-4": {
             "RestCord\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RestCord\\Test\\": "tests/"
         }
     },
     "license":     "MIT",
@@ -31,6 +36,7 @@
         "symfony/console":          "^2.6|^3.2",
         "beberlei/assert":          "^2.7",
         "gossi/php-code-generator": "^0.4.1",
-        "symfony/var-dumper":       "^3.2"
+        "symfony/var-dumper":       "^3.2",
+        "phpunit/phpunit": "^6.0"
     }
 }

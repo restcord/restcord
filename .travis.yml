@@ -13,4 +13,5 @@ install:
 
 script:
     - ./bin/lint src
+    - ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
     - php ./bin/stupidFunctionalTest.php $token $guild_id $channel_id || (sleep 5 && php ./bin/stupidFunctionalTest.php $token $guild_id $channel_id)
