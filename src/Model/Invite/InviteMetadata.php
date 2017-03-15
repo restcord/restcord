@@ -14,72 +14,73 @@
 namespace RestCord\Model\Invite;
 
 /**
- * InviteMetadata Model
+ * InviteMetadata Model.
  */
-class InviteMetadata {
+class InviteMetadata
+{
+    /**
+     * when this invite was created.
+     *
+     * @var \DateTime
+     */
+    public $created_at;
 
-	/**
-	 * when this invite was created
-	 * 
-	 * @var \DateTime
-	 */
-	public $created_at;
+    /**
+     * user who created the invite.
+     *
+     * @var array
+     */
+    public $inviter;
 
-	/**
-	 * user who created the invite
-	 * 
-	 * @var array
-	 */
-	public $inviter;
+    /**
+     * duration (in seconds) after which the invite expires.
+     *
+     * @var int
+     */
+    public $max_age;
 
-	/**
-	 * duration (in seconds) after which the invite expires
-	 * 
-	 * @var int
-	 */
-	public $max_age;
+    /**
+     * max number of times this invite can be used.
+     *
+     * @var int
+     */
+    public $max_uses;
 
-	/**
-	 * max number of times this invite can be used
-	 * 
-	 * @var int
-	 */
-	public $max_uses;
+    /**
+     * whether this invite is revoked.
+     *
+     * @var bool
+     */
+    public $revoked = false;
 
-	/**
-	 * whether this invite is revoked
-	 * 
-	 * @var bool
-	 */
-	public $revoked = false;
+    /**
+     * whether this invite only grants temporary membership.
+     *
+     * @var bool
+     */
+    public $temporary = false;
 
-	/**
-	 * whether this invite only grants temporary membership
-	 * 
-	 * @var bool
-	 */
-	public $temporary = false;
+    /**
+     * number of times this invite has been used.
+     *
+     * @var int
+     */
+    public $uses;
 
-	/**
-	 * number of times this invite has been used
-	 * 
-	 * @var int
-	 */
-	public $uses;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }
