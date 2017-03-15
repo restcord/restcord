@@ -14,80 +14,79 @@
 namespace RestCord\Model\Permissions;
 
 /**
- * Role Model.
+ * Role Model
  */
-class Role
-{
-    /**
-     * integer representation of hexadecimal color code.
-     *
-     * @var int
-     */
-    public $color;
+class Role {
 
-    /**
-     * if this role is pinned in the user listing.
-     *
-     * @var bool
-     */
-    public $hoist = false;
+	/**
+	 * integer representation of hexadecimal color code
+	 * 
+	 * @var int
+	 */
+	public $color;
 
-    /**
-     * role id.
-     *
-     * @var int
-     */
-    public $id;
+	/**
+	 * if this role is pinned in the user listing
+	 * 
+	 * @var bool
+	 */
+	public $hoist = false;
 
-    /**
-     * whether this role is managed by an integration.
-     *
-     * @var bool
-     */
-    public $managed = false;
+	/**
+	 * role id
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * whether this role is mentionable.
-     *
-     * @var bool
-     */
-    public $mentionable = false;
+	/**
+	 * whether this role is managed by an integration
+	 * 
+	 * @var bool
+	 */
+	public $managed = false;
 
-    /**
-     * role name.
-     *
-     * @var string
-     */
-    public $name;
+	/**
+	 * whether this role is mentionable
+	 * 
+	 * @var bool
+	 */
+	public $mentionable = false;
 
-    /**
-     * permission bit set.
-     *
-     * @var int
-     */
-    public $permissions;
+	/**
+	 * role name
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-    /**
-     * position of this role.
-     *
-     * @var int
-     */
-    public $position;
+	/**
+	 * permission bit set
+	 * 
+	 * @var int
+	 */
+	public $permissions;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * position of this role
+	 * 
+	 * @var int
+	 */
+	public $position;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }

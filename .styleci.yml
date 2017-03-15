@@ -16,5 +16,5 @@ disabled:
 
 finder:
   exclude:
-    - "src/Model/*"
+    - "src/Model/*/*"
     - "src/Interfaces/*"

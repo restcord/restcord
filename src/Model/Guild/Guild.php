@@ -14,192 +14,191 @@
 namespace RestCord\Model\Guild;
 
 /**
- * Guild Model.
+ * Guild Model
  */
-class Guild
-{
-    /**
-     * id of afk channel.
-     *
-     * @var int
-     */
-    public $afk_channel_id;
+class Guild {
 
-    /**
-     * afk timeout in seconds.
-     *
-     * @var int
-     */
-    public $afk_timeout;
+	/**
+	 * id of afk channel
+	 * 
+	 * @var int
+	 */
+	public $afk_channel_id;
 
-    /**
-     * array of channel objects.
-     *
-     * @var \RestCord\Model\Channel\GuildChannel[]
-     */
-    public $channels;
+	/**
+	 * afk timeout in seconds
+	 * 
+	 * @var int
+	 */
+	public $afk_timeout;
 
-    /**
-     * default message notifications level.
-     *
-     * @var int
-     */
-    public $default_message_notifications;
+	/**
+	 * array of channel objects
+	 * 
+	 * @var \RestCord\Model\Channel\GuildChannel[]
+	 */
+	public $channels;
 
-    /**
-     * id of embedded channel.
-     *
-     * @var int
-     */
-    public $embed_channel_id;
+	/**
+	 * default message notifications level
+	 * 
+	 * @var int
+	 */
+	public $default_message_notifications;
 
-    /**
-     * is this guild embeddable (e.g. widget).
-     *
-     * @var bool
-     */
-    public $embed_enabled = false;
+	/**
+	 * id of embedded channel
+	 * 
+	 * @var int
+	 */
+	public $embed_channel_id;
 
-    /**
-     * array of emoji objects.
-     *
-     * @var \RestCord\Model\Guild\Emoji[]
-     */
-    public $emojis;
+	/**
+	 * is this guild embeddable (e.g. widget)
+	 * 
+	 * @var bool
+	 */
+	public $embed_enabled = false;
 
-    /**
-     * array of guild features.
-     *
-     * @var array
-     */
-    public $features;
+	/**
+	 * array of emoji objects
+	 * 
+	 * @var \RestCord\Model\Guild\Emoji[]
+	 */
+	public $emojis;
 
-    /**
-     * icon hash.
-     *
-     * @var string
-     */
-    public $icon;
+	/**
+	 * array of guild features
+	 * 
+	 * @var array
+	 */
+	public $features;
 
-    /**
-     * guild id.
-     *
-     * @var int
-     */
-    public $id;
+	/**
+	 * icon hash
+	 * 
+	 * @var string
+	 */
+	public $icon;
 
-    /**
-     * date this guild was joined at.
-     *
-     * @var \DateTime
-     */
-    public $joined_at;
+	/**
+	 * guild id
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * whether this is considered a large guild.
-     *
-     * @var bool
-     */
-    public $large = false;
+	/**
+	 * date this guild was joined at
+	 * 
+	 * @var \DateTime
+	 */
+	public $joined_at;
 
-    /**
-     * total number of members in this guild.
-     *
-     * @var int
-     */
-    public $member_count;
+	/**
+	 * whether this is considered a large guild
+	 * 
+	 * @var bool
+	 */
+	public $large = false;
 
-    /**
-     * array of guild member objects.
-     *
-     * @var \RestCord\Model\Guild\GuildMember[]
-     */
-    public $members;
+	/**
+	 * total number of members in this guild
+	 * 
+	 * @var int
+	 */
+	public $member_count;
 
-    /**
-     * required MFA level for the guild.
-     *
-     * @var int
-     */
-    public $mfa_level;
+	/**
+	 * array of guild member objects
+	 * 
+	 * @var \RestCord\Model\Guild\GuildMember[]
+	 */
+	public $members;
 
-    /**
-     * guild name (2-100 characters).
-     *
-     * @var string
-     */
-    public $name;
+	/**
+	 * required MFA level for the guild
+	 * 
+	 * @var int
+	 */
+	public $mfa_level;
 
-    /**
-     * id of owner.
-     *
-     * @var int
-     */
-    public $owner_id;
+	/**
+	 * guild name (2-100 characters)
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-    /**
-     * array of simple presence objects, which share the same fields as Presence Update event sans a roles or guild_id key.
-     *
-     * @var array
-     */
-    public $presences;
+	/**
+	 * id of owner
+	 * 
+	 * @var int
+	 */
+	public $owner_id;
 
-    /**
-     * {voice_region.id}.
-     *
-     * @var string
-     */
-    public $region;
+	/**
+	 * array of simple presence objects, which share the same fields as Presence Update event sans a roles or guild_id key
+	 * 
+	 * @var array
+	 */
+	public $presences;
 
-    /**
-     * array of role objects.
-     *
-     * @var \RestCord\Model\Permissions\Role[]
-     */
-    public $roles;
+	/**
+	 * {voice_region.id}
+	 * 
+	 * @var string
+	 */
+	public $region;
 
-    /**
-     * splash hash.
-     *
-     * @var string
-     */
-    public $splash;
+	/**
+	 * array of role objects
+	 * 
+	 * @var \RestCord\Model\Permissions\Role[]
+	 */
+	public $roles;
 
-    /**
-     * is this guild unavailable.
-     *
-     * @var bool
-     */
-    public $unavailable = false;
+	/**
+	 * splash hash
+	 * 
+	 * @var string
+	 */
+	public $splash;
 
-    /**
-     * level of verification.
-     *
-     * @var int
-     */
-    public $verification_level;
+	/**
+	 * is this guild unavailable
+	 * 
+	 * @var bool
+	 */
+	public $unavailable = false;
 
-    /**
-     * array of voice state objects (without the guild_id key).
-     *
-     * @var \RestCord\Model\Voice\VoiceState[]
-     */
-    public $voice_states;
+	/**
+	 * level of verification
+	 * 
+	 * @var int
+	 */
+	public $verification_level;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * array of voice state objects (without the guild_id key)
+	 * 
+	 * @var \RestCord\Model\Voice\VoiceState[]
+	 */
+	public $voice_states;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }
