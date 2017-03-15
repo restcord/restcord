@@ -14,45 +14,44 @@
 namespace RestCord\Model\Gateway;
 
 /**
- * Game Model.
+ * Game Model
  */
-class Game
-{
-    /**
-     * the game's name.
-     *
-     * @var string
-     */
-    public $name;
+class Game {
 
-    /**
-     * see Game Types.
-     *
-     * @var int
-     */
-    public $type;
+	/**
+	 * the game's name
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-    /**
-     * stream url, is validated when type is 1.
-     *
-     * @var string
-     */
-    public $url;
+	/**
+	 * see Game Types
+	 * 
+	 * @var int
+	 */
+	public $type;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * stream url, is validated when type is 1
+	 * 
+	 * @var string
+	 */
+	public $url;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }
