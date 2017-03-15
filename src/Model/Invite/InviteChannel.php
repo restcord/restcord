@@ -14,45 +14,44 @@
 namespace RestCord\Model\Invite;
 
 /**
- * InviteChannel Model.
+ * InviteChannel Model
  */
-class InviteChannel
-{
-    /**
-     * id of the channel.
-     *
-     * @var int
-     */
-    public $id;
+class InviteChannel {
 
-    /**
-     * name of the channel.
-     *
-     * @var string
-     */
-    public $name;
+	/**
+	 * id of the channel
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * 'text' or 'voice'.
-     *
-     * @var string
-     */
-    public $type;
+	/**
+	 * name of the channel
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * 'text' or 'voice'
+	 * 
+	 * @var string
+	 */
+	public $type;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }

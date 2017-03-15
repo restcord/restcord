@@ -14,8 +14,7 @@
 namespace RestCord\Interfaces;
 
 /**
- * Oauth2 Intellisense Helper.
+ * Oauth2 Intellisense Helper
  */
-interface Oauth2
-{
+interface Oauth2 {
 }

@@ -14,66 +14,65 @@
 namespace RestCord\Model\Guild;
 
 /**
- * GuildMember Model.
+ * GuildMember Model
  */
-class GuildMember
-{
-    /**
-     * if the user is deafened.
-     *
-     * @var bool
-     */
-    public $deaf = false;
+class GuildMember {
 
-    /**
-     * date the user joined the guild.
-     *
-     * @var \DateTime
-     */
-    public $joined_at;
+	/**
+	 * if the user is deafened
+	 * 
+	 * @var bool
+	 */
+	public $deaf = false;
 
-    /**
-     * if the user is muted.
-     *
-     * @var bool
-     */
-    public $mute = false;
+	/**
+	 * date the user joined the guild
+	 * 
+	 * @var \DateTime
+	 */
+	public $joined_at;
 
-    /**
-     * this users guild nickname (if one is set).
-     *
-     * @var string
-     */
-    public $nick;
+	/**
+	 * if the user is muted
+	 * 
+	 * @var bool
+	 */
+	public $mute = false;
 
-    /**
-     * array of role object id's.
-     *
-     * @var int[]
-     */
-    public $roles;
+	/**
+	 * this users guild nickname (if one is set)
+	 * 
+	 * @var string
+	 */
+	public $nick;
 
-    /**
-     * user object.
-     *
-     * @var \RestCord\Model\User\User
-     */
-    public $user;
+	/**
+	 * array of role object id's
+	 * 
+	 * @var int[]
+	 */
+	public $roles;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * user object
+	 * 
+	 * @var \RestCord\Model\User\User
+	 */
+	public $user;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }

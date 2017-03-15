@@ -14,101 +14,100 @@
 namespace RestCord\Model\Channel;
 
 /**
- * GuildChannel Model.
+ * GuildChannel Model
  */
-class GuildChannel
-{
-    /**
-     * the bitrate (in bits) of the voice channel.
-     *
-     * @var int
-     */
-    public $bitrate;
+class GuildChannel {
 
-    /**
-     * the id of the guild.
-     *
-     * @var int
-     */
-    public $guild_id;
+	/**
+	 * the bitrate (in bits) of the voice channel
+	 * 
+	 * @var int
+	 */
+	public $bitrate;
 
-    /**
-     * the id of this channel (will be equal to the guild if it's the "general" channel).
-     *
-     * @var int
-     */
-    public $id;
+	/**
+	 * the id of the guild
+	 * 
+	 * @var int
+	 */
+	public $guild_id;
 
-    /**
-     * should always be false for guild channels.
-     *
-     * @var bool
-     */
-    public $is_private = false;
+	/**
+	 * the id of this channel (will be equal to the guild if it's the "general" channel)
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * the id of the last message sent in this channel.
-     *
-     * @var int
-     */
-    public $last_message_id;
+	/**
+	 * should always be false for guild channels
+	 * 
+	 * @var bool
+	 */
+	public $is_private = false;
 
-    /**
-     * the name of the channel (2-100 characters).
-     *
-     * @var string
-     */
-    public $name;
+	/**
+	 * the id of the last message sent in this channel
+	 * 
+	 * @var int
+	 */
+	public $last_message_id;
 
-    /**
-     * an array of overwrite objects.
-     *
-     * @var \RestCord\Model\Channel\Overwrite[]
-     */
-    public $permission_overwrites;
+	/**
+	 * the name of the channel (2-100 characters)
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-    /**
-     * sorting position of the channel.
-     *
-     * @var int
-     */
-    public $position;
+	/**
+	 * an array of overwrite objects
+	 * 
+	 * @var \RestCord\Model\Channel\Overwrite[]
+	 */
+	public $permission_overwrites;
 
-    /**
-     * the channel topic (0-1024 characters).
-     *
-     * @var string
-     */
-    public $topic;
+	/**
+	 * sorting position of the channel
+	 * 
+	 * @var int
+	 */
+	public $position;
 
-    /**
-     * "text" or "voice".
-     *
-     * @var string
-     */
-    public $type;
+	/**
+	 * the channel topic (0-1024 characters)
+	 * 
+	 * @var string
+	 */
+	public $topic;
 
-    /**
-     * the user limit of the voice channel.
-     *
-     * @var int
-     */
-    public $user_limit;
+	/**
+	 * "text" or "voice"
+	 * 
+	 * @var string
+	 */
+	public $type;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * the user limit of the voice channel
+	 * 
+	 * @var int
+	 */
+	public $user_limit;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }

@@ -14,59 +14,58 @@
 namespace RestCord\Model\Channel;
 
 /**
- * Reaction Model.
+ * Reaction Model
  */
-class Reaction
-{
-    /**
-     * times this emoji has been used to react.
-     *
-     * @var int
-     */
-    public $count;
+class Reaction {
 
-    /**
-     * emoji information.
-     *
-     * @var array
-     */
-    public $emoji;
+	/**
+	 * times this emoji has been used to react
+	 * 
+	 * @var int
+	 */
+	public $count;
 
-    /**
-     * id of emoji (if custom emoji).
-     *
-     * @var int
-     */
-    public $id;
+	/**
+	 * emoji information
+	 * 
+	 * @var array
+	 */
+	public $emoji;
 
-    /**
-     * whether the current user reacted using this emoji.
-     *
-     * @var bool
-     */
-    public $me = false;
+	/**
+	 * id of emoji (if custom emoji)
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * name of emoji.
-     *
-     * @var string
-     */
-    public $name;
+	/**
+	 * whether the current user reacted using this emoji
+	 * 
+	 * @var bool
+	 */
+	public $me = false;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * name of emoji
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }

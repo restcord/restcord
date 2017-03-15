@@ -14,38 +14,37 @@
 namespace RestCord\Model\Guild;
 
 /**
- * UnavailableGuild Model.
+ * UnavailableGuild Model
  */
-class UnavailableGuild
-{
-    /**
-     * guild id.
-     *
-     * @var int
-     */
-    public $id;
+class UnavailableGuild {
 
-    /**
-     * should always be true.
-     *
-     * @var bool
-     */
-    public $unavailable = false;
+	/**
+	 * guild id
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * should always be true
+	 * 
+	 * @var bool
+	 */
+	public $unavailable = false;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }

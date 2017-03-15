@@ -14,38 +14,37 @@
 namespace RestCord\Model\Guild;
 
 /**
- * IntegrationAccount Model.
+ * IntegrationAccount Model
  */
-class IntegrationAccount
-{
-    /**
-     * id of the account.
-     *
-     * @var string
-     */
-    public $id;
+class IntegrationAccount {
 
-    /**
-     * name of the account.
-     *
-     * @var string
-     */
-    public $name;
+	/**
+	 * id of the account
+	 * 
+	 * @var string
+	 */
+	public $id;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * name of the account
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }
