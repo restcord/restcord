@@ -14,100 +14,101 @@
 namespace RestCord\Model\Guild;
 
 /**
- * Integration Model
+ * Integration Model.
  */
-class Integration {
+class Integration
+{
+    /**
+     * integration account information.
+     *
+     * @var array
+     */
+    public $account;
 
-	/**
-	 * integration account information
-	 * 
-	 * @var array
-	 */
-	public $account;
+    /**
+     * is this integration enabled.
+     *
+     * @var bool
+     */
+    public $enabled = false;
 
-	/**
-	 * is this integration enabled
-	 * 
-	 * @var bool
-	 */
-	public $enabled = false;
+    /**
+     * the behavior of expiring subscribers.
+     *
+     * @var int
+     */
+    public $expire_behavior;
 
-	/**
-	 * the behavior of expiring subscribers
-	 * 
-	 * @var int
-	 */
-	public $expire_behavior;
+    /**
+     * the grace period before expiring subscribers.
+     *
+     * @var int
+     */
+    public $expire_grace_period;
 
-	/**
-	 * the grace period before expiring subscribers
-	 * 
-	 * @var int
-	 */
-	public $expire_grace_period;
+    /**
+     * integration id.
+     *
+     * @var int
+     */
+    public $id;
 
-	/**
-	 * integration id
-	 * 
-	 * @var int
-	 */
-	public $id;
+    /**
+     * integration name.
+     *
+     * @var string
+     */
+    public $name;
 
-	/**
-	 * integration name
-	 * 
-	 * @var string
-	 */
-	public $name;
+    /**
+     * id that this integration uses for "subscribers".
+     *
+     * @var int
+     */
+    public $role_id;
 
-	/**
-	 * id that this integration uses for "subscribers"
-	 * 
-	 * @var int
-	 */
-	public $role_id;
+    /**
+     * when this integration was last synced.
+     *
+     * @var int
+     */
+    public $synced_at;
 
-	/**
-	 * when this integration was last synced
-	 * 
-	 * @var int
-	 */
-	public $synced_at;
+    /**
+     * is this integration syncing.
+     *
+     * @var bool
+     */
+    public $syncing = false;
 
-	/**
-	 * is this integration syncing
-	 * 
-	 * @var bool
-	 */
-	public $syncing = false;
+    /**
+     * integration type (twitch, youtube, etc).
+     *
+     * @var string
+     */
+    public $type;
 
-	/**
-	 * integration type (twitch, youtube, etc)
-	 * 
-	 * @var string
-	 */
-	public $type;
+    /**
+     * user for this integration.
+     *
+     * @var array
+     */
+    public $user;
 
-	/**
-	 * user for this integration
-	 * 
-	 * @var array
-	 */
-	public $user;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }
