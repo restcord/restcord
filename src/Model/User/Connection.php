@@ -14,58 +14,59 @@
 namespace RestCord\Model\User;
 
 /**
- * Connection Model
+ * Connection Model.
  */
-class Connection {
+class Connection
+{
+    /**
+     * id of the connection account.
+     *
+     * @var string
+     */
+    public $id;
 
-	/**
-	 * id of the connection account
-	 * 
-	 * @var string
-	 */
-	public $id;
+    /**
+     * an array of partial server integrations.
+     *
+     * @var array
+     */
+    public $integrations;
 
-	/**
-	 * an array of partial server integrations
-	 * 
-	 * @var array
-	 */
-	public $integrations;
+    /**
+     * the username of the connection account.
+     *
+     * @var string
+     */
+    public $name;
 
-	/**
-	 * the username of the connection account
-	 * 
-	 * @var string
-	 */
-	public $name;
+    /**
+     * whether the connection is revoked.
+     *
+     * @var bool
+     */
+    public $revoked = false;
 
-	/**
-	 * whether the connection is revoked
-	 * 
-	 * @var bool
-	 */
-	public $revoked = false;
+    /**
+     * the service of the connection (twitch, youtube).
+     *
+     * @var string
+     */
+    public $type;
 
-	/**
-	 * the service of the connection (twitch, youtube)
-	 * 
-	 * @var string
-	 */
-	public $type;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }
