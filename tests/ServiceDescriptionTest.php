@@ -1,12 +1,14 @@
 <?php
 
 /*
- * This file is part of php-restcord.
- *
- * (c) Aaron Scherer <aequasi@gmail.com>
+ * Copyright 2017 Aaron Scherer
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
  */
 
 namespace RestCord\Tests;
@@ -43,25 +45,25 @@ class ServiceDescriptionTest extends TestCase
 
     public function testBaseUri()
     {
-        $this->assertEquals("https://discordapp.com/api/v6", $this->description['baseUri']);
+        $this->assertEquals('https://discordapp.com/api/v6', $this->description['baseUri']);
     }
 
     public function testVersion()
     {
-        $this->assertEquals("6", $this->description['version']);
+        $this->assertEquals('6', $this->description['version']);
     }
 
     public function testOperationCategories()
     {
         foreach ($this->description['operations'] as $category => $operations) {
-            $class = "\\RestCord\\Interfaces\\".ucwords($category);
+            $class = '\\RestCord\\Interfaces\\'.ucwords($category);
             $this->assertTrue(interface_exists($class), 'Could not find interface: '.$class);
 
             $refl = new \ReflectionClass($class);
             foreach ($operations as $method => $operation) {
                 $this->assertTrue($refl->hasMethod($method));
                 $reflMethod = $refl->getMethod($method);
-                if (isset($operation['responseTypes']) && sizeof($operation['responseTypes']) >= 1) {
+                if (isset($operation['responseTypes']) && count($operation['responseTypes']) >= 1) {
                     $firstType = $operation['responseTypes'][0]['type'];
                     $array     = stripos($firstType, 'Array<') !== false;
                     if ($array) {
@@ -69,7 +71,7 @@ class ServiceDescriptionTest extends TestCase
                     }
 
                     $returnType = sprintf(
-                        "\\RestCord\\Model\\%s\\%s",
+                        '\\RestCord\\Model\\%s\\%s',
                         ucwords($category),
                         str_replace(
                             ' ',
@@ -81,7 +83,7 @@ class ServiceDescriptionTest extends TestCase
                     $returnType = $this->mapBadDocs($returnType);
 
                     if (!class_exists($returnType)) {
-                        $returnType = "\\".Result::class;
+                        $returnType = '\\'.Result::class;
                     }
 
                     $returnType .= $array ? '[]' : '';
@@ -95,7 +97,7 @@ class ServiceDescriptionTest extends TestCase
     public function testModels()
     {
         foreach ($this->description['models'] as $category => $models) {
-            $namespace = "\\RestCord\\Model\\".ucwords($category)."\\";
+            $namespace = '\\RestCord\\Model\\'.ucwords($category).'\\';
 
             foreach ($models as $method => $data) {
                 $class = $namespace.ucwords($method);
@@ -138,7 +140,7 @@ class ServiceDescriptionTest extends TestCase
         $regex   = '/@return ([\\\\A-Za-z\[\]]+)/';
         preg_match($regex, $comment, $matches);
         if (empty($matches)) {
-            return null;
+            return;
         }
 
         return $matches[1];
