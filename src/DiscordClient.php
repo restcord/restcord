@@ -230,7 +230,7 @@ class DiscordClient
      * @internal param RequestInterface $request
      */
     private function convertResponseToResult(
-        string $category,
+        $category,
         array $description,
         ResponseInterface $response,
         CommandInterface $command
