@@ -274,7 +274,7 @@ class DiscordClient
         return $mapper->map($data, new $class());
     }
 
-    private function mapBadDocs(string $cls)
+    private function mapBadDocs($cls)
     {
         switch ($cls) {
             case '\RestCord\Model\User\DmChannel':
