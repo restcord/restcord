@@ -14,58 +14,59 @@
 namespace RestCord\Model\User;
 
 /**
- * UserGuild Model
+ * UserGuild Model.
  */
-class UserGuild {
+class UserGuild
+{
+    /**
+     * guild.icon.
+     *
+     * @var string
+     */
+    public $icon;
 
-	/**
-	 * guild.icon
-	 * 
-	 * @var string
-	 */
-	public $icon;
+    /**
+     * guild.id.
+     *
+     * @var int
+     */
+    public $id;
 
-	/**
-	 * guild.id
-	 * 
-	 * @var int
-	 */
-	public $id;
+    /**
+     * guild.name.
+     *
+     * @var string
+     */
+    public $name;
 
-	/**
-	 * guild.name
-	 * 
-	 * @var string
-	 */
-	public $name;
+    /**
+     * true if the user is an owner of the guild.
+     *
+     * @var bool
+     */
+    public $owner = false;
 
-	/**
-	 * true if the user is an owner of the guild
-	 * 
-	 * @var bool
-	 */
-	public $owner = false;
+    /**
+     * bitwise of the user's enabled/disabled permissions.
+     *
+     * @var int
+     */
+    public $permissions;
 
-	/**
-	 * bitwise of the user's enabled/disabled permissions
-	 * 
-	 * @var int
-	 */
-	public $permissions;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }

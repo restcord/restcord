@@ -14,72 +14,73 @@
 namespace RestCord\Model\Channel;
 
 /**
- * Attachment Model
+ * Attachment Model.
  */
-class Attachment {
+class Attachment
+{
+    /**
+     * name of file attached.
+     *
+     * @var string
+     */
+    public $filename;
 
-	/**
-	 * name of file attached
-	 * 
-	 * @var string
-	 */
-	public $filename;
+    /**
+     * height of file (if image).
+     *
+     * @var int
+     */
+    public $height;
 
-	/**
-	 * height of file (if image)
-	 * 
-	 * @var int
-	 */
-	public $height;
+    /**
+     * attachment id.
+     *
+     * @var int
+     */
+    public $id;
 
-	/**
-	 * attachment id
-	 * 
-	 * @var int
-	 */
-	public $id;
+    /**
+     * a proxied url of file.
+     *
+     * @var string
+     */
+    public $proxy_url;
 
-	/**
-	 * a proxied url of file
-	 * 
-	 * @var string
-	 */
-	public $proxy_url;
+    /**
+     * size of file in bytes.
+     *
+     * @var int
+     */
+    public $size;
 
-	/**
-	 * size of file in bytes
-	 * 
-	 * @var int
-	 */
-	public $size;
+    /**
+     * source url of file.
+     *
+     * @var string
+     */
+    public $url;
 
-	/**
-	 * source url of file
-	 * 
-	 * @var string
-	 */
-	public $url;
+    /**
+     * width of file (if image).
+     *
+     * @var int
+     */
+    public $width;
 
-	/**
-	 * width of file (if image)
-	 * 
-	 * @var int
-	 */
-	public $width;
+    /**
+     * @param array $content
+     */
+    public function __construct(array $content = null)
+    {
+        if (null === $content) {
+            return;
+        }
 
-	/**
-	 * @param array $content
-	 */
-	public function __construct(array $content = null) {
-		if (null === $content) {
-		    return;
-		}
-		                    
-		foreach ($content as $key => $value) {
-		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-		    if (property_exists($this, $key)) {
-		        $this->{$key} = $value;
-		    }
-		}
-	}
+        foreach ($content as $key => $value) {
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
 }
