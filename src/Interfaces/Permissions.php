@@ -14,7 +14,8 @@
 namespace RestCord\Interfaces;
 
 /**
- * Permissions Intellisense Helper
+ * Permissions Intellisense Helper.
  */
-interface Permissions {
+interface Permissions
+{
 }
