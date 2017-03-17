@@ -14,59 +14,58 @@
 namespace RestCord\Model\Guild;
 
 /**
- * Emoji Model.
+ * Emoji Model
  */
-class Emoji
-{
-    /**
-     * emoji id.
-     *
-     * @var int
-     */
-    public $id;
+class Emoji {
 
-    /**
-     * whether this emoji is managed.
-     *
-     * @var bool
-     */
-    public $managed = false;
+	/**
+	 * emoji id
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * emoji name.
-     *
-     * @var string
-     */
-    public $name;
+	/**
+	 * whether this emoji is managed
+	 * 
+	 * @var bool
+	 */
+	public $managed = false;
 
-    /**
-     * whether this emoji must be wrapped in colons.
-     *
-     * @var bool
-     */
-    public $require_colons = false;
+	/**
+	 * emoji name
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-    /**
-     * roles this emoji is active for.
-     *
-     * @var array
-     */
-    public $roles;
+	/**
+	 * whether this emoji must be wrapped in colons
+	 * 
+	 * @var bool
+	 */
+	public $require_colons = false;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * roles this emoji is active for
+	 * 
+	 * @var array
+	 */
+	public $roles;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }

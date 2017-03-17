@@ -14,178 +14,177 @@
 namespace RestCord\Model\Channel;
 
 /**
- * Embed Model.
+ * Embed Model
  */
-class Embed
-{
-    /**
-     * author information.
-     *
-     * @var array
-     */
-    public $author;
+class Embed {
 
-    /**
-     * color code of the embed.
-     *
-     * @var int
-     */
-    public $color;
+	/**
+	 * author information
+	 * 
+	 * @var array
+	 */
+	public $author;
 
-    /**
-     * description of embed.
-     *
-     * @var string
-     */
-    public $description;
+	/**
+	 * color code of the embed
+	 * 
+	 * @var int
+	 */
+	public $color;
 
-    /**
-     * fields information.
-     *
-     * @var array
-     */
-    public $fields;
+	/**
+	 * description of embed
+	 * 
+	 * @var string
+	 */
+	public $description;
 
-    /**
-     * footer information.
-     *
-     * @var array
-     */
-    public $footer;
+	/**
+	 * fields information
+	 * 
+	 * @var array
+	 */
+	public $fields;
 
-    /**
-     * height of image.
-     *
-     * @var int
-     */
-    public $height;
+	/**
+	 * footer information
+	 * 
+	 * @var array
+	 */
+	public $footer;
 
-    /**
-     * url of footer icon (only supports http(s) and attachments).
-     *
-     * @var string
-     */
-    public $icon_url;
+	/**
+	 * height of image
+	 * 
+	 * @var int
+	 */
+	public $height;
 
-    /**
-     * image information.
-     *
-     * @var array
-     */
-    public $image;
+	/**
+	 * url of footer icon (only supports http(s) and attachments)
+	 * 
+	 * @var string
+	 */
+	public $icon_url;
 
-    /**
-     * whether or not this field should display inline.
-     *
-     * @var bool
-     */
-    public $inline = false;
+	/**
+	 * image information
+	 * 
+	 * @var array
+	 */
+	public $image;
 
-    /**
-     * name of the field.
-     *
-     * @var string
-     */
-    public $name;
+	/**
+	 * whether or not this field should display inline
+	 * 
+	 * @var bool
+	 */
+	public $inline = false;
 
-    /**
-     * provider information.
-     *
-     * @var array
-     */
-    public $provider;
+	/**
+	 * name of the field
+	 * 
+	 * @var string
+	 */
+	public $name;
 
-    /**
-     * a proxied url of footer icon.
-     *
-     * @var string
-     */
-    public $proxy_icon_url;
+	/**
+	 * provider information
+	 * 
+	 * @var array
+	 */
+	public $provider;
 
-    /**
-     * a proxied url of the image.
-     *
-     * @var string
-     */
-    public $proxy_url;
+	/**
+	 * a proxied url of footer icon
+	 * 
+	 * @var string
+	 */
+	public $proxy_icon_url;
 
-    /**
-     * footer text.
-     *
-     * @var string
-     */
-    public $text;
+	/**
+	 * a proxied url of the image
+	 * 
+	 * @var string
+	 */
+	public $proxy_url;
 
-    /**
-     * thumbnail information.
-     *
-     * @var array
-     */
-    public $thumbnail;
+	/**
+	 * footer text
+	 * 
+	 * @var string
+	 */
+	public $text;
 
-    /**
-     * timestamp of embed content.
-     *
-     * @var date
-     */
-    public $timestamp;
+	/**
+	 * thumbnail information
+	 * 
+	 * @var array
+	 */
+	public $thumbnail;
 
-    /**
-     * title of embed.
-     *
-     * @var string
-     */
-    public $title;
+	/**
+	 * timestamp of embed content
+	 * 
+	 * @var date
+	 */
+	public $timestamp;
 
-    /**
-     * type of embed (always "rich" for webhook embeds).
-     *
-     * @var string
-     */
-    public $type;
+	/**
+	 * title of embed
+	 * 
+	 * @var string
+	 */
+	public $title;
 
-    /**
-     * url of author.
-     *
-     * @var string
-     */
-    public $url;
+	/**
+	 * type of embed (always "rich" for webhook embeds)
+	 * 
+	 * @var string
+	 */
+	public $type;
 
-    /**
-     * value of the field.
-     *
-     * @var string
-     */
-    public $value;
+	/**
+	 * url of author
+	 * 
+	 * @var string
+	 */
+	public $url;
 
-    /**
-     * video information.
-     *
-     * @var array
-     */
-    public $video;
+	/**
+	 * value of the field
+	 * 
+	 * @var string
+	 */
+	public $value;
 
-    /**
-     * width of image.
-     *
-     * @var int
-     */
-    public $width;
+	/**
+	 * video information
+	 * 
+	 * @var array
+	 */
+	public $video;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * width of image
+	 * 
+	 * @var int
+	 */
+	public $width;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }
