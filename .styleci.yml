@@ -16,14 +16,5 @@ disabled:
 
 finder:
   exclude:
-    - "src/Model/*/*"
-    - "src/Model/**/"
-    - "src/Model/Channel/*"
-    - "src/Model/Gateway/*"
-    - "src/Model/Guild/*"
-    - "src/Model/Invite/*"
-    - "src/Model/Permissions/*"
-    - "src/Model/User/*"
-    - "src/Model/Voice/*"
-    - "src/Model/Webhook/*"
-    - "src/Interfaces/*"
+    - "src/Model"
+    - "src/Interfaces"
