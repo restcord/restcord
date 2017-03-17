@@ -14,52 +14,51 @@
 namespace RestCord\Model\Channel;
 
 /**
- * Overwrite Model.
+ * Overwrite Model
  */
-class Overwrite
-{
-    /**
-     * permission bit set.
-     *
-     * @var int
-     */
-    public $allow;
+class Overwrite {
 
-    /**
-     * permission bit set.
-     *
-     * @var int
-     */
-    public $deny;
+	/**
+	 * permission bit set
+	 * 
+	 * @var int
+	 */
+	public $allow;
 
-    /**
-     * role or user id.
-     *
-     * @var int
-     */
-    public $id;
+	/**
+	 * permission bit set
+	 * 
+	 * @var int
+	 */
+	public $deny;
 
-    /**
-     * either "role" or "member".
-     *
-     * @var string
-     */
-    public $type;
+	/**
+	 * role or user id
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * either "role" or "member"
+	 * 
+	 * @var string
+	 */
+	public $type;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }

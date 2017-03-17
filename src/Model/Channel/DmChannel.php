@@ -14,52 +14,51 @@
 namespace RestCord\Model\Channel;
 
 /**
- * DmChannel Model.
+ * DmChannel Model
  */
-class DmChannel
-{
-    /**
-     * the id of this private message.
-     *
-     * @var int
-     */
-    public $id;
+class DmChannel {
 
-    /**
-     * should always be true for DM channels.
-     *
-     * @var bool
-     */
-    public $is_private = false;
+	/**
+	 * the id of this private message
+	 * 
+	 * @var int
+	 */
+	public $id;
 
-    /**
-     * the id of the last message sent in this DM.
-     *
-     * @var int
-     */
-    public $last_message_id;
+	/**
+	 * should always be true for DM channels
+	 * 
+	 * @var bool
+	 */
+	public $is_private = false;
 
-    /**
-     * the user object of the DM recipient.
-     *
-     * @var array
-     */
-    public $recipient;
+	/**
+	 * the id of the last message sent in this DM
+	 * 
+	 * @var int
+	 */
+	public $last_message_id;
 
-    /**
-     * @param array $content
-     */
-    public function __construct(array $content = null)
-    {
-        if (null === $content) {
-            return;
-        }
+	/**
+	 * the user object of the DM recipient
+	 * 
+	 * @var array
+	 */
+	public $recipient;
 
-        foreach ($content as $key => $value) {
-            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
-    }
+	/**
+	 * @param array $content
+	 */
+	public function __construct(array $content = null) {
+		if (null === $content) {
+		    return;
+		}
+		                    
+		foreach ($content as $key => $value) {
+		    $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+		    if (property_exists($this, $key)) {
+		        $this->{$key} = $value;
+		    }
+		}
+	}
 }
