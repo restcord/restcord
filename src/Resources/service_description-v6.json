@@ -322,9 +322,9 @@
                     },
                     "after": {
                         "location": "query",
-                        "type": "integer",
+                        "type": "snowflake",
                         "description": "the highest user id in the previous page",
-                        "default": 0
+                        "default": "0"
                     }
                 }
             },
@@ -427,7 +427,7 @@
                     "roles": {
                         "location": "json",
                         "type": "array",
-                        "description": "array of roles the member is assigned",
+                        "description": "array of role ids the member is assigned",
                         "extra": {
                             "Permission": "MANAGE_ROLES"
                         }
@@ -1502,7 +1502,12 @@
                     "content": {
                         "location": "json",
                         "type": "string",
-                        "description": "the new message contents"
+                        "description": "the new message contents (up to 2000 characters)"
+                    },
+                    "embed": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "embedded rich content"
                     }
                 }
             },

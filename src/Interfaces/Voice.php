@@ -14,16 +14,15 @@
 namespace RestCord\Interfaces;
 
 /**
- * Voice Intellisense Helper.
+ * Voice Intellisense Helper
  */
-interface Voice
-{
-    /**
-     * @see https://discordapp.com/developers/docs/resources/voice#list-voice-regions
-     *
-     * @param array $options []
-     *
-     * @return \GuzzleHttp\Command\Result Returns an array of voice region objects that can be used when creating servers.
-     */
-    public function listVoiceRegions(array $options);
+interface Voice {
+
+	/**
+	 * @see https://discordapp.com/developers/docs/resources/voice#list-voice-regions
+	 * 
+	 * @param array $options []
+	 * @return \GuzzleHttp\Command\Result Returns an array of voice region objects that can be used when creating servers.
+	 */
+	public function listVoiceRegions(array $options);
 }
