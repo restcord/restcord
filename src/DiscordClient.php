@@ -156,17 +156,10 @@ class DiscordClient
                 function (Options $options, $value) {
                     if (0 === stripos($value, 'Bot ')) {
                         $value                = substr($value, 4);
-                        $options['tokenType'] = 'Bot';
                     }
                     if (0 === stripos($value, 'Bearer ')) {
                         $value                = substr($value, 7);
-                        $options['tokenType'] = 'OAuth';
                     }
-
-                    if (empty($value)) {
-                        $options['tokenType'] = 'None';
-                    }
-
                     return $value;
                 }
             )
@@ -176,13 +169,14 @@ class DiscordClient
                     if ($options['token'] !== null && $value === 'None') {
                         $value = 'Bot';
                     }
-
+                    if ($options['tokenType'] === 'OAuth') {
+                        $value = 'Bearer';
+                    }
                     if ($value !== 'User') {
                         $value .= ' ';
                     } else {
                         $value = '';
                     }
-
                     return $value;
                 }
             );
