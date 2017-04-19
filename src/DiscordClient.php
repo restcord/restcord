@@ -160,7 +160,7 @@ class DiscordClient
                     if (0 === stripos($value, 'Bearer ')) {
                         $value                = substr($value, 7);
                     }
-                    
+
                     return $value;
                 }
             )
@@ -178,7 +178,7 @@ class DiscordClient
                     } else {
                         $value = '';
                     }
-                    
+
                     return $value;
                 }
             );
