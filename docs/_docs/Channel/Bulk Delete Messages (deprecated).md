@@ -1,13 +1,13 @@
 ---
 title: Bulk Delete Messages (Deprecated)
 category: Channel
-order: 15
+order: 14
 ---
 
-# `bulkDeleteMessagesDeprecated`
+# `bulkDeleteMessages`
 
 ```php
-$client->channel->bulkDeleteMessagesDeprecated($parameters);
+$client->channel->bulkDeleteMessages($parameters);
 ```
 
 ## Description

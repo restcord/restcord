@@ -1,7 +1,7 @@
 ---
 title: Create Channel Invite
 category: Channel
-order: 18
+order: 17
 ---
 
 # `createChannelInvite`

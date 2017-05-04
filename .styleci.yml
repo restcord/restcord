@@ -16,4 +16,5 @@ disabled:
 
 finder:
   exclude:
-    - "src/Mock/*"
+    - "src/Model"
+    - "src/Interfaces"

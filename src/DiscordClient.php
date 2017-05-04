@@ -14,30 +14,34 @@
 namespace RestCord;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Command\Result;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Monolog\Logger;
+use Psr\Http\Message\ResponseInterface;
 use RestCord\Logging\MessageFormatter;
 use RestCord\RateLimit\RateLimiter;
 use RestCord\RateLimit\RateLimitProvider;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use function GuzzleHttp\json_decode;
 
 /**
  * @author Aaron Scherer <aequasi@gmail.com>
  *
  * Client Class
  *
- * @property Mock\Channel channel
- * @property Mock\Gateway gateway
- * @property Mock\Guild   guild
- * @property Mock\Invite  invite
- * @property Mock\Oauth2  oauth2
- * @property Mock\User    user
- * @property Mock\Voice   voice
- * @property Mock\Webhook webhook
+ * @property Interfaces\Channel channel
+ * @property Interfaces\Gateway gateway
+ * @property Interfaces\Guild   guild
+ * @property Interfaces\Invite  invite
+ * @property Interfaces\Oauth2  oauth2
+ * @property Interfaces\User    user
+ * @property Interfaces\Voice   voice
+ * @property Interfaces\Webhook webhook
  */
 class DiscordClient
 {
@@ -87,9 +91,10 @@ class DiscordClient
                 new MessageFormatter('{url} {request}', $this->options['token'])
             )
         );
-        $defaultGuzzleOptions = [
+
+        $defaultGuzzleOptions           = [
             'headers'     => [
-                'Authorization' => $this->options['tokenType'].$this->options['token'],
+                'Authorization' => $this->getAuthorizationHeader($this->options['tokenType'], $this->options['token']),
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                 'Content-Type'  => 'application/json',
             ],
@@ -101,6 +106,22 @@ class DiscordClient
         $client = new Client($this->options['guzzleOptions']);
 
         $this->buildDescriptions($client);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @throws \Exception
+     *
+     * @return GuzzleClient
+     */
+    public function __get($name)
+    {
+        if (!isset($this->categories[$name])) {
+            throw new \Exception('No category with the name: '.$name);
+        }
+
+        return $this->categories[$name];
     }
 
     /**
@@ -117,8 +138,9 @@ class DiscordClient
                 'version'          => $currentVersion,
                 'logger'           => new Logger('Logger'),
                 'throwOnRatelimit' => false,
-                'apiUrl'           => 'https://discordapp.com/api/v'.$currentVersion,
+                'apiUrl'           => "https://discordapp.com/api/v{$currentVersion}/",
                 'tokenType'        => 'None',
+                'cacheDir'         => __DIR__.'/../../../cache/',
                 'guzzleOptions'    => [],
             ]
         )
@@ -170,22 +192,6 @@ class DiscordClient
     }
 
     /**
-     * @param string $name
-     *
-     * @throws \Exception
-     *
-     * @return GuzzleClient
-     */
-    public function __get($name)
-    {
-        if (!isset($this->categories[$name])) {
-            throw new \Exception('No category with the name: '.$name);
-        }
-
-        return $this->categories[$name];
-    }
-
-    /**
      * @param Client $client
      */
     private function buildDescriptions(Client $client)
@@ -203,11 +209,94 @@ class DiscordClient
         foreach ($description['operations'] as $category => $operations) {
             $this->categories[$category] = new GuzzleClient(
                 $client,
-                new Description(
-                    array_merge($base, ['operations' => $this->prepareOperations($operations)])
-                )
+                new Description(array_merge($base, ['operations' => $this->prepareOperations($operations)])),
+                null,
+                function ($res, $req, $com) use ($category, $description) {
+                    return $this->convertResponseToResult($category, $description, $res, $com);
+                }
             );
         }
+    }
+
+    /**
+     * @param string            $category
+     * @param array             $description
+     * @param ResponseInterface $response
+     * @param CommandInterface  $command
+     *
+     * @throws \Exception
+     *
+     * @return Result|mixed
+     *
+     * @internal param RequestInterface $request
+     */
+    private function convertResponseToResult(
+        $category,
+        array $description,
+        ResponseInterface $response,
+        CommandInterface $command
+    ) {
+        if ($response->getStatusCode() >= 400) {
+            throw new \Exception($response->getBody()->__toString(), $response->getStatusCode());
+        }
+
+        $operation = $description['operations'][$category][$command->getName()];
+        if (!isset($operation['responseTypes']) || count($operation['responseTypes']) === 0) {
+            try {
+                $content = $response->getBody()->__toString();
+                if (empty($content)) {
+                    $content = '{}';
+                }
+
+                return new Result(json_decode($content, true));
+            } catch (\Exception $e) {
+                dump($response->getBody()->__toString());
+                throw $e;
+            }
+        }
+
+        $data      = json_decode($response->getBody()->__toString());
+        $firstType = $operation['responseTypes'][0];
+        $class     = $this->mapBadDocs(
+            sprintf(
+                '\\RestCord\\Model\\%s\\%s',
+                ucwords($category),
+                ucwords(explode('/', $firstType['type'])[1])
+            )
+        );
+
+        if (!class_exists($class)) {
+            return new Result($data);
+        }
+
+        $mapper                   = new \JsonMapper();
+        $mapper->bStrictNullTypes = false;
+
+        return $mapper->map($data, new $class());
+    }
+
+    private function mapBadDocs($cls)
+    {
+        switch ($cls) {
+            case '\RestCord\Model\User\DmChannel':
+                $cls = '\RestCord\Model\Channel\DmChannel';
+                break;
+            case '\RestCord\Model\Channel\Invite':
+            case '\RestCord\Model\Guild\Invite':
+                $cls = '\RestCord\Model\Invite\Invite';
+                break;
+            case '\RestCord\Model\Guild\GuildChannel':
+                $cls = '\RestCord\Model\Channel\GuildChannel';
+                break;
+            case '\RestCord\Model\Guild\User':
+            case '\RestCord\Model\Channel\User':
+                $cls = '\RestCord\Model\User\User';
+                break;
+            default:
+                return $cls;
+        }
+
+        return $cls;
     }
 
     /**
@@ -224,7 +313,7 @@ class DiscordClient
             $config['httpMethod'] = strtoupper($config['method']);
             unset($config['method']);
 
-            if (count($config['responseTypes']) === 1) {
+            if (isset($config['responseTypes']) && count($config['responseTypes']) === 1) {
                 $class = ucwords($config['category']).'\\';
                 $class .= str_replace(' ', '', ucwords($config['responseTypes'][0]['name']));
 
@@ -316,5 +405,27 @@ class DiscordClient
         $models['Guild\\Channel'] = $models['Channel\\GuildChannel'];
 
         return $models;
+    }
+
+    /**
+     * @param string $tokenType
+     * @param string $token
+     *
+     * @return string
+     */
+    private function getAuthorizationHeader($tokenType, $token)
+    {
+        switch ($tokenType) {
+            default:
+                $authorization = 'Bot ';
+                break;
+            case 'User':
+                $authorization = '';
+                break;
+            case 'OAuth':
+                $authorization = 'Bearer ';
+        }
+
+        return $authorization.$token;
     }
 }

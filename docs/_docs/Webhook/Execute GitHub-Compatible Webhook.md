@@ -4,10 +4,10 @@ category: Webhook
 order: 12
 ---
 
-# `executeGithubcompatibleWebhook`
+# `executeGithubCompatibleWebhook`
 
 ```php
-$client->webhook->executeGithubcompatibleWebhook($parameters);
+$client->webhook->executeGithubCompatibleWebhook($parameters);
 ```
 
 ## Description

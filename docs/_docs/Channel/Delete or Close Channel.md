@@ -4,10 +4,10 @@ category: Channel
 order: 3
 ---
 
-# `deletecloseChannel`
+# `deleteOrcloseChannel`
 
 ```php
-$client->channel->deletecloseChannel($parameters);
+$client->channel->deleteOrcloseChannel($parameters);
 ```
 
 ## Description

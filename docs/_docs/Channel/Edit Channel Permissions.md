@@ -1,7 +1,7 @@
 ---
 title: Edit Channel Permissions
 category: Channel
-order: 16
+order: 15
 ---
 
 # `editChannelPermissions`

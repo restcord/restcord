@@ -17,6 +17,7 @@ use gossi\codegen\model\PhpInterface;
 use gossi\codegen\model\PhpMethod;
 use gossi\codegen\model\PhpParameter;
 use gossi\codegen\model\PhpProperty;
+use GuzzleHttp\Command\Result;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -62,7 +63,7 @@ function recursiveRemoveDirectory($directory)
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
             $style->title("Building Dummy Classes for: ".$input->getArgument('version'));
 
-            $path = __DIR__.'/../src/Mock';
+            $path = __DIR__.'/../src/Interfaces';
             try {
                 recursiveRemoveDirectory($path);
             } catch (\Exception $e) {
@@ -81,7 +82,7 @@ function recursiveRemoveDirectory($directory)
             foreach ($definition['operations'] as $category => $operations) {
 
                 $class = new PhpInterface();
-                $class->setQualifiedName('RestCord\\Mock\\'.ucwords($category));
+                $class->setQualifiedName('RestCord\\Interfaces\\'.ucwords($category));
                 $class->setDescription(ucwords($category)." Intellisense Helper");
                 $class->setMethods(
                     array_map(
@@ -102,17 +103,37 @@ function recursiveRemoveDirectory($directory)
                             );
 
                             $returnType = 'array';
-                            if (sizeof($operation['responseTypes']) == 1) {
-                                $returnType = '\\RestCord\\Response\\'.ucwords($category).'\\';
-                                $returnType .= ucwords($operation['responseTypes'][0]['name']);
-                                if (!class_exists(($returnType))) {
-                                    $returnType = 'array';
-                                } else {
+                            if (isset($operation['responseTypes']) && sizeof($operation['responseTypes']) >= 1) {
+                                $firstType  = $operation['responseTypes'][0]['type'];
+                                $array = stripos($firstType, 'Array<') !== false;
+                                if ($array) {
+                                    $firstType = substr($firstType, 6, -1);
                                 }
+
+                                $returnType = sprintf(
+                                    "\\RestCord\\Model\\%s\\%s",
+                                    ucwords($category),
+                                    str_replace(
+                                        ' ',
+                                        '',
+                                        ucwords(str_replace('-', ' ', explode('/', $firstType)[1]))
+                                    )
+                                );
+
+                                $returnType = mapBadDocs($name, $operation, $returnType);
+
+                                if (!class_exists($returnType)) {
+                                    $returnType = "\\".Result::class;
+                                }
+
+                                $returnType .= $array ? '[]' : '';
                             }
 
                             $method = new PhpMethod($name);
                             $method->setType($returnType, $operation['responseNote'] ?? '');
+                            if (isset($operation['link'])) {
+                                $method->setLongDescription('@see '.$operation['link']);
+                            }
                             $method->setParameters([$options]);
                             $method->setVisibility('public');
 
@@ -132,3 +153,29 @@ function recursiveRemoveDirectory($directory)
     ->getApplication()
     ->setDefaultCommand('buildDummyClasses', true)
     ->run();
+
+function mapBadDocs(string $name, array $operation, string $cls): string
+{
+    switch ($cls) {
+        case '\RestCord\Model\User\DmChannel':
+            $newCls = '\RestCord\Model\Channel\DmChannel';
+            break;
+        case '\RestCord\Model\Channel\Invite':
+        case '\RestCord\Model\Guild\Invite':
+            $newCls = '\RestCord\Model\Invite\Invite';
+            break;
+        case '\RestCord\Model\Guild\GuildChannel':
+            $newCls = '\RestCord\Model\Channel\GuildChannel';
+            break;
+        case '\RestCord\Model\Guild\User':
+        case '\RestCord\Model\Channel\User':
+            $newCls = '\RestCord\Model\User\User';
+            break;
+        default:
+            return $cls;
+    }
+
+    trigger_error($name.' operation in '.$operation['category'].' has a bad responseType: ' . $cls);
+
+    return $newCls;
+}

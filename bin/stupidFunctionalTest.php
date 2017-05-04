@@ -13,6 +13,14 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+set_error_handler(
+    function ($severity, $message, $file, $line) {
+        if (error_reporting() & $severity) {
+            throw new ErrorException($message, 0, $severity, $file, $line);
+        }
+    }
+);
+
 use Assert\Assertion;
 use RestCord\DiscordClient;
 
@@ -20,31 +28,38 @@ $client = new DiscordClient(
     [
         'token'            => $argv[1],
         'throwOnRatelimit' => true,
+        'cacheDir'         => __DIR__.'/../cache',
     ]
 );
 
+$invite = $client->channel->createChannelInvite([
+    'channel.id' => (int) $argv[2],
+    'max_age'    => 5,
+    'max_uses'   => 1,
+    'unique'     => true,
+    'temporary'  => false,
+]);
+
 $guild = $client->guild->getGuild(['guild.id' => (int) $argv[2]]);
+Assertion::eq(108432868149035008, $guild->owner_id);
 
-Assertion::eq(108432868149035008, $guild['owner_id']);
-
-$user = $client->user->getUser(['user.id' => (int) $guild['owner_id']]);
-Assertion::eq(7079, $user['discriminator']);
+$user = $client->user->getUser(['user.id' => (int) $guild->owner_id]);
+Assertion::eq(7079, $user->discriminator);
 
 $client->guild->updateNick(
     [
         'guild.id' => (int) $argv[2],
-
-        'nick' => 'Build at: '.time(),
+        'nick'     => 'Build at: '.time(),
     ]
 );
 
 $users = $client->guild->listGuildMembers(['guild.id' => 146037311753289737, 'limit' => 25]);
-Assertion::eq(108432868149035008, $users[0]['user']['id']);
+Assertion::eq(108432868149035008, $users[0]->user->id);
 
 $role = $client->guild->createGuildRole(['guild.id' => 146037311753289737, 'name' => 'Test Role']);
-Assertion::eq('Test Role', $role['name']);
+Assertion::eq('Test Role', $role->name);
 
-$response = $client->guild->deleteGuildRole(['guild.id' => 146037311753289737, 'role.id' => $role['id']]);
+$response = $client->guild->deleteGuildRole(['guild.id' => 146037311753289737, 'role.id' => $role->id]);
 
 $channels = $client->guild->getGuildChannels(['guild.id' => 146037311753289737]);
 Assertion::eq(count($channels), 9);

@@ -1,7 +1,7 @@
 ---
 title: Delete Pinned Channel Message
 category: Channel
-order: 23
+order: 22
 ---
 
 # `deletePinnedChannelMessage`

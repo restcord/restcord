@@ -1,7 +1,7 @@
 ---
 title: Add Pinned Channel Message
 category: Channel
-order: 22
+order: 21
 ---
 
 # `addPinnedChannelMessage`

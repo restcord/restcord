@@ -1,7 +1,7 @@
 ---
 title: Group Dm Remove Recipient
 category: Channel
-order: 25
+order: 24
 ---
 
 # `groupDmRemoveRecipient`
