@@ -91,9 +91,10 @@ class DiscordClient
                 new MessageFormatter('{url} {request}', $this->options['token'])
             )
         );
+
         $defaultGuzzleOptions           = [
             'headers'     => [
-                'Authorization' => $this->options['tokenType'].$this->options['token'],
+                'Authorization' => $this->getAuthorizationHeader($this->options['tokenType'], $this->options['token']),
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                 'Content-Type'  => 'application/json',
             ],
@@ -404,5 +405,27 @@ class DiscordClient
         $models['Guild\\Channel'] = $models['Channel\\GuildChannel'];
 
         return $models;
+    }
+
+    /**
+     * @param string $tokenType
+     * @param string $token
+     *
+     * @return string
+     */
+    private function getAuthorizationHeader($tokenType, $token)
+    {
+        switch ($tokenType) {
+            default:
+                $authorization = 'Bot ';
+                break;
+            case 'User':
+                $authorization = '';
+                break;
+            case 'OAuth':
+                $authorization = 'Bearer ';
+        }
+
+        return $authorization . $token;
     }
 }
