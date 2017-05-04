@@ -426,6 +426,6 @@ class DiscordClient
                 $authorization = 'Bearer ';
         }
 
-        return $authorization . $token;
+        return $authorization.$token;
     }
 }
