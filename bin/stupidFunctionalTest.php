@@ -102,8 +102,8 @@ $client->channel->createMessage(
         'embed'      => [
             'title' => 'RestCord test at: '.date(
                     'Y-m-d H:i:s'
-                )
-        ]
+                ),
+        ],
     ]
 );
 

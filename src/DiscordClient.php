@@ -278,7 +278,6 @@ class DiscordClient
 
     private function dashesToCamelCase($string, $capitalizeFirstCharacter = false)
     {
-
         $str = str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
 
         if (!$capitalizeFirstCharacter) {
