@@ -93,6 +93,7 @@ class DiscordClient
         );
 
         $defaultGuzzleOptions           = [
+            'base_uri'    => $this->options['apiUrl'],
             'headers'     => [
                 'Authorization' => $this->getAuthorizationHeader($this->options['tokenType'], $this->options['token']),
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
@@ -207,13 +208,13 @@ class DiscordClient
             'models'  => $this->prepareModels($description['models']),
         ];
         foreach ($description['operations'] as $category => $operations) {
-            $this->categories[$category] = new GuzzleClient(
+            $this->categories[$category] = new OverriddenGuzzleClient(
                 $client,
                 new Description(array_merge($base, ['operations' => $this->prepareOperations($operations)])),
-                null,
                 function ($res, $req, $com) use ($category, $description) {
                     return $this->convertResponseToResult($category, $description, $res, $com);
-                }
+                },
+                $category
             );
         }
     }
@@ -333,6 +334,11 @@ class DiscordClient
             } else {
                 $config['responseModel'] = 'getResponse';
             }
+
+            if (isset($config['parametersArray']) && $config['parametersArray']) {
+                $config['type'] = 'array';
+            }
+            unset($config['parametersArray']);
 
             foreach ($config['parameters'] as $parameter => &$parameterConfig) {
                 $this->updateParameterTypes($parameterConfig);
