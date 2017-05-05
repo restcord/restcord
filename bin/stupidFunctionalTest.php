@@ -29,16 +29,19 @@ $client = new DiscordClient(
         'token'            => $argv[1],
         'throwOnRatelimit' => true,
         'cacheDir'         => __DIR__.'/../cache',
+        'logger'           => new \Psr\Log\NullLogger(),
     ]
 );
 
-$invite = $client->channel->createChannelInvite([
-    'channel.id' => (int) $argv[2],
-    'max_age'    => 5,
-    'max_uses'   => 1,
-    'unique'     => true,
-    'temporary'  => false,
-]);
+$invite = $client->channel->createChannelInvite(
+    [
+        'channel.id' => (int) $argv[2],
+        'max_age'    => 5,
+        'max_uses'   => 1,
+        'unique'     => true,
+        'temporary'  => false,
+    ]
+);
 
 $guild = $client->guild->getGuild(['guild.id' => (int) $argv[2]]);
 Assertion::eq(108432868149035008, $guild->owner_id);
@@ -76,3 +79,15 @@ $response = $client->webhook->executeWebhook(
     ]
 );
 Assertion::eq($response->count(), 0);
+
+$dm = $client->user->createDm(['recipient_id' => 108432868149035008]);
+$client->channel->createMessage(
+    [
+        'channel.id' => $dm->id,
+        'embed'      => [
+            'title' => 'RestCord test at: '.date(
+                    'Y-m-d H:i:s'
+                )
+        ]
+    ]
+);

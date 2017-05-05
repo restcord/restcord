@@ -149,7 +149,7 @@ class DiscordClient
             ->setAllowedTypes('token', ['string'])
             ->setAllowedTypes('apiUrl', ['string'])
             ->setAllowedTypes('throwOnRatelimit', ['bool'])
-            ->setAllowedTypes('logger', ['\Monolog\Logger'])
+            ->setAllowedTypes('logger', ['\Psr\Log\LoggerInterface'])
             ->setAllowedTypes('version', ['string', 'integer'])
             ->setAllowedTypes('guzzleOptions', ['array'])
             ->setNormalizer(
@@ -256,12 +256,12 @@ class DiscordClient
         }
 
         $data      = json_decode($response->getBody()->__toString());
-        $firstType = $operation['responseTypes'][0];
+        $firstType = $this->dashesToCamelCase($operation['responseTypes'][0]['type'], true);
         $class     = $this->mapBadDocs(
             sprintf(
                 '\\RestCord\\Model\\%s\\%s',
                 ucwords($category),
-                ucwords(explode('/', $firstType['type'])[1])
+                ucwords(explode('/', $firstType)[1])
             )
         );
 
@@ -273,6 +273,18 @@ class DiscordClient
         $mapper->bStrictNullTypes = false;
 
         return $mapper->map($data, new $class());
+    }
+
+    private function dashesToCamelCase($string, $capitalizeFirstCharacter = false)
+    {
+
+        $str = str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
+
+        if (!$capitalizeFirstCharacter) {
+            $str[0] = strtolower($str[0]);
+        }
+
+        return $str;
     }
 
     private function mapBadDocs($cls)

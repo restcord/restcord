@@ -21,7 +21,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#create-webhook
 	 * 
-	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'avatar' => 'string']
+	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'avatar' => 'avatar data']
 	 * @return \RestCord\Model\Webhook\Webhook Returns a webhook object on success.
 	 */
 	public function createWebhook(array $options);
