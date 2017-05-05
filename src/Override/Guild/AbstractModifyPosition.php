@@ -1,12 +1,14 @@
 <?php
 
 /*
- * This file is part of php-restcord.
- *
- * (c) Aaron Scherer <aequasi@gmail.com>
+ * Copyright 2017 Aaron Scherer
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
  */
 
 namespace RestCord\Override\Guild;
@@ -23,7 +25,7 @@ use RestCord\Override\OverrideInterface;
 abstract class AbstractModifyPosition implements OverrideInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function run(OverriddenGuzzleClient $client, array $args, $async = false)
     {

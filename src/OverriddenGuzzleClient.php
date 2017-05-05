@@ -16,22 +16,9 @@ namespace RestCord;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Command\Command;
-use GuzzleHttp\Command\CommandInterface;
-use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\DescriptionInterface;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use GuzzleHttp\Command\Result;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
-use Monolog\Logger;
-use Psr\Http\Message\ResponseInterface;
-use RestCord\Logging\MessageFormatter;
 use RestCord\Override\OverrideInterface;
-use RestCord\RateLimit\RateLimiter;
-use RestCord\RateLimit\RateLimitProvider;
-use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use function GuzzleHttp\json_decode;
 
 /**
  * @author Aaron Scherer <aequasi@gmail.com>
@@ -84,7 +71,7 @@ class OverriddenGuzzleClient extends GuzzleClient
         /** @var OverrideInterface $cls */
         $cls = 'RestCord\\Override\\'.ucwords($this->category).'\\'.ucfirst($name);
         if (class_exists($cls)) {
-            $result = $cls::run($this, isset($args[0]) ? $args[0] : [], substr($name, -5) === 'Async');
+            $result    = $cls::run($this, isset($args[0]) ? $args[0] : [], substr($name, -5) === 'Async');
             $transform = $this->responseToResultTransformer;
             if ($result->getReasonPhrase() !== 'NO CONTENT') {
                 return $transform(
