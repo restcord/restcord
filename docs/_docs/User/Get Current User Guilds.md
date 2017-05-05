@@ -19,8 +19,8 @@ Requires the guilds OAuth2 scope.
 
 Name | Type | Required | Default
 --- | --- | --- | ---
-before | snowflake | false | absent
-after | snowflake | false | absent
+before | snowflake | false | *null*
+after | snowflake | false | *null*
 limit | integer | false | 100
 
 ## Response

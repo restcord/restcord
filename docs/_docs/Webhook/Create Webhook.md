@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | true | *null*
 name | string | false | *null*
-avatar | string | false | *null*
+avatar | avatar data | false | *null*
 
 ## Response
 

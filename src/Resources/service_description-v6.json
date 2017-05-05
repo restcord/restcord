@@ -323,8 +323,7 @@
                     "after": {
                         "location": "query",
                         "type": "snowflake",
-                        "description": "the highest user id in the previous page",
-                        "default": "0"
+                        "description": "the highest user id in the previous page"
                     }
                 }
             },
@@ -1221,7 +1220,6 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get messages around this message ID",
-                        "default": "absent",
                         "extra": {
                             "Required": "false"
                         }
@@ -1230,7 +1228,6 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get messages before this message ID",
-                        "default": "absent",
                         "extra": {
                             "Required": "false"
                         }
@@ -1239,7 +1236,6 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get messages after this message ID",
-                        "default": "absent",
                         "extra": {
                             "Required": "false"
                         }
@@ -1345,7 +1341,7 @@
                 "name": "Create Reaction",
                 "method": "PUT",
                 "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me",
-                "description": "Create a reaction for the message. If nobody else has reacted to the message using this emoji, this endpoint requires the 'ADD_REACTIONS' permission to be present on the current user.",
+                "description": "Create a reaction for the message. This endpoint requires the 'READ_MESSAGE_HISTORY' permission to be present on the current user.  Additionally, if nobody else has reacted to the message using this emoji, this endpoint requires the 'ADD_REACTIONS' permission to be present on the current user.",
                 "responseNote": "Returns a 204 empty response on success.",
                 "parameters": {
                     "channel.id": {
@@ -1921,7 +1917,7 @@
                 "name": "Modify Current User",
                 "method": "PATCH",
                 "url": "/users/@me",
-                "description": "Modify the requestors user account settings.",
+                "description": "Modify the requester's user account settings.",
                 "responseNote": "Returns a user object on success.",
                 "responseTypes": [
                     {
@@ -1961,7 +1957,6 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get guilds before this guild ID",
-                        "default": "absent",
                         "extra": {
                             "Required": "false"
                         }
@@ -1970,7 +1965,6 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get guilds after this guild ID",
-                        "default": "absent",
                         "extra": {
                             "Required": "false"
                         }
@@ -2130,7 +2124,7 @@
                     },
                     "avatar": {
                         "location": "json",
-                        "type": "string",
+                        "type": "avatar data",
                         "description": "base64 128x128 jpeg image for the default webhook avatar"
                     }
                 }

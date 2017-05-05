@@ -12,7 +12,7 @@ $client->user->modifyCurrentUser($parameters);
 
 ## Description
 
-Modify the requestors user account settings.
+Modify the requester&#039;s user account settings.
 
 ## Parameters
 
