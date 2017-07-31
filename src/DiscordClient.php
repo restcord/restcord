@@ -92,7 +92,7 @@ class DiscordClient
             )
         );
 
-        $defaultGuzzleOptions           = [
+        $defaultGuzzleOptions = [
             'headers'     => [
                 'Authorization' => $this->getAuthorizationHeader($this->options['tokenType'], $this->options['token']),
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
@@ -176,12 +176,6 @@ class DiscordClient
                 function (Options $options, $value) {
                     if ($options['token'] !== null && $value === 'None') {
                         $value = 'Bot';
-                    }
-
-                    if ($value !== 'User') {
-                        $value .= ' ';
-                    } else {
-                        $value = '';
                     }
 
                     return $value;
