@@ -426,7 +426,7 @@ class DiscordClient
      */
     private function getAuthorizationHeader($tokenType, $token)
     {
-        switch ($tokenType) {
+        switch (str_replace(' ' , '', $tokenType)) {
             default:
                 $authorization = 'Bot ';
                 break;
