@@ -252,6 +252,7 @@ class DiscordClient
                 return new Result(json_decode($content, true));
             } catch (\Exception $e) {
                 dump($response->getBody()->__toString());
+
                 throw $e;
             }
         }
@@ -268,6 +269,9 @@ class DiscordClient
 
         if (!class_exists($class)) {
             return new Result($data);
+        }
+        if ($data === null) {
+            return new Result([]);
         }
 
         $mapper                   = new \JsonMapper();
