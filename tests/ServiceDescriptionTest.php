@@ -40,7 +40,7 @@ class ServiceDescriptionTest extends TestCase
             file_get_contents(__DIR__.'/../src/Resources/service_description-v6.json'),
             true
         );
-        $this->client      = new DiscordClient(['token' => 'fake-token']);
+        $this->client = new DiscordClient(['token' => 'fake-token']);
     }
 
     public function testBaseUri()

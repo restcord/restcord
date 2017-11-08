@@ -92,9 +92,9 @@ class DiscordClient
             )
         );
 
-        $defaultGuzzleOptions           = [
-            'base_uri'    => $this->options['apiUrl'],
-            'headers'     => [
+        $defaultGuzzleOptions = [
+            'base_uri' => $this->options['apiUrl'],
+            'headers'  => [
                 'Authorization' => $this->getAuthorizationHeader($this->options['tokenType'], $this->options['token']),
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                 'Content-Type'  => 'application/json',
@@ -157,11 +157,11 @@ class DiscordClient
                 'token',
                 function (Options $options, $value) {
                     if (0 === stripos($value, 'Bot ')) {
-                        $value                = substr($value, 4);
+                        $value = substr($value, 4);
                         $options['tokenType'] = 'Bot';
                     }
                     if (0 === stripos($value, 'Bearer ')) {
-                        $value                = substr($value, 7);
+                        $value = substr($value, 7);
                         $options['tokenType'] = 'OAuth';
                     }
 
@@ -252,6 +252,7 @@ class DiscordClient
                 return new Result(json_decode($content, true));
             } catch (\Exception $e) {
                 dump($response->getBody()->__toString());
+
                 throw $e;
             }
         }

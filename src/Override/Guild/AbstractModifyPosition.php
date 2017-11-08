@@ -32,7 +32,7 @@ abstract class AbstractModifyPosition implements OverrideInterface
         $operation = $client->getDescription()->getOperation(
             lcfirst((new ReflectionClass(static::class))->getShortName())
         );
-        $uri       = str_replace('{guild.id}', $args[0]['guild.id'], $operation->getUri());
+        $uri = str_replace('{guild.id}', $args[0]['guild.id'], $operation->getUri());
 
         foreach ($args as $x => $arg) {
             unset($args[$x]['guild.id']);
