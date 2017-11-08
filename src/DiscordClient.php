@@ -293,6 +293,7 @@ class DiscordClient
             case '\RestCord\Model\User\DmChannel':
                 $cls = '\RestCord\Model\Channel\DmChannel';
                 break;
+            case 'Channel\Invite':
             case '\RestCord\Model\Channel\Invite':
             case '\RestCord\Model\Guild\Invite':
                 $cls = '\RestCord\Model\Invite\Invite';
