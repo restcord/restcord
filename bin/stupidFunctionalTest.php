@@ -33,6 +33,13 @@ $client = new DiscordClient(
     ]
 );
 
+$client->guild->modifyGuildChannelPositions(
+    [['guild.id' => 146037311753289737, 'id' => 146037311753289737, 'position' => 10]]
+);
+$client->guild->modifyGuildChannelPositions(
+    [['guild.id' => 146037311753289737, 'id' => 146037311753289737, 'position' => 0]]
+);
+
 $invite = $client->channel->createChannelInvite(
     [
         'channel.id' => (int) $argv[2],
@@ -61,6 +68,14 @@ Assertion::eq(108432868149035008, $users[0]->user->id);
 
 $role = $client->guild->createGuildRole(['guild.id' => 146037311753289737, 'name' => 'Test Role']);
 Assertion::eq('Test Role', $role->name);
+$roles = $client->guild->modifyGuildRolePositions(
+    [['guild.id' => 146037311753289737, 'id' => $role->id, 'position' => 5]]
+);
+foreach ($roles as $r) {
+    if ((int) $r->id === $role->id) {
+        Assertion::eq(5, $r->position);
+    }
+}
 
 $response = $client->guild->deleteGuildRole(['guild.id' => 146037311753289737, 'role.id' => $role->id]);
 

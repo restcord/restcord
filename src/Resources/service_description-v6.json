@@ -53,7 +53,8 @@
                         "type": "array",
                         "description": "new guild's channels"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuild": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild",
@@ -75,7 +76,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyGuild": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild",
@@ -142,7 +144,8 @@
                         "type": "string",
                         "description": "base64 128x128 jpeg image for the guild splash (VIP only)"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteGuild": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#delete-guild",
@@ -164,7 +167,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildChannels": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-channels",
@@ -186,7 +190,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "createGuildChannel": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-channel",
@@ -233,7 +238,8 @@
                         "type": "array",
                         "description": "the channel's permission overwrites"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyGuildChannelPositions": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-channel-positions",
@@ -265,7 +271,8 @@
                         "type": "integer",
                         "description": "sorting position of the channel"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildMember": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-member",
@@ -292,7 +299,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "listGuildMembers": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#list-guild-members",
@@ -325,7 +333,8 @@
                         "type": "snowflake",
                         "description": "the highest user id in the previous page"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "addGuildMember": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#add-guild-member",
@@ -394,7 +403,8 @@
                             "Permission": "DEAFEN_MEMBERS"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyGuildMember": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-member",
@@ -457,7 +467,8 @@
                             "Permission": "MOVE_MEMBERS"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyCurrentUsersNick": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#modify-current-user's-nick",
@@ -481,7 +492,8 @@
                             "Permission": "CHANGE_NICKNAME"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "addGuildMemberRole": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#add-guild-member-role",
@@ -507,7 +519,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "removeGuildMemberRole": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#remove-guild-member-role",
@@ -533,7 +546,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "removeGuildMember": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#remove-guild-member",
@@ -554,7 +568,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildBans": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-bans",
@@ -576,7 +591,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "createGuildBan": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-ban",
@@ -602,7 +618,8 @@
                         "type": "integer",
                         "description": "number of days to delete messages for (0-7)"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "removeGuildBan": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#remove-guild-ban",
@@ -623,7 +640,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildRoles": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-roles",
@@ -645,7 +663,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "createGuildRole": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-role",
@@ -696,7 +715,8 @@
                         "description": "whether the role should be mentionable",
                         "default": false
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyGuildRolePositions": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-role-positions",
@@ -728,7 +748,8 @@
                         "type": "integer",
                         "description": "sorting position of the role"
                     }
-                }
+                },
+                "parametersArray": true
             },
             "modifyGuildRole": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-role",
@@ -782,7 +803,8 @@
                         "description": "whether the role should be mentionable",
                         "default": false
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteGuildRole": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#delete-guild-role",
@@ -803,7 +825,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildPruneCount": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-prune-count",
@@ -824,7 +847,8 @@
                         "type": "integer",
                         "description": "number of days to count prune for (1 or more)"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "beginGuildPrune": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#begin-guild-prune",
@@ -845,7 +869,8 @@
                         "type": "integer",
                         "description": "number of days to prune (1 or more)"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildVoiceRegions": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-voice-regions",
@@ -867,7 +892,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildInvites": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-invites",
@@ -893,7 +919,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildIntegrations": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-integrations",
@@ -915,7 +942,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "createGuildIntegration": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-integration",
@@ -941,7 +969,8 @@
                         "type": "snowflake",
                         "description": "the integration id"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyGuildIntegration": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-integration",
@@ -978,7 +1007,8 @@
                         "description": "whether emoticons should be synced for this integration (twitch only currently)",
                         "default": false
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteGuildIntegration": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#delete-guild-integration",
@@ -999,7 +1029,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "syncGuildIntegration": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#sync-guild-integration",
@@ -1020,7 +1051,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildEmbed": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-embed",
@@ -1042,7 +1074,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyGuildEmbed": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-embed",
@@ -1064,7 +1097,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "updateNick": {
                 "category": "guild",
@@ -1112,7 +1146,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyChannel": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#modify-channel",
@@ -1174,7 +1209,8 @@
                             "Channel Type": "Voice"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteOrcloseChannel": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#delete/close-channel",
@@ -1200,7 +1236,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getChannelMessages": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#get-channel-messages",
@@ -1249,7 +1286,8 @@
                             "Required": "false"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getChannelMessage": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#get-channel-message",
@@ -1270,7 +1308,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "createMessage": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#create-message",
@@ -1333,7 +1372,8 @@
                             "Required": "false"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "createReaction": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#create-reaction",
@@ -1359,7 +1399,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteOwnReaction": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#delete-own-reaction",
@@ -1385,7 +1426,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteUserReaction": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#delete-user-reaction",
@@ -1416,7 +1458,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getReactions": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#get-reactions",
@@ -1448,7 +1491,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteAllReactions": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#delete-all-reactions",
@@ -1468,7 +1512,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "editMessage": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#edit-message",
@@ -1505,7 +1550,8 @@
                         "type": "object",
                         "description": "embedded rich content"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteMessage": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#delete-message",
@@ -1526,7 +1572,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "bulkDeleteMessages": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#bulk-delete-messages-deprecated",
@@ -1542,7 +1589,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "editChannelPermissions": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#edit-channel-permissions",
@@ -1578,7 +1626,8 @@
                         "type": "string",
                         "description": "\"member\" for a user or \"role\" for a role"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getChannelInvites": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#get-channel-invites",
@@ -1604,7 +1653,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "createChannelInvite": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#create-channel-invite",
@@ -1650,7 +1700,8 @@
                         "description": "if true, don't try to reuse a similar invite (useful for creating many unique one time use invites)",
                         "default": false
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteChannelPermission": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#delete-channel-permission",
@@ -1671,7 +1722,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "triggerTypingIndicator": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#trigger-typing-indicator",
@@ -1687,7 +1739,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getPinnedMessages": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#get-pinned-messages",
@@ -1709,7 +1762,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "addPinnedChannelMessage": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#add-pinned-channel-message",
@@ -1730,7 +1784,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deletePinnedChannelMessage": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#delete-pinned-channel-message",
@@ -1751,7 +1806,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "groupDmAddRecipient": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#group-dm-add-recipient",
@@ -1781,7 +1837,8 @@
                         "type": "string",
                         "description": "nickname of the user being added"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "groupDmRemoveRecipient": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#group-dm-remove-recipient",
@@ -1801,7 +1858,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             }
         },
         "invite": {
@@ -1825,7 +1883,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteInvite": {
                 "link": "https://discordapp.com/developers/docs/resources/invite#delete-invite",
@@ -1847,7 +1906,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "acceptInvite": {
                 "link": "https://discordapp.com/developers/docs/resources/invite#accept-invite",
@@ -1869,7 +1929,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             }
         },
         "user": {
@@ -1887,7 +1948,8 @@
                         "type": "USER/user"
                     }
                 ],
-                "parameters": {}
+                "parameters": {},
+                "parametersArray": false
             },
             "getUser": {
                 "link": "https://discordapp.com/developers/docs/resources/user#get-user",
@@ -1909,7 +1971,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyCurrentUser": {
                 "link": "https://discordapp.com/developers/docs/resources/user#modify-current-user",
@@ -1936,7 +1999,8 @@
                         "type": "avatar data",
                         "description": "if passed, modifies the user's avatar"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getCurrentUserGuilds": {
                 "link": "https://discordapp.com/developers/docs/resources/user#get-current-user-guilds",
@@ -1978,7 +2042,8 @@
                             "Required": "false"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "leaveGuild": {
                 "link": "https://discordapp.com/developers/docs/resources/user#leave-guild",
@@ -1994,7 +2059,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getUserDms": {
                 "link": "https://discordapp.com/developers/docs/resources/user#get-user-dms",
@@ -2010,7 +2076,8 @@
                         "type": "Array<CHANNEL/dm-channel>"
                     }
                 ],
-                "parameters": {}
+                "parameters": {},
+                "parametersArray": false
             },
             "createDm": {
                 "link": "https://discordapp.com/developers/docs/resources/user#create-dm",
@@ -2032,7 +2099,8 @@
                         "type": "snowflake",
                         "description": "the recipient to open a DM channel with"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "createGroupDm": {
                 "link": "https://discordapp.com/developers/docs/resources/user#create-group-dm",
@@ -2059,7 +2127,8 @@
                         "type": "dict",
                         "description": "a dictionary of user ids to their respective nicknames"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getUsersConnections": {
                 "link": "https://discordapp.com/developers/docs/resources/user#get-users-connections",
@@ -2075,7 +2144,8 @@
                         "type": "Array<USER/connection>"
                     }
                 ],
-                "parameters": {}
+                "parameters": {},
+                "parametersArray": false
             }
         },
         "voice": {
@@ -2093,7 +2163,8 @@
                         "type": "VOICE/voice-region"
                     }
                 ],
-                "parameters": {}
+                "parameters": {},
+                "parametersArray": false
             }
         },
         "webhook": {
@@ -2127,7 +2198,8 @@
                         "type": "avatar data",
                         "description": "base64 128x128 jpeg image for the default webhook avatar"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getChannelWebhooks": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#get-channel-webhooks",
@@ -2149,7 +2221,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getGuildWebhooks": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#get-guild-webhooks",
@@ -2171,7 +2244,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getWebhook": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#get-webhook",
@@ -2193,7 +2267,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "getWebhookWithToken": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#get-webhook-with-token",
@@ -2213,7 +2288,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyWebhook": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#modify-webhook",
@@ -2245,7 +2321,8 @@
                         "type": "string",
                         "description": "base64 128x128 jpeg image for the default webhook avatar"
                     }
-                }
+                },
+                "parametersArray": false
             },
             "modifyWebhookWithToken": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#modify-webhook-with-token",
@@ -2265,7 +2342,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteWebhook": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#delete-webhook",
@@ -2281,7 +2359,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "deleteWebhookWithToken": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#delete-webhook-with-token",
@@ -2301,7 +2380,8 @@
                         "location": "uri",
                         "required": true
                     }
-                }
+                },
+                "parametersArray": false
             },
             "executeWebhook": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#execute-webhook",
@@ -2379,7 +2459,8 @@
                             "Required": "one of content, file, embeds"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "executeSlackCompatibleWebhook": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#execute-slack-compatible-webhook",
@@ -2408,7 +2489,8 @@
                             "Required": "false"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             },
             "executeGithubCompatibleWebhook": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#execute-github-compatible-webhook",
@@ -2437,7 +2519,8 @@
                             "Required": "false"
                         }
                     }
-                }
+                },
+                "parametersArray": false
             }
         },
         "gateway": {
@@ -2449,7 +2532,8 @@
                 "url": "/gateway",
                 "description": "Clients should cache this value and only call this endpoint to retrieve a new URL if they are unable to properly establish a connection using the cached version of the URL.",
                 "responseNote": "Returns an object with a single valid WSS URL, which the client can use as a basis for Connecting.",
-                "parameters": {}
+                "parameters": {},
+                "parametersArray": false
             },
             "getGatewayBot": {
                 "link": "https://discordapp.com/developers/docs/resources/gateway#get-gateway-bot",
@@ -2459,7 +2543,8 @@
                 "url": "/gateway/bot",
                 "description": "Bots that want to dynamically/automatically spawn shard processes should use this endpoint to determine the number of processes to run. This route should be called once when starting up numerous shards, with the response being cached and passed to all sub-shards/processes. Unlike the Get Gateway, this route should not be cached for extended periods of time as the value is not guaranteed to be the same per-call, and changes as the bot joins/leaves guilds.",
                 "responseNote": "Returns an object with the same information as Get Gateway, plus a shards key, containing the recommended number of shards to connect with (as an integer).",
-                "parameters": {}
+                "parameters": {},
+                "parametersArray": false
             }
         },
         "oauth2": {},

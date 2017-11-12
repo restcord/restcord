@@ -92,8 +92,9 @@ class DiscordClient
             )
         );
 
-        $defaultGuzzleOptions           = [
-            'headers'     => [
+        $defaultGuzzleOptions = [
+            'base_uri' => $this->options['apiUrl'],
+            'headers'  => [
                 'Authorization' => $this->getAuthorizationHeader($this->options['tokenType'], $this->options['token']),
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                 'Content-Type'  => 'application/json',
@@ -156,11 +157,11 @@ class DiscordClient
                 'token',
                 function (Options $options, $value) {
                     if (0 === stripos($value, 'Bot ')) {
-                        $value                = substr($value, 4);
+                        $value = substr($value, 4);
                         $options['tokenType'] = 'Bot';
                     }
                     if (0 === stripos($value, 'Bearer ')) {
-                        $value                = substr($value, 7);
+                        $value = substr($value, 7);
                         $options['tokenType'] = 'OAuth';
                     }
 
@@ -207,13 +208,13 @@ class DiscordClient
             'models'  => $this->prepareModels($description['models']),
         ];
         foreach ($description['operations'] as $category => $operations) {
-            $this->categories[$category] = new GuzzleClient(
+            $this->categories[$category] = new OverriddenGuzzleClient(
                 $client,
                 new Description(array_merge($base, ['operations' => $this->prepareOperations($operations)])),
-                null,
                 function ($res, $req, $com) use ($category, $description) {
                     return $this->convertResponseToResult($category, $description, $res, $com);
-                }
+                },
+                $category
             );
         }
     }
@@ -293,6 +294,7 @@ class DiscordClient
             case '\RestCord\Model\User\DmChannel':
                 $cls = '\RestCord\Model\Channel\DmChannel';
                 break;
+            case 'Channel\Invite':
             case '\RestCord\Model\Channel\Invite':
             case '\RestCord\Model\Guild\Invite':
                 $cls = '\RestCord\Model\Invite\Invite';
@@ -333,6 +335,11 @@ class DiscordClient
             } else {
                 $config['responseModel'] = 'getResponse';
             }
+
+            if (isset($config['parametersArray']) && $config['parametersArray']) {
+                $config['type'] = 'array';
+            }
+            unset($config['parametersArray']);
 
             foreach ($config['parameters'] as $parameter => &$parameterConfig) {
                 $this->updateParameterTypes($parameterConfig);
