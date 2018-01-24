@@ -48,17 +48,17 @@ class DiscordClient
     /**
      * @var array
      */
-    private $options;
+    protected $options;
 
     /**
      * @var GuzzleClient[]
      */
-    private $categories = [];
+    protected $categories = [];
 
     /**
      * @var Logger
      */
-    private $logger;
+    protected $logger;
 
     /**
      * Client constructor.
@@ -130,7 +130,7 @@ class DiscordClient
      *
      * @return array
      */
-    private function validateOptions(array $options)
+    protected function validateOptions(array $options)
     {
         $currentVersion = 6;
         $resolver       = new OptionsResolver();
@@ -195,7 +195,7 @@ class DiscordClient
     /**
      * @param Client $client
      */
-    private function buildDescriptions(Client $client)
+    protected function buildDescriptions(Client $client)
     {
         $description = \GuzzleHttp\json_decode(
             file_get_contents(__DIR__.'/Resources/service_description-v'.$this->options['version'].'.json'),
@@ -231,7 +231,7 @@ class DiscordClient
      *
      * @internal param RequestInterface $request
      */
-    private function convertResponseToResult(
+    protected function convertResponseToResult(
         $category,
         array $description,
         ResponseInterface $response,
@@ -277,7 +277,7 @@ class DiscordClient
         return $mapper->map($data, new $class());
     }
 
-    private function dashesToCamelCase($string, $capitalizeFirstCharacter = false)
+    protected function dashesToCamelCase($string, $capitalizeFirstCharacter = false)
     {
         $str = str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
 
@@ -288,7 +288,7 @@ class DiscordClient
         return $str;
     }
 
-    private function mapBadDocs($cls)
+    protected function mapBadDocs($cls)
     {
         switch ($cls) {
             case '\RestCord\Model\User\DmChannel':
@@ -318,7 +318,7 @@ class DiscordClient
      *
      * @return array
      */
-    private function prepareOperations(array $operations)
+    protected function prepareOperations(array $operations)
     {
         foreach ($operations as $operation => &$config) {
             $config['uri'] = ltrim($config['url'], '/');
@@ -355,7 +355,7 @@ class DiscordClient
     /**
      * @param array $parameterConfig
      */
-    private function updateParameterTypes(array &$parameterConfig)
+    protected function updateParameterTypes(array &$parameterConfig)
     {
         if ($parameterConfig['type'] === 'snowflake') {
             $parameterConfig['type'] = 'integer';
@@ -377,7 +377,7 @@ class DiscordClient
     /**
      * @return string
      */
-    private function getVersion()
+    protected function getVersion()
     {
         return trim(file_get_contents(__DIR__.'/../VERSION'));
     }
@@ -387,7 +387,7 @@ class DiscordClient
      *
      * @return array|mixed
      */
-    private function prepareModels(array $toParse)
+    protected function prepareModels(array $toParse)
     {
         $models = [
             'getResponse' => [
@@ -432,7 +432,7 @@ class DiscordClient
      *
      * @return string
      */
-    private function getAuthorizationHeader($tokenType, $token)
+    protected function getAuthorizationHeader($tokenType, $token)
     {
         switch ($tokenType) {
             default:
