@@ -13,4 +13,9 @@ If you are doing anything heavy, or fancy, you should probably look at [the othe
 
 Documentation can be found [here](http://www.restcord.com/).
 
+### Wrappers
+
+[Laravel](https://github.com/more-cores/laravel-restcord)
+
+
 [1]: https://github.com/teamreflex/DiscordPHP
