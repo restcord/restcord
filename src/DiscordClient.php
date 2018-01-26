@@ -270,6 +270,9 @@ class DiscordClient
         if (!class_exists($class)) {
             return new Result($data);
         }
+        if ($data === null) {
+            return new Result([]);
+        }
 
         $mapper                   = new \JsonMapper();
         $mapper->bStrictNullTypes = false;
