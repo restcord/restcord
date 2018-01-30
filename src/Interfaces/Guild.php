@@ -295,4 +295,34 @@ interface Guild {
 	 * @return array Returns the nick
 	 */
 	public function updateNick(array $options);
+
+    /**
+     * @param array $options ['guild.id' => 'snowflake']
+     * @return array Returns a list of emoji objects for the given guild.
+     */
+    public function listGuildEmoji(array $options);
+
+    /**
+     * @param array $options ['guild.id' => 'snowflake', 'emoji.id' => 'snowflake']
+     * @return array Returns an emoji object for the given guild and emoji IDs.
+     */
+    public function getGuildEmoji(array $options);
+
+    /**
+     * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'image' => 'string', 'roles' => 'array']
+     * @return array Returns the new emoji object on success
+     */
+    public function createGuildEmoji(array $options);
+
+    /**
+     * @param array $options ['guild.id' => 'snowflake','emoji.name' => 'string', 'emoji.id' => 'snowflake', 'emoji.roles' => 'array']
+     * @return array eturns the updated emoji object on success
+     */
+    public function modifyGuildEmoji(array $options);
+
+    /**
+     * @param array $options ['guild.id' => 'snowflake', 'emoji.id' => 'snowflake']
+     * @return array Returns a 204 empty response on success.id
+     */
+    public function deleteGuildEmoji(array $options);
 }
