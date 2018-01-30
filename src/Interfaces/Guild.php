@@ -13,6 +13,8 @@
 
 namespace RestCord\Interfaces;
 
+use RestCord\Model\Guild\Emoji;
+
 /**
  * Guild Intellisense Helper
  */
@@ -304,19 +306,19 @@ interface Guild {
 
     /**
      * @param array $options ['guild.id' => 'snowflake', 'emoji.id' => 'snowflake']
-     * @return array Returns an emoji object for the given guild and emoji IDs.
+     * @return Emoji Returns an emoji object for the given guild and emoji IDs.
      */
     public function getGuildEmoji(array $options);
 
     /**
      * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'image' => 'string', 'roles' => 'array']
-     * @return array Returns the new emoji object on success
+     * @return Emoji Returns the new emoji object on success
      */
     public function createGuildEmoji(array $options);
 
     /**
      * @param array $options ['guild.id' => 'snowflake','emoji.name' => 'string', 'emoji.id' => 'snowflake', 'emoji.roles' => 'array']
-     * @return array eturns the updated emoji object on success
+     * @return Emoji Returns the updated emoji object on success
      */
     public function modifyGuildEmoji(array $options);
 
