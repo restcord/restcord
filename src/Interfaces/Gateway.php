@@ -17,20 +17,4 @@ namespace RestCord\Interfaces;
  * Gateway Intellisense Helper
  */
 interface Gateway {
-
-	/**
-	 * @see https://discordapp.com/developers/docs/resources/gateway#get-gateway
-	 * 
-	 * @param array $options []
-	 * @return array
-	 */
-	public function getGateway(array $options);
-
-	/**
-	 * @see https://discordapp.com/developers/docs/resources/gateway#get-gateway-bot
-	 * 
-	 * @param array $options []
-	 * @return array
-	 */
-	public function getGatewayBot(array $options);
 }

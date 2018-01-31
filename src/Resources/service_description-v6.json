@@ -3,1122 +3,6 @@
     "version": 6,
     "operations": {
         "guild": {
-            "createGuild": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#create-guild",
-                "category": "guild",
-                "name": "Create Guild",
-                "method": "POST",
-                "url": "/guilds",
-                "description": "Create a new guild.  Fires a Guild Create Gateway event.",
-                "responseNote": "Returns a guild object on success.",
-                "responseTypes": [
-                    {
-                        "name": "guild",
-                        "type": "GUILD/guild"
-                    }
-                ],
-                "parameters": {
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of the guild (2-100 characters)"
-                    },
-                    "region": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "voice region id"
-                    },
-                    "icon": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "base64 128x128 jpeg image for the guild icon"
-                    },
-                    "verification_level": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "verification level"
-                    },
-                    "default_message_notifications": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "default message notification level"
-                    },
-                    "explicit_content_filter": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "explicit content filter level"
-                    },
-                    "roles": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "new guild roles"
-                    },
-                    "channels": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "new guild's channels"
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuild": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild",
-                "category": "guild",
-                "name": "Get Guild",
-                "method": "GET",
-                "url": "/guilds/{guild.id}",
-                "description": "",
-                "responseNote": "Returns the guild object for the given id.",
-                "responseTypes": [
-                    {
-                        "name": "guild",
-                        "type": "GUILD/guild"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyGuild": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild",
-                "category": "guild",
-                "name": "Modify Guild",
-                "method": "PATCH",
-                "url": "/guilds/{guild.id}",
-                "description": "Modify a guild's settings. Requires the 'MANAGE_GUILD' permission.  Fires a Guild Update Gateway event.",
-                "responseNote": "Returns the updated guild object on success.",
-                "responseTypes": [
-                    {
-                        "name": "guild",
-                        "type": "GUILD/guild"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "guild name"
-                    },
-                    "region": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "guild voice region id"
-                    },
-                    "verification_level": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "verification level"
-                    },
-                    "default_message_notifications": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "default message notification level"
-                    },
-                    "explicit_content_filter": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "explicit content filter level"
-                    },
-                    "afk_channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "id for afk channel"
-                    },
-                    "afk_timeout": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "afk timeout in seconds"
-                    },
-                    "icon": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "base64 128x128 jpeg image for the guild icon"
-                    },
-                    "owner_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "user id to transfer guild ownership to (must be owner)"
-                    },
-                    "splash": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "base64 128x128 jpeg image for the guild splash (VIP only)"
-                    },
-                    "system_channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "the id of the channel to which system messages are sent"
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteGuild": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#delete-guild",
-                "category": "guild",
-                "name": "Delete Guild",
-                "method": "DELETE",
-                "url": "/guilds/{guild.id}",
-                "description": "Delete a guild permanently. User must be owner.  Fires a Guild Delete Gateway event.",
-                "responseNote": "Returns 204 No Content on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildChannels": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-channels",
-                "category": "guild",
-                "name": "Get Guild Channels",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/channels",
-                "description": "",
-                "responseNote": "Returns a list of guild channel objects.",
-                "responseTypes": [
-                    {
-                        "name": "channel",
-                        "type": "Array<CHANNEL/channel>"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "createGuildChannel": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-channel",
-                "category": "guild",
-                "name": "Create Guild Channel",
-                "method": "POST",
-                "url": "/guilds/{guild.id}/channels",
-                "description": "Create a new channel object for the guild. Requires the 'MANAGE_CHANNELS' permission.  Fires a Channel Create Gateway event.",
-                "responseNote": "Returns the new channel object on success.",
-                "responseTypes": [
-                    {
-                        "name": "channel",
-                        "type": "CHANNEL/channel"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "channel name (2-100 characters)"
-                    },
-                    "type": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the type of channel"
-                    },
-                    "bitrate": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the bitrate (in bits) of the voice channel (voice only)"
-                    },
-                    "user_limit": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the user limit of the voice channel (voice only)"
-                    },
-                    "permission_overwrites": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "the channel's permission overwrites"
-                    },
-                    "parent_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "id of the parent category for a channel"
-                    },
-                    "nsfw": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the channel is nsfw",
-                        "default": false
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyGuildChannelPositions": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-channel-positions",
-                "category": "guild",
-                "name": "Modify Guild Channel Positions",
-                "method": "PATCH",
-                "url": "/guilds/{guild.id}/channels",
-                "description": "Modify the positions of a set of channel objects for the guild. Requires 'MANAGE_CHANNELS' permission.  Fires multiple Channel Update Gateway events.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "channel id"
-                    },
-                    "position": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "sorting position of the channel"
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildMember": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-member",
-                "category": "guild",
-                "name": "Get Guild Member",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/members/{user.id}",
-                "description": "",
-                "responseNote": "Returns a guild member object for the specified user.",
-                "responseTypes": [
-                    {
-                        "name": "guild member",
-                        "type": "GUILD/guild-member"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "listGuildMembers": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#list-guild-members",
-                "category": "guild",
-                "name": "List Guild Members",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/members",
-                "description": "",
-                "responseNote": "Returns a list of guild member objects that are members of the guild.",
-                "responseTypes": [
-                    {
-                        "name": "guild member",
-                        "type": "Array<GUILD/guild-member>"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "limit": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "max number of members to return (1-1000)",
-                        "default": 1
-                    },
-                    "after": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "the highest user id in the previous page"
-                    }
-                },
-                "parametersArray": false
-            },
-            "addGuildMember": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#add-guild-member",
-                "category": "guild",
-                "name": "Add Guild Member",
-                "method": "PUT",
-                "url": "/guilds/{guild.id}/members/{user.id}",
-                "description": "Adds a user to the guild, provided you have a valid oauth2 access token for the user with the guilds.join scope.  Fires a Guild Member Add Gateway event. Requires the bot to have the CREATE_INSTANT_INVITE permission.",
-                "responseNote": "Returns a 201 Created with the guild member as the body.",
-                "responseTypes": [
-                    {
-                        "name": "guild member",
-                        "type": "GUILD/guild-member"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "access_token": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "an oauth2 access token granted with the guilds.join to the bot's application for the user you want to add to the guild",
-                        "extra": {
-                            "Permission": ""
-                        }
-                    },
-                    "nick": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "value to set users nickname to",
-                        "extra": {
-                            "Permission": "MANAGE_NICKNAMES"
-                        }
-                    },
-                    "roles": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "array of role ids the member is assigned",
-                        "extra": {
-                            "Permission": "MANAGE_ROLES"
-                        }
-                    },
-                    "mute": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the user is muted",
-                        "default": false,
-                        "extra": {
-                            "Permission": "MUTE_MEMBERS"
-                        }
-                    },
-                    "deaf": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the user is deafened",
-                        "default": false,
-                        "extra": {
-                            "Permission": "DEAFEN_MEMBERS"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyGuildMember": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-member",
-                "category": "guild",
-                "name": "Modify Guild Member",
-                "method": "PATCH",
-                "url": "/guilds/{guild.id}/members/{user.id}",
-                "description": "Modify attributes of a guild member.  Fires a Guild Member Update Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "nick": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "value to set users nickname to",
-                        "extra": {
-                            "Permission": "MANAGE_NICKNAMES"
-                        }
-                    },
-                    "roles": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "array of role ids the member is assigned",
-                        "extra": {
-                            "Permission": "MANAGE_ROLES"
-                        }
-                    },
-                    "mute": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the user is muted",
-                        "default": false,
-                        "extra": {
-                            "Permission": "MUTE_MEMBERS"
-                        }
-                    },
-                    "deaf": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the user is deafened",
-                        "default": false,
-                        "extra": {
-                            "Permission": "DEAFEN_MEMBERS"
-                        }
-                    },
-                    "channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "id of channel to move user to (if they are connected to voice)",
-                        "extra": {
-                            "Permission": "MOVE_MEMBERS"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyCurrentUsersNick": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-current-user's-nick",
-                "category": "guild",
-                "name": "Modify Current User's Nick",
-                "method": "PATCH",
-                "url": "/guilds/{guild.id}/members/@me/nick",
-                "description": "Modifies the nickname of the current user in a guild.  Fires a Guild Member Update Gateway event.",
-                "responseNote": "Returns a 200 with the nickname on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "nick": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "value to set users nickname to",
-                        "extra": {
-                            "Permission": "CHANGE_NICKNAME"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "addGuildMemberRole": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#add-guild-member-role",
-                "category": "guild",
-                "name": "Add Guild Member Role",
-                "method": "PUT",
-                "url": "/guilds/{guild.id}/members/{user.id}/roles/{role.id}",
-                "description": "Adds a role to a guild member. Requires the 'MANAGE_ROLES' permission.  Fires a Guild Member Update Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "role.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "removeGuildMemberRole": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#remove-guild-member-role",
-                "category": "guild",
-                "name": "Remove Guild Member Role",
-                "method": "DELETE",
-                "url": "/guilds/{guild.id}/members/{user.id}/roles/{role.id}",
-                "description": "Removes a role from a guild member. Requires the 'MANAGE_ROLES' permission.  Fires a Guild Member Update Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "role.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "removeGuildMember": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#remove-guild-member",
-                "category": "guild",
-                "name": "Remove Guild Member",
-                "method": "DELETE",
-                "url": "/guilds/{guild.id}/members/{user.id}",
-                "description": "Remove a member from a guild. Requires 'KICK_MEMBERS' permission.  Fires a Guild Member Remove Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildBans": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-bans",
-                "category": "guild",
-                "name": "Get Guild Bans",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/bans",
-                "description": "Requires the 'BAN_MEMBERS' permission.",
-                "responseNote": "Returns a list of ban objects for the users banned from this guild.",
-                "responseTypes": [
-                    {
-                        "name": "ban",
-                        "type": "Array<GUILD/ban>"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "createGuildBan": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-ban",
-                "category": "guild",
-                "name": "Create Guild Ban",
-                "method": "PUT",
-                "url": "/guilds/{guild.id}/bans/{user.id}",
-                "description": "Create a guild ban, and optionally delete previous messages sent by the banned user. Requires the 'BAN_MEMBERS' permission.  Fires a Guild Ban Add Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "delete-message-days": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "number of days to delete messages for (0-7)"
-                    },
-                    "reason": {
-                        "location": "query",
-                        "type": "string",
-                        "description": "reason for the ban"
-                    }
-                },
-                "parametersArray": false
-            },
-            "removeGuildBan": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#remove-guild-ban",
-                "category": "guild",
-                "name": "Remove Guild Ban",
-                "method": "DELETE",
-                "url": "/guilds/{guild.id}/bans/{user.id}",
-                "description": "Remove the ban for a user. Requires the 'BAN_MEMBERS' permissions.  Fires a Guild Ban Remove Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildRoles": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-roles",
-                "category": "guild",
-                "name": "Get Guild Roles",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/roles",
-                "description": "Requires the 'MANAGE_ROLES' permission.",
-                "responseNote": "Returns a list of role objects for the guild.",
-                "responseTypes": [
-                    {
-                        "name": "role",
-                        "type": "Array<PERMISSIONS/role>"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "createGuildRole": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-role",
-                "category": "guild",
-                "name": "Create Guild Role",
-                "method": "POST",
-                "url": "/guilds/{guild.id}/roles",
-                "description": "Create a new role for the guild. Requires the 'MANAGE_ROLES' permission.  Fires a Guild Role Create Gateway event. All JSON params are optional.",
-                "responseNote": "Returns the new role object on success.",
-                "responseTypes": [
-                    {
-                        "name": "role",
-                        "type": "PERMISSIONS/role"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of the role",
-                        "default": "\"new role\""
-                    },
-                    "permissions": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "bitwise of the enabled/disabled permissions"
-                    },
-                    "color": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "RGB color value",
-                        "default": 0
-                    },
-                    "hoist": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether the role should be displayed separately in the sidebar",
-                        "default": false
-                    },
-                    "mentionable": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether the role should be mentionable",
-                        "default": false
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyGuildRolePositions": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-role-positions",
-                "category": "guild",
-                "name": "Modify Guild Role Positions",
-                "method": "PATCH",
-                "url": "/guilds/{guild.id}/roles",
-                "description": "Modify the positions of a set of role objects for the guild. Requires the 'MANAGE_ROLES' permission.  Fires multiple Guild Role Update Gateway events.",
-                "responseNote": "Returns a list of all of the guild's role objects on success.",
-                "responseTypes": [
-                    {
-                        "name": "role",
-                        "type": "Array<PERMISSIONS/role>"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "role"
-                    },
-                    "position": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "sorting position of the role"
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyGuildRole": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-role",
-                "category": "guild",
-                "name": "Modify Guild Role",
-                "method": "PATCH",
-                "url": "/guilds/{guild.id}/roles/{role.id}",
-                "description": "Modify a guild role. Requires the 'MANAGE_ROLES' permission.  Fires a Guild Role Update Gateway event.",
-                "responseNote": "Returns the updated role on success.",
-                "responseTypes": [
-                    {
-                        "name": "role",
-                        "type": "PERMISSIONS/role"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "role.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of the role"
-                    },
-                    "permissions": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "bitwise of the enabled/disabled permissions"
-                    },
-                    "color": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "RGB color value"
-                    },
-                    "hoist": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether the role should be displayed separately in the sidebar",
-                        "default": false
-                    },
-                    "mentionable": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether the role should be mentionable",
-                        "default": false
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteGuildRole": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#delete-guild-role",
-                "category": "guild",
-                "name": "Delete Guild Role",
-                "method": "DELETE",
-                "url": "/guilds/{guild.id}/roles/{role.id}",
-                "description": "Delete a guild role. Requires the 'MANAGE_ROLES' permission.  Fires a Guild Role Delete Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "role.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildPruneCount": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-prune-count",
-                "category": "guild",
-                "name": "Get Guild Prune Count",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/prune",
-                "description": "Requires the 'KICK_MEMBERS' permission.",
-                "responseNote": "Returns an object with one 'pruned' key indicating the number of members that would be removed in a prune operation.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "days": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "number of days to count prune for (1 or more)"
-                    }
-                },
-                "parametersArray": false
-            },
-            "beginGuildPrune": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#begin-guild-prune",
-                "category": "guild",
-                "name": "Begin Guild Prune",
-                "method": "POST",
-                "url": "/guilds/{guild.id}/prune",
-                "description": "Begin a prune operation. Requires the 'KICK_MEMBERS' permission.  Fires multiple Guild Member Remove Gateway events.",
-                "responseNote": "Returns an object with one 'pruned' key indicating the number of members that were removed in the prune operation.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "days": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "number of days to prune (1 or more)"
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildVoiceRegions": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-voice-regions",
-                "category": "guild",
-                "name": "Get Guild Voice Regions",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/regions",
-                "description": "Unlike the similar /voice route, this returns VIP servers when the guild is VIP-enabled.",
-                "responseNote": "Returns a list of voice region objects for the guild.",
-                "responseTypes": [
-                    {
-                        "name": "voice region",
-                        "type": "Array<VOICE/voice-region>"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildInvites": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-invites",
-                "category": "guild",
-                "name": "Get Guild Invites",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/invites",
-                "description": "Requires the 'MANAGE_GUILD' permission.",
-                "responseNote": "Returns a list of invite objects (with invite metadata) for the guild.",
-                "responseTypes": [
-                    {
-                        "name": "invite",
-                        "type": "Array<INVITE/invite>"
-                    },
-                    {
-                        "name": "invite metadata",
-                        "type": "INVITE/invite-metadata"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildIntegrations": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-integrations",
-                "category": "guild",
-                "name": "Get Guild Integrations",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/integrations",
-                "description": "Requires the 'MANAGE_GUILD' permission.",
-                "responseNote": "Returns a list of integration objects for the guild.",
-                "responseTypes": [
-                    {
-                        "name": "integration",
-                        "type": "Array<GUILD/integration>"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "createGuildIntegration": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-integration",
-                "category": "guild",
-                "name": "Create Guild Integration",
-                "method": "POST",
-                "url": "/guilds/{guild.id}/integrations",
-                "description": "Attach an integration object from the current user to the guild. Requires the 'MANAGE_GUILD' permission.  Fires a Guild Integrations Update Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "type": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the integration type"
-                    },
-                    "id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "the integration id"
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyGuildIntegration": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-integration",
-                "category": "guild",
-                "name": "Modify Guild Integration",
-                "method": "PATCH",
-                "url": "/guilds/{guild.id}/integrations/{integration.id}",
-                "description": "Modify the behavior and settings of a integration object for the guild. Requires the 'MANAGE_GUILD' permission.  Fires a Guild Integrations Update Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "integration.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "expire_behavior": {
-                        "location": "json",
-                        "type": "guild/integration-object",
-                        "description": "the behavior when an integration subscription lapses (see the integration object documentation)"
-                    },
-                    "expire_grace_period": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "period (in seconds) where the integration will ignore lapsed subscriptions"
-                    },
-                    "enable_emoticons": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether emoticons should be synced for this integration (twitch only currently)",
-                        "default": false
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteGuildIntegration": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#delete-guild-integration",
-                "category": "guild",
-                "name": "Delete Guild Integration",
-                "method": "DELETE",
-                "url": "/guilds/{guild.id}/integrations/{integration.id}",
-                "description": "Delete the attached integration object for the guild. Requires the 'MANAGE_GUILD' permission.  Fires a Guild Integrations Update Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "integration.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "syncGuildIntegration": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#sync-guild-integration",
-                "category": "guild",
-                "name": "Sync Guild Integration",
-                "method": "POST",
-                "url": "/guilds/{guild.id}/integrations/{integration.id}/sync",
-                "description": "Sync an integration. Requires the 'MANAGE_GUILD' permission.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "integration.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildEmbed": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-embed",
-                "category": "guild",
-                "name": "Get Guild Embed",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/embed",
-                "description": "Requires the 'MANAGE_GUILD' permission.",
-                "responseNote": "Returns the guild embed object.",
-                "responseTypes": [
-                    {
-                        "name": "guild embed",
-                        "type": "GUILD/guild-embed"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyGuildEmbed": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-guild-embed",
-                "category": "guild",
-                "name": "Modify Guild Embed",
-                "method": "PATCH",
-                "url": "/guilds/{guild.id}/embed",
-                "description": "Modify a guild embed object for the guild. All attributes may be passed in with JSON and modified. Requires the 'MANAGE_GUILD' permission.",
-                "responseNote": "Returns the updated guild embed object.",
-                "responseTypes": [
-                    {
-                        "name": "guild embed",
-                        "type": "GUILD/guild-embed"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
             "updateNick": {
                 "category": "guild",
                 "url": "/guilds/{guild.id}/members/@me/nick",
@@ -1140,1471 +24,14 @@
                 }
             }
         },
-        "channel": {
-            "getChannel": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#get-channel",
-                "category": "channel",
-                "name": "Get Channel",
-                "method": "GET",
-                "url": "/channels/{channel.id}",
-                "description": "Get a channel by ID.",
-                "responseNote": "Returns a channel object.",
-                "responseTypes": [
-                    {
-                        "name": "channel",
-                        "type": "CHANNEL/channel"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyChannel": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#modify-channel",
-                "category": "channel",
-                "name": "Modify Channel",
-                "method": "PUT",
-                "url": "/channels/{channel.id}",
-                "description": "Update a channels settings. Requires the 'MANAGE_CHANNELS' permission for the guild.  Fires a Channel Update Gateway event. If modifying a category, individual Channel Update events will fire for each child channel that also changes. For the PATCH method, all the JSON Params are optional.",
-                "responseNote": "Returns a channel on success, and a 400 BAD REQUEST on invalid parameters.",
-                "responseTypes": [
-                    {
-                        "name": "channel",
-                        "type": "CHANNEL/channel"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "2-100 character channel name",
-                        "extra": {
-                            "Channel Type": "All"
-                        }
-                    },
-                    "position": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the position of the channel in the left-hand listing",
-                        "extra": {
-                            "Channel Type": "All"
-                        }
-                    },
-                    "topic": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "0-1024 character channel topic",
-                        "extra": {
-                            "Channel Type": "Text"
-                        }
-                    },
-                    "nsfw": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the channel is nsfw",
-                        "default": false,
-                        "extra": {
-                            "Channel Type": "Text"
-                        }
-                    },
-                    "bitrate": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the bitrate (in bits) of the voice channel; 8000 to 96000 (128000 for VIP servers)",
-                        "extra": {
-                            "Channel Type": "Voice"
-                        }
-                    },
-                    "user_limit": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the user limit of the voice channel; 0 refers to no limit, 1 to 99 refers to a user limit",
-                        "extra": {
-                            "Channel Type": "Voice"
-                        }
-                    },
-                    "permission_overwrites": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "channel or category-specific permissions",
-                        "extra": {
-                            "Channel Type": "All"
-                        }
-                    },
-                    "parent_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "id of the new parent category for a channel",
-                        "extra": {
-                            "Channel Type": "Text, Voice"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteOrcloseChannel": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#delete/close-channel",
-                "category": "channel",
-                "name": "Delete/Close Channel",
-                "method": "DELETE",
-                "url": "/channels/{channel.id}",
-                "description": "Delete a channel, or close a private message. Requires the 'MANAGE_CHANNELS' permission for the guild. Deleting a category does not delete its child channels; they will have their parent_id removed and a Channel Update Gateway event will fire for each of them.  Fires a Channel Delete Gateway event.",
-                "responseNote": "Returns a channel object on success.",
-                "responseTypes": [
-                    {
-                        "name": "channel",
-                        "type": "CHANNEL/channel"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getChannelMessages": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#get-channel-messages",
-                "category": "channel",
-                "name": "Get Channel Messages",
-                "method": "GET",
-                "url": "/channels/{channel.id}/messages",
-                "description": "If operating on a guild channel, this endpoint requires the 'VIEW_CHANNEL' permission to be present on the current user. If the current user is missing the 'READ_MESSAGE_HISTORY' permission in the channel then this will return no messages (since they cannot read the message history).",
-                "responseNote": "Returns the messages for a channel.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "around": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get messages around this message ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "before": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get messages before this message ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "after": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get messages after this message ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "limit": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "max number of messages to return (1-100)",
-                        "default": 50,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "getChannelMessage": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#get-channel-message",
-                "category": "channel",
-                "name": "Get Channel Message",
-                "method": "GET",
-                "url": "/channels/{channel.id}/messages/{message.id}",
-                "description": "If operating on a guild channel, this endpoints requires the 'READ_MESSAGE_HISTORY' permission to be present on the current user.",
-                "responseNote": "Returns a specific message in the channel.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "createMessage": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#create-message",
-                "category": "channel",
-                "name": "Create Message",
-                "method": "POST",
-                "url": "/channels/{channel.id}/messages",
-                "description": "warn\nBefore using this endpoint, you must connect to and identify with a gateway at least once.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "content": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the message contents (up to 2000 characters)",
-                        "extra": {
-                            "Required": "true"
-                        }
-                    },
-                    "nonce": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "a nonce that can be used for optimistic message sending",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "tts": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "true if this is a TTS message",
-                        "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "file": {
-                        "location": "json",
-                        "type": "file contents",
-                        "description": "the contents of the file being sent",
-                        "extra": {
-                            "Required": "one of content, file, embeds (multipart/form-data only)"
-                        }
-                    },
-                    "embed": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "embedded rich content",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "payload_json": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "url-encoded JSON body used in place of the embed field",
-                        "extra": {
-                            "Required": "multipart/form-data only"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "createReaction": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#create-reaction",
-                "category": "channel",
-                "name": "Create Reaction",
-                "method": "PUT",
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me",
-                "description": "Create a reaction for the message. This endpoint requires the 'READ_MESSAGE_HISTORY' permission to be present on the current user.  Additionally, if nobody else has reacted to the message using this emoji, this endpoint requires the 'ADD_REACTIONS' permission to be present on the current user.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "emoji": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteOwnReaction": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#delete-own-reaction",
-                "category": "channel",
-                "name": "Delete Own Reaction",
-                "method": "DELETE",
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/@me",
-                "description": "Delete a reaction the current user has made for the message.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "emoji": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteUserReaction": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#delete-user-reaction",
-                "category": "channel",
-                "name": "Delete User Reaction",
-                "method": "DELETE",
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}/{user.id}",
-                "description": "Deletes another user's reaction. This endpoint requires the 'MANAGE_MESSAGES' permission to be present on the current user.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "emoji": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getReactions": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#get-reactions",
-                "category": "channel",
-                "name": "Get Reactions",
-                "method": "GET",
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions/{emoji}",
-                "description": "Get a list of users that reacted with this emoji.",
-                "responseNote": "Returns an array of user objects on success.",
-                "responseTypes": [
-                    {
-                        "name": "user",
-                        "type": "USER/user"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "emoji": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "before": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get users before this user ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "after": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get users after this user ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "limit": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "max number of users to return (1-100)",
-                        "default": 100,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteAllReactions": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#delete-all-reactions",
-                "category": "channel",
-                "name": "Delete All Reactions",
-                "method": "DELETE",
-                "url": "/channels/{channel.id}/messages/{message.id}/reactions",
-                "description": "Deletes all reactions on a message. This endpoint requires the 'MANAGE_MESSAGES' permission to be present on the current user.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "editMessage": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#edit-message",
-                "category": "channel",
-                "name": "Edit Message",
-                "method": "PATCH",
-                "url": "/channels/{channel.id}/messages/{message.id}",
-                "description": "Edit a previously sent message. You can only edit messages that have been sent by the current user.  Fires a Message Update Gateway event.",
-                "responseNote": "Returns a message object.",
-                "responseTypes": [
-                    {
-                        "name": "message",
-                        "type": "CHANNEL/message"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "content": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the new message contents (up to 2000 characters)"
-                    },
-                    "embed": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "embedded rich content"
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteMessage": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#delete-message",
-                "category": "channel",
-                "name": "Delete Message",
-                "method": "DELETE",
-                "url": "/channels/{channel.id}/messages/{message.id}",
-                "description": "Delete a message. If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the 'MANAGE_MESSAGES' permission.  Fires a Message Delete Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "bulkDeleteMessages": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#bulk-delete-messages-deprecated",
-                "deprecated": true,
-                "category": "channel",
-                "name": "Bulk Delete Messages (deprecated)",
-                "method": "POST",
-                "url": "/channels/{channel.id}/messages/bulk_delete",
-                "description": "Same as above, but this endpoint is deprecated.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "editChannelPermissions": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#edit-channel-permissions",
-                "category": "channel",
-                "name": "Edit Channel Permissions",
-                "method": "PUT",
-                "url": "/channels/{channel.id}/permissions/{overwrite.id}",
-                "description": "Edit the channel permission overwrites for a user or role in a channel. Only usable for guild channels. Requires the 'MANAGE_ROLES' permission.  For more information about permissions, see permissions.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "overwrite.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "allow": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the bitwise value of all allowed permissions"
-                    },
-                    "deny": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the bitwise value of all disallowed permissions"
-                    },
-                    "type": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "\"member\" for a user or \"role\" for a role"
-                    }
-                },
-                "parametersArray": false
-            },
-            "getChannelInvites": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#get-channel-invites",
-                "category": "channel",
-                "name": "Get Channel Invites",
-                "method": "GET",
-                "url": "/channels/{channel.id}/invites",
-                "description": "Only usable for guild channels. Requires the 'MANAGE_CHANNELS' permission.",
-                "responseNote": "Returns a list of invite objects (with invite metadata) for the channel.",
-                "responseTypes": [
-                    {
-                        "name": "invite",
-                        "type": "Array<INVITE/invite>"
-                    },
-                    {
-                        "name": "invite metadata",
-                        "type": "INVITE/invite-metadata"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "createChannelInvite": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#create-channel-invite",
-                "category": "channel",
-                "name": "Create Channel Invite",
-                "method": "POST",
-                "url": "/channels/{channel.id}/invites",
-                "description": "Create a new invite object for the channel. Only usable for guild channels. Requires the CREATE_INSTANT_INVITE permission. All JSON paramaters for this route are optional, however the request body is not. If you are not sending any fields, you still have to send an empty JSON object ({}).",
-                "responseNote": "Returns an invite object.",
-                "responseTypes": [
-                    {
-                        "name": "invite",
-                        "type": "INVITE/invite"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "max_age": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "duration of invite in seconds before expiry, or 0 for never",
-                        "default": 86400
-                    },
-                    "max_uses": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "max number of uses or 0 for unlimited",
-                        "default": 0
-                    },
-                    "temporary": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether this invite only grants temporary membership",
-                        "default": false
-                    },
-                    "unique": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if true, don't try to reuse a similar invite (useful for creating many unique one time use invites)",
-                        "default": false
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteChannelPermission": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#delete-channel-permission",
-                "category": "channel",
-                "name": "Delete Channel Permission",
-                "method": "DELETE",
-                "url": "/channels/{channel.id}/permissions/{overwrite.id}",
-                "description": "Delete a channel permission overwrite for a user or role in a channel. Only usable for guild channels. Requires the 'MANAGE_ROLES' permission.  For more information about permissions, see permissions",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "overwrite.id": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "triggerTypingIndicator": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#trigger-typing-indicator",
-                "category": "channel",
-                "name": "Trigger Typing Indicator",
-                "method": "POST",
-                "url": "/channels/{channel.id}/typing",
-                "description": "Post a typing indicator for the specified channel. Generally bots should not implement this route. However, if a bot is responding to a command and expects the computation to take a few seconds, this endpoint may be called to let the user know that the bot is processing their message.  Fires a Typing Start Gateway event.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getPinnedMessages": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#get-pinned-messages",
-                "category": "channel",
-                "name": "Get Pinned Messages",
-                "method": "GET",
-                "url": "/channels/{channel.id}/pins",
-                "description": "",
-                "responseNote": "Returns all pinned messages in the channel as an array of message objects.",
-                "responseTypes": [
-                    {
-                        "name": "message",
-                        "type": "CHANNEL/message"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "addPinnedChannelMessage": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#add-pinned-channel-message",
-                "category": "channel",
-                "name": "Add Pinned Channel Message",
-                "method": "PUT",
-                "url": "/channels/{channel.id}/pins/{message.id}",
-                "description": "Pin a message in a channel. Requires the 'MANAGE_MESSAGES' permission.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "deletePinnedChannelMessage": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#delete-pinned-channel-message",
-                "category": "channel",
-                "name": "Delete Pinned Channel Message",
-                "method": "DELETE",
-                "url": "/channels/{channel.id}/pins/{message.id}",
-                "description": "Delete a pinned message in a channel. Requires the 'MANAGE_MESSAGES' permission.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "message.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "groupDmAddRecipient": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#group-dm-add-recipient",
-                "category": "channel",
-                "name": "Group DM Add Recipient",
-                "method": "PUT",
-                "url": "/channels/{channel.id}/recipients/{user.id}",
-                "description": "Adds a recipient to a Group DM using their access token",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "access_token": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "access token of a user that has granted your app the gdm.join scope"
-                    },
-                    "nick": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "nickname of the user being added"
-                    }
-                },
-                "parametersArray": false
-            },
-            "groupDmRemoveRecipient": {
-                "link": "https://discordapp.com/developers/docs/resources/channel#group-dm-remove-recipient",
-                "category": "channel",
-                "name": "Group DM Remove Recipient",
-                "method": "DELETE",
-                "url": "/channels/{channel.id}/recipients/{user.id}",
-                "description": "Removes a recipient from a Group DM",
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            }
-        },
-        "invite": {
-            "getInvite": {
-                "link": "https://discordapp.com/developers/docs/resources/invite#get-invite",
-                "category": "invite",
-                "name": "Get Invite",
-                "method": "GET",
-                "url": "/invites/{invite.code}",
-                "description": "",
-                "responseNote": "Returns an invite object for the given code.",
-                "responseTypes": [
-                    {
-                        "name": "invite",
-                        "type": "INVITE/invite"
-                    }
-                ],
-                "parameters": {
-                    "invite.code": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteInvite": {
-                "link": "https://discordapp.com/developers/docs/resources/invite#delete-invite",
-                "category": "invite",
-                "name": "Delete Invite",
-                "method": "DELETE",
-                "url": "/invites/{invite.code}",
-                "description": "Delete an invite. Requires the MANAGE_CHANNELS permission.",
-                "responseNote": "Returns an invite object on success.",
-                "responseTypes": [
-                    {
-                        "name": "invite",
-                        "type": "INVITE/invite"
-                    }
-                ],
-                "parameters": {
-                    "invite.code": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "acceptInvite": {
-                "link": "https://discordapp.com/developers/docs/resources/invite#accept-invite",
-                "category": "invite",
-                "name": "Accept Invite",
-                "method": "POST",
-                "url": "/invites/{invite.code}",
-                "description": "danger\nThis endpoint is deprecated and will be discontinued on March 23, 2018. Add Guild Member should be used in its place.",
-                "parameters": {
-                    "invite.code": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            }
-        },
-        "user": {
-            "getCurrentUser": {
-                "link": "https://discordapp.com/developers/docs/resources/user#get-current-user",
-                "category": "user",
-                "name": "Get Current User",
-                "method": "GET",
-                "url": "/users/@me",
-                "description": "For OAuth2, this requires the identify scope, which will return the object without an email, and optionally the email scope, which returns the object with an email.",
-                "responseNote": "Returns the user object of the requester's account.",
-                "responseTypes": [
-                    {
-                        "name": "user",
-                        "type": "USER/user"
-                    }
-                ],
-                "parameters": {},
-                "parametersArray": false
-            },
-            "getUser": {
-                "link": "https://discordapp.com/developers/docs/resources/user#get-user",
-                "category": "user",
-                "name": "Get User",
-                "method": "GET",
-                "url": "/users/{user.id}",
-                "description": "",
-                "responseNote": "Returns a user object for a given user ID.",
-                "responseTypes": [
-                    {
-                        "name": "user",
-                        "type": "USER/user"
-                    }
-                ],
-                "parameters": {
-                    "user.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyCurrentUser": {
-                "link": "https://discordapp.com/developers/docs/resources/user#modify-current-user",
-                "category": "user",
-                "name": "Modify Current User",
-                "method": "PATCH",
-                "url": "/users/@me",
-                "description": "Modify the requester's user account settings.",
-                "responseNote": "Returns a user object on success.",
-                "responseTypes": [
-                    {
-                        "name": "user",
-                        "type": "USER/user"
-                    }
-                ],
-                "parameters": {
-                    "username": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "users username, if changed may cause the users discriminator to be randomized."
-                    },
-                    "avatar": {
-                        "location": "json",
-                        "type": "avatar data",
-                        "description": "if passed, modifies the user's avatar"
-                    }
-                },
-                "parametersArray": false
-            },
-            "getCurrentUserGuilds": {
-                "link": "https://discordapp.com/developers/docs/resources/user#get-current-user-guilds",
-                "category": "user",
-                "name": "Get Current User Guilds",
-                "method": "GET",
-                "url": "/users/@me/guilds",
-                "description": "Requires the guilds OAuth2 scope.",
-                "responseNote": "Returns a list of partial guild objects the current user is a member of.",
-                "responseTypes": [
-                    {
-                        "name": "guild",
-                        "type": "Array<GUILD/guild>"
-                    }
-                ],
-                "parameters": {
-                    "before": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get guilds before this guild ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "after": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get guilds after this guild ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "limit": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "max number of guilds to return (1-100)",
-                        "default": 100,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "leaveGuild": {
-                "link": "https://discordapp.com/developers/docs/resources/user#leave-guild",
-                "category": "user",
-                "name": "Leave Guild",
-                "method": "DELETE",
-                "url": "/users/@me/guilds/{guild.id}",
-                "description": "Leave a guild.",
-                "responseNote": "Returns a 204 empty response on success.",
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getUserDms": {
-                "link": "https://discordapp.com/developers/docs/resources/user#get-user-dms",
-                "category": "user",
-                "name": "Get User DMs",
-                "method": "GET",
-                "url": "/users/@me/channels",
-                "description": "",
-                "responseNote": "Returns a list of DM channel objects.",
-                "responseTypes": [
-                    {
-                        "name": "DM channel",
-                        "type": "Array<CHANNEL/channel>"
-                    }
-                ],
-                "parameters": {},
-                "parametersArray": false
-            },
-            "createDm": {
-                "link": "https://discordapp.com/developers/docs/resources/user#create-dm",
-                "category": "user",
-                "name": "Create DM",
-                "method": "POST",
-                "url": "/users/@me/channels",
-                "description": "Create a new DM channel with a user.",
-                "responseNote": "Returns a DM channel object.",
-                "responseTypes": [
-                    {
-                        "name": "DM channel",
-                        "type": "CHANNEL/channel"
-                    }
-                ],
-                "parameters": {
-                    "recipient_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "the recipient to open a DM channel with"
-                    }
-                },
-                "parametersArray": false
-            },
-            "createGroupDm": {
-                "link": "https://discordapp.com/developers/docs/resources/user#create-group-dm",
-                "category": "user",
-                "name": "Create Group DM",
-                "method": "POST",
-                "url": "/users/@me/channels",
-                "description": "Create a new group DM channel with multiple users.",
-                "responseNote": "Returns a DM channel object.",
-                "responseTypes": [
-                    {
-                        "name": "DM channel",
-                        "type": "CHANNEL/channel"
-                    }
-                ],
-                "parameters": {
-                    "access_tokens": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "access tokens of users that have granted your app the gdm.join scope"
-                    },
-                    "nicks": {
-                        "location": "json",
-                        "type": "dict",
-                        "description": "a dictionary of user ids to their respective nicknames"
-                    }
-                },
-                "parametersArray": false
-            },
-            "getUserConnections": {
-                "link": "https://discordapp.com/developers/docs/resources/user#get-user-connections",
-                "category": "user",
-                "name": "Get User Connections",
-                "method": "GET",
-                "url": "/users/@me/connections",
-                "description": "Requires the connections OAuth2 scope.",
-                "responseNote": "Returns a list of connection objects.",
-                "responseTypes": [
-                    {
-                        "name": "connection",
-                        "type": "Array<USER/connection>"
-                    }
-                ],
-                "parameters": {},
-                "parametersArray": false
-            }
-        },
-        "voice": {
-            "listVoiceRegions": {
-                "link": "https://discordapp.com/developers/docs/resources/voice#list-voice-regions",
-                "category": "voice",
-                "name": "List Voice Regions",
-                "method": "GET",
-                "url": "/voice/regions",
-                "description": "",
-                "responseNote": "Returns an array of voice region objects that can be used when creating servers.",
-                "responseTypes": [
-                    {
-                        "name": "voice region",
-                        "type": "VOICE/voice-region"
-                    }
-                ],
-                "parameters": {},
-                "parametersArray": false
-            }
-        },
-        "webhook": {
-            "createWebhook": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#create-webhook",
-                "category": "webhook",
-                "name": "Create Webhook",
-                "method": "POST",
-                "url": "/channels/{channel.id}/webhooks",
-                "description": "Create a new webhook. Requires the 'MANAGE_WEBHOOKS' permission.",
-                "responseNote": "Returns a webhook object on success.",
-                "responseTypes": [
-                    {
-                        "name": "webhook",
-                        "type": "WEBHOOK/webhook"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of the webhook (2-32 characters)"
-                    },
-                    "avatar": {
-                        "location": "json",
-                        "type": "avatar data string",
-                        "description": "image for the default webhook avatar"
-                    }
-                },
-                "parametersArray": false
-            },
-            "getChannelWebhooks": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#get-channel-webhooks",
-                "category": "webhook",
-                "name": "Get Channel Webhooks",
-                "method": "GET",
-                "url": "/channels/{channel.id}/webhooks",
-                "description": "Requires the 'MANAGE_WEBHOOKS' permission.",
-                "responseNote": "Returns a list of channel webhook objects.",
-                "responseTypes": [
-                    {
-                        "name": "webhook",
-                        "type": "Array<WEBHOOK/webhook>"
-                    }
-                ],
-                "parameters": {
-                    "channel.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getGuildWebhooks": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#get-guild-webhooks",
-                "category": "webhook",
-                "name": "Get Guild Webhooks",
-                "method": "GET",
-                "url": "/guilds/{guild.id}/webhooks",
-                "description": "Requires the 'MANAGE_WEBHOOKS' permission.",
-                "responseNote": "Returns a list of guild webhook objects.",
-                "responseTypes": [
-                    {
-                        "name": "webhook",
-                        "type": "Array<WEBHOOK/webhook>"
-                    }
-                ],
-                "parameters": {
-                    "guild.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getWebhook": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#get-webhook",
-                "category": "webhook",
-                "name": "Get Webhook",
-                "method": "GET",
-                "url": "/webhooks/{webhook.id}",
-                "description": "",
-                "responseNote": "Returns the new webhook object for the given id.",
-                "responseTypes": [
-                    {
-                        "name": "webhook",
-                        "type": "WEBHOOK/webhook"
-                    }
-                ],
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "getWebhookWithToken": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#get-webhook-with-token",
-                "category": "webhook",
-                "name": "Get Webhook with Token",
-                "method": "GET",
-                "url": "/webhooks/{webhook.id}/{webhook.token}",
-                "description": "Same as above, except this call does not require authentication and returns no user in the webhook object.",
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "webhook.token": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyWebhook": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#modify-webhook",
-                "category": "webhook",
-                "name": "Modify Webhook",
-                "method": "PATCH",
-                "url": "/webhooks/{webhook.id}",
-                "description": "Modify a webhook. Requires the 'MANAGE_WEBHOOKS' permission.",
-                "responseNote": "Returns the updated webhook object on success.",
-                "responseTypes": [
-                    {
-                        "name": "webhook",
-                        "type": "WEBHOOK/webhook"
-                    }
-                ],
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the default name of the webhook"
-                    },
-                    "avatar": {
-                        "location": "json",
-                        "type": "avatar data string",
-                        "description": "image for the default webhook avatar"
-                    },
-                    "channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "the new channel id this webhook should be moved to"
-                    }
-                },
-                "parametersArray": false
-            },
-            "modifyWebhookWithToken": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#modify-webhook-with-token",
-                "category": "webhook",
-                "name": "Modify Webhook with Token",
-                "method": "PATCH",
-                "url": "/webhooks/{webhook.id}/{webhook.token}",
-                "description": "Same as above, except this call does not require authentication, does not accept a channel_id parameter in the body, and does not return a user in the webhook object.",
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "webhook.token": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteWebhook": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#delete-webhook",
-                "category": "webhook",
-                "name": "Delete Webhook",
-                "method": "DELETE",
-                "url": "/webhooks/{webhook.id}",
-                "description": "Delete a webhook permanently. User must be owner.",
-                "responseNote": "Returns a 204 NO CONTENT response on success.",
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "deleteWebhookWithToken": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#delete-webhook-with-token",
-                "category": "webhook",
-                "name": "Delete Webhook with Token",
-                "method": "DELETE",
-                "url": "/webhooks/{webhook.id}/{webhook.token}",
-                "description": "Same as above, except this call does not require authentication.",
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "webhook.token": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "executeWebhook": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#execute-webhook",
-                "category": "webhook",
-                "name": "Execute Webhook",
-                "method": "POST",
-                "url": "/webhooks/{webhook.id}/{webhook.token}",
-                "description": "warn\nThis endpoint supports both JSON and form data bodies. It does require multipart/form-data requests instead of the normal JSON request type when uploading files. Make sure you set your Content-Type to multipart/form-data if you're doing that. Note that in that case, the embeds field cannot be used, but you can pass an url-encoded JSON body as a form value for payload_json.",
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "webhook.token": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "wait": {
-                        "location": "query",
-                        "type": "bool",
-                        "description": "waits for server confirmation of message send before response, and returns the created message body (defaults to false; when false a message that is not saved does not return an error)",
-                        "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "content": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the message contents (up to 2000 characters)",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
-                    },
-                    "username": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "override the default username of the webhook",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "avatar_url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "override the default avatar of the webhook",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "tts": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "true if this is a TTS message",
-                        "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "file": {
-                        "location": "json",
-                        "type": "file contents",
-                        "description": "the contents of the file being sent",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
-                    },
-                    "embeds": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "embedded rich content",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "executeSlackCompatibleWebhook": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#execute-slack-compatible-webhook",
-                "category": "webhook",
-                "name": "Execute Slack-Compatible Webhook",
-                "method": "POST",
-                "url": "/webhooks/{webhook.id}/{webhook.token}/slack",
-                "description": "Refer to Slack's documentation for more information. We do not support Slack's channel, icon_emoji, mrkdwn, or mrkdwn_in properties.",
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "webhook.token": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "wait": {
-                        "location": "query",
-                        "type": "bool",
-                        "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
-                        "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    }
-                },
-                "parametersArray": false
-            },
-            "executeGithubCompatibleWebhook": {
-                "link": "https://discordapp.com/developers/docs/resources/webhook#execute-github-compatible-webhook",
-                "category": "webhook",
-                "name": "Execute GitHub-Compatible Webhook",
-                "method": "POST",
-                "url": "/webhooks/{webhook.id}/{webhook.token}/github",
-                "description": "Add a new webhook to your GitHub repo (in the repo's settings), and use this endpoint as the \"Payload URL.\" You can choose what events your Discord channel receives by choosing the \"Let me select individual events\" option and selecting individual events for the new webhook you're configuring.",
-                "parameters": {
-                    "webhook.id": {
-                        "type": "snowflake",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "webhook.token": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    },
-                    "wait": {
-                        "location": "query",
-                        "type": "bool",
-                        "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
-                        "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    }
-                },
-                "parametersArray": false
-            }
-        },
-        "gateway": {
-            "getGateway": {
-                "link": "https://discordapp.com/developers/docs/resources/gateway#get-gateway",
-                "category": "gateway",
-                "name": "Get Gateway",
-                "method": "GET",
-                "url": "/gateway",
-                "description": "info\nThis endpoint does not require authentication.",
-                "parameters": {},
-                "parametersArray": false
-            },
-            "getGatewayBot": {
-                "link": "https://discordapp.com/developers/docs/resources/gateway#get-gateway-bot",
-                "category": "gateway",
-                "name": "Get Gateway Bot",
-                "method": "GET",
-                "url": "/gateway/bot",
-                "description": "warn\nThis endpoint requires authentication using a valid bot token.",
-                "parameters": {},
-                "parametersArray": false
-            }
-        },
+        "audit-log": {},
+        "channel": {},
+        "emoji": {},
+        "invite": {},
+        "user": {},
+        "voice": {},
+        "webhook": {},
+        "gateway": {},
         "oauth2": {},
         "permissions": {}
     },
@@ -2612,7 +39,7 @@
         "guild": {
             "guild": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#guild-object",
-                "category": "guild",
+                "resource": "guild",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -2784,14 +211,14 @@
             },
             "unavailableGuild": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#unavailable-guild-object",
-                "category": "guild",
-                "description": "A partial guild object. Represents an Offline Guild, or a Guild whose information has not been provided through Guild Create events during the Gateway connect.",
+                "resource": "guild",
+                "description": "",
                 "type": "object",
                 "properties": {}
             },
             "guildEmbed": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#guild-embed-object",
-                "category": "guild",
+                "resource": "guild",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -2810,13 +237,13 @@
             },
             "guildMember": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#guild-member-object",
-                "category": "guild",
+                "resource": "guild",
                 "description": "",
                 "type": "object",
                 "properties": {
                     "user": {
                         "location": "json",
-                        "type": "user/user-object",
+                        "type": "object",
                         "description": "user object"
                     },
                     "nick?": {
@@ -2826,7 +253,7 @@
                     },
                     "roles": {
                         "location": "json",
-                        "type": "Array<permissions/role-object>",
+                        "type": "array",
                         "description": "array of role object ids"
                     },
                     "joined_at": {
@@ -2850,7 +277,7 @@
             },
             "integration": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#integration-object",
-                "category": "guild",
+                "resource": "guild",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -2915,7 +342,7 @@
             },
             "integrationAccount": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#integration-account-object",
-                "category": "guild",
+                "resource": "guild",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -2933,20 +360,229 @@
             },
             "ban": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#ban-object",
-                "category": "guild",
+                "resource": "guild",
                 "description": "",
                 "type": "object",
                 "properties": {
                     "reason": {
-                        "location": "json",
+                        "location": "query",
                         "type": "string",
-                        "nullable": true,
-                        "description": "the reason for the ban"
+                        "description": "reason for the ban"
                     },
                     "user": {
                         "location": "json",
                         "type": "object",
                         "description": "the banned user"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the role"
+                    },
+                    "region": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "guild voice region id"
+                    },
+                    "icon": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "base64 128x128 jpeg image for the guild icon"
+                    },
+                    "verification_level": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "verification level"
+                    },
+                    "default_message_notifications": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "default message notification level"
+                    },
+                    "explicit_content_filter": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "explicit content filter level"
+                    },
+                    "roles": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "array of role ids the member is assigned",
+                        "extra": {
+                            "Permission": "MANAGE_ROLES"
+                        }
+                    },
+                    "channels": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "new guild's channels"
+                    },
+                    "afk_channel_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id for afk channel"
+                    },
+                    "afk_timeout": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "afk timeout in seconds"
+                    },
+                    "owner_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "user id to transfer guild ownership to (must be owner)"
+                    },
+                    "splash": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "base64 128x128 jpeg image for the guild splash (VIP only)"
+                    },
+                    "system_channel_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the id of the channel to which system messages are sent"
+                    },
+                    "type": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the integration type"
+                    },
+                    "bitrate": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the bitrate (in bits) of the voice channel (voice only)"
+                    },
+                    "user_limit": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the user limit of the voice channel (voice only)"
+                    },
+                    "permission_overwrites": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "the channel's permission overwrites"
+                    },
+                    "parent_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the parent category for a channel"
+                    },
+                    "nsfw": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "if the channel is nsfw",
+                        "default": false
+                    },
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the integration id"
+                    },
+                    "position": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "sorting position of the role"
+                    },
+                    "limit": {
+                        "location": "query",
+                        "type": "integer",
+                        "description": "max number of members to return (1-1000)",
+                        "default": 1
+                    },
+                    "after": {
+                        "location": "query",
+                        "type": "snowflake",
+                        "description": "the highest user id in the previous page"
+                    },
+                    "access_token": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "an oauth2 access token granted with the guilds.join to the bot's application for the user you want to add to the guild",
+                        "extra": {
+                            "Permission": ""
+                        }
+                    },
+                    "nick": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "value to set users nickname to",
+                        "extra": {
+                            "Permission": "CHANGE_NICKNAME"
+                        }
+                    },
+                    "mute": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "if the user is muted",
+                        "default": false,
+                        "extra": {
+                            "Permission": "MUTE_MEMBERS"
+                        }
+                    },
+                    "deaf": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "if the user is deafened",
+                        "default": false,
+                        "extra": {
+                            "Permission": "DEAFEN_MEMBERS"
+                        }
+                    },
+                    "channel_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of channel to move user to (if they are connected to voice)",
+                        "extra": {
+                            "Permission": "MOVE_MEMBERS"
+                        }
+                    },
+                    "delete-message-days": {
+                        "location": "query",
+                        "type": "integer",
+                        "description": "number of days to delete messages for (0-7)"
+                    },
+                    "permissions": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "bitwise of the enabled/disabled permissions"
+                    },
+                    "color": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "RGB color value"
+                    },
+                    "hoist": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether the role should be displayed separately in the sidebar",
+                        "default": false
+                    },
+                    "mentionable": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether the role should be mentionable",
+                        "default": false
+                    },
+                    "days": {
+                        "location": "query",
+                        "type": "integer",
+                        "description": "number of days to prune (1 or more)"
+                    },
+                    "expire_behavior": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the behavior when an integration subscription lapses (see the integration object documentation)"
+                    },
+                    "expire_grace_period": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "period (in seconds) where the integration will ignore lapsed subscriptions"
+                    },
+                    "enable_emoticons": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether emoticons should be synced for this integration (twitch only currently)",
+                        "default": false
                     }
                 }
             },
@@ -2990,22 +626,114 @@
                 }
             }
         },
+        "audit-log": {
+            "auditLog": {
+                "link": "https://discordapp.com/developers/docs/resources/audit-log#audit-log-object",
+                "resource": "audit-log",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "webhooks": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "list of webhooks found in the audit log"
+                    },
+                    "users": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "list of users found in the audit log"
+                    },
+                    "audit_log_entries": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "list of audit log entires"
+                    }
+                }
+            },
+            "auditLogEntry": {
+                "link": "https://discordapp.com/developers/docs/resources/audit-log#audit-log-entry-object",
+                "resource": "audit-log",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "target_id": {
+                        "location": "json",
+                        "type": "string",
+                        "nullable": true,
+                        "description": "id of the affected entity (webhook, user, role, etc.)"
+                    },
+                    "changes?": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "changes made to the target_id"
+                    },
+                    "user_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the user who made the changes"
+                    },
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the entry"
+                    },
+                    "action_type": {
+                        "location": "json",
+                        "type": "audit log event",
+                        "description": "type of action that occured"
+                    },
+                    "options?": {
+                        "location": "json",
+                        "type": "optional audit entry info",
+                        "description": "additional info for certain action types"
+                    },
+                    "reason?": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the reason for the change"
+                    }
+                }
+            },
+            "auditLogChange": {
+                "link": "https://discordapp.com/developers/docs/resources/audit-log#audit-log-change-object",
+                "resource": "audit-log",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "new_value?": {
+                        "location": "json",
+                        "type": "mixed",
+                        "description": "new value of the key"
+                    },
+                    "old_value?": {
+                        "location": "json",
+                        "type": "mixed",
+                        "description": "old value of the key"
+                    },
+                    "key": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "type of audit log change key"
+                    }
+                }
+            }
+        },
         "channel": {
             "channel": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#channel-object",
-                "category": "channel",
-                "description": "Represents a guild or DM channel within Discord.",
+                "resource": "channel",
+                "description": "",
                 "type": "object",
                 "properties": {
                     "id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "attachment id"
+                        "description": "the id of this channel"
                     },
                     "type": {
                         "location": "json",
-                        "type": "string",
-                        "description": "type of embed (always \"rich\" for webhook embeds)"
+                        "type": "integer",
+                        "description": "the type of channel"
                     },
                     "guild_id?": {
                         "location": "json",
@@ -3085,227 +813,13 @@
                         "location": "json",
                         "type": "ISO8601 timestamp",
                         "description": "when the last pinned message was pinned"
-                    },
-                    "channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "id of the channel the message was sent in"
-                    },
-                    "author": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "author information"
-                    },
-                    "content": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "contents of the message"
-                    },
-                    "timestamp": {
-                        "location": "json",
-                        "type": "ISO8601 timestamp",
-                        "description": "timestamp of embed content"
-                    },
-                    "edited_timestamp": {
-                        "location": "json",
-                        "type": "ISO8601 timestamp",
-                        "nullable": true,
-                        "description": "when this message was edited (or null if never)"
-                    },
-                    "tts": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether this was a TTS message",
-                        "default": false
-                    },
-                    "mention_everyone": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether this message mentions everyone",
-                        "default": false
-                    },
-                    "mentions": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "users specifically mentioned in the message"
-                    },
-                    "mention_roles": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "roles specifically mentioned in this message"
-                    },
-                    "attachments": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "any attached files"
-                    },
-                    "embeds": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "any embedded content"
-                    },
-                    "reactions?": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "reactions to the message"
-                    },
-                    "nonce?": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "nullable": true,
-                        "description": "used for validating a message was sent"
-                    },
-                    "pinned": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether this message is pinned",
-                        "default": false
-                    },
-                    "webhook_id?": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "if the message is generated by a webhook, this is the webhook's id"
-                    },
-                    "count": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "times this emoji has been used to react"
-                    },
-                    "me": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether the current user reacted using this emoji",
-                        "default": false
-                    },
-                    "emoji": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "emoji information"
-                    },
-                    "allow": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "permission bit set"
-                    },
-                    "deny": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "permission bit set"
-                    },
-                    "title": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "title of embed"
-                    },
-                    "description": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "description of embed"
-                    },
-                    "url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "source url of file"
-                    },
-                    "color": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "color code of the embed"
-                    },
-                    "footer": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "footer information"
-                    },
-                    "image": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "image information"
-                    },
-                    "thumbnail": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "thumbnail information"
-                    },
-                    "video": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "video information"
-                    },
-                    "provider": {
-                        "location": "json",
-                        "type": "object",
-                        "description": "provider information"
-                    },
-                    "fields": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "fields information"
-                    },
-                    "proxy_url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "a proxied url of file"
-                    },
-                    "height": {
-                        "location": "json",
-                        "type": "integer",
-                        "nullable": true,
-                        "description": "height of file (if image)"
-                    },
-                    "width": {
-                        "location": "json",
-                        "type": "integer",
-                        "nullable": true,
-                        "description": "width of file (if image)"
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of the field"
-                    },
-                    "icon_url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "url of footer icon (only supports http(s) and attachments)"
-                    },
-                    "proxy_icon_url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "a proxied url of footer icon"
-                    },
-                    "text": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "footer text"
-                    },
-                    "value": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "value of the field"
-                    },
-                    "inline": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether or not this field should display inline",
-                        "default": false
-                    },
-                    "filename": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of file attached"
-                    },
-                    "size": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "size of file in bytes"
                     }
                 }
             },
             "message": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#message-object",
-                "category": "channel",
-                "description": "Represents a message sent in a channel within Discord.",
+                "resource": "channel",
+                "description": "",
                 "type": "object",
                 "properties": {
                     "id": {
@@ -3402,7 +916,7 @@
             },
             "reaction": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#reaction-object",
-                "category": "channel",
+                "resource": "channel",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -3426,7 +940,7 @@
             },
             "overwrite": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#overwrite-object",
-                "category": "channel",
+                "resource": "channel",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -3454,7 +968,7 @@
             },
             "embed": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#embed-object",
-                "category": "channel",
+                "resource": "channel",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -3573,7 +1087,7 @@
             },
             "attachment": {
                 "link": "https://discordapp.com/developers/docs/resources/channel#attachment-object",
-                "category": "channel",
+                "resource": "channel",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -3617,11 +1131,70 @@
                 }
             }
         },
+        "emoji": {
+            "emoji": {
+                "link": "https://discordapp.com/developers/docs/resources/emoji#emoji-object",
+                "resource": "emoji",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "nullable": true,
+                        "description": "emoji id"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the emoji"
+                    },
+                    "roles?": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "roles this emoji is whitelisted to"
+                    },
+                    "user?": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "user that created this emoji"
+                    },
+                    "require_colons?": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether this emoji must be wrapped in colons",
+                        "default": false
+                    },
+                    "managed?": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether this emoji is managed",
+                        "default": false
+                    },
+                    "animated?": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether this emoji is animated",
+                        "default": false
+                    },
+                    "image": {
+                        "location": "json",
+                        "type": "base64 image data",
+                        "description": "the 128x128 emoji image"
+                    },
+                    "roles": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "roles to which this emoji will be whitelisted"
+                    }
+                }
+            }
+        },
         "invite": {
             "invite": {
                 "link": "https://discordapp.com/developers/docs/resources/invite#invite-object",
-                "category": "invite",
-                "description": "Represents a code that when used, adds a user to a guild.",
+                "resource": "invite",
+                "description": "",
                 "type": "object",
                 "properties": {
                     "code": {
@@ -3643,7 +1216,7 @@
             },
             "inviteMetadata": {
                 "link": "https://discordapp.com/developers/docs/resources/invite#invite-metadata-object",
-                "category": "invite",
+                "resource": "invite",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -3690,7 +1263,7 @@
         "user": {
             "user": {
                 "link": "https://discordapp.com/developers/docs/resources/user#user-object",
-                "category": "user",
+                "resource": "user",
                 "description": "",
                 "type": "object",
                 "properties": {
@@ -3766,8 +1339,8 @@
             },
             "connection": {
                 "link": "https://discordapp.com/developers/docs/resources/user#connection-object",
-                "category": "user",
-                "description": "The connection object that the user has attached.",
+                "resource": "user",
+                "description": "",
                 "type": "object",
                 "properties": {
                     "id": {
@@ -3795,6 +1368,56 @@
                         "location": "json",
                         "type": "array",
                         "description": "an array of partial server integrations"
+                    },
+                    "username": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "users username, if changed may cause the users discriminator to be randomized."
+                    },
+                    "avatar": {
+                        "location": "json",
+                        "type": "avatar data",
+                        "description": "if passed, modifies the user's avatar"
+                    },
+                    "before": {
+                        "location": "query",
+                        "type": "snowflake",
+                        "description": "get guilds before this guild ID",
+                        "extra": {
+                            "Required": "false"
+                        }
+                    },
+                    "after": {
+                        "location": "query",
+                        "type": "snowflake",
+                        "description": "get guilds after this guild ID",
+                        "extra": {
+                            "Required": "false"
+                        }
+                    },
+                    "limit": {
+                        "location": "query",
+                        "type": "integer",
+                        "description": "max number of guilds to return (1-100)",
+                        "default": 100,
+                        "extra": {
+                            "Required": "false"
+                        }
+                    },
+                    "recipient_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the recipient to open a DM channel with"
+                    },
+                    "access_tokens": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "access tokens of users that have granted your app the gdm.join scope"
+                    },
+                    "nicks": {
+                        "location": "json",
+                        "type": "dict",
+                        "description": "a dictionary of user ids to their respective nicknames"
                     }
                 }
             }
@@ -3802,8 +1425,8 @@
         "voice": {
             "voiceState": {
                 "link": "https://discordapp.com/developers/docs/resources/voice#voice-state-object",
-                "category": "voice",
-                "description": "Used to represent a user's voice connection status.",
+                "resource": "voice",
+                "description": "",
                 "type": "object",
                 "properties": {
                     "guild_id?": {
@@ -3862,8 +1485,8 @@
         "webhook": {
             "webhook": {
                 "link": "https://discordapp.com/developers/docs/resources/webhook#webhook-object",
-                "category": "webhook",
-                "description": "Used to represent a webhook.",
+                "resource": "webhook",
+                "description": "",
                 "type": "object",
                 "properties": {
                     "id": {
@@ -3879,7 +1502,7 @@
                     "channel_id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "the channel id this webhook is for"
+                        "description": "the new channel id this webhook should be moved to"
                     },
                     "user?": {
                         "location": "json",
@@ -3889,19 +1512,75 @@
                     "name": {
                         "location": "json",
                         "type": "string",
-                        "nullable": true,
                         "description": "the default name of the webhook"
                     },
                     "avatar": {
                         "location": "json",
-                        "type": "string",
-                        "nullable": true,
-                        "description": "the default avatar of the webhook"
+                        "type": "avatar data string",
+                        "description": "image for the default webhook avatar"
                     },
                     "token": {
                         "location": "json",
                         "type": "string",
                         "description": "the secure token of the webhook"
+                    },
+                    "wait": {
+                        "location": "query",
+                        "type": "bool",
+                        "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
+                        "default": false,
+                        "extra": {
+                            "Required": "false"
+                        }
+                    },
+                    "content": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the message contents (up to 2000 characters)",
+                        "extra": {
+                            "Required": "one of content, file, embeds"
+                        }
+                    },
+                    "username": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "override the default username of the webhook",
+                        "extra": {
+                            "Required": "false"
+                        }
+                    },
+                    "avatar_url": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "override the default avatar of the webhook",
+                        "extra": {
+                            "Required": "false"
+                        }
+                    },
+                    "tts": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "true if this is a TTS message",
+                        "default": false,
+                        "extra": {
+                            "Required": "false"
+                        }
+                    },
+                    "file": {
+                        "location": "json",
+                        "type": "file contents",
+                        "description": "the contents of the file being sent",
+                        "extra": {
+                            "Required": "one of content, file, embeds"
+                        }
+                    },
+                    "embeds": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "embedded rich content",
+                        "extra": {
+                            "Required": "one of content, file, embeds"
+                        }
                     }
                 }
             }
@@ -3910,9 +1589,9 @@
         "oauth2": {},
         "permissions": {
             "role": {
-                "link": "https://discordapp.com/developers/docs/resources/permissions#role-object",
-                "category": "permissions",
-                "description": "Roles represent a set of permissions attached to a group of users. Roles have unique names, colors, and can be \"pinned\" to the side bar, causing their members to be listed separately. Roles are unique per guild, and can have separate permission profiles for the global context (guild) and channel context.",
+                "link": "https://discordapp.com/developers/docs/topics/permissions#role-object",
+                "resource": "permissions",
+                "description": "",
                 "type": "object",
                 "properties": {
                     "id": {

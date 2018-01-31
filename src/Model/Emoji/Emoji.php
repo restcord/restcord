@@ -11,52 +11,66 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Guild;
+namespace RestCord\Model\Emoji;
 
 /**
- * GuildMember Model
+ * Emoji Model
  */
-class GuildMember {
+class Emoji {
 
 	/**
-	 * if the user is deafened
+	 * whether this emoji is animated
 	 * 
-	 * @var bool
+	 * @var bool|null
 	 */
-	public $deaf = false;
+	public $animated = false;
 
 	/**
-	 * when the user joined the guild
+	 * emoji id
 	 * 
-	 * @var ISO8601 timestamp
+	 * @var int
 	 */
-	public $joined_at;
+	public $id;
 
 	/**
-	 * if the user is muted
+	 * the 128x128 emoji image
 	 * 
-	 * @var bool
+	 * @var base64 image data
 	 */
-	public $mute = false;
+	public $image;
 
 	/**
-	 * this users guild nickname (if one is set)
+	 * whether this emoji is managed
 	 * 
-	 * @var string|null
+	 * @var bool|null
 	 */
-	public $nick;
+	public $managed = false;
 
 	/**
-	 * array of role object ids
+	 * name of the emoji
+	 * 
+	 * @var string
+	 */
+	public $name;
+
+	/**
+	 * whether this emoji must be wrapped in colons
+	 * 
+	 * @var bool|null
+	 */
+	public $require_colons = false;
+
+	/**
+	 * roles to which this emoji will be whitelisted
 	 * 
 	 * @var array
 	 */
 	public $roles;
 
 	/**
-	 * user object
+	 * user that created this emoji
 	 * 
-	 * @var array
+	 * @var array|null
 	 */
 	public $user;
 

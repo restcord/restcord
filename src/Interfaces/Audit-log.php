@@ -14,7 +14,7 @@
 namespace RestCord\Interfaces;
 
 /**
- * Channel Intellisense Helper
+ * Audit-log Intellisense Helper
  */
-interface Channel {
+interface Audit-log {
 }

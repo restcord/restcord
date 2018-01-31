@@ -11,54 +11,61 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Guild;
+namespace RestCord\Model\Audit-log;
 
 /**
- * GuildMember Model
+ * AuditLogEntry Model
  */
-class GuildMember {
+class AuditLogEntry {
 
 	/**
-	 * if the user is deafened
+	 * type of action that occured
 	 * 
-	 * @var bool
+	 * @var audit log event
 	 */
-	public $deaf = false;
+	public $action_type;
 
 	/**
-	 * when the user joined the guild
+	 * changes made to the target_id
 	 * 
-	 * @var ISO8601 timestamp
+	 * @var array|null
 	 */
-	public $joined_at;
+	public $changes;
 
 	/**
-	 * if the user is muted
+	 * id of the entry
 	 * 
-	 * @var bool
+	 * @var int
 	 */
-	public $mute = false;
+	public $id;
 
 	/**
-	 * this users guild nickname (if one is set)
+	 * additional info for certain action types
+	 * 
+	 * @var optional audit entry info|null
+	 */
+	public $options;
+
+	/**
+	 * the reason for the change
 	 * 
 	 * @var string|null
 	 */
-	public $nick;
+	public $reason;
 
 	/**
-	 * array of role object ids
+	 * id of the affected entity (webhook, user, role, etc.)
 	 * 
-	 * @var array
+	 * @var string
 	 */
-	public $roles;
+	public $target_id;
 
 	/**
-	 * user object
+	 * the user who made the changes
 	 * 
-	 * @var array
+	 * @var int
 	 */
-	public $user;
+	public $user_id;
 
 	/**
 	 * @param array $content

@@ -11,54 +11,33 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Guild;
+namespace RestCord\Model\Audit-log;
 
 /**
- * GuildMember Model
+ * AuditLog Model
  */
-class GuildMember {
+class AuditLog {
 
 	/**
-	 * if the user is deafened
-	 * 
-	 * @var bool
-	 */
-	public $deaf = false;
-
-	/**
-	 * when the user joined the guild
-	 * 
-	 * @var ISO8601 timestamp
-	 */
-	public $joined_at;
-
-	/**
-	 * if the user is muted
-	 * 
-	 * @var bool
-	 */
-	public $mute = false;
-
-	/**
-	 * this users guild nickname (if one is set)
-	 * 
-	 * @var string|null
-	 */
-	public $nick;
-
-	/**
-	 * array of role object ids
+	 * list of audit log entires
 	 * 
 	 * @var array
 	 */
-	public $roles;
+	public $audit_log_entries;
 
 	/**
-	 * user object
+	 * list of users found in the audit log
 	 * 
 	 * @var array
 	 */
-	public $user;
+	public $users;
+
+	/**
+	 * list of webhooks found in the audit log
+	 * 
+	 * @var array
+	 */
+	public $webhooks;
 
 	/**
 	 * @param array $content

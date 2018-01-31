@@ -19,6 +19,34 @@ namespace RestCord\Model\User;
 class Connection {
 
 	/**
+	 * access tokens of users that have granted your app the gdm.join scope
+	 * 
+	 * @var array
+	 */
+	public $access_tokens;
+
+	/**
+	 * get guilds after this guild ID
+	 * 
+	 * @var int
+	 */
+	public $after;
+
+	/**
+	 * if passed, modifies the user's avatar
+	 * 
+	 * @var avatar data
+	 */
+	public $avatar;
+
+	/**
+	 * get guilds before this guild ID
+	 * 
+	 * @var int
+	 */
+	public $before;
+
+	/**
 	 * id of the connection account
 	 * 
 	 * @var string
@@ -33,11 +61,32 @@ class Connection {
 	public $integrations;
 
 	/**
+	 * max number of guilds to return (1-100)
+	 * 
+	 * @var int
+	 */
+	public $limit = 100;
+
+	/**
 	 * the username of the connection account
 	 * 
 	 * @var string
 	 */
 	public $name;
+
+	/**
+	 * a dictionary of user ids to their respective nicknames
+	 * 
+	 * @var dict
+	 */
+	public $nicks;
+
+	/**
+	 * the recipient to open a DM channel with
+	 * 
+	 * @var int
+	 */
+	public $recipient_id;
 
 	/**
 	 * whether the connection is revoked
@@ -52,6 +101,13 @@ class Connection {
 	 * @var string
 	 */
 	public $type;
+
+	/**
+	 * users username, if changed may cause the users discriminator to be randomized.
+	 * 
+	 * @var string
+	 */
+	public $username;
 
 	/**
 	 * @param array $content

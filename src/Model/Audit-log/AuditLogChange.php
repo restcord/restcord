@@ -11,54 +11,33 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Guild;
+namespace RestCord\Model\Audit-log;
 
 /**
- * GuildMember Model
+ * AuditLogChange Model
  */
-class GuildMember {
+class AuditLogChange {
 
 	/**
-	 * if the user is deafened
+	 * type of audit log change key
 	 * 
-	 * @var bool
+	 * @var string
 	 */
-	public $deaf = false;
+	public $key;
 
 	/**
-	 * when the user joined the guild
+	 * new value of the key
 	 * 
-	 * @var ISO8601 timestamp
+	 * @var mixed|null
 	 */
-	public $joined_at;
+	public $new_value;
 
 	/**
-	 * if the user is muted
+	 * old value of the key
 	 * 
-	 * @var bool
+	 * @var mixed|null
 	 */
-	public $mute = false;
-
-	/**
-	 * this users guild nickname (if one is set)
-	 * 
-	 * @var string|null
-	 */
-	public $nick;
-
-	/**
-	 * array of role object ids
-	 * 
-	 * @var array
-	 */
-	public $roles;
-
-	/**
-	 * user object
-	 * 
-	 * @var array
-	 */
-	public $user;
+	public $old_value;
 
 	/**
 	 * @param array $content
