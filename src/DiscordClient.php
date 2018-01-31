@@ -179,12 +179,6 @@ class DiscordClient
                         $value = 'Bot';
                     }
 
-                    if ($value !== 'User') {
-                        $value .= ' ';
-                    } else {
-                        $value = '';
-                    }
-
                     return $value;
                 }
             );
