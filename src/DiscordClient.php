@@ -140,54 +140,19 @@ class DiscordClient
                 'logger'           => new Logger('Logger'),
                 'throwOnRatelimit' => false,
                 'apiUrl'           => "https://discordapp.com/api/v{$currentVersion}/",
-                'tokenType'        => 'None',
+                'tokenType'        => 'Bot',
                 'cacheDir'         => __DIR__.'/../../../cache/',
                 'guzzleOptions'    => [],
             ]
         )
             ->setDefined(['token'])
-            ->setAllowedValues('tokenType', ['Bot', 'User', 'OAuth', 'None'])
+            ->setAllowedValues('tokenType', ['Bot', 'User', 'OAuth'])
             ->setAllowedTypes('token', ['string'])
             ->setAllowedTypes('apiUrl', ['string'])
             ->setAllowedTypes('throwOnRatelimit', ['bool'])
             ->setAllowedTypes('logger', ['\Psr\Log\LoggerInterface'])
             ->setAllowedTypes('version', ['string', 'integer'])
-            ->setAllowedTypes('guzzleOptions', ['array'])
-            ->setNormalizer(
-                'token',
-                function (Options $options, $value) {
-                    if (0 === stripos($value, 'Bot ')) {
-                        $value = substr($value, 4);
-                        $options['tokenType'] = 'Bot';
-                    }
-                    if (0 === stripos($value, 'Bearer ')) {
-                        $value = substr($value, 7);
-                        $options['tokenType'] = 'OAuth';
-                    }
-
-                    if (empty($value)) {
-                        $options['tokenType'] = 'None';
-                    }
-
-                    return $value;
-                }
-            )
-            ->setNormalizer(
-                'tokenType',
-                function (Options $options, $value) {
-                    if ($options['token'] !== null && $value === 'None') {
-                        $value = 'Bot';
-                    }
-
-                    if ($value !== 'User') {
-                        $value .= ' ';
-                    } else {
-                        $value = '';
-                    }
-
-                    return $value;
-                }
-            );
+            ->setAllowedTypes('guzzleOptions', ['array']);
 
         return $resolver->resolve($options);
     }
