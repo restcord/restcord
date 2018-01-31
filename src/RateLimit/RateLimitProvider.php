@@ -85,7 +85,11 @@ class RateLimitProvider
      */
     public function getRequestAllowance(RequestInterface $request)
     {
-        $route = $request->getMethod().'-'.$request->getUri();
+        $route = $request->getUri();
+        if ($request->getMethod() === "DELETE" && strpos($request->getUri(), 'messages') !== false) {
+            $route = "DELETE-" . $request->getUri();
+        }
+
         if (!isset($this->routes[$route])) {
             return 0;
         }
