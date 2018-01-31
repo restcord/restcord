@@ -25,7 +25,6 @@ use Psr\Http\Message\ResponseInterface;
 use RestCord\Logging\MessageFormatter;
 use RestCord\RateLimit\RateLimiter;
 use RestCord\RateLimit\RateLimitProvider;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use function GuzzleHttp\json_decode;
 
