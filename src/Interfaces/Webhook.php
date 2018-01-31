@@ -21,7 +21,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#create-webhook
 	 * 
-	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'avatar' => 'avatar data']
+	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'avatar' => 'avatar data string']
 	 * @return \RestCord\Model\Webhook\Webhook Returns a webhook object on success.
 	 */
 	public function createWebhook(array $options);
@@ -101,7 +101,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#modify-webhook
 	 * 
-	 * @param array $options ['webhook.id' => 'snowflake', 'name' => 'string', 'avatar' => 'string']
+	 * @param array $options ['webhook.id' => 'snowflake', 'name' => 'string', 'avatar' => 'avatar data string', 'channel_id' => 'snowflake']
 	 * @return \RestCord\Model\Webhook\Webhook Returns the updated webhook object on success.
 	 */
 	public function modifyWebhook(array $options);

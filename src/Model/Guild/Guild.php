@@ -33,9 +33,16 @@ class Guild {
 	public $afk_timeout;
 
 	/**
-	 * array of channel objects
+	 * application id of the guild creator if it is bot-created
 	 * 
-	 * @var \RestCord\Model\Channel\GuildChannel[]
+	 * @var int
+	 */
+	public $application_id;
+
+	/**
+	 * channels in the guild
+	 * 
+	 * @var array|null
 	 */
 	public $channels;
 
@@ -49,26 +56,33 @@ class Guild {
 	/**
 	 * id of embedded channel
 	 * 
-	 * @var int
+	 * @var int|null
 	 */
 	public $embed_channel_id;
 
 	/**
 	 * is this guild embeddable (e.g. widget)
 	 * 
-	 * @var bool
+	 * @var bool|null
 	 */
 	public $embed_enabled = false;
 
 	/**
-	 * array of emoji objects
+	 * custom guild emojis
 	 * 
-	 * @var \RestCord\Model\Guild\Emoji[]
+	 * @var array
 	 */
 	public $emojis;
 
 	/**
-	 * array of guild features
+	 * explicit content filter level
+	 * 
+	 * @var int
+	 */
+	public $explicit_content_filter;
+
+	/**
+	 * enabled guild features
 	 * 
 	 * @var array
 	 */
@@ -89,30 +103,30 @@ class Guild {
 	public $id;
 
 	/**
-	 * date this guild was joined at
+	 * when this guild was joined at
 	 * 
-	 * @var \DateTime
+	 * @var ISO8601 timestamp|null
 	 */
 	public $joined_at;
 
 	/**
 	 * whether this is considered a large guild
 	 * 
-	 * @var bool
+	 * @var bool|null
 	 */
 	public $large = false;
 
 	/**
 	 * total number of members in this guild
 	 * 
-	 * @var int
+	 * @var int|null
 	 */
 	public $member_count;
 
 	/**
-	 * array of guild member objects
+	 * users in the guild
 	 * 
-	 * @var \RestCord\Model\Guild\GuildMember[]
+	 * @var array|null
 	 */
 	public $members;
 
@@ -131,6 +145,13 @@ class Guild {
 	public $name;
 
 	/**
+	 * whether or not the user is the owner of the guild
+	 * 
+	 * @var bool|null
+	 */
+	public $owner = false;
+
+	/**
 	 * id of owner
 	 * 
 	 * @var int
@@ -138,23 +159,30 @@ class Guild {
 	public $owner_id;
 
 	/**
-	 * array of simple presence objects, which share the same fields as Presence Update event sans a roles or guild_id key
+	 * total permissions for the user in the guild (does not include channel overrides)
 	 * 
-	 * @var array
+	 * @var int|null
+	 */
+	public $permissions;
+
+	/**
+	 * presences of the users in the guild
+	 * 
+	 * @var array|null
 	 */
 	public $presences;
 
 	/**
-	 * {voice_region.id}
+	 * voice region id for the guild
 	 * 
 	 * @var string
 	 */
 	public $region;
 
 	/**
-	 * array of role objects
+	 * roles in the guild
 	 * 
-	 * @var \RestCord\Model\Permissions\Role[]
+	 * @var array
 	 */
 	public $roles;
 
@@ -166,25 +194,46 @@ class Guild {
 	public $splash;
 
 	/**
+	 * the id of the channel to which system messages are sent
+	 * 
+	 * @var int
+	 */
+	public $system_channel_id;
+
+	/**
 	 * is this guild unavailable
 	 * 
-	 * @var bool
+	 * @var bool|null
 	 */
 	public $unavailable = false;
 
 	/**
-	 * level of verification
+	 * verification level required for the guild
 	 * 
 	 * @var int
 	 */
 	public $verification_level;
 
 	/**
-	 * array of voice state objects (without the guild_id key)
+	 * (without the guild_id key)
 	 * 
-	 * @var \RestCord\Model\Voice\VoiceState[]
+	 * @var array|null
 	 */
 	public $voice_states;
+
+	/**
+	 * the channel id for the server widget
+	 * 
+	 * @var int|null
+	 */
+	public $widget_channel_id;
+
+	/**
+	 * whether or not the server widget is enabled
+	 * 
+	 * @var bool|null
+	 */
+	public $widget_enabled = false;
 
 	/**
 	 * @param array $content

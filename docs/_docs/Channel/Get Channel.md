@@ -23,9 +23,8 @@ channel.id | snowflake | true | *null*
 
 ## Response
 
-Returns a guild channel or dm channel object.
+Returns a channel object.
 
 Can Return:
 
-* guild channel
-* dm channel
+* channel

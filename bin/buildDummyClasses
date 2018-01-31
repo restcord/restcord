@@ -10,6 +10,26 @@
  * with this source code in the file LICENSE
  */
 
+function recursiveRemoveDirectory($directory)
+{
+    foreach (glob("{$directory}/*") as $file) {
+        if (is_dir($file)) {
+            recursiveRemoveDirectory($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($directory);
+}
+
+$path = __DIR__.'/../src/Interfaces';
+try {
+    recursiveRemoveDirectory($path);
+} catch (\Exception $e) {
+}
+mkdir($path, 02775, true);
+$path = realpath($path);
+
 require __DIR__.'/../vendor/autoload.php';
 
 use gossi\codegen\generator\CodeGenerator;
@@ -43,33 +63,15 @@ $license = <<<EOF
 \n
 EOF;
 
-function recursiveRemoveDirectory($directory)
-{
-    foreach (glob("{$directory}/*") as $file) {
-        if (is_dir($file)) {
-            recursiveRemoveDirectory($file);
-        } else {
-            unlink($file);
-        }
-    }
-    rmdir($directory);
-}
 
+/** @noinspection PhpUnhandledExceptionInspection */
 (new Application('Build Dummy Classes', '1.0.0'))
     ->register('buildDummyClasses')
     ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
     ->setCode(
-        function (InputInterface $input, OutputInterface $output) use ($twig, $license) {
+        function (InputInterface $input, OutputInterface $output) use ($twig, $license, $path) {
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
-            $style->title("Building Dummy Classes for: ".$input->getArgument('version'));
-
-            $path = __DIR__.'/../src/Interfaces';
-            try {
-                recursiveRemoveDirectory($path);
-            } catch (\Exception $e) {
-            }
-            mkdir($path, 02775, true);
-            $path = realpath($path);
+            $style->title("Building Dummy Classes for Gateway v".$input->getArgument('version'));
 
             $definition = \GuzzleHttp\json_decode(
                 file_get_contents(
@@ -110,9 +112,10 @@ function recursiveRemoveDirectory($directory)
                                     $firstType = substr($firstType, 6, -1);
                                 }
 
+                                $temp = explode("/", $firstType);
                                 $returnType = sprintf(
                                     "\\RestCord\\Model\\%s\\%s",
-                                    ucwords($category),
+                                    ucfirst(strtolower($temp[0])),
                                     str_replace(
                                         ' ',
                                         '',

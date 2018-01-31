@@ -10,13 +10,31 @@
  * with this source code in the file LICENSE
  */
 
+function recursiveRemoveDirectory($directory)
+{
+    foreach (glob("{$directory}/*") as $file) {
+        if (is_dir($file)) {
+            recursiveRemoveDirectory($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($directory);
+}
+
+$path = __DIR__.'/../src/Model';
+try {
+    recursiveRemoveDirectory($path);
+} catch (\Exception $e) {
+}
+mkdir($path, 02775, true);
+$path = realpath($path);
+
 require __DIR__.'/../vendor/autoload.php';
 
 use gossi\codegen\generator\CodeGenerator;
 use gossi\codegen\model\PhpClass;
-use gossi\codegen\model\PhpInterface;
 use gossi\codegen\model\PhpMethod;
-use gossi\codegen\model\PhpParameter;
 use gossi\codegen\model\PhpProperty;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
@@ -43,33 +61,15 @@ $license = <<<EOF
 \n
 EOF;
 
-function recursiveRemoveDirectory($directory)
-{
-    foreach (glob("{$directory}/*") as $file) {
-        if (is_dir($file)) {
-            recursiveRemoveDirectory($file);
-        } else {
-            unlink($file);
-        }
-    }
-    rmdir($directory);
-}
-
+/** @noinspection PhpUnhandledExceptionInspection */
 (new Application('Build Model Classes', '1.0.0'))
     ->register('buildModelClasses')
     ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
     ->setCode(
-        function (InputInterface $input, OutputInterface $output) use ($twig, $license) {
+        function (InputInterface $input, OutputInterface $output) use ($twig, $license, $path) {
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
             $style->title("Building Model Classes for: ".$input->getArgument('version'));
 
-            $path = __DIR__.'/../src/Model';
-            try {
-                recursiveRemoveDirectory($path);
-            } catch (\Exception $e) {
-            }
-            mkdir($path, 02775, true);
-            $path = realpath($path);
 
             $definition = \GuzzleHttp\json_decode(
                 file_get_contents(
@@ -86,9 +86,11 @@ function recursiveRemoveDirectory($directory)
                     $class->setDescription(ucwords($name)." Model");
                     $class->setProperties(
                         array_map(
-                            function ($name, $property) use ($class, $category, $model) {
+                            function (&$name, $property) use ($class, $category, $model) {
+                                $optional = strpos($name, '?') !== false;
+                                $name = str_replace('?', '', $name);
                                 $prop = new PhpProperty($name);
-                                $prop->setType(normalizeType($property['type']));
+                                $prop->setType(normalizeType($property['type']).($optional ? "|null" : ""));
                                 $prop->setDescription($property['description']);
 
                                 if (isset($property['default'])) {

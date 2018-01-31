@@ -35,7 +35,7 @@ class Webhook {
 	/**
 	 * the guild id this webhook is for
 	 * 
-	 * @var int
+	 * @var int|null
 	 */
 	public $guild_id;
 
@@ -63,7 +63,7 @@ class Webhook {
 	/**
 	 * the user this webhook was created by (not returned when getting a webhook with its token)
 	 * 
-	 * @var User
+	 * @var array|null
 	 */
 	public $user;
 

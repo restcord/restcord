@@ -41,7 +41,7 @@ No Parameters
 
 {{ config.responseNote|default("Possibly No Response") }}
 
-{% if config.responseTypes|length > 0 %}
+{% if config.responseTypes is defined and config.responseTypes|length > 0 %}
 Can Return:
 
 {% for type in config.responseTypes %}

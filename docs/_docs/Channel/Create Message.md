@@ -12,7 +12,8 @@ $client->channel->createMessage($parameters);
 
 ## Description
 
-Post a message to a guild text or DM channel. If operating on a guild channel, this endpoint requires the &#039;SEND_MESSAGES&#039; permission to be present on the current user.  Fires a Message Create Gateway event. See message formatting for more information on how to properly format messages.
+warn
+Before using this endpoint, you must connect to and identify with a gateway at least once.
 
 ## Parameters
 
@@ -25,11 +26,9 @@ nonce | snowflake | false | *null*
 tts | bool | false | *null*
 file | file contents | false | *null*
 embed | object | false | *null*
+payload_json | string | false | *null*
 
 ## Response
 
-Returns a message object.
+Possibly No Response
 
-Can Return:
-
-* message

@@ -33,25 +33,11 @@ class Reaction {
 	public $emoji;
 
 	/**
-	 * id of emoji (if custom emoji)
-	 * 
-	 * @var int
-	 */
-	public $id;
-
-	/**
 	 * whether the current user reacted using this emoji
 	 * 
 	 * @var bool
 	 */
 	public $me = false;
-
-	/**
-	 * name of emoji
-	 * 
-	 * @var string
-	 */
-	public $name;
 
 	/**
 	 * @param array $content

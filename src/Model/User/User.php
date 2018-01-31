@@ -28,7 +28,7 @@ class User {
 	/**
 	 * whether the user belongs to an OAuth2 application
 	 * 
-	 * @var bool
+	 * @var bool|null
 	 */
 	public $bot = false;
 
@@ -42,7 +42,7 @@ class User {
 	/**
 	 * the user's email
 	 * 
-	 * @var string
+	 * @var string|null
 	 */
 	public $email;
 
@@ -56,7 +56,7 @@ class User {
 	/**
 	 * whether the user has two factor enabled on their account
 	 * 
-	 * @var bool
+	 * @var bool|null
 	 */
 	public $mfa_enabled = false;
 
@@ -70,7 +70,7 @@ class User {
 	/**
 	 * whether the email on this account has been verified
 	 * 
-	 * @var bool
+	 * @var bool|null
 	 */
 	public $verified = false;
 

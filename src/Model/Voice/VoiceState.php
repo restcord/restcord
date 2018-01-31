@@ -35,7 +35,7 @@ class VoiceState {
 	/**
 	 * the guild id this voice state is for
 	 * 
-	 * @var int
+	 * @var int|null
 	 */
 	public $guild_id;
 

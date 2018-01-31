@@ -1,13 +1,13 @@
 ---
-title: Get Users Connections
+title: Get User Connections
 category: User
 order: 9
 ---
 
-# `getUsersConnections`
+# `getUserConnections`
 
 ```php
-$client->user->getUsersConnections($parameters);
+$client->user->getUserConnections($parameters);
 ```
 
 ## Description

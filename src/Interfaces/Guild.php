@@ -45,7 +45,7 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#create-guild
 	 * 
-	 * @param array $options ['name' => 'string', 'region' => 'string', 'icon' => 'string', 'verification_level' => 'integer', 'default_message_notifications' => 'integer', 'roles' => 'array', 'channels' => 'array']
+	 * @param array $options ['name' => 'string', 'region' => 'string', 'icon' => 'string', 'verification_level' => 'integer', 'default_message_notifications' => 'integer', 'explicit_content_filter' => 'integer', 'roles' => 'array', 'channels' => 'array']
 	 * @return \RestCord\Model\Guild\Guild Returns a guild object on success.
 	 */
 	public function createGuild(array $options);
@@ -53,7 +53,7 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#create-guild-ban
 	 * 
-	 * @param array $options ['guild.id' => 'snowflake', 'user.id' => 'snowflake', 'delete-message-days' => 'integer']
+	 * @param array $options ['guild.id' => 'snowflake', 'user.id' => 'snowflake', 'delete-message-days' => 'integer', 'reason' => 'string']
 	 * @return array Returns a 204 empty response on success.
 	 */
 	public function createGuildBan(array $options);
@@ -61,8 +61,8 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#create-guild-channel
 	 * 
-	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'type' => 'string', 'bitrate' => 'integer', 'user_limit' => 'integer', 'permission_overwrites' => 'array']
-	 * @return \RestCord\Model\Channel\GuildChannel Returns the new channel object on success.
+	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'type' => 'integer', 'bitrate' => 'integer', 'user_limit' => 'integer', 'permission_overwrites' => 'array', 'parent_id' => 'snowflake', 'nsfw' => 'bool']
+	 * @return \RestCord\Model\Channel\Channel Returns the new channel object on success.
 	 */
 	public function createGuildChannel(array $options);
 
@@ -78,7 +78,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#create-guild-role
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'permissions' => 'integer', 'color' => 'integer', 'hoist' => 'bool', 'mentionable' => 'bool']
-	 * @return \RestCord\Model\Guild\Role Returns the new role object on success.
+	 * @return \RestCord\Model\Permissions\Role Returns the new role object on success.
 	 */
 	public function createGuildRole(array $options);
 
@@ -86,7 +86,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#delete-guild
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake']
-	 * @return \RestCord\Model\Guild\Guild Returns the guild object on success.
+	 * @return array Returns 204 No Content on success.
 	 */
 	public function deleteGuild(array $options);
 
@@ -110,7 +110,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#get-guild
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake']
-	 * @return \RestCord\Model\Guild\Guild Returns the new guild object for the given id.
+	 * @return \RestCord\Model\Guild\Guild Returns the guild object for the given id.
 	 */
 	public function getGuild(array $options);
 
@@ -118,7 +118,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#get-guild-bans
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake']
-	 * @return \RestCord\Model\User\User[] Returns a list of user objects that are banned from this guild.
+	 * @return \RestCord\Model\Guild\Ban[] Returns a list of ban objects for the users banned from this guild.
 	 */
 	public function getGuildBans(array $options);
 
@@ -126,7 +126,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#get-guild-channels
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake']
-	 * @return \RestCord\Model\Channel\GuildChannel[] Returns a list of guild channel objects.
+	 * @return \RestCord\Model\Channel\Channel[] Returns a list of guild channel objects.
 	 */
 	public function getGuildChannels(array $options);
 
@@ -174,7 +174,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#get-guild-roles
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake']
-	 * @return \RestCord\Model\Guild\Role[] Returns a list of role objects for the guild.
+	 * @return \RestCord\Model\Permissions\Role[] Returns a list of role objects for the guild.
 	 */
 	public function getGuildRoles(array $options);
 
@@ -205,7 +205,7 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-guild
 	 * 
-	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'region' => 'string', 'verification_level' => 'integer', 'default_message_notifications' => 'integer', 'afk_channel_id' => 'snowflake', 'afk_timeout' => 'integer', 'icon' => 'string', 'owner_id' => 'snowflake', 'splash' => 'string']
+	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'region' => 'string', 'verification_level' => 'integer', 'default_message_notifications' => 'integer', 'explicit_content_filter' => 'integer', 'afk_channel_id' => 'snowflake', 'afk_timeout' => 'integer', 'icon' => 'string', 'owner_id' => 'snowflake', 'splash' => 'string', 'system_channel_id' => 'snowflake']
 	 * @return \RestCord\Model\Guild\Guild Returns the updated guild object on success.
 	 */
 	public function modifyGuild(array $options);
@@ -214,7 +214,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-guild-channel-positions
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake', 'id' => 'snowflake', 'position' => 'integer']
-	 * @return \RestCord\Model\Channel\GuildChannel[] Returns a list of all of the guild's channel objects on success.
+	 * @return array Returns a 204 empty response on success.
 	 */
 	public function modifyGuildChannelPositions(array $options);
 
@@ -246,7 +246,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-guild-role
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake', 'role.id' => 'string', 'name' => 'string', 'permissions' => 'integer', 'color' => 'integer', 'hoist' => 'bool', 'mentionable' => 'bool']
-	 * @return \RestCord\Model\Guild\Role Returns the updated role on success.
+	 * @return \RestCord\Model\Permissions\Role Returns the updated role on success.
 	 */
 	public function modifyGuildRole(array $options);
 
@@ -254,7 +254,7 @@ interface Guild {
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-guild-role-positions
 	 * 
 	 * @param array $options ['guild.id' => 'snowflake', 'id' => 'snowflake', 'position' => 'integer']
-	 * @return \RestCord\Model\Guild\Role[] Returns a list of all of the guild's role objects on success.
+	 * @return \RestCord\Model\Permissions\Role[] Returns a list of all of the guild's role objects on success.
 	 */
 	public function modifyGuildRolePositions(array $options);
 

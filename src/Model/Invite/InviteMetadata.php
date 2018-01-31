@@ -21,7 +21,7 @@ class InviteMetadata {
 	/**
 	 * when this invite was created
 	 * 
-	 * @var \DateTime
+	 * @var ISO8601 timestamp
 	 */
 	public $created_at;
 

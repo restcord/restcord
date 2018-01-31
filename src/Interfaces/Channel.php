@@ -45,8 +45,8 @@ interface Channel {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/channel#create-message
 	 * 
-	 * @param array $options ['channel.id' => 'snowflake', 'content' => 'string', 'nonce' => 'snowflake', 'tts' => 'bool', 'file' => 'file contents', 'embed' => 'object']
-	 * @return \RestCord\Model\Channel\Message Returns a message object.
+	 * @param array $options ['channel.id' => 'snowflake', 'content' => 'string', 'nonce' => 'snowflake', 'tts' => 'bool', 'file' => 'file contents', 'embed' => 'object', 'payload_json' => 'string']
+	 * @return array
 	 */
 	public function createMessage(array $options);
 
@@ -86,7 +86,7 @@ interface Channel {
 	 * @see https://discordapp.com/developers/docs/resources/channel#delete/close-channel
 	 * 
 	 * @param array $options ['channel.id' => 'snowflake']
-	 * @return \RestCord\Model\Channel\GuildChannel Returns a guild channel or dm channel object on success.
+	 * @return \RestCord\Model\Channel\Channel Returns a channel object on success.
 	 */
 	public function deleteOrcloseChannel(array $options);
 
@@ -134,7 +134,7 @@ interface Channel {
 	 * @see https://discordapp.com/developers/docs/resources/channel#get-channel
 	 * 
 	 * @param array $options ['channel.id' => 'snowflake']
-	 * @return \RestCord\Model\Channel\GuildChannel Returns a guild channel or dm channel object.
+	 * @return \RestCord\Model\Channel\Channel Returns a channel object.
 	 */
 	public function getChannel(array $options);
 
@@ -173,7 +173,7 @@ interface Channel {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/channel#get-reactions
 	 * 
-	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string']
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string', 'before' => 'snowflake', 'after' => 'snowflake', 'limit' => 'integer']
 	 * @return \RestCord\Model\User\User Returns an array of user objects on success.
 	 */
 	public function getReactions(array $options);
@@ -197,8 +197,8 @@ interface Channel {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/channel#modify-channel
 	 * 
-	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'position' => 'integer', 'topic' => 'string', 'bitrate' => 'integer', 'user_limit' => 'integer']
-	 * @return \RestCord\Model\Channel\GuildChannel Returns a guild channel on success, and a 400 BAD REQUEST on invalid parameters.
+	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'position' => 'integer', 'topic' => 'string', 'nsfw' => 'bool', 'bitrate' => 'integer', 'user_limit' => 'integer', 'permission_overwrites' => 'array', 'parent_id' => 'snowflake']
+	 * @return \RestCord\Model\Channel\Channel Returns a channel on success, and a 400 BAD REQUEST on invalid parameters.
 	 */
 	public function modifyChannel(array $options);
 

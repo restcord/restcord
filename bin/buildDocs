@@ -33,6 +33,7 @@ function recursiveRemoveDirectory($directory)
     rmdir($directory);
 }
 
+/** @noinspection PhpUnhandledExceptionInspection */
 (new Application('Build Docs', '1.0.0'))
     ->register('buildDocs')
     ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
@@ -61,15 +62,19 @@ function recursiveRemoveDirectory($directory)
                         mkdir($filePath, 02775, true);
                     }
 
-                    $markdown = $twig->render(
-                        'operation.md.twig',
-                        [
-                            'category'  => $category,
-                            'operation' => $operation,
-                            'config'    => $config,
-                            'order'     => $i
-                        ]
-                    );
+                    try {
+                        $markdown = $twig->render(
+                            'operation.md.twig',
+                            [
+                                'category'  => $category,
+                                'operation' => $operation,
+                                'config'    => $config,
+                                'order'     => $i
+                            ]
+                        );
+                    } catch (\Exception $e) {
+                        throw $e;
+                    }
 
                     file_put_contents($filePath.str_replace('/', ' or ', $config['name']).'.md', $markdown);
                     $i++;

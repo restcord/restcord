@@ -70,7 +70,7 @@ class Integration {
 	/**
 	 * when this integration was last synced
 	 * 
-	 * @var int
+	 * @var ISO8601 timestamp
 	 */
 	public $synced_at;
 

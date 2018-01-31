@@ -26,9 +26,9 @@ class GuildMember {
 	public $deaf = false;
 
 	/**
-	 * date the user joined the guild
+	 * when the user joined the guild
 	 * 
-	 * @var \DateTime
+	 * @var ISO8601 timestamp
 	 */
 	public $joined_at;
 
@@ -42,14 +42,14 @@ class GuildMember {
 	/**
 	 * this users guild nickname (if one is set)
 	 * 
-	 * @var string
+	 * @var string|null
 	 */
 	public $nick;
 
 	/**
-	 * array of role object id's
+	 * array of role object ids
 	 * 
-	 * @var int[]
+	 * @var \RestCord\Model\Permissions\Role[]
 	 */
 	public $roles;
 

@@ -25,8 +25,5 @@ position | integer | false | *null*
 
 ## Response
 
-Returns a list of all of the guild&#039;s channel objects on success.
+Returns a 204 empty response on success.
 
-Can Return:
-
-* channel

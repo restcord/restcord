@@ -12,7 +12,7 @@ $client->webhook->createWebhook($parameters);
 
 ## Description
 
-Create a new webhook.
+Create a new webhook. Requires the &#039;MANAGE_WEBHOOKS&#039; permission.
 
 ## Parameters
 
@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | true | *null*
 name | string | false | *null*
-avatar | avatar data | false | *null*
+avatar | avatar data string | false | *null*
 
 ## Response
 

@@ -11,40 +11,26 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Channel;
+namespace RestCord\Model\Guild;
 
 /**
- * DmChannel Model
+ * Ban Model
  */
-class DmChannel {
+class Ban {
 
 	/**
-	 * the id of this private message
+	 * the reason for the ban
 	 * 
-	 * @var int
+	 * @var string
 	 */
-	public $id;
+	public $reason;
 
 	/**
-	 * should always be true for DM channels
-	 * 
-	 * @var bool
-	 */
-	public $is_private = false;
-
-	/**
-	 * the id of the last message sent in this DM
-	 * 
-	 * @var int
-	 */
-	public $last_message_id;
-
-	/**
-	 * the user object of the DM recipient
+	 * the banned user
 	 * 
 	 * @var array
 	 */
-	public $recipient;
+	public $user;
 
 	/**
 	 * @param array $content
