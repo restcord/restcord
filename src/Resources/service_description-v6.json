@@ -1138,6 +1138,155 @@
                         "location": "json"
                     }
                 }
+            },
+            "listGuildEmoji": {
+                "link": "https://discordapp.com/developers/docs/resources/emoji#list-guild-emojis",
+                "category": "guild",
+                "name": "List Guild Emojis",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/emojis",
+                "description": "",
+                "responseNote": "Returns a list of emoji objects for the given guild.",
+                "responseTypes": [
+                    {
+                        "name": "emoji",
+                        "type": "Array<EMOJI/emoji>"
+                    }
+                ],
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "getGuildEmoji": {
+                "link": "https://discordapp.com/developers/docs/resources/emoji#get-guild-emoji",
+                "category": "guild",
+                "name": "Get Guild Emoji",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/emojis/{emoji.id}",
+                "description": "",
+                "responseNote": "Returns a list of emoji objects for the given guild.",
+                "responseTypes": [
+                    {
+                        "name": "emoji",
+                        "type": "EMOJI/emoji"
+                    }
+                ],
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "emoji.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "createGuildEmoji": {
+                "link": "https://discordapp.com/developers/docs/resources/emoji#create-guild-emoji",
+                "category": "guild",
+                "name": "Create Guild Emoji",
+                "method": "POST",
+                "url": "/guilds/{guild.id}/emojis",
+                "description": "",
+                "responseNote": "Returns a list of emoji objects for the given guild.",
+                "responseTypes": [
+                    {
+                        "name": "emoji",
+                        "type": "EMOJI/emoji"
+                    }
+                ],
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "location": "json",
+                        "required": true
+                    },
+                    "image": {
+                        "type": "string",
+                        "location": "json",
+                        "required": true
+                    },
+                    "roles": {
+                        "type": "array",
+                        "location": "json",
+                        "default": []
+                    }
+                },
+                "parametersArray": false
+            },
+            "modifyGuildEmoji": {
+                "link": "https://discordapp.com/developers/docs/resources/emoji#modify-guild-emoji",
+                "category": "guild",
+                "name": "Modify Guild Emoji",
+                "method": "PATCH",
+                "url": "/guilds/{guild.id}/emojis/{emoji.id}",
+                "description": "",
+                "responseNote": "Returns the updated emoji object on success.",
+                "responseTypes": [
+                    {
+                        "name": "emoji",
+                        "type": "EMOJI/emoji"
+                    }
+                ],
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "emoji.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "location": "json",
+                        "required": true
+                    },
+                    "roles": {
+                        "type": "array",
+                        "location": "json",
+                        "default": []
+                    }
+                },
+                "parametersArray": false
+            },
+            "deleteGuildEmoji": {
+                "link": "https://discordapp.com/developers/docs/resources/emoji#delete-guild-emoji",
+                "category": "guild",
+                "name": "Delete Guild Emoji",
+                "method": "DELETE",
+                "url": "/guilds/{guild.id}/emojis/{emoji.id}",
+                "description": "",
+                "responseNote": "Returns 204 No Content on success.",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "emoji.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
             }
         },
         "audit-log": {
