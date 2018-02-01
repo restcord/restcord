@@ -45,11 +45,11 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
     {
         $this->options = $this->validateOptions($options);
 
-        if ($options['client'] !== null) {
-            $this->redis = $options['client'];
+        if ($this->options['client'] !== null) {
+            $this->redis = $this->options['client'];
         } else {
             $this->redis = new \Redis();
-            $this->redis->connect($options['host'], $options['port']);
+            $this->redis->connect($this->options['host'], $this->options['port']);
         }
     }
 
@@ -68,7 +68,7 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
             ->setAllowedTypes('port', ['integer'])
             ->setAllowedTypes('host', ['string'])
             ->setAllowedTypes('prefix', ['string'])
-            ->setAllowedTypes('client', [\Redis::class]);
+            ->setAllowedTypes('client', [\Redis::class, "null"]);
 
         return $resolver->resolve($options);
     }

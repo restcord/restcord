@@ -17,7 +17,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
+use RestCord\RateLimit\Provider\AbstractRateLimitProvider;
 
 /**
  * Guzzle middleware which delays requests if they exceed a rate allowance.
@@ -53,7 +53,7 @@ class RateLimiter
      * @param array                   $options
      * @param LoggerInterface         $logger
      */
-    public function __construct(MemoryRateLimitProvider $provider, array $options, LoggerInterface $logger = null)
+    public function __construct(AbstractRateLimitProvider $provider, array $options, LoggerInterface $logger = null)
     {
         $this->provider = $provider;
         $this->options  = $options;
