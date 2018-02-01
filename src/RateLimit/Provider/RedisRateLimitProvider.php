@@ -68,7 +68,7 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
             ->setAllowedTypes('port', ['integer'])
             ->setAllowedTypes('host', ['string'])
             ->setAllowedTypes('prefix', ['string'])
-            ->setAllowedTypes('client', [\Redis::class, "null"]);
+            ->setAllowedTypes('client', [\Redis::class, 'null']);
 
         return $resolver->resolve($options);
     }
