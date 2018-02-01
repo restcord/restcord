@@ -71,7 +71,7 @@ class ServiceDescriptionTest extends TestCase
                     if ($array) {
                         $firstType = substr($firstType, 6, -1);
                     }
-                    $firstType = explode("/", $firstType);
+                    $firstType = explode('/', $firstType);
 
                     $returnType = sprintf(
                         '\\RestCord\\Model\\%s\\%s',
