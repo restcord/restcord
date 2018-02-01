@@ -12,7 +12,7 @@ matrix:
         - php: 7.1
 
 install:
-    - pecl install redis
+    - yes '' | pecl install redis
     - composer install
 
 script:
