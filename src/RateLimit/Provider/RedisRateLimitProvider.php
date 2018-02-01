@@ -41,7 +41,7 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
      *
      * @param array $options
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->options = $this->validateOptions($options);
 
