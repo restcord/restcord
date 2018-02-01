@@ -23,6 +23,7 @@ set_error_handler(
 
 use Assert\Assertion;
 use RestCord\DiscordClient;
+use RestCord\RateLimit\Provider\RedisRateLimitProvider;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -34,10 +35,11 @@ $output->title('Stupid Functional Test');
 $output->text('-> Creating Client');
 $client = new DiscordClient(
     [
-        'token'            => $argv[1],
-        'throwOnRatelimit' => true,
-        'cacheDir'         => __DIR__.'/../cache',
-        'logger'           => new \Psr\Log\NullLogger(),
+        'token'             => $argv[1],
+        'rateLimitProvider' => new RedisRateLimitProvider(),
+        'throwOnRatelimit'  => true,
+        'cacheDir'          => __DIR__.'/../cache',
+        'logger'            => new \Psr\Log\NullLogger(),
     ]
 );
 

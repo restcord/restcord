@@ -2,6 +2,9 @@ language: php
 
 sudo: false
 
+services:
+    - redis-server
+
 matrix:
     include:
         - php: 5.6
@@ -9,6 +12,7 @@ matrix:
         - php: 7.1
 
 install:
+    - pecl install redis
     - composer install
 
 script:
