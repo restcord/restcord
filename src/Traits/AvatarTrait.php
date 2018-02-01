@@ -1,12 +1,14 @@
 <?php
 
 /*
- * This file is part of php-restcord.
- *
- * (c) Aaron Scherer <aequasi@gmail.com>
+ * Copyright 2017 Aaron Scherer
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
  */
 
 namespace RestCord\Traits;
@@ -21,12 +23,12 @@ use RestCord\Constants;
 trait AvatarTrait
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public $avatar;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public $id;
 
@@ -36,9 +38,9 @@ trait AvatarTrait
             $format = 'gif';
         }
 
-        $url = Constants::AVATAR_URL . $this->id . '/' . $this->avatar . '.' . $format;
+        $url = Constants::AVATAR_URL.$this->id.'/'.$this->avatar.'.'.$format;
         if ($size !== null) {
-            $url .= "?size=" . $size;
+            $url .= '?size='.$size;
         }
 
         return $url;
