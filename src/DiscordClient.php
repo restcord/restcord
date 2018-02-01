@@ -226,15 +226,15 @@ class DiscordClient
         }
 
         $data         = json_decode($response->getBody()->__toString());
-        $array        = strpos($operation['responseTypes'][0]['type'], "Array") !== false;
+        $array        = strpos($operation['responseTypes'][0]['type'], 'Array') !== false;
         $responseType = $operation['responseTypes'][0]['type'];
         if ($array) {
             $matches = [];
-            preg_match("/Array<(.+)>/", $responseType, $matches);
+            preg_match('/Array<(.+)>/', $responseType, $matches);
             $responseType = $matches[1];
         }
 
-        $firstType = explode("/", $this->dashesToCamelCase($responseType, true));
+        $firstType = explode('/', $this->dashesToCamelCase($responseType, true));
         $class     = $this->mapBadDocs(
             sprintf(
                 '\\RestCord\\Model\\%s\\%s',
