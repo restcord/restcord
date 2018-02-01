@@ -2028,8 +2028,8 @@
                     },
                     "image": {
                         "location": "json",
-                        "type": "string",
-                        "description": "the 128x128 emoji image base64 encoded"
+                        "type": "base64 image data",
+                        "description": "the 128x128 emoji image"
                     },
                     "roles": {
                         "location": "json",
