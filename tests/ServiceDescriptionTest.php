@@ -40,7 +40,7 @@ class ServiceDescriptionTest extends TestCase
             file_get_contents(__DIR__.'/../src/Resources/service_description-v6.json'),
             true
         );
-        $this->client = new DiscordClient(['token' => 'fake-token']);
+        $this->client      = new DiscordClient(['token' => 'fake-token']);
     }
 
     public function testBaseUri()
@@ -57,8 +57,7 @@ class ServiceDescriptionTest extends TestCase
     {
         foreach ($this->description['operations'] as $resource => $operations) {
             $resource = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
-
-            $class = '\\RestCord\\Interfaces\\'.ucwords($resource);
+            $class    = '\\RestCord\\Interfaces\\'.ucwords($resource);
             $this->assertTrue(interface_exists($class), 'Could not find interface: '.$class);
 
             $refl = new \ReflectionClass($class);
@@ -104,8 +103,7 @@ class ServiceDescriptionTest extends TestCase
     public function testModels()
     {
         foreach ($this->description['models'] as $resource => $models) {
-            $resource = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
-
+            $resource  = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
             $namespace = '\\RestCord\\Model\\'.ucwords($resource).'\\';
 
             foreach ($models as $method => $data) {

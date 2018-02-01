@@ -22,16 +22,6 @@ use RestCord\Constants;
  */
 trait AvatarTrait
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $avatar;
-
-    /**
-     * {@inheritdoc}
-     */
-    public $id;
-
     public function getAvatar($format = 'webp', $size = null)
     {
         if (strpos($this->avatar, 'a_') === 0) {

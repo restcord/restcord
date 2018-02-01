@@ -22,16 +22,6 @@ use RestCord\Constants;
  */
 trait IconTrait
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $icon;
-
-    /**
-     * {@inheritdoc}
-     */
-    public $id;
-
     public function getIcon($format = 'webp', $size = null)
     {
         $url = Constants::AVATAR_URL.$this->id.'/'.$this->icon.'.'.$format;

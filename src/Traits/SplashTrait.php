@@ -22,16 +22,6 @@ use RestCord\Constants;
  */
 trait SplashTrait
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $splash;
-
-    /**
-     * {@inheritdoc}
-     */
-    public $id;
-
     public function getSplash($format = 'webp', $size = null)
     {
         $url = Constants::AVATAR_URL.$this->id.'/'.$this->splash.'.'.$format;
