@@ -19,9 +19,9 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * @author Aaron Scherer <aequasi@gmail.com>
  *
- * RateLimitProvider Class
+ * MemoryRateLimitProvider Class
  */
-class RateLimitProvider
+class MemoryRateLimitProvider extends AbstractRateLimitProvider
 {
     private $routes = [];
 
@@ -34,7 +34,7 @@ class RateLimitProvider
      */
     public function getLastRequestTime(RequestInterface $request)
     {
-        $route = $request->getMethod().'-'.$request->getUri();
+        $route = $this->getRoute($request);
 
         if (isset($this->routes[$route])) {
             return isset($this->routes[$route]['lastRequest']) ? $this->routes[$route]['lastRequest'] : null;
@@ -49,25 +49,13 @@ class RateLimitProvider
      */
     public function setLastRequestTime(RequestInterface $request)
     {
-        $route = $request->getMethod().'-'.$request->getUri();
+        $route = $this->getRoute($request);
 
         if (!isset($this->routes[$route])) {
             $this->routes[$route] = [];
         }
 
-        $this->routes[$route]['lastRequest'] = microtime(true);
-    }
-
-    /**
-     * Returns what is considered the time when a given request is being made.
-     *
-     * @param RequestInterface $request The request being made.
-     *
-     * @return float Time when the given request is being made.
-     */
-    public function getRequestTime(RequestInterface $request)
-    {
-        return microtime(true);
+        $this->routes[$route]['lastRequest'] = $this->getRequestTime($request);
     }
 
     /**
@@ -85,10 +73,7 @@ class RateLimitProvider
      */
     public function getRequestAllowance(RequestInterface $request)
     {
-        $route = $request->getUri();
-        if ($request->getMethod() === 'DELETE' && strpos($request->getUri(), 'messages') !== false) {
-            $route = 'DELETE-'.$request->getUri();
-        }
+        $route = $this->getRoute($request);
 
         if (!isset($this->routes[$route])) {
             return 0;
@@ -110,7 +95,7 @@ class RateLimitProvider
      */
     public function setRequestAllowance(RequestInterface $request, ResponseInterface $response)
     {
-        $route = $request->getMethod().'-'.$request->getUri();
+        $route = $this->getRoute($request);
 
         $remaining = $response->getHeader('X-RateLimit-Remaining');
         $reset     = $response->getHeader('X-RateLimit-Reset');

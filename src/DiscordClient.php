@@ -23,8 +23,9 @@ use GuzzleHttp\Middleware;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseInterface;
 use RestCord\Logging\MessageFormatter;
+use RestCord\RateLimit\AbstractRateLimitProvider;
 use RestCord\RateLimit\RateLimiter;
-use RestCord\RateLimit\RateLimitProvider;
+use RestCord\RateLimit\MemoryRateLimitProvider;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use function GuzzleHttp\json_decode;
 
@@ -72,7 +73,7 @@ class DiscordClient
         $stack = HandlerStack::create();
         $stack->push(
             new RateLimiter(
-                new RateLimitProvider(),
+                $this->options['rateLimitProvider'],
                 $this->options,
                 $this->logger
             )
@@ -91,9 +92,9 @@ class DiscordClient
             )
         );
 
-        $defaultGuzzleOptions = [
-            'base_uri' => $this->options['apiUrl'],
-            'headers'  => [
+        $defaultGuzzleOptions           = [
+            'base_uri'    => $this->options['apiUrl'],
+            'headers'     => [
                 'Authorization' => $this->getAuthorizationHeader($this->options['tokenType'], $this->options['token']),
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                 'Content-Type'  => 'application/json',
@@ -135,19 +136,21 @@ class DiscordClient
         $resolver       = new OptionsResolver();
         $resolver->setDefaults(
             [
-                'version'          => $currentVersion,
-                'logger'           => new Logger('Logger'),
-                'throwOnRatelimit' => false,
-                'apiUrl'           => "https://discordapp.com/api/v{$currentVersion}/",
-                'tokenType'        => 'Bot',
-                'cacheDir'         => __DIR__.'/../../../cache/',
-                'guzzleOptions'    => [],
+                'version'           => $currentVersion,
+                'logger'            => new Logger('Logger'),
+                'rateLimitProvider' => new MemoryRateLimitProvider(),
+                'throwOnRatelimit'  => false,
+                'apiUrl'            => "https://discordapp.com/api/v{$currentVersion}/",
+                'tokenType'         => 'Bot',
+                'cacheDir'          => __DIR__.'/../../../cache/',
+                'guzzleOptions'     => [],
             ]
         )
             ->setDefined(['token'])
             ->setAllowedValues('tokenType', ['Bot', 'User', 'OAuth'])
             ->setAllowedTypes('token', ['string'])
             ->setAllowedTypes('apiUrl', ['string'])
+            ->setAllowedTypes('rateLimitProvider', [AbstractRateLimitProvider::class])
             ->setAllowedTypes('throwOnRatelimit', ['bool'])
             ->setAllowedTypes('logger', ['\Psr\Log\LoggerInterface'])
             ->setAllowedTypes('version', ['string', 'integer'])
