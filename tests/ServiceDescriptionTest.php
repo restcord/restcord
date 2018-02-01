@@ -53,10 +53,12 @@ class ServiceDescriptionTest extends TestCase
         $this->assertEquals('6', $this->description['version']);
     }
 
-    public function testOperationCategories()
+    public function testOperationResources()
     {
-        foreach ($this->description['operations'] as $category => $operations) {
-            $class = '\\RestCord\\Interfaces\\'.ucwords($category);
+        foreach ($this->description['operations'] as $resource => $operations) {
+            $resource = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
+
+            $class = '\\RestCord\\Interfaces\\'.ucwords($resource);
             $this->assertTrue(interface_exists($class), 'Could not find interface: '.$class);
 
             $refl = new \ReflectionClass($class);
@@ -69,14 +71,19 @@ class ServiceDescriptionTest extends TestCase
                     if ($array) {
                         $firstType = substr($firstType, 6, -1);
                     }
+                    $firstType = explode("/", $firstType);
 
                     $returnType = sprintf(
                         '\\RestCord\\Model\\%s\\%s',
-                        ucwords($category),
                         str_replace(
                             ' ',
                             '',
-                            ucwords(str_replace('-', ' ', explode('/', $firstType)[1]))
+                            ucwords(str_replace('-', ' ', $firstType[0]))
+                        ),
+                        str_replace(
+                            ' ',
+                            '',
+                            ucwords(str_replace('-', ' ', $firstType[1]))
                         )
                     );
 
@@ -96,14 +103,17 @@ class ServiceDescriptionTest extends TestCase
 
     public function testModels()
     {
-        foreach ($this->description['models'] as $category => $models) {
-            $namespace = '\\RestCord\\Model\\'.ucwords($category).'\\';
+        foreach ($this->description['models'] as $resource => $models) {
+            $resource = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
+
+            $namespace = '\\RestCord\\Model\\'.ucwords($resource).'\\';
 
             foreach ($models as $method => $data) {
                 $class = $namespace.ucwords($method);
                 $this->assertTrue(class_exists($class), 'Could not find interface: '.$class);
                 $refl = new \ReflectionClass($class);
                 foreach ($data['properties'] as $name => $info) {
+                    $name = lcfirst(str_replace([' ', '?'], '', str_replace('-', '_', $name)));
                     $this->assertTrue($refl->hasProperty($name), "Cannot find property $name on $class");
                 }
             }

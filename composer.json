@@ -1,12 +1,12 @@
 {
-    "name":        "restcord/restcord",
-    "description": "REST Library for the Discord API",
-    "type":        "library",
-    "require":     {
+    "name":         "restcord/restcord",
+    "description":  "REST Library for the Discord API",
+    "type":         "library",
+    "require":      {
         "php":                        "^5.6|^7.0",
         "guzzlehttp/guzzle":          "^6.3",
         "guzzlehttp/guzzle-services": "^1.0",
-        "symfony/options-resolver":   "^2.6|^3.2|^4.0",
+        "symfony/options-resolver":   ">=2.6,<=4.0",
         "monolog/monolog":            "^1.22",
         "twig/twig":                  "^1.20|^2.0",
         "league/fractal":             "^0.15.0",
@@ -15,7 +15,7 @@
         "doctrine/common":            "^2.3",
         "netresearch/jsonmapper":     "^1.4"
     },
-    "autoload": {
+    "autoload":     {
         "psr-4": {
             "RestCord\\": "src/"
         }
@@ -25,19 +25,19 @@
             "RestCord\\Test\\": "tests/"
         }
     },
-    "license":     "MIT",
-    "authors":     [
+    "license":      "MIT",
+    "authors":      [
         {
             "name":  "Aaron Scherer",
             "email": "aequasi@gmail.com"
         }
     ],
-    "require-dev": {
-        "symfony/console":          "^2.6|^3.2",
+    "require-dev":  {
+        "symfony/console":          ">=2.6,<=4.0",
         "beberlei/assert":          "^2.7",
         "gossi/php-code-generator": "^0.4.1",
-        "symfony/var-dumper":       "^3.2",
-        "phpunit/phpunit": "^6.0|^5.0",
-        "symfony/process": "^4.0"
+        "symfony/var-dumper":       ">=2.6,<=4.0",
+        "phpunit/phpunit":          "^6.0|^5.0",
+        "symfony/process":          ">=2.6,<=4.0"
     }
 }
