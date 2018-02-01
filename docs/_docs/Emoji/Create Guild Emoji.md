@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
 name | string | false | *null*
-image | base64 image data | false | *null*
+image | string | false | *null*
 roles | array | false | *null*
 
 ## Response

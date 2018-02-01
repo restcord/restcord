@@ -35,7 +35,7 @@ class Emoji {
 	/**
 	 * the 128x128 emoji image
 	 *
-	 * @var base64 image data
+	 * @var string
 	 */
 	public $image;
 

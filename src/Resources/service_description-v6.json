@@ -2028,7 +2028,7 @@
                     },
                     "image": {
                         "location": "json",
-                        "type": "base64 image data",
+                        "type": "string",
                         "description": "the 128x128 emoji image"
                     },
                     "roles": {
@@ -3983,7 +3983,7 @@
                     },
                     "image": {
                         "location": "json",
-                        "type": "base64 image data",
+                        "type": "string",
                         "description": "the 128x128 emoji image"
                     },
                     "roles": {

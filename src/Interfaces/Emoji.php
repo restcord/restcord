@@ -21,7 +21,7 @@ interface Emoji {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/emoji#create-guild-emoji
 	 *
-	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'image' => 'base64 image data', 'roles' => 'array']
+	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'image' => 'string', 'roles' => 'array']
 	 * @return \RestCord\Model\Emoji\Emoji Returns the new emoji object on success.
 	 */
 	public function createGuildEmoji(array $options);
