@@ -11,7 +11,7 @@
  * @license     MIT
  */
 
-namespace RestCord\RateLimit;
+namespace RestCord\RateLimit\Provider;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

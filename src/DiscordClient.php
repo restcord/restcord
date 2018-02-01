@@ -23,9 +23,9 @@ use GuzzleHttp\Middleware;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseInterface;
 use RestCord\Logging\MessageFormatter;
-use RestCord\RateLimit\AbstractRateLimitProvider;
+use RestCord\RateLimit\Provider\AbstractRateLimitProvider;
 use RestCord\RateLimit\RateLimiter;
-use RestCord\RateLimit\MemoryRateLimitProvider;
+use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use function GuzzleHttp\json_decode;
 
