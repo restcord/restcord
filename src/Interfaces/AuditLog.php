@@ -14,15 +14,15 @@
 namespace RestCord\Interfaces;
 
 /**
- * Audit-log Intellisense Helper
+ * AuditLog Intellisense Helper
  */
-interface Audit-log {
+interface AuditLog {
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/audit-log#get-guild-audit-log
-	 * 
+	 *
 	 * @param array $options ['guild.id' => 'snowflake']
 	 * @return \RestCord\Model\AuditLog\AuditLog Returns an audit log object for the guild.
 	 */
-	public function GetGuildAuditLog(array $options);
+	public function getGuildAuditLog(array $options);
 }

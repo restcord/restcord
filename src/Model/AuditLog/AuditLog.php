@@ -20,24 +20,24 @@ class AuditLog {
 
 	/**
 	 * list of audit log entires
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Audit_log_entries;
+	public $audit_log_entries;
 
 	/**
 	 * list of users found in the audit log
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Users;
+	public $users;
 
 	/**
 	 * list of webhooks found in the audit log
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Webhooks;
+	public $webhooks;
 
 	/**
 	 * @param array $content

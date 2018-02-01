@@ -20,52 +20,52 @@ class Attachment {
 
 	/**
 	 * name of file attached
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Filename;
+	public $filename;
 
 	/**
 	 * height of file (if image)
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Height;
+	public $height;
 
 	/**
 	 * attachment id
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Id;
+	public $id;
 
 	/**
 	 * a proxied url of file
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Proxy_url;
+	public $proxy_url;
 
 	/**
 	 * size of file in bytes
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Size;
+	public $size;
 
 	/**
 	 * source url of file
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Url;
+	public $url;
 
 	/**
 	 * width of file (if image)
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Width;
+	public $width;
 
 	/**
 	 * @param array $content

@@ -20,24 +20,24 @@ class AuditLogChange {
 
 	/**
 	 * type of audit log change key
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Key;
+	public $key;
 
 	/**
 	 * new value of the key
-	 * 
+	 *
 	 * @var mixed|null
 	 */
-	public $New_value;
+	public $new_value;
 
 	/**
 	 * old value of the key
-	 * 
+	 *
 	 * @var mixed|null
 	 */
-	public $Old_value;
+	public $old_value;
 
 	/**
 	 * @param array $content

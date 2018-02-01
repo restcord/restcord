@@ -20,220 +20,220 @@ class Guild {
 
 	/**
 	 * id of afk channel
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Afk_channel_id;
+	public $afk_channel_id;
 
 	/**
 	 * afk timeout in seconds
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Afk_timeout;
+	public $afk_timeout;
 
 	/**
 	 * application id of the guild creator if it is bot-created
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Application_id;
+	public $application_id;
 
 	/**
 	 * channels in the guild
-	 * 
+	 *
 	 * @var array|null
 	 */
-	public $Channels;
+	public $channels;
 
 	/**
 	 * default message notifications level
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Default_message_notifications;
+	public $default_message_notifications;
 
 	/**
 	 * id of embedded channel
-	 * 
+	 *
 	 * @var int|null
 	 */
-	public $Embed_channel_id;
+	public $embed_channel_id;
 
 	/**
 	 * is this guild embeddable (e.g. widget)
-	 * 
+	 *
 	 * @var bool|null
 	 */
-	public $Embed_enabled = false;
+	public $embed_enabled = false;
 
 	/**
 	 * custom guild emojis
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Emojis;
+	public $emojis;
 
 	/**
 	 * explicit content filter level
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Explicit_content_filter;
+	public $explicit_content_filter;
 
 	/**
 	 * enabled guild features
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Features;
+	public $features;
 
 	/**
 	 * icon hash
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Icon;
+	public $icon;
 
 	/**
 	 * guild id
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Id;
+	public $id;
 
 	/**
 	 * when this guild was joined at
-	 * 
-	 * @var ISO8601 timestamp|null
+	 *
+	 * @var int|null
 	 */
-	public $Joined_at;
+	public $joined_at;
 
 	/**
 	 * whether this is considered a large guild
-	 * 
+	 *
 	 * @var bool|null
 	 */
-	public $Large = false;
+	public $large = false;
 
 	/**
 	 * total number of members in this guild
-	 * 
+	 *
 	 * @var int|null
 	 */
-	public $Member_count;
+	public $member_count;
 
 	/**
 	 * users in the guild
-	 * 
+	 *
 	 * @var array|null
 	 */
-	public $Members;
+	public $members;
 
 	/**
 	 * required MFA level for the guild
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Mfa_level;
+	public $mfa_level;
 
 	/**
 	 * guild name (2-100 characters)
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Name;
+	public $name;
 
 	/**
 	 * whether or not the user is the owner of the guild
-	 * 
+	 *
 	 * @var bool|null
 	 */
-	public $Owner = false;
+	public $owner = false;
 
 	/**
 	 * id of owner
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Owner_id;
+	public $owner_id;
 
 	/**
 	 * total permissions for the user in the guild (does not include channel overrides)
-	 * 
+	 *
 	 * @var int|null
 	 */
-	public $Permissions;
+	public $permissions;
 
 	/**
 	 * presences of the users in the guild
-	 * 
+	 *
 	 * @var array|null
 	 */
-	public $Presences;
+	public $presences;
 
 	/**
 	 * voice region id for the guild
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Region;
+	public $region;
 
 	/**
 	 * roles in the guild
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Roles;
+	public $roles;
 
 	/**
 	 * splash hash
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Splash;
+	public $splash;
 
 	/**
 	 * the id of the channel to which system messages are sent
-	 * 
+	 *
 	 * @var int
 	 */
-	public $System_channel_id;
+	public $system_channel_id;
 
 	/**
 	 * is this guild unavailable
-	 * 
+	 *
 	 * @var bool|null
 	 */
-	public $Unavailable = false;
+	public $unavailable = false;
 
 	/**
 	 * verification level required for the guild
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Verification_level;
+	public $verification_level;
 
 	/**
 	 * (without the guild_id key)
-	 * 
+	 *
 	 * @var array|null
 	 */
-	public $Voice_states;
+	public $voice_states;
 
 	/**
 	 * the channel id for the server widget
-	 * 
+	 *
 	 * @var int|null
 	 */
-	public $Widget_channel_id;
+	public $widget_channel_id;
 
 	/**
 	 * whether or not the server widget is enabled
-	 * 
+	 *
 	 * @var bool|null
 	 */
-	public $Widget_enabled = false;
+	public $widget_enabled = false;
 
 	/**
 	 * @param array $content

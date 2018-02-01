@@ -20,9 +20,9 @@ interface Oauth2 {
 
 	/**
 	 * @see https://discordapp.com/developers/docs/topics/oauth2#get-current-application-information
-	 * 
+	 *
 	 * @param array $options ['id' => 'snowflake', 'name' => 'string', 'icon?' => 'string', 'description?' => 'string', 'rpc_origins?' => 'array', 'bot_public' => 'bool', 'bot_require_code_grant' => 'bool', 'owner' => 'object']
 	 * @return array Returns the bot's OAuth2 application info.
 	 */
-	public function GetCurrentApplicationInformation(array $options);
+	public function getCurrentApplicationInformation(array $options);
 }

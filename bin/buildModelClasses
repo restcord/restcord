@@ -70,7 +70,6 @@ EOF;
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
             $style->title("Building Model Classes for: ".$input->getArgument('version'));
 
-
             $definition = \GuzzleHttp\json_decode(
                 file_get_contents(
                     __DIR__.'/../src/Resources/service_description-v'.$input->getArgument('version').'.json'
@@ -81,31 +80,19 @@ EOF;
             $generator = new CodeGenerator();
             foreach ($definition['models'] as $resource => $models) {
                 foreach ($models as $name => $model) {
-                    $resource = str_replace(
-                        ' ',
-                        '',
-                        ucwords(str_replace('-', ' ', $resource))
-                    );
-                    $name = str_replace(
-                        ' ',
-                        '',
-                        ucwords(str_replace('-', ' ', $name))
-                    );
-                    $class = new PhpClass();
+                    $resource = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
+                    $name     = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $name)));
+                    $class    = new PhpClass();
                     $class->setQualifiedName('RestCord\\Model\\'.ucwords($resource).'\\'.ucwords($name));
                     $class->setDescription(ucwords($name)." Model");
                     $class->setProperties(
                         array_map(
                             function (&$name, $property) use ($class, $resource, $model) {
                                 $optional = strpos($name, '?') !== false;
-                                $name =
-                                    str_replace(
-                                        [' ', '?'],
-                                        '',
-                                        ucwords(str_replace('-', ' ', $name))
-                                    );
-                                $prop = new PhpProperty($name);
-                                $prop->setType(normalizeType($property['type']).($optional ? "|null" : ""));
+                                $name     = lcfirst(str_replace([' ', '?'], '', str_replace('-', '_', $name)));
+                                $prop     = new PhpProperty($name);
+
+                                $prop->setType(normalizeType($name, $resource, $property).($optional ? "|null" : ""));
                                 $prop->setDescription($property['description']);
 
                                 if (isset($property['default'])) {
@@ -153,13 +140,18 @@ EOF
     ->setDefaultCommand('buildModelClasses', true)
     ->run();
 
-function normalizeType(string $type): string
+function normalizeType(string $name, string $resource, array $property): string
 {
+    $type = $property['type'];
+    if ($name === 'user' && $resource === 'Guild') {
+        $type = "user/user";
+    }
+
     switch ($type) {
         default:
             if (strpos($type, '/') !== false || strpos($type, 'Array<') === 0) {
                 $array = false;
-                if (strpos($type, 'Array') === 0) {
+                if (stripos($type, 'Array') !== false) {
                     $array = true;
                     $type  = str_replace(['Array<', '>'], '', $type);
                 }
@@ -168,9 +160,9 @@ function normalizeType(string $type): string
                     return 'int[]';
                 }
 
-                $cls = "\\RestCord\\Model\\";
-                $tmp = explode('/', $type);
-                $cls .= ucwords($tmp[0])."\\";
+                $cls   = "\\RestCord\\Model\\";
+                $tmp   = explode('/', $type);
+                $cls   .= ucwords($tmp[0])."\\";
                 $clean = str_replace(['-object', '-'], ['', ' '], $tmp[1]);
                 $clean = ucwords($clean);
                 $clean = str_replace(' ', '', $clean);
@@ -182,6 +174,12 @@ function normalizeType(string $type): string
             }
 
             return $type;
+        case 'array':
+            if (strpos($property['description'], "ids") !== false) {
+                return "int[]";
+            }
+
+            return "array";
         case 'datetime':
             return '\DateTime';
         case 'snowflake':

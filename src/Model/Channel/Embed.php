@@ -20,157 +20,157 @@ class Embed {
 
 	/**
 	 * author information
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Author;
+	public $author;
 
 	/**
 	 * color code of the embed
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Color;
+	public $color;
 
 	/**
 	 * description of embed
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Description;
+	public $description;
 
 	/**
 	 * fields information
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Fields;
+	public $fields;
 
 	/**
 	 * footer information
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Footer;
+	public $footer;
 
 	/**
 	 * height of image
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Height;
+	public $height;
 
 	/**
 	 * url of footer icon (only supports http(s) and attachments)
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Icon_url;
+	public $icon_url;
 
 	/**
 	 * image information
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Image;
+	public $image;
 
 	/**
 	 * whether or not this field should display inline
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Inline = false;
+	public $inline = false;
 
 	/**
 	 * name of the field
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Name;
+	public $name;
 
 	/**
 	 * provider information
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Provider;
+	public $provider;
 
 	/**
 	 * a proxied url of footer icon
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Proxy_icon_url;
+	public $proxy_icon_url;
 
 	/**
 	 * a proxied url of the image
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Proxy_url;
+	public $proxy_url;
 
 	/**
 	 * footer text
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Text;
+	public $text;
 
 	/**
 	 * thumbnail information
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Thumbnail;
+	public $thumbnail;
 
 	/**
 	 * timestamp of embed content
-	 * 
-	 * @var ISO8601 timestamp
+	 *
+	 * @var int
 	 */
-	public $Timestamp;
+	public $timestamp;
 
 	/**
 	 * title of embed
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Title;
+	public $title;
 
 	/**
 	 * type of embed (always "rich" for webhook embeds)
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Type;
+	public $type;
 
 	/**
 	 * url of author
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Url;
+	public $url;
 
 	/**
 	 * value of the field
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Value;
+	public $value;
 
 	/**
 	 * video information
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Video;
+	public $video;
 
 	/**
 	 * width of image
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Width;
+	public $width;
 
 	/**
 	 * @param array $content

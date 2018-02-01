@@ -20,17 +20,17 @@ interface Gateway {
 
 	/**
 	 * @see https://discordapp.com/developers/docs/topics/gateway#get-gateway
-	 * 
+	 *
 	 * @param array $options []
 	 * @return array
 	 */
-	public function GetGateway(array $options);
+	public function getGateway(array $options);
 
 	/**
 	 * @see https://discordapp.com/developers/docs/topics/gateway#get-gateway-bot
-	 * 
+	 *
 	 * @param array $options []
 	 * @return array
 	 */
-	public function GetGatewayBot(array $options);
+	public function getGatewayBot(array $options);
 }

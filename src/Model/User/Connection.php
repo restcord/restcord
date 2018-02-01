@@ -20,94 +20,94 @@ class Connection {
 
 	/**
 	 * access tokens of users that have granted your app the gdm.join scope
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Access_tokens;
+	public $access_tokens;
 
 	/**
 	 * get guilds after this guild ID
-	 * 
+	 *
 	 * @var int
 	 */
-	public $After;
+	public $after;
 
 	/**
 	 * if passed, modifies the user's avatar
-	 * 
+	 *
 	 * @var avatar data
 	 */
-	public $Avatar;
+	public $avatar;
 
 	/**
 	 * get guilds before this guild ID
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Before;
+	public $before;
 
 	/**
 	 * id of the connection account
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Id;
+	public $id;
 
 	/**
 	 * an array of partial server integrations
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Integrations;
+	public $integrations;
 
 	/**
 	 * max number of guilds to return (1-100)
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Limit = 100;
+	public $limit = 100;
 
 	/**
 	 * the username of the connection account
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Name;
+	public $name;
 
 	/**
 	 * a dictionary of user ids to their respective nicknames
-	 * 
+	 *
 	 * @var dict
 	 */
-	public $Nicks;
+	public $nicks;
 
 	/**
 	 * the recipient to open a DM channel with
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Recipient_id;
+	public $recipient_id;
 
 	/**
 	 * whether the connection is revoked
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Revoked = false;
+	public $revoked = false;
 
 	/**
 	 * the service of the connection (twitch, youtube)
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Type;
+	public $type;
 
 	/**
 	 * users username, if changed may cause the users discriminator to be randomized.
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Username;
+	public $username;
 
 	/**
 	 * @param array $content

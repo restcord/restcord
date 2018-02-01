@@ -17,6 +17,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
+use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
 
 /**
  * Guzzle middleware which delays requests if they exceed a rate allowance.

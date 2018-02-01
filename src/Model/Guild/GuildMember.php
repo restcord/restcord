@@ -20,45 +20,45 @@ class GuildMember {
 
 	/**
 	 * if the user is deafened
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Deaf = false;
+	public $deaf = false;
 
 	/**
 	 * when the user joined the guild
-	 * 
-	 * @var ISO8601 timestamp
+	 *
+	 * @var int
 	 */
-	public $Joined_at;
+	public $joined_at;
 
 	/**
 	 * if the user is muted
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Mute = false;
+	public $mute = false;
 
 	/**
 	 * this users guild nickname (if one is set)
-	 * 
+	 *
 	 * @var string|null
 	 */
-	public $Nick;
+	public $nick;
 
 	/**
 	 * array of role object ids
-	 * 
-	 * @var array
+	 *
+	 * @var int[]
 	 */
-	public $Roles;
+	public $roles;
 
 	/**
 	 * user object
-	 * 
-	 * @var array
+	 *
+	 * @var \RestCord\Model\User\User
 	 */
-	public $User;
+	public $user;
 
 	/**
 	 * @param array $content

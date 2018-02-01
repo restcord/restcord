@@ -20,101 +20,101 @@ class Webhook {
 
 	/**
 	 * image for the default webhook avatar
-	 * 
+	 *
 	 * @var avatar data string
 	 */
-	public $Avatar;
+	public $avatar;
 
 	/**
 	 * override the default avatar of the webhook
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Avatar_url;
+	public $avatar_url;
 
 	/**
 	 * the new channel id this webhook should be moved to
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Channel_id;
+	public $channel_id;
 
 	/**
 	 * the message contents (up to 2000 characters)
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Content;
+	public $content;
 
 	/**
 	 * embedded rich content
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Embeds;
+	public $embeds;
 
 	/**
 	 * the contents of the file being sent
-	 * 
+	 *
 	 * @var file contents
 	 */
-	public $File;
+	public $file;
 
 	/**
 	 * the guild id this webhook is for
-	 * 
+	 *
 	 * @var int|null
 	 */
-	public $Guild_id;
+	public $guild_id;
 
 	/**
 	 * the id of the webhook
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Id;
+	public $id;
 
 	/**
 	 * the default name of the webhook
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Name;
+	public $name;
 
 	/**
 	 * the secure token of the webhook
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Token;
+	public $token;
 
 	/**
 	 * true if this is a TTS message
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Tts = false;
+	public $tts = false;
 
 	/**
 	 * the user this webhook was created by (not returned when getting a webhook with its token)
-	 * 
+	 *
 	 * @var array|null
 	 */
-	public $User;
+	public $user;
 
 	/**
 	 * override the default username of the webhook
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Username;
+	public $username;
 
 	/**
 	 * waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Wait = false;
+	public $wait = false;
 
 	/**
 	 * @param array $content

@@ -327,7 +327,7 @@
                 "responseTypes": [
                     {
                         "name": "guild member",
-                        "type": "Array</GUILD/guild-member>"
+                        "type": "Array<guild/guild-member>"
                     }
                 ],
                 "parameters": {
@@ -2971,7 +2971,7 @@
                     },
                     "joined_at?": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "integer",
                         "description": "when this guild was joined at"
                     },
                     "large?": {
@@ -3062,7 +3062,7 @@
                     },
                     "joined_at": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "integer",
                         "description": "when the user joined the guild"
                     },
                     "deaf": {
@@ -3139,7 +3139,7 @@
                     },
                     "synced_at": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "integer",
                         "description": "when this integration was last synced"
                     }
                 }
@@ -3615,7 +3615,7 @@
                     },
                     "last_pin_timestamp?": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "integer",
                         "description": "when the last pinned message was pinned"
                     }
                 }
@@ -3648,7 +3648,7 @@
                     },
                     "timestamp": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "integer",
                         "description": "when this message was sent"
                     },
                     "edited_timestamp": {
@@ -3798,7 +3798,7 @@
                     },
                     "timestamp": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "integer",
                         "description": "timestamp of embed content"
                     },
                     "color": {
@@ -4052,7 +4052,7 @@
                     },
                     "created_at": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "integer",
                         "description": "when this invite was created"
                     },
                     "revoked": {

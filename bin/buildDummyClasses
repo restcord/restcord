@@ -63,7 +63,6 @@ $license = <<<EOF
 \n
 EOF;
 
-
 /** @noinspection PhpUnhandledExceptionInspection */
 (new Application('Build Dummy Classes', '1.0.0'))
     ->register('buildDummyClasses')
@@ -82,6 +81,7 @@ EOF;
 
             $generator = new CodeGenerator();
             foreach ($definition['operations'] as $resource => $operations) {
+                $resource = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
 
                 $class = new PhpInterface();
                 $class->setQualifiedName('RestCord\\Interfaces\\'.ucwords($resource));
@@ -106,8 +106,8 @@ EOF;
 
                             $returnType = 'array';
                             if (isset($operation['responseTypes']) && sizeof($operation['responseTypes']) >= 1) {
-                                $firstType  = $operation['responseTypes'][0]['type'];
-                                $array = stripos($firstType, 'Array<') !== false;
+                                $firstType = $operation['responseTypes'][0]['type'];
+                                $array     = stripos($firstType, 'Array<') !== false;
                                 if ($array) {
                                     $firstType = substr($firstType, 6, -1);
                                 }
@@ -137,11 +137,7 @@ EOF;
                             }
 
                             $method = new PhpMethod(
-                                str_replace(
-                                    ' ',
-                                    '',
-                                    ucwords(str_replace('-', ' ', $name))
-                                )
+                                lcfirst(str_replace(' ', '', ucwords(str_replace('-', ' ', $name))))
                             );
                             $method->setType($returnType, $operation['responseNote'] ?? '');
                             if (isset($operation['link'])) {
@@ -188,7 +184,7 @@ function mapBadDocs(string $name, array $operation, string $cls): string
             return $cls;
     }
 
-    trigger_error($name.' operation in '.$operation['resource'].' has a bad responseType: ' . $cls);
+    trigger_error($name.' operation in '.$operation['resource'].' has a bad responseType: '.$cls);
 
     return $newCls;
 }

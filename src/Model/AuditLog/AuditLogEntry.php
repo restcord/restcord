@@ -20,52 +20,52 @@ class AuditLogEntry {
 
 	/**
 	 * type of action that occured
-	 * 
+	 *
 	 * @var audit log event
 	 */
-	public $Action_type;
+	public $action_type;
 
 	/**
 	 * changes made to the target_id
-	 * 
+	 *
 	 * @var array|null
 	 */
-	public $Changes;
+	public $changes;
 
 	/**
 	 * id of the entry
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Id;
+	public $id;
 
 	/**
 	 * additional info for certain action types
-	 * 
+	 *
 	 * @var optional audit entry info|null
 	 */
-	public $Options;
+	public $options;
 
 	/**
 	 * the reason for the change
-	 * 
+	 *
 	 * @var string|null
 	 */
-	public $Reason;
+	public $reason;
 
 	/**
 	 * id of the affected entity (webhook, user, role, etc.)
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Target_id;
+	public $target_id;
 
 	/**
 	 * the user who made the changes
-	 * 
+	 *
 	 * @var int
 	 */
-	public $User_id;
+	public $user_id;
 
 	/**
 	 * @param array $content

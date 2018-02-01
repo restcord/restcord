@@ -20,24 +20,24 @@ class Reaction {
 
 	/**
 	 * times this emoji has been used to react
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Count;
+	public $count;
 
 	/**
 	 * emoji information
-	 * 
+	 *
 	 * @var array
 	 */
-	public $Emoji;
+	public $emoji;
 
 	/**
 	 * whether the current user reacted using this emoji
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Me = false;
+	public $me = false;
 
 	/**
 	 * @param array $content

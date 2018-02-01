@@ -20,66 +20,66 @@ class VoiceState {
 
 	/**
 	 * the channel id this user is connected to
-	 * 
+	 *
 	 * @var int
 	 */
-	public $Channel_id;
+	public $channel_id;
 
 	/**
 	 * whether this user is deafened by the server
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Deaf = false;
+	public $deaf = false;
 
 	/**
 	 * the guild id this voice state is for
-	 * 
+	 *
 	 * @var int|null
 	 */
-	public $Guild_id;
+	public $guild_id;
 
 	/**
 	 * whether this user is muted by the server
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Mute = false;
+	public $mute = false;
 
 	/**
 	 * whether this user is locally deafened
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Self_deaf = false;
+	public $self_deaf = false;
 
 	/**
 	 * whether this user is locally muted
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Self_mute = false;
+	public $self_mute = false;
 
 	/**
 	 * the session id for this voice state
-	 * 
+	 *
 	 * @var string
 	 */
-	public $Session_id;
+	public $session_id;
 
 	/**
 	 * whether this user is muted by the current user
-	 * 
+	 *
 	 * @var bool
 	 */
-	public $Suppress = false;
+	public $suppress = false;
 
 	/**
 	 * the user id this voice state is for
-	 * 
+	 *
 	 * @var int
 	 */
-	public $User_id;
+	public $user_id;
 
 	/**
 	 * @param array $content

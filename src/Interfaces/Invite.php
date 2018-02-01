@@ -20,25 +20,25 @@ interface Invite {
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/invite#accept-invite
-	 * 
+	 *
 	 * @param array $options ['invite.code' => 'string']
 	 * @return array
 	 */
-	public function AcceptInvite(array $options);
+	public function acceptInvite(array $options);
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/invite#delete-invite
-	 * 
+	 *
 	 * @param array $options ['invite.code' => 'string']
 	 * @return \RestCord\Model\Invite\Invite Returns an invite object on success.
 	 */
-	public function DeleteInvite(array $options);
+	public function deleteInvite(array $options);
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/invite#get-invite
-	 * 
+	 *
 	 * @param array $options ['invite.code' => 'string']
 	 * @return \RestCord\Model\Invite\Invite Returns an invite object for the given code.
 	 */
-	public function GetInvite(array $options);
+	public function getInvite(array $options);
 }
