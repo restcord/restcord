@@ -11,7 +11,7 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Audit-log;
+namespace RestCord\Model\AuditLog;
 
 /**
  * AuditLog Model
@@ -23,21 +23,21 @@ class AuditLog {
 	 * 
 	 * @var array
 	 */
-	public $audit_log_entries;
+	public $Audit_log_entries;
 
 	/**
 	 * list of users found in the audit log
 	 * 
 	 * @var array
 	 */
-	public $users;
+	public $Users;
 
 	/**
 	 * list of webhooks found in the audit log
 	 * 
 	 * @var array
 	 */
-	public $webhooks;
+	public $Webhooks;
 
 	/**
 	 * @param array $content

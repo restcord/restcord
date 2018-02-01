@@ -23,14 +23,14 @@ class GuildEmbed {
 	 * 
 	 * @var int
 	 */
-	public $channel_id;
+	public $Channel_id;
 
 	/**
 	 * if the embed is enabled
 	 * 
 	 * @var bool
 	 */
-	public $enabled = false;
+	public $Enabled = false;
 
 	/**
 	 * @param array $content

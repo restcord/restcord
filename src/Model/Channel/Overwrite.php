@@ -23,28 +23,28 @@ class Overwrite {
 	 * 
 	 * @var int
 	 */
-	public $allow;
+	public $Allow;
 
 	/**
 	 * permission bit set
 	 * 
 	 * @var int
 	 */
-	public $deny;
+	public $Deny;
 
 	/**
 	 * role or user id
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * either "role" or "member"
 	 * 
 	 * @var string
 	 */
-	public $type;
+	public $Type;
 
 	/**
 	 * @param array $content

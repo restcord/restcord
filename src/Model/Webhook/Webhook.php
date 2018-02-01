@@ -23,98 +23,98 @@ class Webhook {
 	 * 
 	 * @var avatar data string
 	 */
-	public $avatar;
+	public $Avatar;
 
 	/**
 	 * override the default avatar of the webhook
 	 * 
 	 * @var string
 	 */
-	public $avatar_url;
+	public $Avatar_url;
 
 	/**
 	 * the new channel id this webhook should be moved to
 	 * 
 	 * @var int
 	 */
-	public $channel_id;
+	public $Channel_id;
 
 	/**
 	 * the message contents (up to 2000 characters)
 	 * 
 	 * @var string
 	 */
-	public $content;
+	public $Content;
 
 	/**
 	 * embedded rich content
 	 * 
 	 * @var array
 	 */
-	public $embeds;
+	public $Embeds;
 
 	/**
 	 * the contents of the file being sent
 	 * 
 	 * @var file contents
 	 */
-	public $file;
+	public $File;
 
 	/**
 	 * the guild id this webhook is for
 	 * 
 	 * @var int|null
 	 */
-	public $guild_id;
+	public $Guild_id;
 
 	/**
 	 * the id of the webhook
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * the default name of the webhook
 	 * 
 	 * @var string
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * the secure token of the webhook
 	 * 
 	 * @var string
 	 */
-	public $token;
+	public $Token;
 
 	/**
 	 * true if this is a TTS message
 	 * 
 	 * @var bool
 	 */
-	public $tts = false;
+	public $Tts = false;
 
 	/**
 	 * the user this webhook was created by (not returned when getting a webhook with its token)
 	 * 
 	 * @var array|null
 	 */
-	public $user;
+	public $User;
 
 	/**
 	 * override the default username of the webhook
 	 * 
 	 * @var string
 	 */
-	public $username;
+	public $Username;
 
 	/**
 	 * waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)
 	 * 
 	 * @var bool
 	 */
-	public $wait = false;
+	public $Wait = false;
 
 	/**
 	 * @param array $content

@@ -23,56 +23,56 @@ class Role {
 	 * 
 	 * @var int
 	 */
-	public $color;
+	public $Color;
 
 	/**
 	 * if this role is pinned in the user listing
 	 * 
 	 * @var bool
 	 */
-	public $hoist = false;
+	public $Hoist = false;
 
 	/**
 	 * role id
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * whether this role is managed by an integration
 	 * 
 	 * @var bool
 	 */
-	public $managed = false;
+	public $Managed = false;
 
 	/**
 	 * whether this role is mentionable
 	 * 
 	 * @var bool
 	 */
-	public $mentionable = false;
+	public $Mentionable = false;
 
 	/**
 	 * role name
 	 * 
 	 * @var string
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * permission bit set
 	 * 
 	 * @var int
 	 */
-	public $permissions;
+	public $Permissions;
 
 	/**
 	 * position of this role
 	 * 
 	 * @var int
 	 */
-	public $position;
+	public $Position;
 
 	/**
 	 * @param array $content

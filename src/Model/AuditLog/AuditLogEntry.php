@@ -11,7 +11,7 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Audit-log;
+namespace RestCord\Model\AuditLog;
 
 /**
  * AuditLogEntry Model
@@ -23,49 +23,49 @@ class AuditLogEntry {
 	 * 
 	 * @var audit log event
 	 */
-	public $action_type;
+	public $Action_type;
 
 	/**
 	 * changes made to the target_id
 	 * 
 	 * @var array|null
 	 */
-	public $changes;
+	public $Changes;
 
 	/**
 	 * id of the entry
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * additional info for certain action types
 	 * 
 	 * @var optional audit entry info|null
 	 */
-	public $options;
+	public $Options;
 
 	/**
 	 * the reason for the change
 	 * 
 	 * @var string|null
 	 */
-	public $reason;
+	public $Reason;
 
 	/**
 	 * id of the affected entity (webhook, user, role, etc.)
 	 * 
 	 * @var string
 	 */
-	public $target_id;
+	public $Target_id;
 
 	/**
 	 * the user who made the changes
 	 * 
 	 * @var int
 	 */
-	public $user_id;
+	public $User_id;
 
 	/**
 	 * @param array $content

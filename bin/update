@@ -28,10 +28,10 @@ use Symfony\Component\Process\Process;
             $style = new SymfonyStyle($input, $output);
             $style->title("Building Docs for: ".$input->getArgument('version'));
 
-            run($output, "./bin/downloadServiceDefinition " . $input->getArgument('version'));
-            run($output, "./bin/buildDocs " . $input->getArgument('version'));
-            run($output, "./bin/buildModelClasses " . $input->getArgument('version'));
-            run($output, "./bin/buildDummyClasses " . $input->getArgument('version'));
+            run($output, "./bin/downloadServiceDefinition -vvv " . $input->getArgument('version'));
+            run($output, "./bin/buildDocs -vvv " . $input->getArgument('version'));
+            run($output, "./bin/buildModelClasses -vvv " . $input->getArgument('version'));
+            run($output, "./bin/buildDummyClasses -vvv " . $input->getArgument('version'));
         }
     )
     ->getApplication()

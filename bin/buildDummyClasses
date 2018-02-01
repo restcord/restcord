@@ -81,14 +81,14 @@ EOF;
             );
 
             $generator = new CodeGenerator();
-            foreach ($definition['operations'] as $category => $operations) {
+            foreach ($definition['operations'] as $resource => $operations) {
 
                 $class = new PhpInterface();
-                $class->setQualifiedName('RestCord\\Interfaces\\'.ucwords($category));
-                $class->setDescription(ucwords($category)." Intellisense Helper");
+                $class->setQualifiedName('RestCord\\Interfaces\\'.ucwords($resource));
+                $class->setDescription(ucwords($resource)." Intellisense Helper");
                 $class->setMethods(
                     array_map(
-                        function ($name, $operation) use ($class, $category) {
+                        function ($name, $operation) use ($class, $resource) {
                             $options = new PhpParameter('options');
                             $options->setType(
                                 'array',
@@ -115,11 +115,15 @@ EOF;
                                 $temp = explode("/", $firstType);
                                 $returnType = sprintf(
                                     "\\RestCord\\Model\\%s\\%s",
-                                    ucfirst(strtolower($temp[0])),
                                     str_replace(
                                         ' ',
                                         '',
-                                        ucwords(str_replace('-', ' ', explode('/', $firstType)[1]))
+                                        ucwords(str_replace('-', ' ', $temp[0]))
+                                    ),
+                                    str_replace(
+                                        ' ',
+                                        '',
+                                        ucwords(str_replace('-', ' ', $temp[1]))
                                     )
                                 );
 
@@ -132,7 +136,13 @@ EOF;
                                 $returnType .= $array ? '[]' : '';
                             }
 
-                            $method = new PhpMethod($name);
+                            $method = new PhpMethod(
+                                str_replace(
+                                    ' ',
+                                    '',
+                                    ucwords(str_replace('-', ' ', $name))
+                                )
+                            );
                             $method->setType($returnType, $operation['responseNote'] ?? '');
                             if (isset($operation['link'])) {
                                 $method->setLongDescription('@see '.$operation['link']);
@@ -147,7 +157,7 @@ EOF;
                     )
                 );
 
-                file_put_contents($path.'/'.ucwords($category).'.php', $license.$generator->generate($class));
+                file_put_contents($path.'/'.ucwords($resource).'.php', $license.$generator->generate($class));
             }
 
             $style->success('Finished. Classes built in: '.realpath($path));
@@ -178,7 +188,7 @@ function mapBadDocs(string $name, array $operation, string $cls): string
             return $cls;
     }
 
-    trigger_error($name.' operation in '.$operation['category'].' has a bad responseType: ' . $cls);
+    trigger_error($name.' operation in '.$operation['resource'].' has a bad responseType: ' . $cls);
 
     return $newCls;
 }

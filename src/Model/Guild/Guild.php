@@ -23,217 +23,217 @@ class Guild {
 	 * 
 	 * @var int
 	 */
-	public $afk_channel_id;
+	public $Afk_channel_id;
 
 	/**
 	 * afk timeout in seconds
 	 * 
 	 * @var int
 	 */
-	public $afk_timeout;
+	public $Afk_timeout;
 
 	/**
 	 * application id of the guild creator if it is bot-created
 	 * 
 	 * @var int
 	 */
-	public $application_id;
+	public $Application_id;
 
 	/**
 	 * channels in the guild
 	 * 
 	 * @var array|null
 	 */
-	public $channels;
+	public $Channels;
 
 	/**
 	 * default message notifications level
 	 * 
 	 * @var int
 	 */
-	public $default_message_notifications;
+	public $Default_message_notifications;
 
 	/**
 	 * id of embedded channel
 	 * 
 	 * @var int|null
 	 */
-	public $embed_channel_id;
+	public $Embed_channel_id;
 
 	/**
 	 * is this guild embeddable (e.g. widget)
 	 * 
 	 * @var bool|null
 	 */
-	public $embed_enabled = false;
+	public $Embed_enabled = false;
 
 	/**
 	 * custom guild emojis
 	 * 
 	 * @var array
 	 */
-	public $emojis;
+	public $Emojis;
 
 	/**
 	 * explicit content filter level
 	 * 
 	 * @var int
 	 */
-	public $explicit_content_filter;
+	public $Explicit_content_filter;
 
 	/**
 	 * enabled guild features
 	 * 
 	 * @var array
 	 */
-	public $features;
+	public $Features;
 
 	/**
 	 * icon hash
 	 * 
 	 * @var string
 	 */
-	public $icon;
+	public $Icon;
 
 	/**
 	 * guild id
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * when this guild was joined at
 	 * 
 	 * @var ISO8601 timestamp|null
 	 */
-	public $joined_at;
+	public $Joined_at;
 
 	/**
 	 * whether this is considered a large guild
 	 * 
 	 * @var bool|null
 	 */
-	public $large = false;
+	public $Large = false;
 
 	/**
 	 * total number of members in this guild
 	 * 
 	 * @var int|null
 	 */
-	public $member_count;
+	public $Member_count;
 
 	/**
 	 * users in the guild
 	 * 
 	 * @var array|null
 	 */
-	public $members;
+	public $Members;
 
 	/**
 	 * required MFA level for the guild
 	 * 
 	 * @var int
 	 */
-	public $mfa_level;
+	public $Mfa_level;
 
 	/**
 	 * guild name (2-100 characters)
 	 * 
 	 * @var string
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * whether or not the user is the owner of the guild
 	 * 
 	 * @var bool|null
 	 */
-	public $owner = false;
+	public $Owner = false;
 
 	/**
 	 * id of owner
 	 * 
 	 * @var int
 	 */
-	public $owner_id;
+	public $Owner_id;
 
 	/**
 	 * total permissions for the user in the guild (does not include channel overrides)
 	 * 
 	 * @var int|null
 	 */
-	public $permissions;
+	public $Permissions;
 
 	/**
 	 * presences of the users in the guild
 	 * 
 	 * @var array|null
 	 */
-	public $presences;
+	public $Presences;
 
 	/**
 	 * voice region id for the guild
 	 * 
 	 * @var string
 	 */
-	public $region;
+	public $Region;
 
 	/**
 	 * roles in the guild
 	 * 
 	 * @var array
 	 */
-	public $roles;
+	public $Roles;
 
 	/**
 	 * splash hash
 	 * 
 	 * @var string
 	 */
-	public $splash;
+	public $Splash;
 
 	/**
 	 * the id of the channel to which system messages are sent
 	 * 
 	 * @var int
 	 */
-	public $system_channel_id;
+	public $System_channel_id;
 
 	/**
 	 * is this guild unavailable
 	 * 
 	 * @var bool|null
 	 */
-	public $unavailable = false;
+	public $Unavailable = false;
 
 	/**
 	 * verification level required for the guild
 	 * 
 	 * @var int
 	 */
-	public $verification_level;
+	public $Verification_level;
 
 	/**
 	 * (without the guild_id key)
 	 * 
 	 * @var array|null
 	 */
-	public $voice_states;
+	public $Voice_states;
 
 	/**
 	 * the channel id for the server widget
 	 * 
 	 * @var int|null
 	 */
-	public $widget_channel_id;
+	public $Widget_channel_id;
 
 	/**
 	 * whether or not the server widget is enabled
 	 * 
 	 * @var bool|null
 	 */
-	public $widget_enabled = false;
+	public $Widget_enabled = false;
 
 	/**
 	 * @param array $content

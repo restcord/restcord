@@ -79,16 +79,31 @@ EOF;
             );
 
             $generator = new CodeGenerator();
-            foreach ($definition['models'] as $category => $models) {
+            foreach ($definition['models'] as $resource => $models) {
                 foreach ($models as $name => $model) {
+                    $resource = str_replace(
+                        ' ',
+                        '',
+                        ucwords(str_replace('-', ' ', $resource))
+                    );
+                    $name = str_replace(
+                        ' ',
+                        '',
+                        ucwords(str_replace('-', ' ', $name))
+                    );
                     $class = new PhpClass();
-                    $class->setQualifiedName('RestCord\\Model\\'.ucwords($category).'\\'.ucwords($name));
+                    $class->setQualifiedName('RestCord\\Model\\'.ucwords($resource).'\\'.ucwords($name));
                     $class->setDescription(ucwords($name)." Model");
                     $class->setProperties(
                         array_map(
-                            function (&$name, $property) use ($class, $category, $model) {
+                            function (&$name, $property) use ($class, $resource, $model) {
                                 $optional = strpos($name, '?') !== false;
-                                $name = str_replace('?', '', $name);
+                                $name =
+                                    str_replace(
+                                        [' ', '?'],
+                                        '',
+                                        ucwords(str_replace('-', ' ', $name))
+                                    );
                                 $prop = new PhpProperty($name);
                                 $prop->setType(normalizeType($property['type']).($optional ? "|null" : ""));
                                 $prop->setDescription($property['description']);
@@ -123,9 +138,9 @@ EOF
                     $constructor->setVisibility('public');
                     $class->setMethod($constructor);
 
-                    @mkdir($path.'/'.ucwords($category), 02775, true);
+                    @mkdir($path.'/'.ucwords($resource), 02775, true);
                     file_put_contents(
-                        $path.'/'.ucwords($category).'/'.ucwords($name).'.php',
+                        $path.'/'.ucwords($resource).'/'.ucwords($name).'.php',
                         $license.$generator->generate($class)
                     );
                 }

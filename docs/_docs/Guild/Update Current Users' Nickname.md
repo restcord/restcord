@@ -1,7 +1,7 @@
 ---
 title: Update Current Users&#039; Nickname
 category: Guild
-order: 1
+order: 35
 ---
 
 # `updateNick`

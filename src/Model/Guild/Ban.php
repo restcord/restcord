@@ -23,273 +23,273 @@ class Ban {
 	 * 
 	 * @var string
 	 */
-	public $access_token;
+	public $Access_token;
 
 	/**
 	 * id for afk channel
 	 * 
 	 * @var int
 	 */
-	public $afk_channel_id;
+	public $Afk_channel_id;
 
 	/**
 	 * afk timeout in seconds
 	 * 
 	 * @var int
 	 */
-	public $afk_timeout;
+	public $Afk_timeout;
 
 	/**
 	 * the highest user id in the previous page
 	 * 
 	 * @var int
 	 */
-	public $after;
+	public $After;
 
 	/**
 	 * the bitrate (in bits) of the voice channel (voice only)
 	 * 
 	 * @var int
 	 */
-	public $bitrate;
+	public $Bitrate;
 
 	/**
 	 * id of channel to move user to (if they are connected to voice)
 	 * 
 	 * @var int
 	 */
-	public $channel_id;
+	public $Channel_id;
 
 	/**
 	 * new guild's channels
 	 * 
 	 * @var array
 	 */
-	public $channels;
+	public $Channels;
 
 	/**
 	 * RGB color value
 	 * 
 	 * @var int
 	 */
-	public $color;
+	public $Color;
 
 	/**
 	 * number of days to prune (1 or more)
 	 * 
 	 * @var int
 	 */
-	public $days;
+	public $Days;
 
 	/**
 	 * if the user is deafened
 	 * 
 	 * @var bool
 	 */
-	public $deaf = false;
+	public $Deaf = false;
 
 	/**
 	 * default message notification level
 	 * 
 	 * @var int
 	 */
-	public $default_message_notifications;
+	public $Default_message_notifications;
 
 	/**
 	 * number of days to delete messages for (0-7)
 	 * 
 	 * @var int
 	 */
-	public $delete-message-days;
+	public $DeleteMessageDays;
 
 	/**
 	 * whether emoticons should be synced for this integration (twitch only currently)
 	 * 
 	 * @var bool
 	 */
-	public $enable_emoticons = false;
+	public $Enable_emoticons = false;
 
 	/**
 	 * the behavior when an integration subscription lapses (see the integration object documentation)
 	 * 
 	 * @var int
 	 */
-	public $expire_behavior;
+	public $Expire_behavior;
 
 	/**
 	 * period (in seconds) where the integration will ignore lapsed subscriptions
 	 * 
 	 * @var int
 	 */
-	public $expire_grace_period;
+	public $Expire_grace_period;
 
 	/**
 	 * explicit content filter level
 	 * 
 	 * @var int
 	 */
-	public $explicit_content_filter;
+	public $Explicit_content_filter;
 
 	/**
 	 * whether the role should be displayed separately in the sidebar
 	 * 
 	 * @var bool
 	 */
-	public $hoist = false;
+	public $Hoist = false;
 
 	/**
 	 * base64 128x128 jpeg image for the guild icon
 	 * 
 	 * @var string
 	 */
-	public $icon;
+	public $Icon;
 
 	/**
 	 * the integration id
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * max number of members to return (1-1000)
 	 * 
 	 * @var int
 	 */
-	public $limit = 1;
+	public $Limit = 1;
 
 	/**
 	 * whether the role should be mentionable
 	 * 
 	 * @var bool
 	 */
-	public $mentionable = false;
+	public $Mentionable = false;
 
 	/**
 	 * if the user is muted
 	 * 
 	 * @var bool
 	 */
-	public $mute = false;
+	public $Mute = false;
 
 	/**
 	 * name of the role
 	 * 
 	 * @var string
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * value to set users nickname to
 	 * 
 	 * @var string
 	 */
-	public $nick;
+	public $Nick;
 
 	/**
 	 * if the channel is nsfw
 	 * 
 	 * @var bool
 	 */
-	public $nsfw = false;
+	public $Nsfw = false;
 
 	/**
 	 * user id to transfer guild ownership to (must be owner)
 	 * 
 	 * @var int
 	 */
-	public $owner_id;
+	public $Owner_id;
 
 	/**
 	 * id of the parent category for a channel
 	 * 
 	 * @var int
 	 */
-	public $parent_id;
+	public $Parent_id;
 
 	/**
 	 * the channel's permission overwrites
 	 * 
 	 * @var array
 	 */
-	public $permission_overwrites;
+	public $Permission_overwrites;
 
 	/**
 	 * bitwise of the enabled/disabled permissions
 	 * 
 	 * @var int
 	 */
-	public $permissions;
+	public $Permissions;
 
 	/**
 	 * sorting position of the role
 	 * 
 	 * @var int
 	 */
-	public $position;
+	public $Position;
 
 	/**
 	 * reason for the ban
 	 * 
 	 * @var string
 	 */
-	public $reason;
+	public $Reason;
 
 	/**
 	 * guild voice region id
 	 * 
 	 * @var string
 	 */
-	public $region;
+	public $Region;
 
 	/**
 	 * array of role ids the member is assigned
 	 * 
 	 * @var array
 	 */
-	public $roles;
+	public $Roles;
 
 	/**
 	 * base64 128x128 jpeg image for the guild splash (VIP only)
 	 * 
 	 * @var string
 	 */
-	public $splash;
+	public $Splash;
 
 	/**
 	 * the id of the channel to which system messages are sent
 	 * 
 	 * @var int
 	 */
-	public $system_channel_id;
+	public $System_channel_id;
 
 	/**
 	 * the integration type
 	 * 
 	 * @var string
 	 */
-	public $type;
+	public $Type;
 
 	/**
 	 * the banned user
 	 * 
 	 * @var array
 	 */
-	public $user;
+	public $User;
 
 	/**
 	 * the user limit of the voice channel (voice only)
 	 * 
 	 * @var int
 	 */
-	public $user_limit;
+	public $User_limit;
 
 	/**
 	 * verification level
 	 * 
 	 * @var int
 	 */
-	public $verification_level;
+	public $Verification_level;
 
 	/**
 	 * @param array $content

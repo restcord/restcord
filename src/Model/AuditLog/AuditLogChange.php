@@ -11,7 +11,7 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Audit-log;
+namespace RestCord\Model\AuditLog;
 
 /**
  * AuditLogChange Model
@@ -23,21 +23,21 @@ class AuditLogChange {
 	 * 
 	 * @var string
 	 */
-	public $key;
+	public $Key;
 
 	/**
 	 * new value of the key
 	 * 
 	 * @var mixed|null
 	 */
-	public $new_value;
+	public $New_value;
 
 	/**
 	 * old value of the key
 	 * 
 	 * @var mixed|null
 	 */
-	public $old_value;
+	public $Old_value;
 
 	/**
 	 * @param array $content

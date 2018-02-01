@@ -23,42 +23,42 @@ class GuildMember {
 	 * 
 	 * @var bool
 	 */
-	public $deaf = false;
+	public $Deaf = false;
 
 	/**
 	 * when the user joined the guild
 	 * 
 	 * @var ISO8601 timestamp
 	 */
-	public $joined_at;
+	public $Joined_at;
 
 	/**
 	 * if the user is muted
 	 * 
 	 * @var bool
 	 */
-	public $mute = false;
+	public $Mute = false;
 
 	/**
 	 * this users guild nickname (if one is set)
 	 * 
 	 * @var string|null
 	 */
-	public $nick;
+	public $Nick;
 
 	/**
 	 * array of role object ids
 	 * 
 	 * @var array
 	 */
-	public $roles;
+	public $Roles;
 
 	/**
 	 * user object
 	 * 
 	 * @var array
 	 */
-	public $user;
+	public $User;
 
 	/**
 	 * @param array $content

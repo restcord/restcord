@@ -23,91 +23,91 @@ class Connection {
 	 * 
 	 * @var array
 	 */
-	public $access_tokens;
+	public $Access_tokens;
 
 	/**
 	 * get guilds after this guild ID
 	 * 
 	 * @var int
 	 */
-	public $after;
+	public $After;
 
 	/**
 	 * if passed, modifies the user's avatar
 	 * 
 	 * @var avatar data
 	 */
-	public $avatar;
+	public $Avatar;
 
 	/**
 	 * get guilds before this guild ID
 	 * 
 	 * @var int
 	 */
-	public $before;
+	public $Before;
 
 	/**
 	 * id of the connection account
 	 * 
 	 * @var string
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * an array of partial server integrations
 	 * 
 	 * @var array
 	 */
-	public $integrations;
+	public $Integrations;
 
 	/**
 	 * max number of guilds to return (1-100)
 	 * 
 	 * @var int
 	 */
-	public $limit = 100;
+	public $Limit = 100;
 
 	/**
 	 * the username of the connection account
 	 * 
 	 * @var string
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * a dictionary of user ids to their respective nicknames
 	 * 
 	 * @var dict
 	 */
-	public $nicks;
+	public $Nicks;
 
 	/**
 	 * the recipient to open a DM channel with
 	 * 
 	 * @var int
 	 */
-	public $recipient_id;
+	public $Recipient_id;
 
 	/**
 	 * whether the connection is revoked
 	 * 
 	 * @var bool
 	 */
-	public $revoked = false;
+	public $Revoked = false;
 
 	/**
 	 * the service of the connection (twitch, youtube)
 	 * 
 	 * @var string
 	 */
-	public $type;
+	public $Type;
 
 	/**
 	 * users username, if changed may cause the users discriminator to be randomized.
 	 * 
 	 * @var string
 	 */
-	public $username;
+	public $Username;
 
 	/**
 	 * @param array $content

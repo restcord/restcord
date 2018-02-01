@@ -23,56 +23,56 @@ class User {
 	 * 
 	 * @var string
 	 */
-	public $avatar;
+	public $Avatar;
 
 	/**
 	 * whether the user belongs to an OAuth2 application
 	 * 
 	 * @var bool|null
 	 */
-	public $bot = false;
+	public $Bot = false;
 
 	/**
 	 * the user's 4-digit discord-tag
 	 * 
 	 * @var string
 	 */
-	public $discriminator;
+	public $Discriminator;
 
 	/**
 	 * the user's email
 	 * 
 	 * @var string|null
 	 */
-	public $email;
+	public $Email;
 
 	/**
 	 * the user's id
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * whether the user has two factor enabled on their account
 	 * 
 	 * @var bool|null
 	 */
-	public $mfa_enabled = false;
+	public $Mfa_enabled = false;
 
 	/**
 	 * the user's username, not unique across the platform
 	 * 
 	 * @var string
 	 */
-	public $username;
+	public $Username;
 
 	/**
 	 * whether the email on this account has been verified
 	 * 
 	 * @var bool|null
 	 */
-	public $verified = false;
+	public $Verified = false;
 
 	/**
 	 * @param array $content

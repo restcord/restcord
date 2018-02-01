@@ -23,21 +23,21 @@ class Reaction {
 	 * 
 	 * @var int
 	 */
-	public $count;
+	public $Count;
 
 	/**
 	 * emoji information
 	 * 
 	 * @var array
 	 */
-	public $emoji;
+	public $Emoji;
 
 	/**
 	 * whether the current user reacted using this emoji
 	 * 
 	 * @var bool
 	 */
-	public $me = false;
+	public $Me = false;
 
 	/**
 	 * @param array $content

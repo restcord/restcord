@@ -23,77 +23,77 @@ class Integration {
 	 * 
 	 * @var array
 	 */
-	public $account;
+	public $Account;
 
 	/**
 	 * is this integration enabled
 	 * 
 	 * @var bool
 	 */
-	public $enabled = false;
+	public $Enabled = false;
 
 	/**
 	 * the behavior of expiring subscribers
 	 * 
 	 * @var int
 	 */
-	public $expire_behavior;
+	public $Expire_behavior;
 
 	/**
 	 * the grace period before expiring subscribers
 	 * 
 	 * @var int
 	 */
-	public $expire_grace_period;
+	public $Expire_grace_period;
 
 	/**
 	 * integration id
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * integration name
 	 * 
 	 * @var string
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * id that this integration uses for "subscribers"
 	 * 
 	 * @var int
 	 */
-	public $role_id;
+	public $Role_id;
 
 	/**
 	 * when this integration was last synced
 	 * 
 	 * @var ISO8601 timestamp
 	 */
-	public $synced_at;
+	public $Synced_at;
 
 	/**
 	 * is this integration syncing
 	 * 
 	 * @var bool
 	 */
-	public $syncing = false;
+	public $Syncing = false;
 
 	/**
 	 * integration type (twitch, youtube, etc)
 	 * 
 	 * @var string
 	 */
-	public $type;
+	public $Type;
 
 	/**
 	 * user for this integration
 	 * 
 	 * @var array
 	 */
-	public $user;
+	public $User;
 
 	/**
 	 * @param array $content

@@ -23,119 +23,119 @@ class Channel {
 	 * 
 	 * @var int|null
 	 */
-	public $application_id;
+	public $Application_id;
 
 	/**
 	 * the bitrate (in bits) of the voice channel
 	 * 
 	 * @var int|null
 	 */
-	public $bitrate;
+	public $Bitrate;
 
 	/**
 	 * the id of the guild
 	 * 
 	 * @var int|null
 	 */
-	public $guild_id;
+	public $Guild_id;
 
 	/**
 	 * icon hash
 	 * 
 	 * @var string|null
 	 */
-	public $icon;
+	public $Icon;
 
 	/**
 	 * the id of this channel
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * the id of the last message sent in this channel (may not point to an existing or valid message)
 	 * 
 	 * @var int|null
 	 */
-	public $last_message_id;
+	public $Last_message_id;
 
 	/**
 	 * when the last pinned message was pinned
 	 * 
 	 * @var ISO8601 timestamp|null
 	 */
-	public $last_pin_timestamp;
+	public $Last_pin_timestamp;
 
 	/**
 	 * the name of the channel (2-100 characters)
 	 * 
 	 * @var string|null
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * if the channel is nsfw
 	 * 
 	 * @var bool|null
 	 */
-	public $nsfw = false;
+	public $Nsfw = false;
 
 	/**
 	 * id of the DM creator
 	 * 
 	 * @var int|null
 	 */
-	public $owner_id;
+	public $Owner_id;
 
 	/**
 	 * id of the parent category for a channel
 	 * 
 	 * @var int|null
 	 */
-	public $parent_id;
+	public $Parent_id;
 
 	/**
 	 * explicit permission overwrites for members and roles
 	 * 
 	 * @var array|null
 	 */
-	public $permission_overwrites;
+	public $Permission_overwrites;
 
 	/**
 	 * sorting position of the channel
 	 * 
 	 * @var int|null
 	 */
-	public $position;
+	public $Position;
 
 	/**
 	 * the recipients of the DM
 	 * 
 	 * @var array|null
 	 */
-	public $recipients;
+	public $Recipients;
 
 	/**
 	 * the channel topic (0-1024 characters)
 	 * 
 	 * @var string|null
 	 */
-	public $topic;
+	public $Topic;
 
 	/**
 	 * the type of channel
 	 * 
 	 * @var int
 	 */
-	public $type;
+	public $Type;
 
 	/**
 	 * the user limit of the voice channel
 	 * 
 	 * @var int|null
 	 */
-	public $user_limit;
+	public $User_limit;
 
 	/**
 	 * @param array $content

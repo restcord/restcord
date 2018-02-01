@@ -23,154 +23,154 @@ class Embed {
 	 * 
 	 * @var array
 	 */
-	public $author;
+	public $Author;
 
 	/**
 	 * color code of the embed
 	 * 
 	 * @var int
 	 */
-	public $color;
+	public $Color;
 
 	/**
 	 * description of embed
 	 * 
 	 * @var string
 	 */
-	public $description;
+	public $Description;
 
 	/**
 	 * fields information
 	 * 
 	 * @var array
 	 */
-	public $fields;
+	public $Fields;
 
 	/**
 	 * footer information
 	 * 
 	 * @var array
 	 */
-	public $footer;
+	public $Footer;
 
 	/**
 	 * height of image
 	 * 
 	 * @var int
 	 */
-	public $height;
+	public $Height;
 
 	/**
 	 * url of footer icon (only supports http(s) and attachments)
 	 * 
 	 * @var string
 	 */
-	public $icon_url;
+	public $Icon_url;
 
 	/**
 	 * image information
 	 * 
 	 * @var array
 	 */
-	public $image;
+	public $Image;
 
 	/**
 	 * whether or not this field should display inline
 	 * 
 	 * @var bool
 	 */
-	public $inline = false;
+	public $Inline = false;
 
 	/**
 	 * name of the field
 	 * 
 	 * @var string
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * provider information
 	 * 
 	 * @var array
 	 */
-	public $provider;
+	public $Provider;
 
 	/**
 	 * a proxied url of footer icon
 	 * 
 	 * @var string
 	 */
-	public $proxy_icon_url;
+	public $Proxy_icon_url;
 
 	/**
 	 * a proxied url of the image
 	 * 
 	 * @var string
 	 */
-	public $proxy_url;
+	public $Proxy_url;
 
 	/**
 	 * footer text
 	 * 
 	 * @var string
 	 */
-	public $text;
+	public $Text;
 
 	/**
 	 * thumbnail information
 	 * 
 	 * @var array
 	 */
-	public $thumbnail;
+	public $Thumbnail;
 
 	/**
 	 * timestamp of embed content
 	 * 
 	 * @var ISO8601 timestamp
 	 */
-	public $timestamp;
+	public $Timestamp;
 
 	/**
 	 * title of embed
 	 * 
 	 * @var string
 	 */
-	public $title;
+	public $Title;
 
 	/**
 	 * type of embed (always "rich" for webhook embeds)
 	 * 
 	 * @var string
 	 */
-	public $type;
+	public $Type;
 
 	/**
 	 * url of author
 	 * 
 	 * @var string
 	 */
-	public $url;
+	public $Url;
 
 	/**
 	 * value of the field
 	 * 
 	 * @var string
 	 */
-	public $value;
+	public $Value;
 
 	/**
 	 * video information
 	 * 
 	 * @var array
 	 */
-	public $video;
+	public $Video;
 
 	/**
 	 * width of image
 	 * 
 	 * @var int
 	 */
-	public $width;
+	public $Width;
 
 	/**
 	 * @param array $content

@@ -23,56 +23,56 @@ class Emoji {
 	 * 
 	 * @var bool|null
 	 */
-	public $animated = false;
+	public $Animated = false;
 
 	/**
 	 * emoji id
 	 * 
 	 * @var int
 	 */
-	public $id;
+	public $Id;
 
 	/**
 	 * the 128x128 emoji image
 	 * 
 	 * @var base64 image data
 	 */
-	public $image;
+	public $Image;
 
 	/**
 	 * whether this emoji is managed
 	 * 
 	 * @var bool|null
 	 */
-	public $managed = false;
+	public $Managed = false;
 
 	/**
 	 * name of the emoji
 	 * 
 	 * @var string
 	 */
-	public $name;
+	public $Name;
 
 	/**
 	 * whether this emoji must be wrapped in colons
 	 * 
 	 * @var bool|null
 	 */
-	public $require_colons = false;
+	public $Require_colons = false;
 
 	/**
 	 * roles to which this emoji will be whitelisted
 	 * 
 	 * @var array
 	 */
-	public $roles;
+	public $Roles;
 
 	/**
 	 * user that created this emoji
 	 * 
 	 * @var array|null
 	 */
-	public $user;
+	public $User;
 
 	/**
 	 * @param array $content
