@@ -13,10 +13,14 @@
 
 namespace RestCord\Model\User;
 
+use RestCord\Traits\AvatarTrait;
+
 /**
  * User Model
  */
 class User {
+
+	use AvatarTrait;
 
 	/**
 	 * the user's avatar hash

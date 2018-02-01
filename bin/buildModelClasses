@@ -106,6 +106,8 @@ EOF;
                         )
                     );
 
+                    addTraits($class, $resource, $name);
+
                     $constructor = new PhpMethod('__construct');
                     $constructor->addSimpleParameter('content', 'array', null);
                     $constructor->setBody(
@@ -222,4 +224,16 @@ function mapBadDocs(string $cls): string
     }
 
     return $cls;
+}
+
+function addTraits(PhpClass $class, string $resource, string $name)
+{
+    if ($resource === 'User' && $name === 'User') {
+        $class->addUseStatement(\RestCord\Traits\AvatarTrait::class)->addTrait("AvatarTrait");
+    }
+
+    if ($resource === 'Guild' && $name === 'Guild') {
+        $class->addUseStatement(\RestCord\Traits\IconTrait::class)->addTrait("IconTrait");
+        $class->addUseStatement(\RestCord\Traits\SplashTrait::class)->addTrait("SplashTrait");
+    }
 }

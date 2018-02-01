@@ -13,10 +13,16 @@
 
 namespace RestCord\Model\Guild;
 
+use RestCord\Traits\IconTrait;
+use RestCord\Traits\SplashTrait;
+
 /**
  * Guild Model
  */
 class Guild {
+
+	use IconTrait;
+	use SplashTrait;
 
 	/**
 	 * id of afk channel
