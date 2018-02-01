@@ -45,11 +45,11 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
     {
         $this->options = $this->validateOptions($options);
 
-        if ($options["client"] !== null) {
-            $this->redis = $options["client"];
+        if ($options['client'] !== null) {
+            $this->redis = $options['client'];
         } else {
             $this->redis = new \Redis();
-            $this->redis->connect($options["host"], $options["port"]);
+            $this->redis->connect($options['host'], $options['port']);
         }
     }
 
@@ -59,22 +59,22 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
         $resolver
             ->setDefaults(
                 [
-                    "prefix" => "restcord.ratelimit.",
-                    "host"   => "127.0.0.1",
-                    "port"   => 6379,
-                    "client" => null
+                    'prefix' => 'restcord.ratelimit.',
+                    'host'   => '127.0.0.1',
+                    'port'   => 6379,
+                    'client' => null,
                 ]
             )
-            ->setAllowedTypes("port", ["integer"])
-            ->setAllowedTypes("host", ["string"])
-            ->setAllowedTypes("prefix", ["string"])
-            ->setAllowedTypes("client", [\Redis::class]);
+            ->setAllowedTypes('port', ['integer'])
+            ->setAllowedTypes('host', ['string'])
+            ->setAllowedTypes('prefix', ['string'])
+            ->setAllowedTypes('client', [\Redis::class]);
 
         return $resolver->resolve($options);
     }
 
     /**
-     * Returns the prefixed version of the key
+     * Returns the prefixed version of the key.
      *
      * @param string $key
      *
@@ -82,7 +82,7 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
      */
     public function getKey($key)
     {
-        return $this->options["prefix"] . $key;
+        return $this->options['prefix'].$key;
     }
 
     /**
@@ -95,7 +95,7 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
     public function getLastRequestTime(RequestInterface $request)
     {
         $route = $this->getRoute($request);
-        $key = $this->getKey($route.'.lastRequest');
+        $key   = $this->getKey($route.'.lastRequest');
 
         return $this->redis->exists($key) ? $this->redis->get($key) : null;
     }
@@ -109,7 +109,7 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
     public function setLastRequestTime(RequestInterface $request)
     {
         $route = $this->getRoute($request);
-        $key = $this->getKey($route.'.lastRequest');
+        $key   = $this->getKey($route.'.lastRequest');
 
         $this->redis->setex($key, static::MAX_TTL, $this->getRequestTime($request));
     }
@@ -130,7 +130,7 @@ class RedisRateLimitProvider extends AbstractRateLimitProvider
     public function getRequestAllowance(RequestInterface $request)
     {
         $route = $this->getRoute($request);
-        $key = $this->getKey($route.'.reset');
+        $key   = $this->getKey($route.'.reset');
 
         if (!$this->redis->exists($key)) {
             return 0;

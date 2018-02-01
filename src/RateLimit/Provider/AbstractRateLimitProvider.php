@@ -24,7 +24,7 @@ use Psr\Http\Message\ResponseInterface;
 abstract class AbstractRateLimitProvider
 {
     /**
-     * Returns the route for the current URL
+     * Returns the route for the current URL.
      *
      * @param RequestInterface $request
      *
@@ -49,7 +49,7 @@ abstract class AbstractRateLimitProvider
      *
      * @return float Time when the given request is being made.
      */
-    public final function getRequestTime(RequestInterface $request)
+    final public function getRequestTime(RequestInterface $request)
     {
         return microtime(true);
     }
