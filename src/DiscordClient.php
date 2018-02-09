@@ -148,7 +148,7 @@ class DiscordClient
             ]
         )
             ->setDefined(['token'])
-            ->setAllowedValues('tokenType', ['Bot', 'User', 'OAuth'])
+            ->setAllowedValues('tokenType', ['Bot', 'OAuth'])
             ->setAllowedTypes('token', ['string'])
             ->setAllowedTypes('apiUrl', ['string'])
             ->setAllowedTypes('rateLimitProvider', [AbstractRateLimitProvider::class])
@@ -417,9 +417,6 @@ class DiscordClient
         switch ($tokenType) {
             default:
                 $authorization = 'Bot ';
-                break;
-            case 'User':
-                $authorization = '';
                 break;
             case 'OAuth':
                 $authorization = 'Bearer ';
