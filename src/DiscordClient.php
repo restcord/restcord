@@ -43,6 +43,7 @@ use function GuzzleHttp\json_decode;
  * @property Interfaces\User    user
  * @property Interfaces\Voice   voice
  * @property Interfaces\Webhook webhook
+ * @property Interfaces\Emoji   emoji
  */
 class DiscordClient
 {
