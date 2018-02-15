@@ -13,178 +13,233 @@
 
 namespace RestCord\Model\Guild;
 
+use RestCord\Traits\IconTrait;
+use RestCord\Traits\SplashTrait;
+
 /**
  * Guild Model
  */
 class Guild {
 
+	use IconTrait;
+	use SplashTrait;
+
 	/**
 	 * id of afk channel
-	 * 
+	 *
 	 * @var int
 	 */
 	public $afk_channel_id;
 
 	/**
 	 * afk timeout in seconds
-	 * 
+	 *
 	 * @var int
 	 */
 	public $afk_timeout;
 
 	/**
-	 * array of channel objects
-	 * 
-	 * @var \RestCord\Model\Channel\GuildChannel[]
+	 * application id of the guild creator if it is bot-created
+	 *
+	 * @var int
+	 */
+	public $application_id;
+
+	/**
+	 * channels in the guild
+	 *
+	 * @var array|null
 	 */
 	public $channels;
 
 	/**
 	 * default message notifications level
-	 * 
+	 *
 	 * @var int
 	 */
 	public $default_message_notifications;
 
 	/**
 	 * id of embedded channel
-	 * 
-	 * @var int
+	 *
+	 * @var int|null
 	 */
 	public $embed_channel_id;
 
 	/**
 	 * is this guild embeddable (e.g. widget)
-	 * 
-	 * @var bool
+	 *
+	 * @var bool|null
 	 */
 	public $embed_enabled = false;
 
 	/**
-	 * array of emoji objects
-	 * 
-	 * @var \RestCord\Model\Guild\Emoji[]
+	 * custom guild emojis
+	 *
+	 * @var array
 	 */
 	public $emojis;
 
 	/**
-	 * array of guild features
-	 * 
+	 * explicit content filter level
+	 *
+	 * @var int
+	 */
+	public $explicit_content_filter;
+
+	/**
+	 * enabled guild features
+	 *
 	 * @var array
 	 */
 	public $features;
 
 	/**
 	 * icon hash
-	 * 
+	 *
 	 * @var string
 	 */
 	public $icon;
 
 	/**
 	 * guild id
-	 * 
+	 *
 	 * @var int
 	 */
 	public $id;
 
 	/**
-	 * date this guild was joined at
-	 * 
-	 * @var \DateTime
+	 * when this guild was joined at
+	 *
+	 * @var int|null
 	 */
 	public $joined_at;
 
 	/**
 	 * whether this is considered a large guild
-	 * 
-	 * @var bool
+	 *
+	 * @var bool|null
 	 */
 	public $large = false;
 
 	/**
 	 * total number of members in this guild
-	 * 
-	 * @var int
+	 *
+	 * @var int|null
 	 */
 	public $member_count;
 
 	/**
-	 * array of guild member objects
-	 * 
-	 * @var \RestCord\Model\Guild\GuildMember[]
+	 * users in the guild
+	 *
+	 * @var array|null
 	 */
 	public $members;
 
 	/**
 	 * required MFA level for the guild
-	 * 
+	 *
 	 * @var int
 	 */
 	public $mfa_level;
 
 	/**
 	 * guild name (2-100 characters)
-	 * 
+	 *
 	 * @var string
 	 */
 	public $name;
 
 	/**
+	 * whether or not the user is the owner of the guild
+	 *
+	 * @var bool|null
+	 */
+	public $owner = false;
+
+	/**
 	 * id of owner
-	 * 
+	 *
 	 * @var int
 	 */
 	public $owner_id;
 
 	/**
-	 * array of simple presence objects, which share the same fields as Presence Update event sans a roles or guild_id key
-	 * 
-	 * @var array
+	 * total permissions for the user in the guild (does not include channel overrides)
+	 *
+	 * @var int|null
+	 */
+	public $permissions;
+
+	/**
+	 * presences of the users in the guild
+	 *
+	 * @var array|null
 	 */
 	public $presences;
 
 	/**
-	 * {voice_region.id}
-	 * 
+	 * voice region id for the guild
+	 *
 	 * @var string
 	 */
 	public $region;
 
 	/**
-	 * array of role objects
-	 * 
-	 * @var \RestCord\Model\Permissions\Role[]
+	 * roles in the guild
+	 *
+	 * @var array
 	 */
 	public $roles;
 
 	/**
 	 * splash hash
-	 * 
+	 *
 	 * @var string
 	 */
 	public $splash;
 
 	/**
+	 * the id of the channel to which system messages are sent
+	 *
+	 * @var int
+	 */
+	public $system_channel_id;
+
+	/**
 	 * is this guild unavailable
-	 * 
-	 * @var bool
+	 *
+	 * @var bool|null
 	 */
 	public $unavailable = false;
 
 	/**
-	 * level of verification
-	 * 
+	 * verification level required for the guild
+	 *
 	 * @var int
 	 */
 	public $verification_level;
 
 	/**
-	 * array of voice state objects (without the guild_id key)
-	 * 
-	 * @var \RestCord\Model\Voice\VoiceState[]
+	 * (without the guild_id key)
+	 *
+	 * @var array|null
 	 */
 	public $voice_states;
+
+	/**
+	 * the channel id for the server widget
+	 *
+	 * @var int|null
+	 */
+	public $widget_channel_id;
+
+	/**
+	 * whether or not the server widget is enabled
+	 *
+	 * @var bool|null
+	 */
+	public $widget_enabled = false;
 
 	/**
 	 * @param array $content

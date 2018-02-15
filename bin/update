@@ -1,0 +1,47 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of php-restcord.
+ *
+ * (c) Aaron Scherer <aequasi@gmail.com>
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ */
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Process\Process;
+
+/** @noinspection PhpUnhandledExceptionInspection */
+(new Application('Updating', '1.0.0'))
+    ->register('update')
+    ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
+    ->setCode(
+        function (InputInterface $input, OutputInterface $output) {
+            $style = new SymfonyStyle($input, $output);
+            $style->title("Building Docs for: ".$input->getArgument('version'));
+
+            run($output, "./bin/downloadServiceDefinition -vvv " . $input->getArgument('version'));
+            run($output, "./bin/buildDocs -vvv " . $input->getArgument('version'));
+            run($output, "./bin/buildModelClasses -vvv " . $input->getArgument('version'));
+            run($output, "./bin/buildDummyClasses -vvv " . $input->getArgument('version'));
+        }
+    )
+    ->getApplication()
+    ->setDefaultCommand('update', true)
+    ->run();
+
+
+function run(OutputInterface $output, $process) {
+    $process = new Process($process);
+    $process->run(function ($type, $buffer) use ($output) {
+        $output->write($buffer);
+    });
+}

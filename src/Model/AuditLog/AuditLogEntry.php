@@ -11,40 +11,61 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Invite;
+namespace RestCord\Model\AuditLog;
 
 /**
- * InviteGuild Model
+ * AuditLogEntry Model
  */
-class InviteGuild {
+class AuditLogEntry {
 
 	/**
-	 * hash of the guild icon (or null)
-	 * 
-	 * @var string
+	 * type of action that occured
+	 *
+	 * @var audit log event
 	 */
-	public $icon;
+	public $action_type;
 
 	/**
-	 * id of the guild
-	 * 
+	 * changes made to the target_id
+	 *
+	 * @var array|null
+	 */
+	public $changes;
+
+	/**
+	 * id of the entry
+	 *
 	 * @var int
 	 */
 	public $id;
 
 	/**
-	 * name of the guild
-	 * 
-	 * @var string
+	 * additional info for certain action types
+	 *
+	 * @var optional audit entry info|null
 	 */
-	public $name;
+	public $options;
 
 	/**
-	 * hash of the guild splash (or null)
-	 * 
+	 * the reason for the change
+	 *
+	 * @var string|null
+	 */
+	public $reason;
+
+	/**
+	 * id of the affected entity (webhook, user, role, etc.)
+	 *
 	 * @var string
 	 */
-	public $splash;
+	public $target_id;
+
+	/**
+	 * the user who made the changes
+	 *
+	 * @var int
+	 */
+	public $user_id;
 
 	/**
 	 * @param array $content

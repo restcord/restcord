@@ -22,6 +22,9 @@ Name | Type | Required | Default
 channel.id | snowflake | true | *null*
 message.id | snowflake | true | *null*
 emoji | string | true | *null*
+before | snowflake | false | *null*
+after | snowflake | false | *null*
+limit | integer | false | 100
 
 ## Response
 

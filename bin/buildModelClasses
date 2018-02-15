@@ -10,13 +10,31 @@
  * with this source code in the file LICENSE
  */
 
+function recursiveRemoveDirectory($directory)
+{
+    foreach (glob("{$directory}/*") as $file) {
+        if (is_dir($file)) {
+            recursiveRemoveDirectory($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($directory);
+}
+
+$path = __DIR__.'/../src/Model';
+try {
+    recursiveRemoveDirectory($path);
+} catch (\Exception $e) {
+}
+mkdir($path, 02775, true);
+$path = realpath($path);
+
 require __DIR__.'/../vendor/autoload.php';
 
 use gossi\codegen\generator\CodeGenerator;
 use gossi\codegen\model\PhpClass;
-use gossi\codegen\model\PhpInterface;
 use gossi\codegen\model\PhpMethod;
-use gossi\codegen\model\PhpParameter;
 use gossi\codegen\model\PhpProperty;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
@@ -43,33 +61,14 @@ $license = <<<EOF
 \n
 EOF;
 
-function recursiveRemoveDirectory($directory)
-{
-    foreach (glob("{$directory}/*") as $file) {
-        if (is_dir($file)) {
-            recursiveRemoveDirectory($file);
-        } else {
-            unlink($file);
-        }
-    }
-    rmdir($directory);
-}
-
+/** @noinspection PhpUnhandledExceptionInspection */
 (new Application('Build Model Classes', '1.0.0'))
     ->register('buildModelClasses')
     ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
     ->setCode(
-        function (InputInterface $input, OutputInterface $output) use ($twig, $license) {
+        function (InputInterface $input, OutputInterface $output) use ($twig, $license, $path) {
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
             $style->title("Building Model Classes for: ".$input->getArgument('version'));
-
-            $path = __DIR__.'/../src/Model';
-            try {
-                recursiveRemoveDirectory($path);
-            } catch (\Exception $e) {
-            }
-            mkdir($path, 02775, true);
-            $path = realpath($path);
 
             $definition = \GuzzleHttp\json_decode(
                 file_get_contents(
@@ -79,16 +78,21 @@ function recursiveRemoveDirectory($directory)
             );
 
             $generator = new CodeGenerator();
-            foreach ($definition['models'] as $category => $models) {
+            foreach ($definition['models'] as $resource => $models) {
                 foreach ($models as $name => $model) {
-                    $class = new PhpClass();
-                    $class->setQualifiedName('RestCord\\Model\\'.ucwords($category).'\\'.ucwords($name));
+                    $resource = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
+                    $name     = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $name)));
+                    $class    = new PhpClass();
+                    $class->setQualifiedName('RestCord\\Model\\'.ucwords($resource).'\\'.ucwords($name));
                     $class->setDescription(ucwords($name)." Model");
                     $class->setProperties(
                         array_map(
-                            function ($name, $property) use ($class, $category, $model) {
-                                $prop = new PhpProperty($name);
-                                $prop->setType(normalizeType($property['type']));
+                            function (&$name, $property) use ($class, $resource, $model) {
+                                $optional = strpos($name, '?') !== false;
+                                $name     = lcfirst(str_replace([' ', '?'], '', str_replace('-', '_', $name)));
+                                $prop     = new PhpProperty($name);
+
+                                $prop->setType(normalizeType($name, $resource, $property).($optional ? "|null" : ""));
                                 $prop->setDescription($property['description']);
 
                                 if (isset($property['default'])) {
@@ -101,6 +105,8 @@ function recursiveRemoveDirectory($directory)
                             $model['properties']
                         )
                     );
+
+                    addTraits($class, $resource, $name);
 
                     $constructor = new PhpMethod('__construct');
                     $constructor->addSimpleParameter('content', 'array', null);
@@ -121,9 +127,9 @@ EOF
                     $constructor->setVisibility('public');
                     $class->setMethod($constructor);
 
-                    @mkdir($path.'/'.ucwords($category), 02775, true);
+                    @mkdir($path.'/'.ucwords($resource), 02775, true);
                     file_put_contents(
-                        $path.'/'.ucwords($category).'/'.ucwords($name).'.php',
+                        $path.'/'.ucwords($resource).'/'.ucwords($name).'.php',
                         $license.$generator->generate($class)
                     );
                 }
@@ -136,13 +142,18 @@ EOF
     ->setDefaultCommand('buildModelClasses', true)
     ->run();
 
-function normalizeType(string $type): string
+function normalizeType(string $name, string $resource, array $property): string
 {
+    $type = $property['type'];
+    if ($name === 'user' && $resource === 'Guild') {
+        $type = "user/user";
+    }
+
     switch ($type) {
         default:
             if (strpos($type, '/') !== false || strpos($type, 'Array<') === 0) {
                 $array = false;
-                if (strpos($type, 'Array') === 0) {
+                if (stripos($type, 'Array') !== false) {
                     $array = true;
                     $type  = str_replace(['Array<', '>'], '', $type);
                 }
@@ -151,9 +162,9 @@ function normalizeType(string $type): string
                     return 'int[]';
                 }
 
-                $cls = "\\RestCord\\Model\\";
-                $tmp = explode('/', $type);
-                $cls .= ucwords($tmp[0])."\\";
+                $cls   = "\\RestCord\\Model\\";
+                $tmp   = explode('/', $type);
+                $cls   .= ucwords($tmp[0])."\\";
                 $clean = str_replace(['-object', '-'], ['', ' '], $tmp[1]);
                 $clean = ucwords($clean);
                 $clean = str_replace(' ', '', $clean);
@@ -165,6 +176,12 @@ function normalizeType(string $type): string
             }
 
             return $type;
+        case 'array':
+            if (strpos($property['description'], "ids") !== false) {
+                return "int[]";
+            }
+
+            return "array";
         case 'datetime':
             return '\DateTime';
         case 'snowflake':
@@ -207,4 +224,16 @@ function mapBadDocs(string $cls): string
     }
 
     return $cls;
+}
+
+function addTraits(PhpClass $class, string $resource, string $name)
+{
+    if ($resource === 'User' && $name === 'User') {
+        $class->addUseStatement(\RestCord\Traits\AvatarTrait::class)->addTrait("AvatarTrait");
+    }
+
+    if ($resource === 'Guild' && $name === 'Guild') {
+        $class->addUseStatement(\RestCord\Traits\IconTrait::class)->addTrait("IconTrait");
+        $class->addUseStatement(\RestCord\Traits\SplashTrait::class)->addTrait("SplashTrait");
+    }
 }

@@ -23,7 +23,7 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns the new guild object for the given id.
+Returns the guild object for the given id.
 
 Can Return:
 

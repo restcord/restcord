@@ -19,20 +19,6 @@ namespace RestCord\Model\Guild;
 class UnavailableGuild {
 
 	/**
-	 * guild id
-	 * 
-	 * @var int
-	 */
-	public $id;
-
-	/**
-	 * should always be true
-	 * 
-	 * @var bool
-	 */
-	public $unavailable = false;
-
-	/**
 	 * @param array $content
 	 */
 	public function __construct(array $content = null) {

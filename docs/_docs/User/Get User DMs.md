@@ -24,4 +24,4 @@ Returns a list of DM channel objects.
 
 Can Return:
 
-* DM
+* DM channel

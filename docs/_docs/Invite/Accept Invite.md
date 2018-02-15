@@ -12,7 +12,7 @@ $client->invite->acceptInvite($parameters);
 
 ## Description
 
-Accept an invite. This is not available to bot accounts, and requires the guilds.join OAuth2 scope to accept on behalf of normal users.
+This endpoint is deprecated and will be discontinued on March 23, 2018. Add Guild Member should be used in its place.
 
 ## Parameters
 
@@ -23,8 +23,5 @@ invite.code | string | true | *null*
 
 ## Response
 
-Returns an invite object on success.
+Possibly No Response
 
-Can Return:
-
-* invite object

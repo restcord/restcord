@@ -1,13 +1,13 @@
 ---
-title: Modify Current User&#039;s Nick
+title: Modify Current User Nick
 category: Guild
 order: 12
 ---
 
-# `modifyCurrentUsersNick`
+# `modifyCurrentUserNick`
 
 ```php
-$client->guild->modifyCurrentUsersNick($parameters);
+$client->guild->modifyCurrentUserNick($parameters);
 ```
 
 ## Description

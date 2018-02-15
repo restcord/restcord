@@ -3,3 +3,4 @@ composer.lock
 docs/Gemfile
 docs/Gemfile.lock
 docs/_site/
+cache

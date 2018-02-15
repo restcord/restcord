@@ -24,6 +24,7 @@ region | string | false | *null*
 icon | string | false | *null*
 verification_level | integer | false | *null*
 default_message_notifications | integer | false | *null*
+explicit_content_filter | integer | false | *null*
 roles | array | false | *null*
 channels | array | false | *null*
 

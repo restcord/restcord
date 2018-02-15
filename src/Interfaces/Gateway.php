@@ -19,18 +19,18 @@ namespace RestCord\Interfaces;
 interface Gateway {
 
 	/**
-	 * @see https://discordapp.com/developers/docs/resources/gateway#get-gateway
-	 * 
+	 * @see https://discordapp.com/developers/docs/topics/gateway#get-gateway
+	 *
 	 * @param array $options []
-	 * @return array Returns an object with a single valid WSS URL, which the client can use as a basis for Connecting.
+	 * @return array
 	 */
 	public function getGateway(array $options);
 
 	/**
-	 * @see https://discordapp.com/developers/docs/resources/gateway#get-gateway-bot
-	 * 
+	 * @see https://discordapp.com/developers/docs/topics/gateway#get-gateway-bot
+	 *
 	 * @param array $options []
-	 * @return array Returns an object with the same information as Get Gateway, plus a shards key, containing the recommended number of shards to connect with (as an integer).
+	 * @return array
 	 */
 	public function getGatewayBot(array $options);
 }

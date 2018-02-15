@@ -11,40 +11,68 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Channel;
+namespace RestCord\Model\Emoji;
 
 /**
- * DmChannel Model
+ * Emoji Model
  */
-class DmChannel {
+class Emoji {
 
 	/**
-	 * the id of this private message
-	 * 
+	 * whether this emoji is animated
+	 *
+	 * @var bool|null
+	 */
+	public $animated = false;
+
+	/**
+	 * emoji id
+	 *
 	 * @var int
 	 */
 	public $id;
 
 	/**
-	 * should always be true for DM channels
-	 * 
-	 * @var bool
+	 * the 128x128 emoji image
+	 *
+	 * @var string
 	 */
-	public $is_private = false;
+	public $image;
 
 	/**
-	 * the id of the last message sent in this DM
-	 * 
-	 * @var int
+	 * whether this emoji is managed
+	 *
+	 * @var bool|null
 	 */
-	public $last_message_id;
+	public $managed = false;
 
 	/**
-	 * the user object of the DM recipient
-	 * 
+	 * name of the emoji
+	 *
+	 * @var string
+	 */
+	public $name;
+
+	/**
+	 * whether this emoji must be wrapped in colons
+	 *
+	 * @var bool|null
+	 */
+	public $require_colons = false;
+
+	/**
+	 * roles to which this emoji will be whitelisted
+	 *
 	 * @var array
 	 */
-	public $recipient;
+	public $roles;
+
+	/**
+	 * user that created this emoji
+	 *
+	 * @var array|null
+	 */
+	public $user;
 
 	/**
 	 * @param array $content

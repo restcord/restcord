@@ -23,8 +23,8 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of user objects that are banned from this guild.
+Returns a list of ban objects for the users banned from this guild.
 
 Can Return:
 
-* user
+* ban

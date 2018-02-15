@@ -11,47 +11,54 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\User;
+namespace RestCord\Model\Voice;
 
 /**
- * UserGuild Model
+ * VoiceRegion Model
  */
-class UserGuild {
+class VoiceRegion {
 
 	/**
-	 * guild.icon
-	 * 
-	 * @var string
+	 * whether this is a custom voice region (used for events/etc)
+	 *
+	 * @var bool
 	 */
-	public $icon;
+	public $custom = false;
 
 	/**
-	 * guild.id
-	 * 
-	 * @var int
+	 * whether this is a deprecated voice region (avoid switching to these)
+	 *
+	 * @var bool
+	 */
+	public $deprecated = false;
+
+	/**
+	 * unique ID for the region
+	 *
+	 * @var string
 	 */
 	public $id;
 
 	/**
-	 * guild.name
-	 * 
+	 * name of the region
+	 *
 	 * @var string
 	 */
 	public $name;
 
 	/**
-	 * true if the user is an owner of the guild
-	 * 
+	 * true for a single server that is closest to the current user's client
+	 *
 	 * @var bool
 	 */
-	public $owner = false;
+	public $optimal = false;
 
 	/**
-	 * bitwise of the user's enabled/disabled permissions
-	 * 
-	 * @var int
+	 * true if this is a vip-only server
+	 *
+	 * @var bool
 	 */
-	public $permissions;
+	public $vip = false;
 
 	/**
 	 * @param array $content
