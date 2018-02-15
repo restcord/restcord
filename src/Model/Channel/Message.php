@@ -19,6 +19,20 @@ namespace RestCord\Model\Channel;
 class Message {
 
 	/**
+	 * sent with Rich Presence-related chat embeds
+	 *
+	 * @var array|null
+	 */
+	public $activity;
+
+	/**
+	 * sent with Rich Presence-related chat embeds
+	 *
+	 * @var array|null
+	 */
+	public $application;
+
+	/**
 	 * any attached files
 	 *
 	 * @var array
@@ -47,6 +61,20 @@ class Message {
 	public $content;
 
 	/**
+	 * id of the embed's image asset
+	 *
+	 * @var string
+	 */
+	public $cover_image;
+
+	/**
+	 * application's description
+	 *
+	 * @var string
+	 */
+	public $description;
+
+	/**
 	 * when this message was edited (or null if never)
 	 *
 	 * @var ISO8601 timestamp
@@ -61,7 +89,14 @@ class Message {
 	public $embeds;
 
 	/**
-	 * id of the message
+	 * id of the application's icon
+	 *
+	 * @var string
+	 */
+	public $icon;
+
+	/**
+	 * id of the application
 	 *
 	 * @var int
 	 */
@@ -89,11 +124,25 @@ class Message {
 	public $mentions;
 
 	/**
+	 * name of the application
+	 *
+	 * @var string
+	 */
+	public $name;
+
+	/**
 	 * used for validating a message was sent
 	 *
 	 * @var int|null
 	 */
 	public $nonce;
+
+	/**
+	 * party_id from a Rich Presence event
+	 *
+	 * @var string|null
+	 */
+	public $party_id;
 
 	/**
 	 * whether this message is pinned
@@ -124,7 +173,7 @@ class Message {
 	public $tts = false;
 
 	/**
-	 * type of message
+	 * type of message activity
 	 *
 	 * @var int
 	 */

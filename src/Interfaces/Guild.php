@@ -179,10 +179,18 @@ interface Guild {
 	public function getGuildRoles(array $options);
 
 	/**
+	 * @see https://discordapp.com/developers/docs/resources/guild#get-guild-vanity-url
+	 *
+	 * @param array $options ['guild.id' => 'snowflake']
+	 * @return \RestCord\Model\Invite\Invite Returns a partial invite object for guilds with that feature enabled.
+	 */
+	public function getGuildVanityUrl(array $options);
+
+	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#get-guild-voice-regions
 	 *
 	 * @param array $options ['guild.id' => 'snowflake']
-	 * @return \GuzzleHttp\Command\Result[] Returns a list of voice region objects for the guild.
+	 * @return \RestCord\Model\Voice\VoiceRegion[] Returns a list of voice region objects for the guild.
 	 */
 	public function getGuildVoiceRegions(array $options);
 
@@ -195,12 +203,12 @@ interface Guild {
 	public function listGuildMembers(array $options);
 
 	/**
-	 * @see https://discordapp.com/developers/docs/resources/guild#modify-current-user's-nick
+	 * @see https://discordapp.com/developers/docs/resources/guild#modify-current-user-nick
 	 *
 	 * @param array $options ['guild.id' => 'snowflake', 'nick' => 'string']
 	 * @return array Returns a 200 with the nickname on success.
 	 */
-	public function modifyCurrentUsersNick(array $options);
+	public function modifyCurrentUserNick(array $options);
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-guild

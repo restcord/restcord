@@ -174,7 +174,7 @@ interface Channel {
 	 * @see https://discordapp.com/developers/docs/resources/channel#get-reactions
 	 *
 	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'emoji' => 'string', 'before' => 'snowflake', 'after' => 'snowflake', 'limit' => 'integer']
-	 * @return \RestCord\Model\User\User Returns an array of user objects on success.
+	 * @return \RestCord\Model\User\User[] Returns an array of user objects on success.
 	 */
 	public function getReactions(array $options);
 

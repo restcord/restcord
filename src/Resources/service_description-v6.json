@@ -484,10 +484,10 @@
                 },
                 "parametersArray": false
             },
-            "modifyCurrentUsersNick": {
-                "link": "https://discordapp.com/developers/docs/resources/guild#modify-current-user's-nick",
+            "modifyCurrentUserNick": {
+                "link": "https://discordapp.com/developers/docs/resources/guild#modify-current-user-nick",
                 "resource": "guild",
-                "name": "Modify Current User's Nick",
+                "name": "Modify Current User Nick",
                 "method": "PATCH",
                 "url": "/guilds/{guild.id}/members/@me/nick",
                 "description": "Modifies the nickname of the current user in a guild.  Fires a Guild Member Update Gateway event.",
@@ -1119,6 +1119,29 @@
                 },
                 "parametersArray": false
             },
+            "getGuildVanityUrl": {
+                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-vanity-url",
+                "resource": "guild",
+                "name": "Get Guild Vanity URL",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/vanity-url",
+                "description": "Requires the 'MANAGE_GUILD' permission.",
+                "responseNote": "Returns a partial invite object for guilds with that feature enabled.",
+                "responseTypes": [
+                    {
+                        "name": "invite",
+                        "type": "invite/invite"
+                    }
+                ],
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
             "updateNick": {
                 "category": "guild",
                 "url": "/guilds/{guild.id}/members/@me/nick",
@@ -1534,7 +1557,7 @@
                 "responseTypes": [
                     {
                         "name": "user",
-                        "type": "user/user"
+                        "type": "Array<user/user>"
                     }
                 ],
                 "parameters": {
@@ -2391,7 +2414,7 @@
                 "responseTypes": [
                     {
                         "name": "voice region",
-                        "type": "voice/voice-region"
+                        "type": "Array<voice/voice-region>"
                     }
                 ],
                 "parameters": {},
@@ -3629,7 +3652,7 @@
                     "id": {
                         "location": "json",
                         "type": "snowflake",
-                        "description": "id of the message"
+                        "description": "id of the application"
                     },
                     "channel_id": {
                         "location": "json",
@@ -3714,7 +3737,42 @@
                     "type": {
                         "location": "json",
                         "type": "int",
-                        "description": "type of message"
+                        "description": "type of message activity"
+                    },
+                    "activity?": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "sent with Rich Presence-related chat embeds"
+                    },
+                    "application?": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "sent with Rich Presence-related chat embeds"
+                    },
+                    "party_id?": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "party_id from a Rich Presence event"
+                    },
+                    "cover_image": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "id of the embed's image asset"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "application's description"
+                    },
+                    "icon": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "id of the application's icon"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the application"
                     }
                 }
             },
@@ -4281,6 +4339,48 @@
                         "location": "json",
                         "type": "bool",
                         "description": "whether this user is muted by the current user",
+                        "default": false
+                    }
+                }
+            },
+            "voiceRegion": {
+                "link": "https://discordapp.com/developers/docs/resources/voice#voice-region-object",
+                "resource": "voice",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "unique ID for the region"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the region"
+                    },
+                    "vip": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "true if this is a vip-only server",
+                        "default": false
+                    },
+                    "optimal": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "true for a single server that is closest to the current user's client",
+                        "default": false
+                    },
+                    "deprecated": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether this is a deprecated voice region (avoid switching to these)",
+                        "default": false
+                    },
+                    "custom": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether this is a custom voice region (used for events/etc)",
                         "default": false
                     }
                 }
