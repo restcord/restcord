@@ -20,28 +20,28 @@ class Overwrite {
 
 	/**
 	 * permission bit set
-	 * 
+	 *
 	 * @var int
 	 */
 	public $allow;
 
 	/**
 	 * permission bit set
-	 * 
+	 *
 	 * @var int
 	 */
 	public $deny;
 
 	/**
 	 * role or user id
-	 * 
+	 *
 	 * @var int
 	 */
 	public $id;
 
 	/**
 	 * either "role" or "member"
-	 * 
+	 *
 	 * @var string
 	 */
 	public $type;

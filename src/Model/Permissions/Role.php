@@ -20,56 +20,56 @@ class Role {
 
 	/**
 	 * integer representation of hexadecimal color code
-	 * 
+	 *
 	 * @var int
 	 */
 	public $color;
 
 	/**
 	 * if this role is pinned in the user listing
-	 * 
+	 *
 	 * @var bool
 	 */
 	public $hoist = false;
 
 	/**
 	 * role id
-	 * 
+	 *
 	 * @var int
 	 */
 	public $id;
 
 	/**
 	 * whether this role is managed by an integration
-	 * 
+	 *
 	 * @var bool
 	 */
 	public $managed = false;
 
 	/**
 	 * whether this role is mentionable
-	 * 
+	 *
 	 * @var bool
 	 */
 	public $mentionable = false;
 
 	/**
 	 * role name
-	 * 
+	 *
 	 * @var string
 	 */
 	public $name;
 
 	/**
 	 * permission bit set
-	 * 
+	 *
 	 * @var int
 	 */
 	public $permissions;
 
 	/**
 	 * position of this role
-	 * 
+	 *
 	 * @var int
 	 */
 	public $position;

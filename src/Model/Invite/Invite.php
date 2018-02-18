@@ -20,21 +20,21 @@ class Invite {
 
 	/**
 	 * the channel this invite is for
-	 * 
+	 *
 	 * @var array
 	 */
 	public $channel;
 
 	/**
 	 * the invite code (unique ID)
-	 * 
+	 *
 	 * @var string
 	 */
 	public $code;
 
 	/**
 	 * the guild this invite is for
-	 * 
+	 *
 	 * @var array
 	 */
 	public $guild;

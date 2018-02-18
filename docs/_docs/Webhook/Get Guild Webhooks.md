@@ -12,7 +12,7 @@ $client->webhook->getGuildWebhooks($parameters);
 
 ## Description
 
-
+Requires the &#039;MANAGE_WEBHOOKS&#039; permission.
 
 ## Parameters
 

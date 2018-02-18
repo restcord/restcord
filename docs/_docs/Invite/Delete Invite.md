@@ -27,4 +27,4 @@ Returns an invite object on success.
 
 Can Return:
 
-* invite object
+* invite

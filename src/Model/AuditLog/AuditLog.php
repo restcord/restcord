@@ -11,47 +11,33 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Guild;
+namespace RestCord\Model\AuditLog;
 
 /**
- * Emoji Model
+ * AuditLog Model
  */
-class Emoji {
+class AuditLog {
 
 	/**
-	 * emoji id
-	 * 
-	 * @var int
-	 */
-	public $id;
-
-	/**
-	 * whether this emoji is managed
-	 * 
-	 * @var bool
-	 */
-	public $managed = false;
-
-	/**
-	 * emoji name
-	 * 
-	 * @var string
-	 */
-	public $name;
-
-	/**
-	 * whether this emoji must be wrapped in colons
-	 * 
-	 * @var bool
-	 */
-	public $require_colons = false;
-
-	/**
-	 * roles this emoji is active for
-	 * 
+	 * list of audit log entires
+	 *
 	 * @var array
 	 */
-	public $roles;
+	public $audit_log_entries;
+
+	/**
+	 * list of users found in the audit log
+	 *
+	 * @var array
+	 */
+	public $users;
+
+	/**
+	 * list of webhooks found in the audit log
+	 *
+	 * @var array
+	 */
+	public $webhooks;
 
 	/**
 	 * @param array $content

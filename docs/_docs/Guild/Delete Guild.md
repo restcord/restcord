@@ -23,8 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns the guild object on success.
+Returns 204 No Content on success.
 
-Can Return:
-
-* guild

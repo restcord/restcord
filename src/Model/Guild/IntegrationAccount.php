@@ -20,14 +20,14 @@ class IntegrationAccount {
 
 	/**
 	 * id of the account
-	 * 
+	 *
 	 * @var string
 	 */
 	public $id;
 
 	/**
 	 * name of the account
-	 * 
+	 *
 	 * @var string
 	 */
 	public $name;

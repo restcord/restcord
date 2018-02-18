@@ -25,8 +25,8 @@ limit | integer | false | 100
 
 ## Response
 
-Returns a list of user guild objects the current user is a member of.
+Returns a list of partial guild objects the current user is a member of.
 
 Can Return:
 
-* user guild
+* guild

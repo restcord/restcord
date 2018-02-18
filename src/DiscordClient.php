@@ -21,11 +21,12 @@ use GuzzleHttp\Command\Result;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Monolog\Logger;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RestCord\Logging\MessageFormatter;
+use RestCord\RateLimit\Provider\AbstractRateLimitProvider;
+use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
 use RestCord\RateLimit\RateLimiter;
-use RestCord\RateLimit\RateLimitProvider;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use function GuzzleHttp\json_decode;
 
@@ -42,6 +43,7 @@ use function GuzzleHttp\json_decode;
  * @property Interfaces\User    user
  * @property Interfaces\Voice   voice
  * @property Interfaces\Webhook webhook
+ * @property Interfaces\Emoji   emoji
  */
 class DiscordClient
 {
@@ -73,7 +75,7 @@ class DiscordClient
         $stack = HandlerStack::create();
         $stack->push(
             new RateLimiter(
-                new RateLimitProvider(),
+                $this->options['rateLimitProvider'],
                 $this->options,
                 $this->logger
             )
@@ -92,9 +94,9 @@ class DiscordClient
             )
         );
 
-        $defaultGuzzleOptions = [
-            'base_uri' => $this->options['apiUrl'],
-            'headers'  => [
+        $defaultGuzzleOptions           = [
+            'base_uri'    => $this->options['apiUrl'],
+            'headers'     => [
                 'Authorization' => $this->getAuthorizationHeader($this->options['tokenType'], $this->options['token']),
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                 'Content-Type'  => 'application/json',
@@ -136,58 +138,25 @@ class DiscordClient
         $resolver       = new OptionsResolver();
         $resolver->setDefaults(
             [
-                'version'          => $currentVersion,
-                'logger'           => new Logger('Logger'),
-                'throwOnRatelimit' => false,
-                'apiUrl'           => "https://discordapp.com/api/v{$currentVersion}/",
-                'tokenType'        => 'None',
-                'cacheDir'         => __DIR__.'/../../../cache/',
-                'guzzleOptions'    => [],
+                'version'           => $currentVersion,
+                'logger'            => new Logger('Logger'),
+                'rateLimitProvider' => new MemoryRateLimitProvider(),
+                'throwOnRatelimit'  => false,
+                'apiUrl'            => "https://discordapp.com/api/v{$currentVersion}/",
+                'tokenType'         => 'Bot',
+                'cacheDir'          => __DIR__.'/../../../cache/',
+                'guzzleOptions'     => [],
             ]
         )
             ->setDefined(['token'])
-            ->setAllowedValues('tokenType', ['Bot', 'User', 'OAuth', 'None'])
+            ->setAllowedValues('tokenType', ['Bot', 'OAuth'])
             ->setAllowedTypes('token', ['string'])
             ->setAllowedTypes('apiUrl', ['string'])
+            ->setAllowedTypes('rateLimitProvider', [AbstractRateLimitProvider::class])
             ->setAllowedTypes('throwOnRatelimit', ['bool'])
             ->setAllowedTypes('logger', ['\Psr\Log\LoggerInterface'])
             ->setAllowedTypes('version', ['string', 'integer'])
-            ->setAllowedTypes('guzzleOptions', ['array'])
-            ->setNormalizer(
-                'token',
-                function (Options $options, $value) {
-                    if (0 === stripos($value, 'Bot ')) {
-                        $value = substr($value, 4);
-                        $options['tokenType'] = 'Bot';
-                    }
-                    if (0 === stripos($value, 'Bearer ')) {
-                        $value = substr($value, 7);
-                        $options['tokenType'] = 'OAuth';
-                    }
-
-                    if (empty($value)) {
-                        $options['tokenType'] = 'None';
-                    }
-
-                    return $value;
-                }
-            )
-            ->setNormalizer(
-                'tokenType',
-                function (Options $options, $value) {
-                    if ($options['token'] !== null && $value === 'None') {
-                        $value = 'Bot';
-                    }
-
-                    if ($value !== 'User') {
-                        $value .= ' ';
-                    } else {
-                        $value = '';
-                    }
-
-                    return $value;
-                }
-            );
+            ->setAllowedTypes('guzzleOptions', ['array']);
 
         return $resolver->resolve($options);
     }
@@ -257,13 +226,21 @@ class DiscordClient
             }
         }
 
-        $data      = json_decode($response->getBody()->__toString());
-        $firstType = $this->dashesToCamelCase($operation['responseTypes'][0]['type'], true);
+        $data         = json_decode($response->getBody()->__toString());
+        $array        = strpos($operation['responseTypes'][0]['type'], 'Array') !== false;
+        $responseType = $operation['responseTypes'][0]['type'];
+        if ($array) {
+            $matches = [];
+            preg_match('/Array<(.+)>/', $responseType, $matches);
+            $responseType = $matches[1];
+        }
+
+        $firstType = explode('/', $this->dashesToCamelCase($responseType, true));
         $class     = $this->mapBadDocs(
             sprintf(
                 '\\RestCord\\Model\\%s\\%s',
-                ucwords($category),
-                ucwords(explode('/', $firstType)[1])
+                ucwords($firstType[0]),
+                ucwords($firstType[1])
             )
         );
 
@@ -276,6 +253,15 @@ class DiscordClient
 
         $mapper                   = new \JsonMapper();
         $mapper->bStrictNullTypes = false;
+
+        if ($array) {
+            return array_map(
+                function ($item) use ($class, $mapper) {
+                    return $mapper->map($item, new $class());
+                },
+                $data
+            );
+        }
 
         return $mapper->map($data, new $class());
     }
@@ -294,26 +280,18 @@ class DiscordClient
     private function mapBadDocs($cls)
     {
         switch ($cls) {
-            case '\RestCord\Model\User\DmChannel':
-                $cls = '\RestCord\Model\Channel\DmChannel';
-                break;
             case 'Channel\Invite':
             case '\RestCord\Model\Channel\Invite':
             case '\RestCord\Model\Guild\Invite':
-                $cls = '\RestCord\Model\Invite\Invite';
-                break;
+                return '\RestCord\Model\Invite\Invite';
             case '\RestCord\Model\Guild\GuildChannel':
-                $cls = '\RestCord\Model\Channel\GuildChannel';
-                break;
+                return '\RestCord\Model\Channel\GuildChannel';
             case '\RestCord\Model\Guild\User':
             case '\RestCord\Model\Channel\User':
-                $cls = '\RestCord\Model\User\User';
-                break;
+                return '\RestCord\Model\User\User';
             default:
                 return $cls;
         }
-
-        return $cls;
     }
 
     /**
@@ -331,7 +309,7 @@ class DiscordClient
             unset($config['method']);
 
             if (isset($config['responseTypes']) && count($config['responseTypes']) === 1) {
-                $class = ucwords($config['category']).'\\';
+                $class = ucwords($config['resource']).'\\';
                 $class .= str_replace(' ', '', ucwords($config['responseTypes'][0]['name']));
 
                 $config['responseModel'] = $class;
@@ -424,7 +402,7 @@ class DiscordClient
         }
 
         // Maps!
-        $models['Guild\\Channel'] = $models['Channel\\GuildChannel'];
+        $models['Guild\\Channel'] = $models['Channel\\Channel'];
 
         return $models;
     }
@@ -440,9 +418,6 @@ class DiscordClient
         switch ($tokenType) {
             default:
                 $authorization = 'Bot ';
-                break;
-            case 'User':
-                $authorization = '';
                 break;
             case 'OAuth':
                 $authorization = 'Bearer ';

@@ -10,6 +10,26 @@
  * with this source code in the file LICENSE
  */
 
+function recursiveRemoveDirectory($directory)
+{
+    foreach (glob("{$directory}/*") as $file) {
+        if (is_dir($file)) {
+            recursiveRemoveDirectory($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($directory);
+}
+
+$path = __DIR__.'/../src/Interfaces';
+try {
+    recursiveRemoveDirectory($path);
+} catch (\Exception $e) {
+}
+mkdir($path, 02775, true);
+$path = realpath($path);
+
 require __DIR__.'/../vendor/autoload.php';
 
 use gossi\codegen\generator\CodeGenerator;
@@ -43,33 +63,14 @@ $license = <<<EOF
 \n
 EOF;
 
-function recursiveRemoveDirectory($directory)
-{
-    foreach (glob("{$directory}/*") as $file) {
-        if (is_dir($file)) {
-            recursiveRemoveDirectory($file);
-        } else {
-            unlink($file);
-        }
-    }
-    rmdir($directory);
-}
-
+/** @noinspection PhpUnhandledExceptionInspection */
 (new Application('Build Dummy Classes', '1.0.0'))
     ->register('buildDummyClasses')
     ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
     ->setCode(
-        function (InputInterface $input, OutputInterface $output) use ($twig, $license) {
+        function (InputInterface $input, OutputInterface $output) use ($twig, $license, $path) {
             $style = new \Symfony\Component\Console\Style\SymfonyStyle($input, $output);
-            $style->title("Building Dummy Classes for: ".$input->getArgument('version'));
-
-            $path = __DIR__.'/../src/Interfaces';
-            try {
-                recursiveRemoveDirectory($path);
-            } catch (\Exception $e) {
-            }
-            mkdir($path, 02775, true);
-            $path = realpath($path);
+            $style->title("Building Dummy Classes for Gateway v".$input->getArgument('version'));
 
             $definition = \GuzzleHttp\json_decode(
                 file_get_contents(
@@ -79,14 +80,15 @@ function recursiveRemoveDirectory($directory)
             );
 
             $generator = new CodeGenerator();
-            foreach ($definition['operations'] as $category => $operations) {
+            foreach ($definition['operations'] as $resource => $operations) {
+                $resource = str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $resource)));
 
                 $class = new PhpInterface();
-                $class->setQualifiedName('RestCord\\Interfaces\\'.ucwords($category));
-                $class->setDescription(ucwords($category)." Intellisense Helper");
+                $class->setQualifiedName('RestCord\\Interfaces\\'.ucwords($resource));
+                $class->setDescription(ucwords($resource)." Intellisense Helper");
                 $class->setMethods(
                     array_map(
-                        function ($name, $operation) use ($class, $category) {
+                        function ($name, $operation) use ($class, $resource) {
                             $options = new PhpParameter('options');
                             $options->setType(
                                 'array',
@@ -104,19 +106,24 @@ function recursiveRemoveDirectory($directory)
 
                             $returnType = 'array';
                             if (isset($operation['responseTypes']) && sizeof($operation['responseTypes']) >= 1) {
-                                $firstType  = $operation['responseTypes'][0]['type'];
-                                $array = stripos($firstType, 'Array<') !== false;
+                                $firstType = $operation['responseTypes'][0]['type'];
+                                $array     = stripos($firstType, 'Array<') !== false;
                                 if ($array) {
                                     $firstType = substr($firstType, 6, -1);
                                 }
 
+                                $temp = explode("/", $firstType);
                                 $returnType = sprintf(
                                     "\\RestCord\\Model\\%s\\%s",
-                                    ucwords($category),
                                     str_replace(
                                         ' ',
                                         '',
-                                        ucwords(str_replace('-', ' ', explode('/', $firstType)[1]))
+                                        ucwords(str_replace('-', ' ', $temp[0]))
+                                    ),
+                                    str_replace(
+                                        ' ',
+                                        '',
+                                        ucwords(str_replace('-', ' ', $temp[1]))
                                     )
                                 );
 
@@ -129,7 +136,9 @@ function recursiveRemoveDirectory($directory)
                                 $returnType .= $array ? '[]' : '';
                             }
 
-                            $method = new PhpMethod($name);
+                            $method = new PhpMethod(
+                                lcfirst(str_replace(' ', '', ucwords(str_replace('-', ' ', $name))))
+                            );
                             $method->setType($returnType, $operation['responseNote'] ?? '');
                             if (isset($operation['link'])) {
                                 $method->setLongDescription('@see '.$operation['link']);
@@ -144,7 +153,7 @@ function recursiveRemoveDirectory($directory)
                     )
                 );
 
-                file_put_contents($path.'/'.ucwords($category).'.php', $license.$generator->generate($class));
+                file_put_contents($path.'/'.ucwords($resource).'.php', $license.$generator->generate($class));
             }
 
             $style->success('Finished. Classes built in: '.realpath($path));
@@ -175,7 +184,7 @@ function mapBadDocs(string $name, array $operation, string $cls): string
             return $cls;
     }
 
-    trigger_error($name.' operation in '.$operation['category'].' has a bad responseType: ' . $cls);
+    trigger_error($name.' operation in '.$operation['resource'].' has a bad responseType: '.$cls);
 
     return $newCls;
 }

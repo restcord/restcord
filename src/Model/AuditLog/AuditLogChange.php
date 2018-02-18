@@ -11,33 +11,33 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Invite;
+namespace RestCord\Model\AuditLog;
 
 /**
- * InviteChannel Model
+ * AuditLogChange Model
  */
-class InviteChannel {
+class AuditLogChange {
 
 	/**
-	 * id of the channel
-	 * 
-	 * @var int
-	 */
-	public $id;
-
-	/**
-	 * name of the channel
-	 * 
+	 * type of audit log change key
+	 *
 	 * @var string
 	 */
-	public $name;
+	public $key;
 
 	/**
-	 * 'text' or 'voice'
-	 * 
-	 * @var string
+	 * new value of the key
+	 *
+	 * @var mixed|null
 	 */
-	public $type;
+	public $new_value;
+
+	/**
+	 * old value of the key
+	 *
+	 * @var mixed|null
+	 */
+	public $old_value;
 
 	/**
 	 * @param array $content

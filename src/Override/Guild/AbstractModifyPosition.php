@@ -13,6 +13,7 @@
 
 namespace RestCord\Override\Guild;
 
+use GuzzleHttp\RequestOptions;
 use ReflectionClass;
 use RestCord\OverriddenGuzzleClient;
 use RestCord\Override\OverrideInterface;
@@ -41,7 +42,7 @@ abstract class AbstractModifyPosition implements OverrideInterface
         return $client->getHttpClient()->{$async ? 'requestAsync' : 'request'}(
             $operation->getHttpMethod(),
             $uri,
-            ['json' => $args]
+            [RequestOptions::JSON => $args]
         );
     }
 }

@@ -13,64 +13,68 @@
 
 namespace RestCord\Model\User;
 
+use RestCord\Traits\AvatarTrait;
+
 /**
  * User Model
  */
 class User {
 
+	use AvatarTrait;
+
 	/**
 	 * the user's avatar hash
-	 * 
+	 *
 	 * @var string
 	 */
 	public $avatar;
 
 	/**
 	 * whether the user belongs to an OAuth2 application
-	 * 
-	 * @var bool
+	 *
+	 * @var bool|null
 	 */
 	public $bot = false;
 
 	/**
 	 * the user's 4-digit discord-tag
-	 * 
+	 *
 	 * @var string
 	 */
 	public $discriminator;
 
 	/**
 	 * the user's email
-	 * 
-	 * @var string
+	 *
+	 * @var string|null
 	 */
 	public $email;
 
 	/**
 	 * the user's id
-	 * 
+	 *
 	 * @var int
 	 */
 	public $id;
 
 	/**
 	 * whether the user has two factor enabled on their account
-	 * 
-	 * @var bool
+	 *
+	 * @var bool|null
 	 */
 	public $mfa_enabled = false;
 
 	/**
 	 * the user's username, not unique across the platform
-	 * 
+	 *
 	 * @var string
 	 */
 	public $username;
 
 	/**
 	 * whether the email on this account has been verified
-	 * 
-	 * @var bool
+	 *
+	 * @var bool|null
 	 */
 	public $verified = false;
 

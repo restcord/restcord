@@ -14,84 +14,126 @@
 namespace RestCord\Model\Channel;
 
 /**
- * GuildChannel Model
+ * Channel Model
  */
-class GuildChannel {
+class Channel {
+
+	/**
+	 * application id of the group DM creator if it is bot-created
+	 *
+	 * @var int|null
+	 */
+	public $application_id;
 
 	/**
 	 * the bitrate (in bits) of the voice channel
-	 * 
-	 * @var int
+	 *
+	 * @var int|null
 	 */
 	public $bitrate;
 
 	/**
 	 * the id of the guild
-	 * 
-	 * @var int
+	 *
+	 * @var int|null
 	 */
 	public $guild_id;
 
 	/**
-	 * the id of this channel (will be equal to the guild if it's the "general" channel)
-	 * 
+	 * icon hash
+	 *
+	 * @var string|null
+	 */
+	public $icon;
+
+	/**
+	 * the id of this channel
+	 *
 	 * @var int
 	 */
 	public $id;
 
 	/**
-	 * should always be false for guild channels
-	 * 
-	 * @var bool
-	 */
-	public $is_private = false;
-
-	/**
-	 * the id of the last message sent in this channel
-	 * 
-	 * @var int
+	 * the id of the last message sent in this channel (may not point to an existing or valid message)
+	 *
+	 * @var int|null
 	 */
 	public $last_message_id;
 
 	/**
+	 * when the last pinned message was pinned
+	 *
+	 * @var int|null
+	 */
+	public $last_pin_timestamp;
+
+	/**
 	 * the name of the channel (2-100 characters)
-	 * 
-	 * @var string
+	 *
+	 * @var string|null
 	 */
 	public $name;
 
 	/**
-	 * an array of overwrite objects
-	 * 
-	 * @var \RestCord\Model\Channel\Overwrite[]
+	 * if the channel is nsfw
+	 *
+	 * @var bool|null
+	 */
+	public $nsfw = false;
+
+	/**
+	 * id of the DM creator
+	 *
+	 * @var int|null
+	 */
+	public $owner_id;
+
+	/**
+	 * id of the parent category for a channel
+	 *
+	 * @var int|null
+	 */
+	public $parent_id;
+
+	/**
+	 * explicit permission overwrites for members and roles
+	 *
+	 * @var array|null
 	 */
 	public $permission_overwrites;
 
 	/**
 	 * sorting position of the channel
-	 * 
-	 * @var int
+	 *
+	 * @var int|null
 	 */
 	public $position;
 
 	/**
+	 * the recipients of the DM
+	 *
+	 * @var array|null
+	 */
+	public $recipients;
+
+	/**
 	 * the channel topic (0-1024 characters)
-	 * 
-	 * @var string
+	 *
+	 * @var string|null
 	 */
 	public $topic;
 
 	/**
-	 * "text" or "voice"
-	 * 
-	 * @var string
+	 * the type of channel
+	 *
+	 * @var int
 	 */
 	public $type;
 
 	/**
 	 * the user limit of the voice channel
-	 * 
-	 * @var int
+	 *
+	 * @var int|null
 	 */
 	public $user_limit;
 

@@ -20,49 +20,49 @@ class InviteMetadata {
 
 	/**
 	 * when this invite was created
-	 * 
-	 * @var \DateTime
+	 *
+	 * @var int
 	 */
 	public $created_at;
 
 	/**
 	 * user who created the invite
-	 * 
+	 *
 	 * @var array
 	 */
 	public $inviter;
 
 	/**
 	 * duration (in seconds) after which the invite expires
-	 * 
+	 *
 	 * @var int
 	 */
 	public $max_age;
 
 	/**
 	 * max number of times this invite can be used
-	 * 
+	 *
 	 * @var int
 	 */
 	public $max_uses;
 
 	/**
 	 * whether this invite is revoked
-	 * 
+	 *
 	 * @var bool
 	 */
 	public $revoked = false;
 
 	/**
 	 * whether this invite only grants temporary membership
-	 * 
+	 *
 	 * @var bool
 	 */
 	public $temporary = false;
 
 	/**
 	 * number of times this invite has been used
-	 * 
+	 *
 	 * @var int
 	 */
 	public $uses;

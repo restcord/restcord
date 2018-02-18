@@ -23,7 +23,7 @@ user.id | snowflake | true | *null*
 
 ## Response
 
-Returns a user for a given user ID.
+Returns a user object for a given user ID.
 
 Can Return:
 
