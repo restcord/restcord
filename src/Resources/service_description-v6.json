@@ -2449,7 +2449,7 @@
                     },
                     "avatar": {
                         "location": "json",
-                        "type": "avatar data string",
+                        "type": "string",
                         "description": "image for the default webhook avatar"
                     }
                 },
@@ -2572,7 +2572,7 @@
                     },
                     "avatar": {
                         "location": "json",
-                        "type": "avatar data string",
+                        "type": "string",
                         "description": "image for the default webhook avatar"
                     },
                     "channel_id": {
@@ -4420,7 +4420,7 @@
                     },
                     "avatar": {
                         "location": "json",
-                        "type": "avatar data string",
+                        "type": "string",
                         "description": "image for the default webhook avatar"
                     },
                     "token": {

@@ -21,7 +21,7 @@ class Webhook {
 	/**
 	 * image for the default webhook avatar
 	 *
-	 * @var avatar data string
+	 * @var string
 	 */
 	public $avatar;
 

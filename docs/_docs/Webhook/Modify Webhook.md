@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 webhook.id | snowflake | true | *null*
 name | string | false | *null*
-avatar | avatar data string | false | *null*
+avatar | string | false | *null*
 channel_id | snowflake | false | *null*
 
 ## Response
