@@ -13,7 +13,6 @@
 
 namespace RestCord;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Command\Command;
 use GuzzleHttp\Command\Guzzle\DescriptionInterface;

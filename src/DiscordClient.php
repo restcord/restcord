@@ -21,7 +21,6 @@ use GuzzleHttp\Command\Result;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Monolog\Logger;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RestCord\Logging\MessageFormatter;
 use RestCord\RateLimit\Provider\AbstractRateLimitProvider;
