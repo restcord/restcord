@@ -228,8 +228,9 @@ class DiscordClient
 
         // attempt to deserialize into JSON only if there is a content in the response
         $data = null;
-        if ($response->getStatusCode() != 204)
-            $data         = json_decode($response->getBody()->__toString());
+        if ($response->getStatusCode() !== 204) {
+            $data = json_decode($response->getBody()->__toString());
+        }
 
         $array        = strpos($operation['responseTypes'][0]['type'], 'Array') !== false;
         $responseType = $operation['responseTypes'][0]['type'];
