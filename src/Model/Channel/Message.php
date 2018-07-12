@@ -77,7 +77,7 @@ class Message {
 	/**
 	 * when this message was edited (or null if never)
 	 *
-	 * @var ISO8601 timestamp
+	 * @var int
 	 */
 	public $edited_timestamp;
 
