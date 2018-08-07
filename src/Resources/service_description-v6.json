@@ -1863,7 +1863,7 @@
                 "responseTypes": [
                     {
                         "name": "message",
-                        "type": "channel/message"
+                        "type": "Array<channel/message>"
                     }
                 ],
                 "parameters": {
