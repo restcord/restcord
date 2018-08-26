@@ -180,6 +180,10 @@ function mapBadDocs(string $name, array $operation, string $cls): string
         case '\RestCord\Model\Channel\User':
             $newCls = '\RestCord\Model\User\User';
             break;
+        case 'ISO8601':
+        case '\RestCord\Model\Channel\ISO8601':
+            $newCls = '\DateTimeImmutable';
+            break;
         default:
             return $cls;
     }

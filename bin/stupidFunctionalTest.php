@@ -43,6 +43,21 @@ $client = new DiscordClient(
     ]
 );
 
+$msg = $client->channel->createMessage(
+    [
+        "channel.id" => 146037311753289737,
+        "content" => "Something real"
+    ]
+);
+
+$client->channel->editMessage(
+    [
+        "channel.id" => 146037311753289737,
+        "message.id" => intval($msg['id']),
+        "content"    => "Something edited"
+    ]
+);
+
 $output->text('-> Modifying Guild Channel Permissions');
 $client->guild->modifyGuildChannelPositions(
     [['guild.id' => 146037311753289737, 'id' => 146037311753289737, 'position' => 10]]

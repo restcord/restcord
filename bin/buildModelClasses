@@ -182,6 +182,9 @@ function normalizeType(string $name, string $resource, array $property): string
             }
 
             return "array";
+        case 'ISO8601 timestamp':
+        case 'ISO8601':
+            return '\DateTimeImmutable';
         case 'datetime':
             return '\DateTime';
         case 'snowflake':
@@ -206,19 +209,18 @@ function mapBadDocs(string $cls): string
 {
     switch ($cls) {
         case '\RestCord\Model\User\DmChannel':
-            $cls = '\RestCord\Model\Channel\DmChannel';
-            break;
+            return '\RestCord\Model\Channel\DmChannel';
         case '\RestCord\Model\Channel\Invite':
         case '\RestCord\Model\Guild\Invite':
-            $cls = '\RestCord\Model\Invite\Invite';
-            break;
+            return '\RestCord\Model\Invite\Invite';
         case '\RestCord\Model\Guild\GuildChannel':
-            $cls = '\RestCord\Model\Channel\GuildChannel';
-            break;
+            return '\RestCord\Model\Channel\GuildChannel';
         case '\RestCord\Model\Guild\User':
         case '\RestCord\Model\Channel\User':
-            $cls = '\RestCord\Model\User\User';
-            break;
+            return '\RestCord\Model\User\User';
+        case 'ISO8601':
+        case '\RestCord\Model\Channel\ISO8601':
+            return '\DateTimeImmutable';
         default:
             return $cls;
     }
