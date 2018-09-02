@@ -231,13 +231,7 @@ class DiscordClient
             $data = json_decode($response->getBody()->__toString());
         }
 
-        $array        = strpos($operation['responseTypes'][0]['type'], 'Array') !== false;
-        $responseType = $operation['responseTypes'][0]['type'];
-        if ($array) {
-            $matches = [];
-            preg_match('/Array<(.+)>/', $responseType, $matches);
-            $responseType = $matches[1];
-        }
+        list($responseType, $array) = $this->getResponseType($command->getName(), $operation);
 
         $firstType = explode('/', $this->dashesToCamelCase($responseType, true));
         $class     = $this->mapBadDocs(
@@ -268,6 +262,23 @@ class DiscordClient
         }
 
         return $mapper->map($data, new $class());
+    }
+    
+    private function getResponseType(string $endpoint, array $operation)
+    {
+        if ($endpoint === 'getPinnedMessages') {
+            return ['channel/message', true];
+        }
+        
+        $array        = strpos($operation['responseTypes'][0]['type'], 'Array') !== false;
+        $responseType = $operation['responseTypes'][0]['type'];
+        if ($array) {
+            $matches = [];
+            preg_match('/Array<(.+)>/', $responseType, $matches);
+            $responseType = $matches[1];
+        }
+        
+        return [$responseType, $array];
     }
 
     private function dashesToCamelCase($string, $capitalizeFirstCharacter = false)
