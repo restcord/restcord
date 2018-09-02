@@ -1860,12 +1860,6 @@
                 "url": "/channels/{channel.id}/pins",
                 "description": "",
                 "responseNote": "Returns all pinned messages in the channel as an array of message objects.",
-                "responseTypes": [
-                    {
-                        "name": "message",
-                        "type": "channel/message"
-                    }
-                ],
                 "parameters": {
                     "channel.id": {
                         "type": "snowflake",
