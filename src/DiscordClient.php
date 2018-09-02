@@ -266,7 +266,8 @@ class DiscordClient
 
     /**
      * @param string $endpoint
-     * @param array $operation
+     * @param array  $operation
+     *
      * @return array
      */
     private function getResponseType($endpoint, array $operation)
