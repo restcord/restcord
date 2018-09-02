@@ -263,13 +263,13 @@ class DiscordClient
 
         return $mapper->map($data, new $class());
     }
-    
+
     private function getResponseType(string $endpoint, array $operation)
     {
         if ($endpoint === 'getPinnedMessages') {
             return ['channel/message', true];
         }
-        
+
         $array        = strpos($operation['responseTypes'][0]['type'], 'Array') !== false;
         $responseType = $operation['responseTypes'][0]['type'];
         if ($array) {
@@ -277,7 +277,7 @@ class DiscordClient
             preg_match('/Array<(.+)>/', $responseType, $matches);
             $responseType = $matches[1];
         }
-        
+
         return [$responseType, $array];
     }
 
