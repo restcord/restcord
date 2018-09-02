@@ -264,7 +264,12 @@ class DiscordClient
         return $mapper->map($data, new $class());
     }
 
-    private function getResponseType(string $endpoint, array $operation)
+    /**
+     * @param string $endpoint
+     * @param array $operation
+     * @return array
+     */
+    private function getResponseType($endpoint, array $operation)
     {
         if ($endpoint === 'getPinnedMessages') {
             return ['channel/message', true];
