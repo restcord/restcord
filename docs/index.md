@@ -98,8 +98,13 @@ To build new docs, run:
 ```bash
 $ ./bin/buildDocs <version number>
 ```
+
+## Wrappers
+
+* [Laravel][3]
  
 *Yes, I stole some of my docs from DiscordPHP* 
  
 [1]: https://github.com/teamreflex/DiscordPHP
 [2]: https://github.com/aequasi/discord-service-definition-generator
+[3]: https://gitlab.com/more-cores/laravel-restcord
