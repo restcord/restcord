@@ -310,7 +310,7 @@ class DiscordClient
             case '\RestCord\Model\Guild\User':
             case '\RestCord\Model\Channel\User':
                 return '\RestCord\Model\User\User';
-            case '\RestCord\Model\CHannel\ISO8601':
+            case '\RestCord\Model\Channel\ISO8601':
                 return '\DateTimeImmutable';
             default:
                 return $cls;
