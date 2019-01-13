@@ -92,7 +92,7 @@ class DiscordClient
                 new MessageFormatter('{url} {request}', $this->options['token'])
             )
         );
-        
+
         foreach ($this->options['middleware'] as $middleware) {
             $stack->push($middleware);
         }
