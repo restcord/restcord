@@ -92,6 +92,10 @@ class DiscordClient
                 new MessageFormatter('{url} {request}', $this->options['token'])
             )
         );
+        
+        foreach ($this->options['middleware'] as $middleware) {
+            $stack->push($middleware);
+        }
 
         $defaultGuzzleOptions           = [
             'base_uri'    => $this->options['apiUrl'],
@@ -145,6 +149,7 @@ class DiscordClient
                 'tokenType'         => 'Bot',
                 'cacheDir'          => __DIR__.'/../../../cache/',
                 'guzzleOptions'     => [],
+                'middleware'        => [],
             ]
         )
             ->setDefined(['token'])
