@@ -330,6 +330,9 @@ class DiscordClient
 
             $config['httpMethod'] = strtoupper($config['method']);
             unset($config['method']);
+            if (strpos($config['httpMethod'], '/') !== false) {
+                $config['httpMethod'] = explode('/', $config['httpMethod'])[0];
+            }
 
             if (isset($config['responseTypes']) && count($config['responseTypes']) === 1) {
                 $class = ucwords($config['resource']).'\\';
