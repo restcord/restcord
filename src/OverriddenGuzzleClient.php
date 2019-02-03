@@ -24,14 +24,14 @@ use RestCord\Override\OverrideInterface;
  *
  * Client Class
  *
- * @property Interfaces\Channel channel
- * @property Interfaces\Gateway gateway
- * @property Interfaces\Guild   guild
- * @property Interfaces\Invite  invite
- * @property Interfaces\Oauth2  oauth2
- * @property Interfaces\User    user
- * @property Interfaces\Voice   voice
- * @property Interfaces\Webhook webhook
+ * @property Interfaces\Channel $channel
+ * @property Interfaces\Gateway $gateway
+ * @property Interfaces\Guild   $guild
+ * @property Interfaces\Invite  $invite
+ * @property Interfaces\Oauth2  $oauth2
+ * @property Interfaces\User    $user
+ * @property Interfaces\Voice   $voice
+ * @property Interfaces\Webhook $webhook
  */
 class OverriddenGuzzleClient extends GuzzleClient
 {
