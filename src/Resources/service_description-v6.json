@@ -2992,9 +2992,9 @@
                         "nullable": true,
                         "description": "the id of the channel to which system messages are sent"
                     },
-                    "joined_at?": {
+                    "joined_at": {
                         "location": "json",
-                        "type": "string",
+                        "type": "ISO8601 timestamp",
                         "description": "when this guild was joined at"
                     },
                     "large?": {
@@ -3085,7 +3085,7 @@
                     },
                     "joined_at": {
                         "location": "json",
-                        "type": "string",
+                        "type": "ISO8601 timestamp",
                         "description": "when the user joined the guild"
                     },
                     "deaf": {
