@@ -111,7 +111,7 @@ class Guild {
 	/**
 	 * when this guild was joined at
 	 *
-	 * @var int|null
+	 * @var string|null
 	 */
 	public $joined_at;
 
