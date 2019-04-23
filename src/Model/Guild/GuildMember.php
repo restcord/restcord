@@ -28,7 +28,7 @@ class GuildMember {
 	/**
 	 * when the user joined the guild
 	 *
-	 * @var string
+	 * @var \DateTimeImmutable
 	 */
 	public $joined_at;
 
