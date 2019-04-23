@@ -2994,7 +2994,7 @@
                     },
                     "joined_at?": {
                         "location": "json",
-                        "type": "integer",
+                        "type": "string",
                         "description": "when this guild was joined at"
                     },
                     "large?": {
@@ -3085,7 +3085,7 @@
                     },
                     "joined_at": {
                         "location": "json",
-                        "type": "integer",
+                        "type": "string",
                         "description": "when the user joined the guild"
                     },
                     "deaf": {
