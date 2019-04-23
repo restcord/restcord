@@ -90,7 +90,7 @@
                 "name": "Modify Guild",
                 "method": "PATCH",
                 "url": "/guilds/{guild.id}",
-                "description": "Modify a guild's settings. Requires the 'MANAGE_GUILD' permission.  Fires a Guild Update Gateway event.",
+                "description": "Modify a guild's settings. Requires the 'MANAGE_GUILD' permission. Fires a Guild Update Gateway event.",
                 "responseNote": "Returns the updated guild object on success.",
                 "responseTypes": [
                     {
@@ -232,6 +232,11 @@
                         "type": "integer",
                         "description": "the type of channel"
                     },
+                    "topic": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "channel topic (0-1024 characters)"
+                    },
                     "bitrate": {
                         "location": "json",
                         "type": "integer",
@@ -242,10 +247,20 @@
                         "type": "integer",
                         "description": "the user limit of the voice channel (voice only)"
                     },
+                    "rate_limit_per_user": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "amount of seconds a user has to wait before sending another message (0-21600); bots, as well as users with the permission manage_messages or manage_channel, are unaffected"
+                    },
                     "permission_overwrites": {
                         "location": "json",
                         "type": "array",
                         "description": "the channel's permission overwrites"
+                    },
+                    "position": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "sorting position of the channel"
                     },
                     "parent_id": {
                         "location": "json",
@@ -402,7 +417,7 @@
                     "mute": {
                         "location": "json",
                         "type": "bool",
-                        "description": "if the user is muted",
+                        "description": "whether the user is muted in voice channels",
                         "default": false,
                         "extra": {
                             "Permission": "MUTE_MEMBERS"
@@ -411,7 +426,7 @@
                     "deaf": {
                         "location": "json",
                         "type": "bool",
-                        "description": "if the user is deafened",
+                        "description": "whether the user is deafened in voice channels",
                         "default": false,
                         "extra": {
                             "Permission": "DEAFEN_MEMBERS"
@@ -458,7 +473,7 @@
                     "mute": {
                         "location": "json",
                         "type": "bool",
-                        "description": "if the user is muted",
+                        "description": "whether the user is muted in voice channels",
                         "default": false,
                         "extra": {
                             "Permission": "MUTE_MEMBERS"
@@ -467,7 +482,7 @@
                     "deaf": {
                         "location": "json",
                         "type": "bool",
-                        "description": "if the user is deafened",
+                        "description": "whether the user is deafened in voice channels",
                         "default": false,
                         "extra": {
                             "Permission": "DEAFEN_MEMBERS"
@@ -608,6 +623,34 @@
                 },
                 "parametersArray": false
             },
+            "getGuildBan": {
+                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-ban",
+                "resource": "guild",
+                "name": "Get Guild Ban",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/bans/{user.id}",
+                "description": "Requires the 'BAN_MEMBERS' permission.",
+                "responseNote": "Returns a ban object for the given user or a 404 not found if the ban cannot be found.",
+                "responseTypes": [
+                    {
+                        "name": "ban",
+                        "type": "guild/ban"
+                    }
+                ],
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "user.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
             "createGuildBan": {
                 "link": "https://discordapp.com/developers/docs/resources/guild#create-guild-ban",
                 "resource": "guild",
@@ -627,12 +670,12 @@
                         "location": "uri",
                         "required": true
                     },
-                    "delete-message-days": {
+                    "delete-message-days?": {
                         "location": "query",
                         "type": "integer",
                         "description": "number of days to delete messages for (0-7)"
                     },
-                    "reason": {
+                    "reason?": {
                         "location": "query",
                         "type": "string",
                         "description": "reason for the ban"
@@ -887,6 +930,11 @@
                         "location": "query",
                         "type": "integer",
                         "description": "number of days to prune (1 or more)"
+                    },
+                    "compute_prune_count": {
+                        "location": "query",
+                        "type": "bool",
+                        "description": "whether 'pruned' is returned, discouraged for large guilds"
                     }
                 },
                 "parametersArray": false
@@ -1142,25 +1190,36 @@
                 },
                 "parametersArray": false
             },
-            "updateNick": {
-                "category": "guild",
-                "url": "/guilds/{guild.id}/members/@me/nick",
-                "method": "PATCH",
-                "name": "Update Current Users' Nickname",
-                "description": "Updates the bots nickname in a server",
-                "responseNote": "Returns the nick",
-                "responseTypes": [],
+            "getGuildWidgetImage": {
+                "link": "https://discordapp.com/developers/docs/resources/guild#get-guild-widget-image",
+                "resource": "guild",
+                "name": "Get Guild Widget Image",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/widget.png",
+                "description": "Requires no permissions or authentication.",
+                "responseNote": "Returns a PNG image widget for the guild.",
+                "responseTypes": [
+                    {
+                        "name": "guild widget image",
+                        "type": "guild/guild-widget-image"
+                    }
+                ],
                 "parameters": {
                     "guild.id": {
                         "type": "snowflake",
-                        "location": "uri"
+                        "location": "uri",
+                        "required": true
                     },
-                    "nick": {
+                    "style": {
+                        "location": "query",
                         "type": "string",
-                        "description": "Nickname to set",
-                        "location": "json"
+                        "description": "style of the widget image returned (see below)",
+                        "extra": {
+                            "options": "shield, banner1, banner2, banner3, banner4"
+                        }
                     }
-                }
+                },
+                "parametersArray": false
             }
         },
         "audit-log": {
@@ -1183,6 +1242,26 @@
                         "type": "snowflake",
                         "location": "uri",
                         "required": true
+                    },
+                    "user_id": {
+                        "type": "snowflake",
+                        "location": "query",
+                        "description": "filter the log for actions made by a user"
+                    },
+                    "action_type": {
+                        "type": "integer",
+                        "location": "query",
+                        "description": "the type of audit log event"
+                    },
+                    "before": {
+                        "type": "snowflake",
+                        "location": "query",
+                        "description": "filter the log before a certain entry id"
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "location": "query",
+                        "description": "how many entries are returned (default 50, minimum 1, maximum 100)"
                     }
                 },
                 "parametersArray": false
@@ -1260,6 +1339,15 @@
                         "location": "json",
                         "type": "bool",
                         "description": "if the channel is nsfw",
+                        "default": false,
+                        "extra": {
+                            "Channel Type": "Text"
+                        }
+                    },
+                    "rate_limit_per_user": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "mount of seconds a user has to wait before sending another message (0-21600); bots, as well as users with the permission manage_messages or manage_channel, are unaffected",
                         "default": false,
                         "extra": {
                             "Channel Type": "Text"
@@ -1698,6 +1786,12 @@
                         "type": "snowflake",
                         "location": "uri",
                         "required": true
+                    },
+                    "messages": {
+                        "type": "array",
+                        "location": "json",
+                        "description": "an array of message ids to delete (2-100)",
+                        "required": true
                     }
                 },
                 "parametersArray": false
@@ -1828,7 +1922,7 @@
                         "required": true
                     },
                     "overwrite.id": {
-                        "type": "string",
+                        "type": "snowflake",
                         "location": "uri",
                         "required": true
                     }
@@ -2017,7 +2111,7 @@
                         "required": true
                     },
                     "emoji.id": {
-                        "type": "string",
+                        "type": "snowflake",
                         "location": "uri",
                         "required": true
                     }
@@ -2083,7 +2177,7 @@
                         "required": true
                     },
                     "emoji.id": {
-                        "type": "string",
+                        "type": "snowflake",
                         "location": "uri",
                         "required": true
                     },
@@ -2115,7 +2209,7 @@
                         "required": true
                     },
                     "emoji.id": {
-                        "type": "string",
+                        "type": "snowflake",
                         "location": "uri",
                         "required": true
                     }
@@ -2140,8 +2234,13 @@
                 ],
                 "parameters": {
                     "invite.code": {
-                        "type": "string",
+                        "type": "snowflake",
                         "location": "uri",
+                        "required": true
+                    },
+                    "with_counts?": {
+                        "type": "bool",
+                        "location": "json",
                         "required": true
                     }
                 },
@@ -2163,23 +2262,7 @@
                 ],
                 "parameters": {
                     "invite.code": {
-                        "type": "string",
-                        "location": "uri",
-                        "required": true
-                    }
-                },
-                "parametersArray": false
-            },
-            "acceptInvite": {
-                "link": "https://discordapp.com/developers/docs/resources/invite#accept-invite",
-                "resource": "invite",
-                "name": "Accept Invite",
-                "method": "POST",
-                "url": "/invites/{invite.code}",
-                "description": "This endpoint is deprecated and will be discontinued on March 23, 2018. Add Guild Member should be used in its place.",
-                "parameters": {
-                    "invite.code": {
-                        "type": "string",
+                        "type": "snowflake",
                         "location": "uri",
                         "required": true
                     }
@@ -2449,7 +2532,7 @@
                     },
                     "avatar": {
                         "location": "json",
-                        "type": "string",
+                        "type": "avatar data",
                         "description": "image for the default webhook avatar"
                     }
                 },
@@ -2572,7 +2655,7 @@
                     },
                     "avatar": {
                         "location": "json",
-                        "type": "string",
+                        "type": "avatar data",
                         "description": "image for the default webhook avatar"
                     },
                     "channel_id": {
@@ -2713,9 +2796,17 @@
                     "embeds": {
                         "location": "json",
                         "type": "array",
-                        "description": "embedded rich content",
+                        "description": "See message create",
                         "extra": {
                             "Required": "one of content, file, embeds"
+                        }
+                    },
+                    "payload_json": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "embedded rich content",
+                        "extra": {
+                            "Required": "multipart/form-data only"
                         }
                     }
                 },
@@ -2824,7 +2915,7 @@
                         "type": "string",
                         "description": "the name of the app"
                     },
-                    "icon?": {
+                    "icon": {
                         "location": "json",
                         "type": "string",
                         "description": "the icon hash of the app"
@@ -2992,7 +3083,7 @@
                         "nullable": true,
                         "description": "the id of the channel to which system messages are sent"
                     },
-                    "joined_at": {
+                    "joined_at?": {
                         "location": "json",
                         "type": "ISO8601 timestamp",
                         "description": "when this guild was joined at"
@@ -3033,6 +3124,31 @@
                         "location": "json",
                         "type": "array",
                         "description": "presences of the users in the guild"
+                    },
+                    "max_presences": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the maximum amount of presences for the guild"
+                    },
+                    "max_members": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the maximum amount of members for the guild"
+                    },
+                    "vanity_url_code": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the vanity url code for the guild"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the description for the guild"
+                    },
+                    "banner": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "banner hash"
                     }
                 }
             },
@@ -3055,6 +3171,12 @@
                         "description": "if the embed is enabled",
                         "default": false
                     },
+                    "enabled": {
+                        "location": "json",
+                        "type": "bool",
+                        "description": "whether the embed is enabled"
+                    }
+                    ,
                     "channel_id": {
                         "location": "json",
                         "type": "snowflake",
@@ -3162,7 +3284,7 @@
                     },
                     "synced_at": {
                         "location": "json",
-                        "type": "integer",
+                        "type": "ISO8601 timestamp",
                         "description": "when this integration was last synced"
                     }
                 }
@@ -3192,7 +3314,7 @@
                 "type": "object",
                 "properties": {
                     "reason": {
-                        "location": "query",
+                        "location": "json",
                         "type": "string",
                         "description": "reason for the ban"
                     },
@@ -3200,216 +3322,6 @@
                         "location": "json",
                         "type": "object",
                         "description": "the banned user"
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of the role"
-                    },
-                    "region": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "guild voice region id"
-                    },
-                    "icon": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "base64 128x128 jpeg image for the guild icon"
-                    },
-                    "verification_level": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "verification level"
-                    },
-                    "default_message_notifications": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "default message notification level"
-                    },
-                    "explicit_content_filter": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "explicit content filter level"
-                    },
-                    "roles": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "array of role ids the member is assigned",
-                        "extra": {
-                            "Permission": "MANAGE_ROLES"
-                        }
-                    },
-                    "channels": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "new guild's channels"
-                    },
-                    "afk_channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "id for afk channel"
-                    },
-                    "afk_timeout": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "afk timeout in seconds"
-                    },
-                    "owner_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "user id to transfer guild ownership to (must be owner)"
-                    },
-                    "splash": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "base64 128x128 jpeg image for the guild splash (VIP only)"
-                    },
-                    "system_channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "the id of the channel to which system messages are sent"
-                    },
-                    "type": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the integration type"
-                    },
-                    "bitrate": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the bitrate (in bits) of the voice channel (voice only)"
-                    },
-                    "user_limit": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the user limit of the voice channel (voice only)"
-                    },
-                    "permission_overwrites": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "the channel's permission overwrites"
-                    },
-                    "parent_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "id of the parent category for a channel"
-                    },
-                    "nsfw": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the channel is nsfw",
-                        "default": false
-                    },
-                    "id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "the integration id"
-                    },
-                    "position": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "sorting position of the role"
-                    },
-                    "limit": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "max number of members to return (1-1000)",
-                        "default": 1
-                    },
-                    "after": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "the highest user id in the previous page"
-                    },
-                    "access_token": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "an oauth2 access token granted with the guilds.join to the bot's application for the user you want to add to the guild",
-                        "extra": {
-                            "Permission": ""
-                        }
-                    },
-                    "nick": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "value to set users nickname to",
-                        "extra": {
-                            "Permission": "CHANGE_NICKNAME"
-                        }
-                    },
-                    "mute": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the user is muted",
-                        "default": false,
-                        "extra": {
-                            "Permission": "MUTE_MEMBERS"
-                        }
-                    },
-                    "deaf": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "if the user is deafened",
-                        "default": false,
-                        "extra": {
-                            "Permission": "DEAFEN_MEMBERS"
-                        }
-                    },
-                    "channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "id of channel to move user to (if they are connected to voice)",
-                        "extra": {
-                            "Permission": "MOVE_MEMBERS"
-                        }
-                    },
-                    "delete-message-days": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "number of days to delete messages for (0-7)"
-                    },
-                    "permissions": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "bitwise of the enabled/disabled permissions"
-                    },
-                    "color": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "RGB color value"
-                    },
-                    "hoist": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether the role should be displayed separately in the sidebar",
-                        "default": false
-                    },
-                    "mentionable": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether the role should be mentionable",
-                        "default": false
-                    },
-                    "days": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "number of days to prune (1 or more)"
-                    },
-                    "expire_behavior": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "the behavior when an integration subscription lapses (see the integration object documentation)"
-                    },
-                    "expire_grace_period": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "period (in seconds) where the integration will ignore lapsed subscriptions"
-                    },
-                    "enable_emoticons": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether emoticons should be synced for this integration (twitch only currently)",
-                        "default": false
                     }
                 }
             },
@@ -3638,7 +3550,7 @@
                     },
                     "last_pin_timestamp?": {
                         "location": "json",
-                        "type": "integer",
+                        "type": "ISO8601 timestamp",
                         "description": "when the last pinned message was pinned"
                     }
                 }
@@ -3659,10 +3571,20 @@
                         "type": "snowflake",
                         "description": "id of the channel the message was sent in"
                     },
+                    "guild_id?": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the guild the message was sent in"
+                    },
                     "author": {
                         "location": "json",
                         "type": "object",
                         "description": "the author of this message (not guaranteed to be a valid user, see below)"
+                    },
+                    "member": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "member properties for this message's author"
                     },
                     "content": {
                         "location": "json",
@@ -3671,7 +3593,7 @@
                     },
                     "timestamp": {
                         "location": "json",
-                        "type": "integer",
+                        "type": "ISO8601 timestamp",
                         "description": "when this message was sent"
                     },
                     "edited_timestamp": {
@@ -3748,31 +3670,6 @@
                         "location": "json",
                         "type": "object",
                         "description": "sent with Rich Presence-related chat embeds"
-                    },
-                    "party_id?": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "party_id from a Rich Presence event"
-                    },
-                    "cover_image": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "id of the embed's image asset"
-                    },
-                    "description": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "application's description"
-                    },
-                    "icon": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "id of the application's icon"
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of the application"
                     }
                 }
             },
@@ -3834,116 +3731,70 @@
                 "description": "",
                 "type": "object",
                 "properties": {
-                    "title": {
+                    "title?": {
                         "location": "json",
                         "type": "string",
                         "description": "title of embed"
                     },
-                    "type": {
+                    "type?": {
                         "location": "json",
                         "type": "string",
                         "description": "type of embed (always \"rich\" for webhook embeds)"
                     },
-                    "description": {
+                    "description?": {
                         "location": "json",
                         "type": "string",
                         "description": "description of embed"
                     },
-                    "url": {
+                    "url?": {
                         "location": "json",
                         "type": "string",
                         "description": "url of author"
                     },
-                    "timestamp": {
+                    "timestamp?": {
                         "location": "json",
-                        "type": "integer",
+                        "type": "ISO8601 timestamp",
                         "description": "timestamp of embed content"
                     },
-                    "color": {
+                    "color?": {
                         "location": "json",
                         "type": "integer",
                         "description": "color code of the embed"
                     },
-                    "footer": {
+                    "footer?": {
                         "location": "json",
                         "type": "object",
                         "description": "footer information"
                     },
-                    "image": {
+                    "image?": {
                         "location": "json",
                         "type": "object",
                         "description": "image information"
                     },
-                    "thumbnail": {
+                    "thumbnail?": {
                         "location": "json",
                         "type": "object",
                         "description": "thumbnail information"
                     },
-                    "video": {
+                    "video?": {
                         "location": "json",
                         "type": "object",
                         "description": "video information"
                     },
-                    "provider": {
+                    "provider?": {
                         "location": "json",
                         "type": "object",
                         "description": "provider information"
                     },
-                    "author": {
+                    "author?": {
                         "location": "json",
                         "type": "object",
                         "description": "author information"
                     },
-                    "fields": {
+                    "fields?": {
                         "location": "json",
                         "type": "array",
                         "description": "fields information"
-                    },
-                    "proxy_url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "a proxied url of the image"
-                    },
-                    "height": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "height of image"
-                    },
-                    "width": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "width of image"
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of the field"
-                    },
-                    "icon_url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "url of footer icon (only supports http(s) and attachments)"
-                    },
-                    "proxy_icon_url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "a proxied url of footer icon"
-                    },
-                    "text": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "footer text"
-                    },
-                    "value": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "value of the field"
-                    },
-                    "inline": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "whether or not this field should display inline",
-                        "default": false
                     }
                 }
             },
@@ -4038,16 +3889,6 @@
                         "type": "bool",
                         "description": "whether this emoji is animated",
                         "default": false
-                    },
-                    "image": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the 128x128 emoji image"
-                    },
-                    "roles": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "roles to which this emoji will be whitelisted"
                     }
                 }
             }
@@ -4064,7 +3905,7 @@
                         "type": "string",
                         "description": "the invite code (unique ID)"
                     },
-                    "guild": {
+                    "guild?": {
                         "location": "json",
                         "type": "object",
                         "description": "the guild this invite is for"
@@ -4073,6 +3914,26 @@
                         "location": "json",
                         "type": "object",
                         "description": "the channel this invite is for"
+                    },
+                    "target_user": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "the target user for this invite"
+                    },
+                    "target_user_type?": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the type of target user for this invite"
+                    },
+                    "approximate_presence_count?": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "approximate count of online members (only present when target_user is set)"
+                    },
+                    "approximate_member_count?": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "approximate count of total members"
                     }
                 }
             },
@@ -4110,7 +3971,7 @@
                     },
                     "created_at": {
                         "location": "json",
-                        "type": "integer",
+                        "type": "ISO8601 timestamp",
                         "description": "when this invite was created"
                     },
                     "revoked": {
@@ -4180,6 +4041,15 @@
                             "Required OAuth2 Scope": "identify"
                         }
                     },
+                    "locale?": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the user's chosen language option",
+                        "default": false,
+                        "extra": {
+                            "Required OAuth2 Scope": "identify"
+                        }
+                    },
                     "verified?": {
                         "location": "json",
                         "type": "bool",
@@ -4195,6 +4065,24 @@
                         "description": "the user's email",
                         "extra": {
                             "Required OAuth2 Scope": "email"
+                        }
+                    },
+                    "flags?": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the flags on a user's account",
+                        "default": false,
+                        "extra": {
+                            "Required OAuth2 Scope": "identify"
+                        }
+                    },
+                    "premium_type?": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the type of Nitro subscription on a user's account",
+                        "default": false,
+                        "extra": {
+                            "Required OAuth2 Scope": "identify"
                         }
                     }
                 }
@@ -4230,56 +4118,6 @@
                         "location": "json",
                         "type": "array",
                         "description": "an array of partial server integrations"
-                    },
-                    "username": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "users username, if changed may cause the users discriminator to be randomized."
-                    },
-                    "avatar": {
-                        "location": "json",
-                        "type": "avatar data",
-                        "description": "if passed, modifies the user's avatar"
-                    },
-                    "before": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get guilds before this guild ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "after": {
-                        "location": "query",
-                        "type": "snowflake",
-                        "description": "get guilds after this guild ID",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "limit": {
-                        "location": "query",
-                        "type": "integer",
-                        "description": "max number of guilds to return (1-100)",
-                        "default": 100,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "recipient_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "description": "the recipient to open a DM channel with"
-                    },
-                    "access_tokens": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "access tokens of users that have granted your app the gdm.join scope"
-                    },
-                    "nicks": {
-                        "location": "json",
-                        "type": "dict",
-                        "description": "a dictionary of user ids to their respective nicknames"
                     }
                 }
             }
@@ -4305,6 +4143,11 @@
                         "location": "json",
                         "type": "snowflake",
                         "description": "the user id this voice state is for"
+                    },
+                    "member?": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "the guild member this voice state is for"
                     },
                     "session_id": {
                         "location": "json",
@@ -4427,64 +4270,6 @@
                         "location": "json",
                         "type": "string",
                         "description": "the secure token of the webhook"
-                    },
-                    "wait": {
-                        "location": "query",
-                        "type": "bool",
-                        "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
-                        "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "content": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "the message contents (up to 2000 characters)",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
-                    },
-                    "username": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "override the default username of the webhook",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "avatar_url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "override the default avatar of the webhook",
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "tts": {
-                        "location": "json",
-                        "type": "bool",
-                        "description": "true if this is a TTS message",
-                        "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "file": {
-                        "location": "json",
-                        "type": "file contents",
-                        "description": "the contents of the file being sent",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
-                    },
-                    "embeds": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "embedded rich content",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
                     }
                 }
             }
