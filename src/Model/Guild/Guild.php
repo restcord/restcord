@@ -111,7 +111,7 @@ class Guild {
 	/**
 	 * when this guild was joined at
 	 *
-	 * @var string|null
+	 * @var \DateTimeImmutable|null
 	 */
 	public $joined_at;
 
