@@ -28,7 +28,7 @@ class GuildMember {
 	/**
 	 * when the user joined the guild
 	 *
-	 * @var int
+	 * @var string
 	 */
 	public $joined_at;
 
