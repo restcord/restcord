@@ -1,7 +1,7 @@
 ---
 title: Get Guild Voice Regions
 category: Guild
-order: 26
+order: 27
 ---
 
 # `getGuildVoiceRegions`

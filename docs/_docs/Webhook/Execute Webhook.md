@@ -21,13 +21,14 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 webhook.id | snowflake | true | *null*
 webhook.token | string | true | *null*
-wait | bool | false | *null*
+wait | boolean | false | *null*
 content | string | false | *null*
 username | string | false | *null*
 avatar_url | string | false | *null*
-tts | bool | false | *null*
+tts | boolean | false | *null*
 file | file contents | false | *null*
 embeds | array | false | *null*
+payload_json | string | false | *null*
 
 ## Response
 

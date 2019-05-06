@@ -19,14 +19,6 @@ namespace RestCord\Interfaces;
 interface Invite {
 
 	/**
-	 * @see https://discordapp.com/developers/docs/resources/invite#accept-invite
-	 *
-	 * @param array $options ['invite.code' => 'string']
-	 * @return array
-	 */
-	public function acceptInvite(array $options);
-
-	/**
 	 * @see https://discordapp.com/developers/docs/resources/invite#delete-invite
 	 *
 	 * @param array $options ['invite.code' => 'string']

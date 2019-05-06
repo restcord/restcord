@@ -12,7 +12,7 @@ $client->channel->addPinnedChannelMessage($parameters);
 
 ## Description
 
-Pin a message in a channel. Requires the &#039;MANAGE_MESSAGES&#039; permission.
+Pin a message in a channel. Requires the MANAGE_MESSAGES permission.
 
 ## Parameters
 

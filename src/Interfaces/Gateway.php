@@ -29,7 +29,7 @@ interface Gateway {
 	/**
 	 * @see https://discordapp.com/developers/docs/topics/gateway#get-gateway-bot
 	 *
-	 * @param array $options []
+	 * @param array $options ['total' => 'integer', 'remaining' => 'integer', 'reset_after' => 'integer']
 	 * @return array
 	 */
 	public function getGatewayBot(array $options);

@@ -1,7 +1,7 @@
 ---
 title: Get Guild Roles
 category: Guild
-order: 19
+order: 20
 ---
 
 # `getGuildRoles`
@@ -12,7 +12,7 @@ $client->guild->getGuildRoles($parameters);
 
 ## Description
 
-Requires the &#039;MANAGE_ROLES&#039; permission.
+
 
 ## Parameters
 

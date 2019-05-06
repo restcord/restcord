@@ -12,7 +12,7 @@ $client->webhook->getChannelWebhooks($parameters);
 
 ## Description
 
-Requires the &#039;MANAGE_WEBHOOKS&#039; permission.
+Requires the MANAGE_WEBHOOKS permission.
 
 ## Parameters
 

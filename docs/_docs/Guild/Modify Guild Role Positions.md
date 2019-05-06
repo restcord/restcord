@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Role Positions
 category: Guild
-order: 21
+order: 22
 ---
 
 # `modifyGuildRolePositions`
@@ -12,7 +12,7 @@ $client->guild->modifyGuildRolePositions($parameters);
 
 ## Description
 
-Modify the positions of a set of role objects for the guild. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires multiple Guild Role Update Gateway events.
+Modify the positions of a set of role objects for the guild. Requires the MANAGE_ROLES permission.  Fires multiple Guild Role Update Gateway events.
 
 ## Parameters
 

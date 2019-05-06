@@ -22,7 +22,7 @@ Name | Type | Required | Default
 channel.id | snowflake | true | *null*
 content | string | false | *null*
 nonce | snowflake | false | *null*
-tts | bool | false | *null*
+tts | boolean | false | *null*
 file | file contents | false | *null*
 embed | object | false | *null*
 payload_json | string | false | *null*

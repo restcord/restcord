@@ -24,7 +24,7 @@ emoji.id | string | true | *null*
 
 ## Response
 
-Returns an emoji object for the given guild and emoji IDs.
+Returns an emoji object for the given guild and emoji IDs
 
 Can Return:
 

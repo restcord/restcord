@@ -63,7 +63,7 @@ class Message {
 	/**
 	 * id of the embed's image asset
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	public $cover_image;
 
@@ -89,6 +89,13 @@ class Message {
 	public $embeds;
 
 	/**
+	 * id of the guild the message was sent in
+	 *
+	 * @var int|null
+	 */
+	public $guild_id;
+
+	/**
 	 * id of the application's icon
 	 *
 	 * @var string
@@ -101,6 +108,13 @@ class Message {
 	 * @var int
 	 */
 	public $id;
+
+	/**
+	 * member properties for this message's author
+	 *
+	 * @var array|null
+	 */
+	public $member;
 
 	/**
 	 * whether this message mentions everyone
@@ -161,7 +175,7 @@ class Message {
 	/**
 	 * when this message was sent
 	 *
-	 * @var int
+	 * @var \DateTimeImmutable
 	 */
 	public $timestamp;
 

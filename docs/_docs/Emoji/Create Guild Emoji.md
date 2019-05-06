@@ -12,7 +12,7 @@ $client->emoji->createGuildEmoji($parameters);
 
 ## Description
 
-Create a new emoji for the guild. Requires the &#039;MANAGE_EMOJIS&#039; permission.  Fires a Guild Emojis Update Gateway event.
+Create a new emoji for the guild. Requires the MANAGE_EMOJIS permission.  Fires a Guild Emojis Update Gateway event.
 
 ## Parameters
 

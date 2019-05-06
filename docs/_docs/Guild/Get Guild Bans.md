@@ -12,7 +12,7 @@ $client->guild->getGuildBans($parameters);
 
 ## Description
 
-Requires the &#039;BAN_MEMBERS&#039; permission.
+Requires the BAN_MEMBERS permission.
 
 ## Parameters
 

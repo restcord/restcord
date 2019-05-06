@@ -1,7 +1,7 @@
 ---
 title: Get Guild Invites
 category: Guild
-order: 27
+order: 28
 ---
 
 # `getGuildInvites`
@@ -12,7 +12,7 @@ $client->guild->getGuildInvites($parameters);
 
 ## Description
 
-Requires the &#039;MANAGE_GUILD&#039; permission.
+Requires the MANAGE_GUILD permission.
 
 ## Parameters
 

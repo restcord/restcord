@@ -12,7 +12,7 @@ $client->guild->addGuildMemberRole($parameters);
 
 ## Description
 
-Adds a role to a guild member. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Member Update Gateway event.
+Adds a role to a guild member. Requires the MANAGE_ROLES permission.  Fires a Guild Member Update Gateway event.
 
 ## Parameters
 

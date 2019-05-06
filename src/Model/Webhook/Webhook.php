@@ -82,6 +82,13 @@ class Webhook {
 	public $name;
 
 	/**
+	 * See message create
+	 *
+	 * @var string
+	 */
+	public $payload_json;
+
+	/**
 	 * the secure token of the webhook
 	 *
 	 * @var string

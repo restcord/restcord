@@ -21,7 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 webhook.id | snowflake | true | *null*
 webhook.token | string | true | *null*
-wait | bool | false | *null*
+wait | boolean | false | *null*
 
 ## Response
 

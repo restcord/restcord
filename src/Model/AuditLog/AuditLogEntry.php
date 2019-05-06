@@ -47,7 +47,7 @@ class AuditLogEntry {
 	public $options;
 
 	/**
-	 * the reason for the change
+	 * the reason for the change (0-512 characters)
 	 *
 	 * @var string|null
 	 */

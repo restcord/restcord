@@ -1,7 +1,7 @@
 ---
 title: Get Guild Prune Count
 category: Guild
-order: 24
+order: 25
 ---
 
 # `getGuildPruneCount`
@@ -12,7 +12,7 @@ $client->guild->getGuildPruneCount($parameters);
 
 ## Description
 
-Requires the &#039;KICK_MEMBERS&#039; permission.
+Requires the KICK_MEMBERS permission.
 
 ## Parameters
 

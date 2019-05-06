@@ -12,7 +12,7 @@ $client->channel->getChannelMessage($parameters);
 
 ## Description
 
-If operating on a guild channel, this endpoints requires the &#039;READ_MESSAGE_HISTORY&#039; permission to be present on the current user.
+If operating on a guild channel, this endpoint requires the &#039;READ_MESSAGE_HISTORY&#039; permission to be present on the current user.
 
 ## Parameters
 
@@ -26,3 +26,6 @@ message.id | snowflake | true | *null*
 
 Returns a specific message in the channel.
 
+Can Return:
+
+* message

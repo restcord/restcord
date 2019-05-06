@@ -12,7 +12,7 @@ $client->webhook->modifyWebhook($parameters);
 
 ## Description
 
-Modify a webhook. Requires the &#039;MANAGE_WEBHOOKS&#039; permission.
+Modify a webhook. Requires the MANAGE_WEBHOOKS permission.
 
 ## Parameters
 

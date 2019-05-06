@@ -1,7 +1,7 @@
 ---
 title: Remove Guild Ban
 category: Guild
-order: 18
+order: 19
 ---
 
 # `removeGuildBan`
@@ -12,7 +12,7 @@ $client->guild->removeGuildBan($parameters);
 
 ## Description
 
-Remove the ban for a user. Requires the &#039;BAN_MEMBERS&#039; permissions.  Fires a Guild Ban Remove Gateway event.
+Remove the ban for a user. Requires the BAN_MEMBERS permissions.  Fires a Guild Ban Remove Gateway event.
 
 ## Parameters
 

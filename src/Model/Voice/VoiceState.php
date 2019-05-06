@@ -40,6 +40,13 @@ class VoiceState {
 	public $guild_id;
 
 	/**
+	 * the guild member this voice state is for
+	 *
+	 * @var array|null
+	 */
+	public $member;
+
+	/**
 	 * whether this user is muted by the server
 	 *
 	 * @var bool

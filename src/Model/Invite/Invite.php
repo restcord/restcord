@@ -19,6 +19,20 @@ namespace RestCord\Model\Invite;
 class Invite {
 
 	/**
+	 * approximate count of total members
+	 *
+	 * @var int|null
+	 */
+	public $approximate_member_count;
+
+	/**
+	 * approximate count of online members (only present when target_user is set)
+	 *
+	 * @var int|null
+	 */
+	public $approximate_presence_count;
+
+	/**
 	 * the channel this invite is for
 	 *
 	 * @var array
@@ -35,9 +49,23 @@ class Invite {
 	/**
 	 * the guild this invite is for
 	 *
-	 * @var array
+	 * @var array|null
 	 */
 	public $guild;
+
+	/**
+	 * the target user for this invite
+	 *
+	 * @var array
+	 */
+	public $target_user;
+
+	/**
+	 * the type of target user for this invite
+	 *
+	 * @var int|null
+	 */
+	public $target_user_type;
 
 	/**
 	 * @param array $content
