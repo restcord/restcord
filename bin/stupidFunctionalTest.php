@@ -45,16 +45,16 @@ $client = new DiscordClient(
 
 $msg = $client->channel->createMessage(
     [
-        "channel.id" => 146037311753289737,
-        "content" => "Something real"
+        'channel.id' => 146037311753289737,
+        'content'    => 'Something real',
     ]
 );
 
 $client->channel->editMessage(
     [
-        "channel.id" => 146037311753289737,
-        "message.id" => intval($msg['id']),
-        "content"    => "Something edited"
+        'channel.id' => 146037311753289737,
+        'message.id' => intval($msg['id']),
+        'content'    => 'Something edited',
     ]
 );
 

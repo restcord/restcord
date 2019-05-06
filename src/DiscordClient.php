@@ -93,6 +93,10 @@ class DiscordClient
             )
         );
 
+        foreach ($this->options['middleware'] as $middleware) {
+            $stack->push($middleware);
+        }
+
         $defaultGuzzleOptions           = [
             'base_uri'    => $this->options['apiUrl'],
             'headers'     => [
@@ -145,6 +149,7 @@ class DiscordClient
                 'tokenType'         => 'Bot',
                 'cacheDir'          => __DIR__.'/../../../cache/',
                 'guzzleOptions'     => [],
+                'middleware'        => [],
             ]
         )
             ->setDefined(['token'])
@@ -231,13 +236,7 @@ class DiscordClient
             $data = json_decode($response->getBody()->__toString());
         }
 
-        $array        = strpos($operation['responseTypes'][0]['type'], 'Array') !== false;
-        $responseType = $operation['responseTypes'][0]['type'];
-        if ($array) {
-            $matches = [];
-            preg_match('/Array<(.+)>/', $responseType, $matches);
-            $responseType = $matches[1];
-        }
+        list($responseType, $array) = $this->getResponseType($command->getName(), $operation);
 
         $firstType = explode('/', $this->dashesToCamelCase($responseType, true));
         $class     = $this->mapBadDocs(
@@ -270,6 +269,29 @@ class DiscordClient
         return $mapper->map($data, new $class());
     }
 
+    /**
+     * @param string $endpoint
+     * @param array  $operation
+     *
+     * @return array
+     */
+    private function getResponseType($endpoint, array $operation)
+    {
+        if ($endpoint === 'getPinnedMessages') {
+            return ['channel/message', true];
+        }
+
+        $array        = strpos($operation['responseTypes'][0]['type'], 'Array') !== false;
+        $responseType = $operation['responseTypes'][0]['type'];
+        if ($array) {
+            $matches = [];
+            preg_match('/Array<(.+)>/', $responseType, $matches);
+            $responseType = $matches[1];
+        }
+
+        return [$responseType, $array];
+    }
+
     private function dashesToCamelCase($string, $capitalizeFirstCharacter = false)
     {
         $str = str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
@@ -293,7 +315,7 @@ class DiscordClient
             case '\RestCord\Model\Guild\User':
             case '\RestCord\Model\Channel\User':
                 return '\RestCord\Model\User\User';
-            case '\RestCord\Model\CHannel\ISO8601':
+            case '\RestCord\Model\Channel\ISO8601':
                 return '\DateTimeImmutable';
             default:
                 return $cls;
@@ -313,6 +335,9 @@ class DiscordClient
 
             $config['httpMethod'] = strtoupper($config['method']);
             unset($config['method']);
+            if (strpos($config['httpMethod'], '/') !== false) {
+                $config['httpMethod'] = explode('/', $config['httpMethod'])[0];
+            }
 
             if (isset($config['responseTypes']) && count($config['responseTypes']) === 1) {
                 $class = ucwords($config['resource']).'\\';
