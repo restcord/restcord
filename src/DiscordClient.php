@@ -357,8 +357,8 @@ class DiscordClient
                 $this->updateParameterTypes($parameterConfig);
                 if (!isset($parameterConfig['required'])) {
                     $parameterConfig['required'] = false;
+                    unset($parameterConfig['default']);
                 }
-                unset($parameterConfig['default']);
             }
         }
 
