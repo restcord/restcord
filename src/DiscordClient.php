@@ -358,6 +358,7 @@ class DiscordClient
                 if (!isset($parameterConfig['required'])) {
                     $parameterConfig['required'] = false;
                 }
+                unset($parameterConfig['default']);
             }
         }
 
