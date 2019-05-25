@@ -75,6 +75,7 @@ version | string | No | `1.0.0` | The version of the API to use. Should probably
 logger | Monolog\Logger | false | `new Logger('Logger')` | An instance of a Monolog\Logger
 throwOnRatelimit | bool | false | `false` | Whether or not an exception is thrown when a ratelimit is supposed to hit
 apiUrl | string | false | `https://discordapp.com/api/v6` | Should leave this alone.
+tokenType | string | false | `Bot` | Either `Bot` or `OAuth`
  
 ## API Documentation
 
