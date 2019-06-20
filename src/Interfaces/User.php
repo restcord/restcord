@@ -37,10 +37,9 @@ interface User {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/user#get-current-user
 	 *
-	 * @param array $options []
 	 * @return \RestCord\Model\User\User Returns the user object of the requester's account.
 	 */
-	public function getCurrentUser(array $options);
+	public function getCurrentUser();
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/user#get-current-user-guilds
