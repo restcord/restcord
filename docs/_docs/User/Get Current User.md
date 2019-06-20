@@ -7,7 +7,7 @@ order: 1
 # `getCurrentUser`
 
 ```php
-$client->user->getCurrentUser($parameters);
+$client->user->getCurrentUser();
 ```
 
 ## Description
