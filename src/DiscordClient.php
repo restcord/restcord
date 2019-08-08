@@ -19,6 +19,7 @@ use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Result;
 use GuzzleHttp\HandlerStack;
+use function GuzzleHttp\json_decode;
 use GuzzleHttp\Middleware;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseInterface;
@@ -27,7 +28,6 @@ use RestCord\RateLimit\Provider\AbstractRateLimitProvider;
 use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
 use RestCord\RateLimit\RateLimiter;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use function GuzzleHttp\json_decode;
 
 /**
  * @author Aaron Scherer <aequasi@gmail.com>

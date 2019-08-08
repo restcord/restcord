@@ -1289,7 +1289,7 @@
                 "link": "https://discordapp.com/developers/docs/resources/channel#modify-channel",
                 "resource": "channel",
                 "name": "Modify Channel",
-                "method": "PUT/PATCH",
+                "method": "PATCH",
                 "url": "/channels/{channel.id}",
                 "description": "Update a channels settings. Requires the MANAGE_CHANNELS permission for the guild.  Fires a Channel Update Gateway event. If modifying a category, individual Channel Update events will fire for each child channel that also changes. For the PATCH method, all the JSON Params are optional.",
                 "responseNote": "Returns a channel on success, and a 400 BAD REQUEST on invalid parameters.",
