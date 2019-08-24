@@ -459,7 +459,6 @@
                         "location": "json",
                         "type": "bool",
                         "description": "if the user is muted",
-                        "default": false,
                         "extra": {
                             "Permission": "MUTE_MEMBERS"
                         }
@@ -468,7 +467,6 @@
                         "location": "json",
                         "type": "bool",
                         "description": "if the user is deafened",
-                        "default": false,
                         "extra": {
                             "Permission": "DEAFEN_MEMBERS"
                         }
