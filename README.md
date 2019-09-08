@@ -7,7 +7,6 @@ What is this?
 ------------
 
 This is a PHP library for the Discord API. This library is limited to the basic REST api that Discord provides.
-If you are doing anything heavy, or fancy, you should probably look at [the other php library][1].
 
 ## [Documentation](https://www.restcord.com/)
 
@@ -16,6 +15,3 @@ Documentation can be found [here](https://www.restcord.com/).
 ### Wrappers
 
 * [Laravel](https://github.com/more-cores/laravel-restcord)
-
-
-[1]: https://github.com/teamreflex/DiscordPHP
