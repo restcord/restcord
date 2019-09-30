@@ -28,7 +28,7 @@ Getting Started
 ### Installing
 
 RestCord is installed using [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates.
-We require a minimum PHP version of PHP 5.4.0, however it is recommended that you use at least PHP 7.0. PHP 5 will be deprecated soon.
+We require a minimum PHP version of PHP 7.0, but suggest keeping up with the current active versions of PHP: https://www.php.net/supported-versions.php
 This library REQUIRES 64bit PHP.
 
 This library has not been tested with HHVM.
