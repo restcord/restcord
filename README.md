@@ -18,4 +18,4 @@ Documentation can be found [here](https://www.restcord.com/).
 * [Laravel](https://github.com/more-cores/laravel-restcord)
 
 
-[1]: https://github.com/teamreflex/DiscordPHP
+[1]: https://github.com/CharlotteDunois/Yasmin
