@@ -12,7 +12,7 @@ $client->channel->editChannelPermissions($parameters);
 
 ## Description
 
-Edit the channel permission overwrites for a user or role in a channel. Only usable for guild channels. Requires the &#039;MANAGE_ROLES&#039; permission.  For more information about permissions, see permissions.
+Edit the channel permission overwrites for a user or role in a channel. Only usable for guild channels. Requires the MANAGE_ROLES permission.  For more information about permissions, see permissions.
 
 ## Parameters
 

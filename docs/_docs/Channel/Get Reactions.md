@@ -24,7 +24,7 @@ message.id | snowflake | true | *null*
 emoji | string | true | *null*
 before | snowflake | false | *null*
 after | snowflake | false | *null*
-limit | integer | false | 100
+limit | integer | false | 25
 
 ## Response
 

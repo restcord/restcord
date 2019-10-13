@@ -12,7 +12,7 @@ $client->guild->removeGuildMemberRole($parameters);
 
 ## Description
 
-Removes a role from a guild member. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Member Update Gateway event.
+Removes a role from a guild member. Requires the MANAGE_ROLES permission.  Fires a Guild Member Update Gateway event.
 
 ## Parameters
 

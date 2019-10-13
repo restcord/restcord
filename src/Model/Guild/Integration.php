@@ -70,7 +70,7 @@ class Integration {
 	/**
 	 * when this integration was last synced
 	 *
-	 * @var int
+	 * @var \DateTimeImmutable
 	 */
 	public $synced_at;
 

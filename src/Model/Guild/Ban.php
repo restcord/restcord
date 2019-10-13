@@ -75,6 +75,13 @@ class Ban {
 	public $color;
 
 	/**
+	 * whether 'pruned' is returned, discouraged for large guilds
+	 *
+	 * @var bool
+	 */
+	public $compute_prune_count = false;
+
+	/**
 	 * number of days to prune (1 or more)
 	 *
 	 * @var int
@@ -82,7 +89,7 @@ class Ban {
 	public $days;
 
 	/**
-	 * if the user is deafened
+	 * whether the user is deafened in voice channels
 	 *
 	 * @var bool
 	 */
@@ -98,7 +105,7 @@ class Ban {
 	/**
 	 * number of days to delete messages for (0-7)
 	 *
-	 * @var int
+	 * @var int|null
 	 */
 	public $delete_message_days;
 
@@ -166,7 +173,7 @@ class Ban {
 	public $mentionable = false;
 
 	/**
-	 * if the user is muted
+	 * whether the user is muted in voice channels
 	 *
 	 * @var bool
 	 */
@@ -187,7 +194,7 @@ class Ban {
 	public $nick;
 
 	/**
-	 * if the channel is nsfw
+	 * whether the channel is nsfw
 	 *
 	 * @var bool
 	 */
@@ -215,7 +222,7 @@ class Ban {
 	public $permission_overwrites;
 
 	/**
-	 * bitwise of the enabled/disabled permissions
+	 * bitwise value of the enabled/disabled permissions
 	 *
 	 * @var int
 	 */
@@ -229,9 +236,16 @@ class Ban {
 	public $position;
 
 	/**
+	 * amount of seconds a user has to wait before sending another message (0-21600); bots, as well as users with the permission manage_messages or manage_channel, are unaffected
+	 *
+	 * @var int
+	 */
+	public $rate_limit_per_user;
+
+	/**
 	 * reason for the ban
 	 *
-	 * @var string
+	 * @var string|null
 	 */
 	public $reason;
 
@@ -257,11 +271,25 @@ class Ban {
 	public $splash;
 
 	/**
+	 * style of the widget image returned (see below)
+	 *
+	 * @var string
+	 */
+	public $style = 'shield';
+
+	/**
 	 * the id of the channel to which system messages are sent
 	 *
 	 * @var int
 	 */
 	public $system_channel_id;
+
+	/**
+	 * channel topic (0-1024 characters)
+	 *
+	 * @var string
+	 */
+	public $topic;
 
 	/**
 	 * the integration type

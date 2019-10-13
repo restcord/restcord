@@ -21,7 +21,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#create-webhook
 	 *
-	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'avatar' => 'string']
+	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'avatar' => 'avatar data string']
 	 * @return \RestCord\Model\Webhook\Webhook Returns a webhook object on success.
 	 */
 	public function createWebhook(array $options);
@@ -45,7 +45,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#execute-github-compatible-webhook
 	 *
-	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'wait' => 'bool']
+	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'wait' => 'boolean']
 	 * @return array
 	 */
 	public function executeGithubCompatibleWebhook(array $options);
@@ -53,7 +53,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#execute-slack-compatible-webhook
 	 *
-	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'wait' => 'bool']
+	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'wait' => 'boolean']
 	 * @return array
 	 */
 	public function executeSlackCompatibleWebhook(array $options);
@@ -61,7 +61,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#execute-webhook
 	 *
-	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'wait' => 'bool', 'content' => 'string', 'username' => 'string', 'avatar_url' => 'string', 'tts' => 'bool', 'file' => 'file contents', 'embeds' => 'array']
+	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'wait' => 'boolean', 'content' => 'string', 'username' => 'string', 'avatar_url' => 'string', 'tts' => 'boolean', 'file' => 'file contents', 'embeds' => 'array', 'payload_json' => 'string']
 	 * @return array
 	 */
 	public function executeWebhook(array $options);

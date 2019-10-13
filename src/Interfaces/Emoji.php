@@ -38,7 +38,7 @@ interface Emoji {
 	 * @see https://discordapp.com/developers/docs/resources/emoji#get-guild-emoji
 	 *
 	 * @param array $options ['guild.id' => 'snowflake', 'emoji.id' => 'string']
-	 * @return \RestCord\Model\Emoji\Emoji Returns an emoji object for the given guild and emoji IDs.
+	 * @return \RestCord\Model\Emoji\Emoji Returns an emoji object for the given guild and emoji IDs
 	 */
 	public function getGuildEmoji(array $options);
 

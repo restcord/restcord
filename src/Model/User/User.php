@@ -51,6 +51,13 @@ class User {
 	public $email;
 
 	/**
+	 * the flags on a user's account
+	 *
+	 * @var int|null
+	 */
+	public $flags;
+
+	/**
 	 * the user's id
 	 *
 	 * @var int
@@ -58,11 +65,25 @@ class User {
 	public $id;
 
 	/**
+	 * the user's chosen language option
+	 *
+	 * @var string|null
+	 */
+	public $locale;
+
+	/**
 	 * whether the user has two factor enabled on their account
 	 *
 	 * @var bool|null
 	 */
 	public $mfa_enabled = false;
+
+	/**
+	 * the type of Nitro subscription on a user's account
+	 *
+	 * @var int|null
+	 */
+	public $premium_type;
 
 	/**
 	 * the user's username, not unique across the platform

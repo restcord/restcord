@@ -1,7 +1,7 @@
 ---
 title: Get Guild Embed
 category: Guild
-order: 33
+order: 34
 ---
 
 # `getGuildEmbed`
@@ -12,7 +12,7 @@ $client->guild->getGuildEmbed($parameters);
 
 ## Description
 
-Requires the &#039;MANAGE_GUILD&#039; permission.
+Requires the MANAGE_GUILD permission.
 
 ## Parameters
 

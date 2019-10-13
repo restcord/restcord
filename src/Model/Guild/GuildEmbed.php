@@ -26,7 +26,7 @@ class GuildEmbed {
 	public $channel_id;
 
 	/**
-	 * if the embed is enabled
+	 * whether the embed is enabled
 	 *
 	 * @var bool
 	 */

@@ -12,7 +12,7 @@ $client->emoji->deleteGuildEmoji($parameters);
 
 ## Description
 
-Delete the given emoji. Requires the &#039;MANAGE_EMOJIS&#039; permission.  Fires a Guild Emojis Update Gateway event.
+Delete the given emoji. Requires the MANAGE_EMOJIS permission.  Fires a Guild Emojis Update Gateway event.
 
 ## Parameters
 

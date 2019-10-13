@@ -12,7 +12,7 @@ $client->guild->modifyGuild($parameters);
 
 ## Description
 
-Modify a guild&#039;s settings. Requires the &#039;MANAGE_GUILD&#039; permission.  Fires a Guild Update Gateway event.
+Modify a guild&#039;s settings. Requires the MANAGE_GUILD permission.  Fires a Guild Update Gateway event.
 
 ## Parameters
 

@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Embed
 category: Guild
-order: 34
+order: 35
 ---
 
 # `modifyGuildEmbed`
@@ -12,7 +12,7 @@ $client->guild->modifyGuildEmbed($parameters);
 
 ## Description
 
-Modify a guild embed object for the guild. All attributes may be passed in with JSON and modified. Requires the &#039;MANAGE_GUILD&#039; permission.
+Modify a guild embed object for the guild. All attributes may be passed in with JSON and modified. Requires the MANAGE_GUILD permission.
 
 ## Parameters
 

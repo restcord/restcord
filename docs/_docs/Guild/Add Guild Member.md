@@ -24,12 +24,12 @@ user.id | snowflake | true | *null*
 access_token | string | false | *null*
 nick | string | false | *null*
 roles | array | false | *null*
-mute | bool | false | *null*
-deaf | bool | false | *null*
+mute | boolean | false | *null*
+deaf | boolean | false | *null*
 
 ## Response
 
-Returns a 201 Created with the guild member as the body.
+Returns a 201 Created with the guild member as the body, or 204 No Content if the user is already a member of the guild.
 
 Can Return:
 

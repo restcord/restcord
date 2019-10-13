@@ -63,7 +63,7 @@ class Channel {
 	/**
 	 * when the last pinned message was pinned
 	 *
-	 * @var int|null
+	 * @var \DateTimeImmutable|null
 	 */
 	public $last_pin_timestamp;
 
@@ -75,7 +75,7 @@ class Channel {
 	public $name;
 
 	/**
-	 * if the channel is nsfw
+	 * whether the channel is nsfw
 	 *
 	 * @var bool|null
 	 */
@@ -108,6 +108,13 @@ class Channel {
 	 * @var int|null
 	 */
 	public $position;
+
+	/**
+	 * amount of seconds a user has to wait before sending another message (0-21600); bots, as well as users with the permission manage_messages or manage_channel, are unaffected
+	 *
+	 * @var int|null
+	 */
+	public $rate_limit_per_user;
 
 	/**
 	 * the recipients of the DM

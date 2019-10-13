@@ -1,7 +1,7 @@
 ---
 title: Sync Guild Integration
 category: Guild
-order: 32
+order: 33
 ---
 
 # `syncGuildIntegration`
@@ -12,7 +12,7 @@ $client->guild->syncGuildIntegration($parameters);
 
 ## Description
 
-Sync an integration. Requires the &#039;MANAGE_GUILD&#039; permission.
+Sync an integration. Requires the MANAGE_GUILD permission.
 
 ## Parameters
 

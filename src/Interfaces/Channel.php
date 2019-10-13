@@ -37,7 +37,7 @@ interface Channel {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/channel#create-channel-invite
 	 *
-	 * @param array $options ['channel.id' => 'snowflake', 'max_age' => 'integer', 'max_uses' => 'integer', 'temporary' => 'bool', 'unique' => 'bool']
+	 * @param array $options ['channel.id' => 'snowflake', 'max_age' => 'integer', 'max_uses' => 'integer', 'temporary' => 'boolean', 'unique' => 'boolean']
 	 * @return \RestCord\Model\Invite\Invite Returns an invite object.
 	 */
 	public function createChannelInvite(array $options);
@@ -45,7 +45,7 @@ interface Channel {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/channel#create-message
 	 *
-	 * @param array $options ['channel.id' => 'snowflake', 'content' => 'string', 'nonce' => 'snowflake', 'tts' => 'bool', 'file' => 'file contents', 'embed' => 'object', 'payload_json' => 'string']
+	 * @param array $options ['channel.id' => 'snowflake', 'content' => 'string', 'nonce' => 'snowflake', 'tts' => 'boolean', 'file' => 'file contents', 'embed' => 'object', 'payload_json' => 'string']
 	 * @return array
 	 */
 	public function createMessage(array $options);
@@ -150,7 +150,7 @@ interface Channel {
 	 * @see https://discordapp.com/developers/docs/resources/channel#get-channel-message
 	 *
 	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake']
-	 * @return array Returns a specific message in the channel.
+	 * @return \RestCord\Model\Channel\Message Returns a specific message in the channel.
 	 */
 	public function getChannelMessage(array $options);
 
@@ -158,7 +158,7 @@ interface Channel {
 	 * @see https://discordapp.com/developers/docs/resources/channel#get-channel-messages
 	 *
 	 * @param array $options ['channel.id' => 'snowflake', 'around' => 'snowflake', 'before' => 'snowflake', 'after' => 'snowflake', 'limit' => 'integer']
-	 * @return array Returns the messages for a channel.
+	 * @return \RestCord\Model\Channel\Message[] Returns the messages for a channel.
 	 */
 	public function getChannelMessages(array $options);
 
@@ -197,7 +197,7 @@ interface Channel {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/channel#modify-channel
 	 *
-	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'position' => 'integer', 'topic' => 'string', 'nsfw' => 'bool', 'bitrate' => 'integer', 'user_limit' => 'integer', 'permission_overwrites' => 'array', 'parent_id' => 'snowflake']
+	 * @param array $options ['channel.id' => 'snowflake', 'name' => 'string', 'position' => 'integer', 'topic' => 'string', 'nsfw' => 'boolean', 'rate_limit_per_user' => 'integer', 'bitrate' => 'integer', 'user_limit' => 'integer', 'permission_overwrites' => 'array', 'parent_id' => 'snowflake']
 	 * @return \RestCord\Model\Channel\Channel Returns a channel on success, and a 400 BAD REQUEST on invalid parameters.
 	 */
 	public function modifyChannel(array $options);

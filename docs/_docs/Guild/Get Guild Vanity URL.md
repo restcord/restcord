@@ -1,7 +1,7 @@
 ---
 title: Get Guild Vanity Url
 category: Guild
-order: 35
+order: 36
 ---
 
 # `getGuildVanityUrl`
@@ -12,7 +12,7 @@ $client->guild->getGuildVanityUrl($parameters);
 
 ## Description
 
-Requires the &#039;MANAGE_GUILD&#039; permission.
+Requires the MANAGE_GUILD permission. code will be null if a vanity url for the guild is not set.
 
 ## Parameters
 

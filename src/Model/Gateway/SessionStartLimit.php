@@ -11,61 +11,33 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\AuditLog;
+namespace RestCord\Model\Gateway;
 
 /**
- * AuditLogEntry Model
+ * SessionStartLimit Model
  */
-class AuditLogEntry {
+class SessionStartLimit {
 
 	/**
-	 * type of action that occured
-	 *
-	 * @var audit log event
-	 */
-	public $action_type;
-
-	/**
-	 * changes made to the target_id
-	 *
-	 * @var array|null
-	 */
-	public $changes;
-
-	/**
-	 * id of the entry
+	 * The remaining number of session starts the current user is allowed
 	 *
 	 * @var int
 	 */
-	public $id;
+	public $remaining;
 
 	/**
-	 * additional info for certain action types
-	 *
-	 * @var optional audit entry info|null
-	 */
-	public $options;
-
-	/**
-	 * the reason for the change (0-512 characters)
-	 *
-	 * @var string|null
-	 */
-	public $reason;
-
-	/**
-	 * id of the affected entity (webhook, user, role, etc.)
-	 *
-	 * @var string
-	 */
-	public $target_id;
-
-	/**
-	 * the user who made the changes
+	 * The number of milliseconds after which the limit resets
 	 *
 	 * @var int
 	 */
-	public $user_id;
+	public $reset_after;
+
+	/**
+	 * The total number of session starts the current user is allowed
+	 *
+	 * @var int
+	 */
+	public $total;
 
 	/**
 	 * @param array $content

@@ -12,7 +12,7 @@ $client->guild->modifyGuildChannelPositions($parameters);
 
 ## Description
 
-Modify the positions of a set of channel objects for the guild. Requires &#039;MANAGE_CHANNELS&#039; permission.  Fires multiple Channel Update Gateway events.
+Modify the positions of a set of channel objects for the guild. Requires MANAGE_CHANNELS permission.  Fires multiple Channel Update Gateway events.
 
 ## Parameters
 

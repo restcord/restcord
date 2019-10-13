@@ -16,7 +16,12 @@ This endpoint requires authentication using a valid bot token.
 
 ## Parameters
 
-No Parameters
+
+Name | Type | Required | Default
+--- | --- | --- | ---
+total | integer | false | *null*
+remaining | integer | false | *null*
+reset_after | integer | false | *null*
 
 ## Response
 

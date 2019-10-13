@@ -1,13 +1,13 @@
 ---
-title: Get Guild Bans
+title: Get Guild Ban
 category: Guild
-order: 16
+order: 17
 ---
 
-# `getGuildBans`
+# `getGuildBan`
 
 ```php
-$client->guild->getGuildBans($parameters);
+$client->guild->getGuildBan($parameters);
 ```
 
 ## Description
@@ -20,10 +20,11 @@ Requires the BAN_MEMBERS permission.
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
+user.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of ban objects for the users banned from this guild.
+Returns a ban object for the given user or a 404 not found if the ban cannot be found.
 
 Can Return:
 

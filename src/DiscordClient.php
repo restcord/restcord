@@ -93,6 +93,10 @@ class DiscordClient
             )
         );
 
+        foreach ($this->options['middleware'] as $middleware) {
+            $stack->push($middleware);
+        }
+
         $defaultGuzzleOptions           = [
             'base_uri'    => $this->options['apiUrl'],
             'headers'     => [
@@ -145,6 +149,7 @@ class DiscordClient
                 'tokenType'         => 'Bot',
                 'cacheDir'          => __DIR__.'/../../../cache/',
                 'guzzleOptions'     => [],
+                'middleware'        => [],
             ]
         )
             ->setDefined(['token'])
@@ -352,6 +357,7 @@ class DiscordClient
                 $this->updateParameterTypes($parameterConfig);
                 if (!isset($parameterConfig['required'])) {
                     $parameterConfig['required'] = false;
+                    unset($parameterConfig['default']);
                 }
             }
         }

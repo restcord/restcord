@@ -1,7 +1,7 @@
 ---
 title: Get Guild Integrations
 category: Guild
-order: 28
+order: 29
 ---
 
 # `getGuildIntegrations`
@@ -12,7 +12,7 @@ $client->guild->getGuildIntegrations($parameters);
 
 ## Description
 
-Requires the &#039;MANAGE_GUILD&#039; permission.
+Requires the MANAGE_GUILD permission.
 
 ## Parameters
 

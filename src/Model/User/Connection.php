@@ -47,6 +47,13 @@ class Connection {
 	public $before;
 
 	/**
+	 * whether friend sync is enabled for this connection
+	 *
+	 * @var bool
+	 */
+	public $friend_sync = false;
+
+	/**
 	 * id of the connection account
 	 *
 	 * @var string
@@ -96,6 +103,13 @@ class Connection {
 	public $revoked = false;
 
 	/**
+	 * whether activities related to this connection will be shown in presence updates
+	 *
+	 * @var bool
+	 */
+	public $show_activity = false;
+
+	/**
 	 * the service of the connection (twitch, youtube)
 	 *
 	 * @var string
@@ -108,6 +122,20 @@ class Connection {
 	 * @var string
 	 */
 	public $username;
+
+	/**
+	 * whether the connection is verified
+	 *
+	 * @var bool
+	 */
+	public $verified = false;
+
+	/**
+	 * visibility of this connection
+	 *
+	 * @var int
+	 */
+	public $visibility;
 
 	/**
 	 * @param array $content

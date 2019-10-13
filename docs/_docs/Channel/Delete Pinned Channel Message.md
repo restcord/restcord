@@ -12,7 +12,7 @@ $client->channel->deletePinnedChannelMessage($parameters);
 
 ## Description
 
-Delete a pinned message in a channel. Requires the &#039;MANAGE_MESSAGES&#039; permission.
+Delete a pinned message in a channel. Requires the MANAGE_MESSAGES permission.
 
 ## Parameters
 

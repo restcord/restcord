@@ -46,6 +46,13 @@ class Guild {
 	public $application_id;
 
 	/**
+	 * banner hash
+	 *
+	 * @var string
+	 */
+	public $banner;
+
+	/**
 	 * channels in the guild
 	 *
 	 * @var array|null
@@ -60,7 +67,14 @@ class Guild {
 	public $default_message_notifications;
 
 	/**
-	 * id of embedded channel
+	 * the description for the guild
+	 *
+	 * @var string
+	 */
+	public $description;
+
+	/**
+	 * if not null, the channel id that the widget will generate an invite to
 	 *
 	 * @var int|null
 	 */
@@ -111,7 +125,7 @@ class Guild {
 	/**
 	 * when this guild was joined at
 	 *
-	 * @var int|null
+	 * @var \DateTimeImmutable|null
 	 */
 	public $joined_at;
 
@@ -121,6 +135,20 @@ class Guild {
 	 * @var bool|null
 	 */
 	public $large = false;
+
+	/**
+	 * the maximum amount of members for the guild
+	 *
+	 * @var int
+	 */
+	public $max_members;
+
+	/**
+	 * the maximum amount of presences for the guild (the default value, currently 5000, is in effect when null is returned)
+	 *
+	 * @var int
+	 */
+	public $max_presences;
 
 	/**
 	 * total number of members in this guild
@@ -212,6 +240,13 @@ class Guild {
 	 * @var bool|null
 	 */
 	public $unavailable = false;
+
+	/**
+	 * the vanity url code for the guild
+	 *
+	 * @var string
+	 */
+	public $vanity_url_code;
 
 	/**
 	 * verification level required for the guild

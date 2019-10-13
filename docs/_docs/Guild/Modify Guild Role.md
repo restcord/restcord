@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Role
 category: Guild
-order: 22
+order: 23
 ---
 
 # `modifyGuildRole`
@@ -12,7 +12,7 @@ $client->guild->modifyGuildRole($parameters);
 
 ## Description
 
-Modify a guild role. Requires the &#039;MANAGE_ROLES&#039; permission.  Fires a Guild Role Update Gateway event.
+Modify a guild role. Requires the MANAGE_ROLES permission.  Fires a Guild Role Update Gateway event.
 
 ## Parameters
 
@@ -24,8 +24,8 @@ role.id | string | true | *null*
 name | string | false | *null*
 permissions | integer | false | *null*
 color | integer | false | *null*
-hoist | bool | false | *null*
-mentionable | bool | false | *null*
+hoist | boolean | false | *null*
+mentionable | boolean | false | *null*
 
 ## Response
 

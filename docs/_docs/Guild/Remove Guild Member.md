@@ -12,7 +12,7 @@ $client->guild->removeGuildMember($parameters);
 
 ## Description
 
-Remove a member from a guild. Requires &#039;KICK_MEMBERS&#039; permission.  Fires a Guild Member Remove Gateway event.
+Remove a member from a guild. Requires KICK_MEMBERS permission.  Fires a Guild Member Remove Gateway event.
 
 ## Parameters
 

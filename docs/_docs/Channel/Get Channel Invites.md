@@ -12,7 +12,7 @@ $client->channel->getChannelInvites($parameters);
 
 ## Description
 
-Only usable for guild channels. Requires the &#039;MANAGE_CHANNELS&#039; permission.
+Only usable for guild channels. Requires the MANAGE_CHANNELS permission.
 
 ## Parameters
 

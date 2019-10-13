@@ -19,7 +19,7 @@ namespace RestCord\Model\Guild;
 class GuildMember {
 
 	/**
-	 * if the user is deafened
+	 * whether the user is deafened in voice channels
 	 *
 	 * @var bool
 	 */
@@ -28,12 +28,12 @@ class GuildMember {
 	/**
 	 * when the user joined the guild
 	 *
-	 * @var int
+	 * @var \DateTimeImmutable
 	 */
 	public $joined_at;
 
 	/**
-	 * if the user is muted
+	 * whether the user is muted in voice channels
 	 *
 	 * @var bool
 	 */
@@ -54,7 +54,7 @@ class GuildMember {
 	public $roles;
 
 	/**
-	 * user object
+	 * the user this guild member represents
 	 *
 	 * @var \RestCord\Model\User\User
 	 */
