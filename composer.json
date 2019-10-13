@@ -6,7 +6,7 @@
         "php":                        "^5.6|^7.0",
         "guzzlehttp/guzzle":          "^6.3",
         "guzzlehttp/guzzle-services": "^1.0",
-        "monolog/monolog":            "^1.22",
+        "monolog/monolog":            "^1.22|^2.0",
         "netresearch/jsonmapper":     "^1.4",
         "symfony/options-resolver":   "^2.6|^3.0|^4.0"
     },
