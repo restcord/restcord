@@ -145,7 +145,7 @@ class DiscordClient
                 'logger'            => new Logger('Logger'),
                 'rateLimitProvider' => new MemoryRateLimitProvider(),
                 'throwOnRatelimit'  => false,
-                'apiUrl'            => "https://discordapp.com/api/v{$currentVersion}/",
+                'apiUrl'            => "https://discord.com/api/v{$currentVersion}/",
                 'tokenType'         => 'Bot',
                 'cacheDir'          => __DIR__.'/../../../cache/',
                 'guzzleOptions'     => [],
