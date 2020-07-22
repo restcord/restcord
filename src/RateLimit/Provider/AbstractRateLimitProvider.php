@@ -32,9 +32,10 @@ abstract class AbstractRateLimitProvider
      */
     public function getRoute(RequestInterface $request)
     {
-        $route = $request->getUri()->__toString();
-        if ($request->getMethod() === 'DELETE' && strpos($request->getUri(), 'messages') !== false) {
-            $route = 'DELETE-'.$request->getUri();
+        $route = (string)$request->getUri();
+
+        if ($request->getMethod() === 'DELETE' && strpos($route, 'messages') !== false) {
+            $route = 'DELETE-' . $route;
         }
 
         return $route;
