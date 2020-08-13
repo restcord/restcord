@@ -104,10 +104,10 @@ class DiscordClient
                 'User-Agent'    => "DiscordBot (https://github.com/aequasi/php-restcord, {$this->getVersion()})",
                 'Content-Type'  => 'application/json',
             ],
-            'http_errors' => isset($this->options['httpErrors']) ? $this->options['httpErrors'] : true,
+            'http_errors' => true,
             'handler'     => $stack,
         ];
-        $this->options['guzzleOptions'] = array_merge($this->options['guzzleOptions'], $defaultGuzzleOptions);
+        $this->options['guzzleOptions'] = array_merge($defaultGuzzleOptions, $this->options['guzzleOptions']);
 
         $client = new Client($this->options['guzzleOptions']);
 
