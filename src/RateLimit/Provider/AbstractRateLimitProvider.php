@@ -109,12 +109,14 @@ abstract class AbstractRateLimitProvider
      */
     protected function stripMinorParameters(string $url) : string
     {
-        $matches = null;
+        $matches = [];
         if (
-            preg_match('/^(https:\/\/discord\.com\/api\/v6\/channels\/\d*).*?$/', $url, $matches) ||
-            preg_match('/^(https:\/\/discord\.com\/api\/v6\/guilds\/\d*).*?$/', $url, $rmatchesesult) ||
-            preg_match('/^(https:\/\/discord\.com\/api\/v6\/users\/@me\/guilds\/\d*).*?$/', $url, $matches) || 
-            preg_match('/^(https:\/\/discord\.com\/api\/v6\/webhooks\/\d*).*?$/', $url, $matches)
+            (
+                preg_match('/^(https:\/\/discord\.com\/api\/v6\/channels\/\d*).*?$/', $url, $matches) === 1 ||
+                preg_match('/^(https:\/\/discord\.com\/api\/v6\/guilds\/\d*).*?$/', $url, $matches) === 1 ||
+                preg_match('/^(https:\/\/discord\.com\/api\/v6\/users\/@me\/guilds\/\d*).*?$/', $url, $matches) === 1 || 
+                preg_match('/^(https:\/\/discord\.com\/api\/v6\/webhooks\/\d*).*?$/', $url, $matches) === 1
+            ) && count($matches) === 2
         ) {
             $url = $matches[1] . preg_replace('/[0-9]+/', '', substr($url, strlen($matches[1])));
         }
