@@ -66,14 +66,14 @@ class RateLimiter
      * @param callable $handler
      *
      * @return \Closure
+     * @throws RatelimitException
      */
     public function __invoke(callable $handler)
     {
         return function (RequestInterface $request, $options) use ($handler) {
-            // Amount of time to delay the request by
-            $delay = $this->getDelay($request);
-
-            if ($delay > 0) {
+            /* Amount of time to delay the request by */
+            while(($delay = $this->getDelay($request)) > 0) {
+                /* Throw an exception if configured to do so, this will NOT delay the request and raise an Exception */
                 if ($this->options['throwOnRatelimit']) {
                     throw new RatelimitException($request->getMethod().' '.$request->getUri());
                 }
@@ -82,11 +82,13 @@ class RateLimiter
                 $this->delay($delay);
             }
 
-            // Sets the time when this request is beind made,
-            // which allows calculation of allowance later on.
+            /* 
+             * Sets the time when this request is beind made,
+             * which allows calculation of allowance later on.
+             */
             $this->provider->setLastRequestTime($request);
 
-            // Set the allowance when the response was received
+            /* Set the allowance when the response was received */
             return $handler($request, $options)->then($this->setAllowance($request));
         };
     }
@@ -95,7 +97,7 @@ class RateLimiter
      * Logs a request which is being delayed by a specified amount of time.
      *
      * @param RequestInterface $request request being delayed.
-     * @param float            $delay   The amount of time that the request is delayed for.
+     * @param float             $delay   The amount of time that the request is delayed for.
      */
     protected function log(RequestInterface $request, $delay)
     {
@@ -112,7 +114,7 @@ class RateLimiter
      * Formats a request and delay time as a log message.
      *
      * @param RequestInterface $request The request being logged.
-     * @param float            $delay   The amount of time that the request is delayed for.
+     * @param float             $delay   The amount of time that the request is delayed for.
      *
      * @return string Log message
      */
