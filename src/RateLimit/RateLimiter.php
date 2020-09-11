@@ -97,7 +97,7 @@ class RateLimiter
      * Logs a request which is being delayed by a specified amount of time.
      *
      * @param RequestInterface $request request being delayed.
-     * @param float             $delay   The amount of time that the request is delayed for.
+     * @param float            $delay   The amount of time that the request is delayed for.
      */
     protected function log(RequestInterface $request, $delay)
     {
