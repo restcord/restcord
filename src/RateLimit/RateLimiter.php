@@ -114,7 +114,7 @@ class RateLimiter
      * Formats a request and delay time as a log message.
      *
      * @param RequestInterface $request The request being logged.
-     * @param float             $delay   The amount of time that the request is delayed for.
+     * @param float            $delay   The amount of time that the request is delayed for.
      *
      * @return string Log message
      */
