@@ -88,7 +88,7 @@ class RateLimiter
              */
             $this->provider->setLastRequestTime($request);
 
-            /* Set the allowance when the response was received */
+            // Set the allowance when the response was received
             return $handler($request, $options)->then($this->setAllowance($request));
         };
     }
