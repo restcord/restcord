@@ -82,10 +82,8 @@ class RateLimiter
                 $this->delay($delay);
             }
 
-            /* 
-             * Sets the time when this request is beind made,
-             * which allows calculation of allowance later on.
-             */
+            // Sets the time when this request is beind made,
+            // which allows calculation of allowance later on.
             $this->provider->setLastRequestTime($request);
 
             // Set the allowance when the response was received
