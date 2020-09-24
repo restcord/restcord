@@ -66,14 +66,14 @@ class RateLimiter
      * @param callable $handler
      *
      * @return \Closure
+     * @throws RatelimitException
      */
     public function __invoke(callable $handler)
     {
         return function (RequestInterface $request, $options) use ($handler) {
             // Amount of time to delay the request by
-            $delay = $this->getDelay($request);
-
-            if ($delay > 0) {
+            while(($delay = $this->getDelay($request)) > 0) {
+                // Throw an exception if configured to do so, this will NOT delay the request and raise an Exception
                 if ($this->options['throwOnRatelimit']) {
                     throw new RatelimitException($request->getMethod().' '.$request->getUri());
                 }
@@ -216,3 +216,4 @@ class RateLimiter
         };
     }
 }
+
