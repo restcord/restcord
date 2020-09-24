@@ -27,10 +27,17 @@ class GuildMember {
 
 	/**
 	 * when the user joined the guild
-	 *
-	 * @var \DateTimeImmutable
-	 */
+     *
+     * @var \DateTimeImmutable
+     */
 	public $joined_at;
+
+	/**
+	 * when the user started boosting the guild
+	 *
+	 * @var \DateTimeImmutable|null
+	 */
+	public $premium_since;
 
 	/**
 	 * whether the user is muted in voice channels
