@@ -80,6 +80,12 @@
                         "type": "snowflake",
                         "location": "uri",
                         "required": true
+                    },
+                    "with_counts": {
+                        "location": "query",
+                        "type": "integer",
+                        "description": "when true, will return approximate member and presence counts for the guild",
+                        "default": false
                     }
                 },
                 "parametersArray": false
