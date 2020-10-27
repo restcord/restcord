@@ -83,7 +83,7 @@
                     },
                     "with_counts": {
                         "location": "query",
-                        "type": "integer",
+                        "type": "boolean",
                         "description": "when true, will return approximate member and presence counts for the guild",
                         "default": false
                     }
