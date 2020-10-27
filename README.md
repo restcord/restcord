@@ -15,7 +15,7 @@ Documentation can be found [here](https://www.restcord.com/).
 
 ### Wrappers
 
-* [Laravel](https://github.com/more-cores/laravel-restcord)
+* [Laravel](https://gitlab.com/more-cores/laravel-restcord)
 
 
 [1]: https://github.com/teamreflex/DiscordPHP
