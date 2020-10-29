@@ -3210,6 +3210,11 @@
                         "type": "ISO8601 timestamp",
                         "description": "when the user joined the guild"
                     },
+                    "premium_since?": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "when the user started boosting the guild"
+                    },
                     "deaf": {
                         "location": "json",
                         "type": "boolean",
