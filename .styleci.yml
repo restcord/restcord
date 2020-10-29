@@ -10,7 +10,6 @@ enabled:
   - newline_after_open_tag
 
 disabled:
-  - phpdoc_to_comment
   - unalign_equals
   - no_empty_phpdoc
 

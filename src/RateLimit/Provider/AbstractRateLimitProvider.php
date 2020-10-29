@@ -32,12 +32,15 @@ abstract class AbstractRateLimitProvider
      */
     public function getRoute(RequestInterface $request)
     {
-        $route = $request->getUri()->__toString();
-        if ($request->getMethod() === 'DELETE' && strpos($request->getUri(), 'messages') !== false) {
-            $route = 'DELETE-'.$request->getUri();
+        $route = (string)$request->getUri();
+
+        if ($request->getMethod() === 'DELETE' && strpos($route, 'messages') !== false) {
+            $route = 'DELETE-' . $route;
         }
 
-        return $route;
+        $stripped = $this->stripMinorParameters($route);
+
+        return $stripped;
     }
 
     /**
@@ -94,4 +97,31 @@ abstract class AbstractRateLimitProvider
      * @param ResponseInterface $response The resolved response.
      */
     abstract public function setRequestAllowance(RequestInterface $request, ResponseInterface $response);
+
+    /**
+     * Method to match out major parameters of the route and
+     * remove minor parameters / numbers. This has to be done
+     * to ensure correct rate limiting according to: 
+     * https://discord.com/developers/docs/topics/rate-limits
+     *
+     * @param string $url
+     * @return string
+     */
+    protected function stripMinorParameters(string $url) : string
+    {
+        $matches = [];
+        if (
+            (
+                preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/channels\/\d*).*?$/', $url, $matches) === 1 ||
+                preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/guilds\/\d*).*?$/', $url, $matches) === 1 ||
+                preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/users\/@me\/guilds\/\d*).*?$/', $url, $matches) === 1 || 
+                preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/webhooks\/\d*).*?$/', $url, $matches) === 1
+            ) && count($matches) === 2
+        ) {
+            $url = $matches[1] . preg_replace('/[0-9]+/', '', substr($url, strlen($matches[1])));
+        }
+
+        return $url;
+    }
 }
+
