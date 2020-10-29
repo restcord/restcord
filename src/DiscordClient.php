@@ -378,7 +378,12 @@ class DiscordClient
             $parameterConfig['type'] = 'boolean';
         }
 
-        if ($parameterConfig['type'] === 'file contents') {
+        $stringTypes = [
+            'avatar data',
+            'avatar data string',
+            'file contents',
+        ];
+        if (in_array($parameterConfig['type'], $stringTypes, true)) {
             $parameterConfig['type'] = 'string';
         }
 
