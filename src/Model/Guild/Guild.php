@@ -228,6 +228,20 @@ class Guild {
 	public $splash;
 
 	/**
+	 * approximent number of members
+	 *
+	 * @var int|null
+	 */
+	public $approximate_member_count;
+
+	/**
+	 * approximent number of people currently present
+	 *
+	 * @var int|null
+	 */
+	public $approximate_presence_count;
+
+	/**
 	 * the id of the channel to which system messages are sent
 	 *
 	 * @var int
