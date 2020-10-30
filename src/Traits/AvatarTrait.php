@@ -24,13 +24,21 @@ trait AvatarTrait
 {
     public function getAvatar($format = 'webp', $size = null)
     {
-        if (strpos($this->avatar, 'a_') === 0) {
-            $format = 'gif';
-        }
+        // Default User Avatar
+        $url = Constants::CDN_URL.'embed/avatars/'.($this->discriminator % 5).'.png';
 
-        $url = Constants::AVATAR_URL.$this->id.'/'.$this->avatar.'.'.$format;
-        if ($size !== null) {
-            $url .= '?size='.$size;
+        // Check if User has Avatar
+        if ($this->avatar)
+        {
+            if (strpos($this->avatar, 'a_') === 0) {
+                $format = 'gif';
+            }
+
+            // User Avatar
+            $url = Constants::AVATAR_URL.$this->id.'/'.$this->avatar.'.'.$format;
+            if ($size !== null) {
+                $url .= '?size='.$size;
+            }
         }
 
         return $url;
