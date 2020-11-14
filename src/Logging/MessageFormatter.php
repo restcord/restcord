@@ -45,9 +45,9 @@ class MessageFormatter extends \GuzzleHttp\MessageFormatter
      */
     public function format(
         RequestInterface $request,
-        ResponseInterface $response = null,
-        \Exception $error = null
-    ) {
+        ?ResponseInterface $response = null,
+        ?\Throwable $error = null
+    ): string {
         $template = parent::format($request, $response, $error);
 
         return str_replace($this->token, '<TOKEN>', $template);
