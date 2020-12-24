@@ -3,12 +3,12 @@
     "description":  "REST Library for the Discord API",
     "type":         "library",
     "require":      {
-        "php":                        "^5.6|^7.0",
+        "php":                        "^5.6|^7.0|^8.0",
         "guzzlehttp/guzzle":          "^6.3",
         "guzzlehttp/guzzle-services": "^1.0",
         "monolog/monolog":            "^1.22|^2.0",
         "netresearch/jsonmapper":     "^1.4",
-        "symfony/options-resolver":   "^2.6|^3.0|^4.0|^5.0"
+        "symfony/options-resolver":   "^2.6|^3.0"
     },
     "autoload":     {
         "psr-4": {
@@ -29,11 +29,11 @@
     ],
     "require-dev":  {
         "beberlei/assert":          "^2.7",
-        "gossi/php-code-generator": "^0.4.1",
+        "gossi/php-code-generator": "^0.5.0",
         "symfony/console":          "^2.6|^3.0|^4.0",
         "symfony/process":          "^2.6|^3.0|^4.0",
         "symfony/var-dumper":       "^2.6|^3.0|^4.0",
         "twig/twig":                "^1.20|^2.0",
-        "phpunit/phpunit":          "^6.0|^5.0"
+        "phpunit/phpunit":          "^8.0"
     }
 }

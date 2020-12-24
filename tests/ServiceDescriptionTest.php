@@ -34,7 +34,7 @@ class ServiceDescriptionTest extends TestCase
      */
     public $client;
 
-    public function setUp()
+    public function setUp():void
     {
         $this->description = json_decode(
             file_get_contents(__DIR__.'/../src/Resources/service_description-v6.json'),
