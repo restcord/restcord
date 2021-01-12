@@ -32,10 +32,10 @@ abstract class AbstractRateLimitProvider
      */
     public function getRoute(RequestInterface $request)
     {
-        $route = (string)$request->getUri();
+        $route = (string) $request->getUri();
 
         if ($request->getMethod() === 'DELETE' && strpos($route, 'messages') !== false) {
-            $route = 'DELETE-' . $route;
+            $route = 'DELETE-'.$route;
         }
 
         $stripped = $this->stripMinorParameters($route);
@@ -101,27 +101,27 @@ abstract class AbstractRateLimitProvider
     /**
      * Method to match out major parameters of the route and
      * remove minor parameters / numbers. This has to be done
-     * to ensure correct rate limiting according to: 
-     * https://discord.com/developers/docs/topics/rate-limits
+     * to ensure correct rate limiting according to:
+     * https://discord.com/developers/docs/topics/rate-limits.
      *
      * @param string $url
+     *
      * @return string
      */
-    protected function stripMinorParameters(string $url) : string
+    protected function stripMinorParameters(string $url): string
     {
         $matches = [];
         if (
             (
                 preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/channels\/\d*).*?$/', $url, $matches) === 1 ||
                 preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/guilds\/\d*).*?$/', $url, $matches) === 1 ||
-                preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/users\/@me\/guilds\/\d*).*?$/', $url, $matches) === 1 || 
+                preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/users\/@me\/guilds\/\d*).*?$/', $url, $matches) === 1 ||
                 preg_match('/^(https:\/\/discord\.com\/api\/v\d+\/webhooks\/\d*).*?$/', $url, $matches) === 1
             ) && count($matches) === 2
         ) {
-            $url = $matches[1] . preg_replace('/[0-9]+/', '', substr($url, strlen($matches[1])));
+            $url = $matches[1].preg_replace('/[0-9]+/', '', substr($url, strlen($matches[1])));
         }
 
         return $url;
     }
 }
-
