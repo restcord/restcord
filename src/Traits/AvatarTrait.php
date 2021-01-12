@@ -28,8 +28,7 @@ trait AvatarTrait
         $url = Constants::CDN_URL.'embed/avatars/'.($this->discriminator % 5).'.png';
 
         // Check if User has Avatar
-        if ($this->avatar)
-        {
+        if ($this->avatar) {
             if (strpos($this->avatar, 'a_') === 0) {
                 $format = 'gif';
             }
