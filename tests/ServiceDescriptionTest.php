@@ -33,7 +33,7 @@ class ServiceDescriptionTest extends TestCase
      * @var DiscordClient
      */
     public $client;
-
+  
     public function setUp(): void
     {
         $this->description = json_decode(
