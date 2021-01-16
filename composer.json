@@ -4,7 +4,7 @@
     "type":         "library",
     "require":      {
         "php":                        "^7.3|^8.0",
-        "guzzlehttp/guzzle":          "^6.3|^7.0",
+        "guzzlehttp/guzzle":          "^7.0",
         "guzzlehttp/guzzle-services": "^1.0",
         "monolog/monolog":            "^1.22|^2.0",
         "netresearch/jsonmapper":     "^1.4",
