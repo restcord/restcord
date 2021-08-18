@@ -23,4 +23,5 @@ class Constants
     const CDN_URL    = 'https://cdn.discordapp.com/';
 
     const AVATAR_URL = self::CDN_URL.'avatars/';
+    const ICON_URL = self::CDN_URL.'icons/';
 }
