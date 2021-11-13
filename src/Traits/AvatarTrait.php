@@ -25,7 +25,7 @@ trait AvatarTrait
     public function getAvatar($format = 'webp', $size = null)
     {
         // Default User Avatar
-        $url = Constants::CDN_URL.'embed/avatars/'.($this->discriminator % 5).'.png';
+        $url = Constants::DEFAULT_AVATAR_URL.($this->discriminator % 5).'.png';
 
         // Check if User has Avatar
         if ($this->avatar) {

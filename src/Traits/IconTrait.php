@@ -24,7 +24,7 @@ trait IconTrait
 {
     public function getIcon($format = 'webp', $size = null)
     {
-        $url = Constants::AVATAR_URL.$this->id.'/'.$this->icon.'.'.$format;
+        $url = Constants::GUILD_ICON_URL.$this->id.'/'.$this->icon.'.'.$format;
         if ($size !== null) {
             $url .= '?size='.$size;
         }
