@@ -319,4 +319,52 @@ interface Guild {
 	 * @return array Returns the nick
 	 */
 	public function updateNick(array $options);
+
+    /**
+     * @see https://discord.com/developers/docs/resources/guild-scheduled-event#list-scheduled-events-for-guild
+     *
+     * @param array $options ['guild.id' => 'snowflake', 'with_user_count?' => 'boolean']
+     * @return array Returns a list of guild scheduled event objects for the given guild.
+     */
+    public function listGuildScheduledEvents(array $options);
+
+    /**
+     * @see https://discord.com/developers/docs/resources/guild-scheduled-event#create-guild-scheduled-event
+     *
+     * @param array $options ['guild.id' => 'snowflake', 'channel_id' => 'snowflake', 'entity_metadata' => 'entity metadata', 'name' => 'string', 'privacy_level' => 'privacy level', 'scheduled_start_time' => 'ISO8601 timestamp', 'scheduled_end_time' => 'ISO8601 timestamp', 'description' => 'string', 'entity_type' => 'entity type']
+     * @return array Create a guild scheduled event in the guild. Returns a guild scheduled event object on success.
+     */
+    public function createGuildScheduledEvent(array $options);
+
+    /**
+     * @see https://discord.com/developers/docs/resources/guild-scheduled-event#get-guild-scheduled-event
+     *
+     * @param array $options ['guild.id' => 'snowflake', 'guild_scheduled_event.id' => 'snowflake', 'with_user_count?' => 'boolean']
+     * @return array Get a guild scheduled event. Returns a guild scheduled event object on success.
+     */
+    public function getGuildScheduledEvent(array $options);
+
+    /**
+     * @see https://discord.com/developers/docs/resources/guild-scheduled-event#modify-guild-scheduled-event
+     *
+     * @param array $options ['guild.id' => 'snowflake', 'guild_scheduled_event.id' => 'snowflake', 'channel_id' => 'snowflake', 'entity_metadata' => 'entity metadata', 'name' => 'string', 'privacy_level' => 'privacy level', 'scheduled_start_time' => 'ISO8601 timestamp', 'scheduled_end_time' => 'ISO8601 timestamp', 'description' => 'string', 'entity_type' => 'entity type', 'status' => 'event status']
+     * @return array Modify a guild scheduled event. Returns the modified guild scheduled event object on success.
+     */
+    public function modifyGuildScheduledEvent(array $options);
+
+    /**
+     * @see https://discord.com/developers/docs/resources/guild-scheduled-event#delete-guild-scheduled-event
+     *
+     * @param array $options ['guild.id' => 'snowflake', 'guild_scheduled_event.id' => 'snowflake']
+     * @return array Delete a guild scheduled event. Returns a 204 on success.
+     */
+    public function deleteGuildScheduledEvent(array $options);
+
+    /**
+     * @see https://discord.com/developers/docs/resources/guild-scheduled-event#get-guild-scheduled-event-users
+     *
+     * @param array $options ['limit' => 'snowflake', 'guild_scheduled_event.id' => 'snowflake', 'limit' => 'integer', 'with_member' => 'boolean', 'before' => 'snowflake', 'after' => 'snowflake']
+     * @return array Get a list of guild scheduled event users subscribed to a guild scheduled event. Returns a list of guild scheduled event user objects on success. Guild member data, if it exists, is included if the with_member query parameter is set.
+     */
+    public function getGuildScheduledEventUsers(array $options);
 }
