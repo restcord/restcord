@@ -1,18 +1,18 @@
 ---
-title: Bulk Delete Messages (Deprecated)
+title: Follow News Channel
 category: Channel
-order: 14
+order: 21
 ---
 
-# `bulkDeleteMessages`
+# `followNewsChannel`
 
 ```php
-$client->channel->bulkDeleteMessages($parameters);
+$client->channel->followNewsChannel($parameters);
 ```
 
 ## Description
 
-Same as above, but this endpoint is deprecated.
+followed channel
 
 ## Parameters
 
@@ -20,6 +20,7 @@ Same as above, but this endpoint is deprecated.
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | true | *null*
+webhook_channel_id | snowflake | false | *null*
 
 ## Response
 

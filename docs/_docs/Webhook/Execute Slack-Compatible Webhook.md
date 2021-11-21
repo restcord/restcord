@@ -12,7 +12,7 @@ $client->webhook->executeSlackCompatibleWebhook($parameters);
 
 ## Description
 
-Refer to Slack&#039;s documentation for more information. We do not support Slack&#039;s channel, icon_emoji, mrkdwn, or mrkdwn_in properties.
+Slack&#039;s documentation
 
 ## Parameters
 
@@ -21,6 +21,7 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 webhook.id | snowflake | true | *null*
 webhook.token | string | true | *null*
+thread_id | snowflake | false | *null*
 wait | boolean | false | *null*
 
 ## Response

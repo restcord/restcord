@@ -35,7 +35,7 @@ class Connection {
 	/**
 	 * if passed, modifies the user's avatar
 	 *
-	 * @var avatar data
+	 * @var image data
 	 */
 	public $avatar;
 
@@ -68,11 +68,11 @@ class Connection {
 	public $integrations;
 
 	/**
-	 * max number of guilds to return (1-100)
+	 * max number of guilds to return (1-200)
 	 *
 	 * @var int
 	 */
-	public $limit = 100;
+	public $limit = 200;
 
 	/**
 	 * the username of the connection account
@@ -117,7 +117,7 @@ class Connection {
 	public $type;
 
 	/**
-	 * users username, if changed may cause the users discriminator to be randomized.
+	 * user's username, if changed may cause the user's discriminator to be randomized.
 	 *
 	 * @var string
 	 */

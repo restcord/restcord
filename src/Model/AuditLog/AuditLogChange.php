@@ -19,25 +19,32 @@ namespace RestCord\Model\AuditLog;
 class AuditLogChange {
 
 	/**
-	 * type of audit log change key
+	 * the type of audit log event
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $key;
+	public $action_type;
 
 	/**
-	 * new value of the key
+	 * filter the log before a certain entry id
 	 *
-	 * @var mixed|null
+	 * @var int
 	 */
-	public $new_value;
+	public $before;
 
 	/**
-	 * old value of the key
+	 * how many entries are returned (default 50, minimum 1, maximum 100)
 	 *
-	 * @var mixed|null
+	 * @var int
 	 */
-	public $old_value;
+	public $limit;
+
+	/**
+	 * filter the log for actions made by a user
+	 *
+	 * @var int
+	 */
+	public $user_id;
 
 	/**
 	 * @param array $content

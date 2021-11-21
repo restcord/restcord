@@ -1,7 +1,7 @@
 ---
 title: Create Guild Channel
 category: Guild
-order: 6
+order: 7
 ---
 
 # `createGuildChannel`
@@ -12,7 +12,7 @@ $client->guild->createGuildChannel($parameters);
 
 ## Description
 
-Create a new channel object for the guild. Requires the MANAGE_CHANNELS permission.  Fires a Channel Create Gateway event.
+channel
 
 ## Parameters
 
@@ -33,8 +33,5 @@ nsfw | boolean | false | *null*
 
 ## Response
 
-Returns the new channel object on success.
+Possibly No Response
 
-Can Return:
-
-* channel

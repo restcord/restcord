@@ -1,7 +1,7 @@
 ---
 title: Get Channel Invites
 category: Channel
-order: 16
+order: 18
 ---
 
 # `getChannelInvites`
@@ -12,7 +12,7 @@ $client->channel->getChannelInvites($parameters);
 
 ## Description
 
-Only usable for guild channels. Requires the MANAGE_CHANNELS permission.
+invite
 
 ## Parameters
 
@@ -23,9 +23,5 @@ channel.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of invite objects (with invite metadata) for the channel.
+Possibly No Response
 
-Can Return:
-
-* invite
-* invite metadata

@@ -1,7 +1,7 @@
 ---
 title: Get Guild Integrations
 category: Guild
-order: 29
+order: 33
 ---
 
 # `getGuildIntegrations`
@@ -12,7 +12,7 @@ $client->guild->getGuildIntegrations($parameters);
 
 ## Description
 
-Requires the MANAGE_GUILD permission.
+integration
 
 ## Parameters
 
@@ -23,8 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of integration objects for the guild.
+Possibly No Response
 
-Can Return:
-
-* integration

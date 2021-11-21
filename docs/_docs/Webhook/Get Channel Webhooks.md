@@ -12,7 +12,7 @@ $client->webhook->getChannelWebhooks($parameters);
 
 ## Description
 
-Requires the MANAGE_WEBHOOKS permission.
+webhook
 
 ## Parameters
 
@@ -23,8 +23,5 @@ channel.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of channel webhook objects.
+Possibly No Response
 
-Can Return:
-
-* webhook

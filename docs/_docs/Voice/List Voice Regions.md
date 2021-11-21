@@ -12,7 +12,7 @@ $client->voice->listVoiceRegions($parameters);
 
 ## Description
 
-
+voice region
 
 ## Parameters
 
@@ -20,8 +20,5 @@ No Parameters
 
 ## Response
 
-Returns an array of voice region objects that can be used when creating servers.
+Possibly No Response
 
-Can Return:
-
-* voice region

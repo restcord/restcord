@@ -1,7 +1,7 @@
 ---
 title: Get Guild Roles
 category: Guild
-order: 20
+order: 24
 ---
 
 # `getGuildRoles`
@@ -12,7 +12,7 @@ $client->guild->getGuildRoles($parameters);
 
 ## Description
 
-
+role
 
 ## Parameters
 
@@ -23,8 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of role objects for the guild.
+Possibly No Response
 
-Can Return:
-
-* role

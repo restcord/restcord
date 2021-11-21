@@ -1,7 +1,7 @@
 ---
 title: Get Guild Ban
 category: Guild
-order: 17
+order: 21
 ---
 
 # `getGuildBan`
@@ -12,7 +12,7 @@ $client->guild->getGuildBan($parameters);
 
 ## Description
 
-Requires the BAN_MEMBERS permission.
+ban
 
 ## Parameters
 
@@ -24,8 +24,5 @@ user.id | snowflake | true | *null*
 
 ## Response
 
-Returns a ban object for the given user or a 404 not found if the ban cannot be found.
+Possibly No Response
 
-Can Return:
-
-* ban

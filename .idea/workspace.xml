@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8f07fd94-2752-41f0-8eab-ab77a0e158fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/ThreadsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Audit-log/Get Guild Audit Log.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Audit-log/Get Guild Audit Log.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Add Pinned Channel Message.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Bulk Delete Messages (deprecated).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Create Channel Invite.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Create Channel Invite.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Create Message.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Create Message.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Create Reaction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Create Reaction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Delete All Reactions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Delete All Reactions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Delete Channel Permission.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Delete Channel Permission.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Delete Message.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Delete Message.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Delete Own Reaction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Delete Own Reaction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Delete Pinned Channel Message.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Delete User Reaction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Delete User Reaction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Delete or Close Channel.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Delete or Close Channel.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Edit Channel Permissions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Edit Channel Permissions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Edit Message.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Edit Message.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Get Channel Invites.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Get Channel Invites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Get Channel Message.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Get Channel Message.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Get Channel Messages.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Get Channel Messages.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Get Channel.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Get Channel.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Get Pinned Messages.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Get Pinned Messages.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Get Reactions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Get Reactions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Group DM Add Recipient.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Group DM Add Recipient.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Group DM Remove Recipient.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Group DM Remove Recipient.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Modify Channel.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Modify Channel.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Channel/Trigger Typing Indicator.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Channel/Trigger Typing Indicator.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Emoji/Create Guild Emoji.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Emoji/Create Guild Emoji.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Emoji/Delete Guild Emoji.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Emoji/Delete Guild Emoji.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Emoji/Get Guild Emoji.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Emoji/Get Guild Emoji.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Emoji/List Guild Emojis.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Emoji/List Guild Emojis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Emoji/Modify Guild Emoji.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Emoji/Modify Guild Emoji.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Gateway/Get Gateway Bot.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Gateway/Get Gateway Bot.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Gateway/Get Gateway.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Gateway/Get Gateway.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Add Guild Member Role.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Add Guild Member Role.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Add Guild Member.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Add Guild Member.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Begin Guild Prune.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Begin Guild Prune.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild Ban.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild Ban.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild Channel.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild Channel.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild Integration.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild Role.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild Role.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Create Guild.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Delete Guild Integration.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Delete Guild Integration.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Delete Guild Role.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Delete Guild Role.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Delete Guild.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Delete Guild.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Ban.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Ban.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Bans.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Bans.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Channels.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Channels.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Embed.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Integrations.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Integrations.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Invites.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Invites.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Member.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Member.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Prune Count.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Prune Count.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Roles.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Roles.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Vanity URL.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Vanity URL.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Voice Regions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Voice Regions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Widget Image.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild Widget Image.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Get Guild.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/List Guild Members.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/List Guild Members.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Modify Current User Nick.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Modify Current User Nick.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Channel Positions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Channel Positions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Embed.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Integration.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Member.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Member.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Role Positions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Role Positions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Role.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild Role.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Modify Guild.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Remove Guild Ban.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Remove Guild Ban.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Remove Guild Member Role.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Remove Guild Member Role.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Remove Guild Member.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Remove Guild Member.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Sync Guild Integration.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Guild/Update Current Users' Nickname.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Guild/Update Current Users' Nickname.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Invite/Delete Invite.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Invite/Delete Invite.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Invite/Get Invite.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Invite/Get Invite.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Oauth2/Get Current Application Information.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Create DM.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/User/Create DM.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Create Group DM.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/User/Create Group DM.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Get Current User Guilds.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/User/Get Current User Guilds.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Get Current User.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/User/Get Current User.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Get User Connections.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/User/Get User Connections.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Get User DMs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Get User.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/User/Get User.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Leave Guild.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/User/Leave Guild.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/User/Modify Current User.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/User/Modify Current User.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Voice/List Voice Regions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Voice/List Voice Regions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Create Webhook.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Create Webhook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Delete Webhook with Token.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Delete Webhook with Token.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Delete Webhook.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Delete Webhook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Execute GitHub-Compatible Webhook.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Execute GitHub-Compatible Webhook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Execute Slack-Compatible Webhook.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Execute Slack-Compatible Webhook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Execute Webhook.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Execute Webhook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Get Channel Webhooks.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Get Channel Webhooks.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Get Guild Webhooks.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Get Guild Webhooks.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Get Webhook with Token.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Get Webhook with Token.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Get Webhook.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Get Webhook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Modify Webhook with Token.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Modify Webhook with Token.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_docs/Webhook/Modify Webhook.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_docs/Webhook/Modify Webhook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiscordClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiscordClient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/AuditLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/AuditLog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Channel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Emoji.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Emoji.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Gateway.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Gateway.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Guild.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Guild.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Invite.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Invite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Oauth2.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Oauth2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Permissions.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Permissions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Voice.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Voice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Webhook.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Webhook.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AuditLog/AuditLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AuditLog/AuditLog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AuditLog/AuditLogChange.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AuditLog/AuditLogChange.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AuditLog/AuditLogEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AuditLog/AuditLogEntry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Channel/Attachment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Channel/Attachment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Channel/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Channel/Channel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Channel/Embed.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Channel/Embed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Channel/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Channel/Message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Channel/Overwrite.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Channel/Overwrite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Channel/Reaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Channel/Reaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Emoji/Emoji.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Emoji/Emoji.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Gateway/SessionStartLimit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Gateway/SessionStartLimit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Guild/Ban.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Guild/Ban.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Guild/Guild.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Guild/Guild.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Guild/GuildEmbed.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Guild/GuildMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Guild/GuildMember.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Guild/Integration.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Guild/Integration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Guild/IntegrationAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Guild/IntegrationAccount.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Guild/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Guild/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Guild/UnavailableGuild.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Guild/UnavailableGuild.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Invite/Invite.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Invite/Invite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Invite/InviteMetadata.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Invite/InviteMetadata.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Permissions/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Permissions/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/User/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User/Connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/User/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Voice/VoiceRegion.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Voice/VoiceRegion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Voice/VoiceState.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Voice/VoiceState.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Webhook/Webhook.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Webhook/Webhook.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OverriddenGuzzleClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/OverriddenGuzzleClient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/service_description-v6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ServiceDescriptionTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ServiceDescriptionTest.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/netresearch/jsonmapper" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/uri-template" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle-services" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/command" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/phootwork/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/phootwork/lang" />
+      <path value="$PROJECT_DIR$/vendor/phootwork/file" />
+      <path value="$PROJECT_DIR$/vendor/phootwork/collection" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/beberlei/assert" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/gossi/php-code-generator" />
+      <path value="$PROJECT_DIR$/vendor/gossi/docblock" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="21EB30kQQaOSZyXal7eZBR6St04" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Override/Channel" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\restcord\src\Override\Channel" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\restcord\src\Override" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8f07fd94-2752-41f0-8eab-ab77a0e158fd" name="Default Changelist" comment="" />
+      <created>1637496163839</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1637496163839</updated>
+      <workItem from="1637496165000" duration="5532000" />
+      <workItem from="1637502602112" duration="803000" />
+      <workItem from="1637505168390" duration="1101000" />
+      <workItem from="1637506576852" duration="2497000" />
+      <workItem from="1637517914438" duration="1450000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

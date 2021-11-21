@@ -12,7 +12,7 @@ $client->gateway->getGateway($parameters);
 
 ## Description
 
-This endpoint does not require authentication.
+Connecting
 
 ## Parameters
 

@@ -1,5 +1,5 @@
 ---
-title: Delete/close Channel
+title: Delete/Close Channel
 category: Channel
 order: 3
 ---
@@ -12,7 +12,7 @@ $client->channel->deleteOrcloseChannel($parameters);
 
 ## Description
 
-Delete a channel, or close a private message. Requires the MANAGE_CHANNELS permission for the guild. Deleting a category does not delete its child channels; they will have their parent_id removed and a Channel Update Gateway event will fire for each of them.  Fires a Channel Delete Gateway event.
+Channel Update
 
 ## Parameters
 
@@ -23,8 +23,5 @@ channel.id | snowflake | true | *null*
 
 ## Response
 
-Returns a channel object on success.
+Possibly No Response
 
-Can Return:
-
-* channel

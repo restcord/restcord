@@ -19,6 +19,13 @@ namespace RestCord\Model\Guild;
 class GuildMember {
 
 	/**
+	 * the member's guild avatar hash
+	 *
+	 * @var string
+	 */
+	public $avatar;
+
+	/**
 	 * whether the user is deafened in voice channels
 	 *
 	 * @var bool
@@ -27,17 +34,10 @@ class GuildMember {
 
 	/**
 	 * when the user joined the guild
-     *
-     * @var \DateTimeImmutable
-     */
-	public $joined_at;
-
-	/**
-	 * when the user started boosting the guild
 	 *
-	 * @var \DateTimeImmutable|null
+	 * @var \DateTimeImmutable
 	 */
-	public $premium_since;
+	public $joined_at;
 
 	/**
 	 * whether the user is muted in voice channels
@@ -47,11 +47,32 @@ class GuildMember {
 	public $mute = false;
 
 	/**
-	 * this users guild nickname (if one is set)
+	 * this users guild nickname
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $nick;
+
+	/**
+	 * whether the user has not yet passed the guild's Membership Screening requirements
+	 *
+	 * @var bool
+	 */
+	public $pending = false;
+
+	/**
+	 * total permissions of the member in the channel, including overwrites, returned when in the interaction object
+	 *
+	 * @var string
+	 */
+	public $permissions;
+
+	/**
+	 * when the user started boosting the guild
+	 *
+	 * @var \DateTimeImmutable
+	 */
+	public $premium_since;
 
 	/**
 	 * array of role object ids

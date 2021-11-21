@@ -137,7 +137,7 @@ class DiscordClient
      */
     private function validateOptions(array $options)
     {
-        $currentVersion = 6;
+        $currentVersion = 9;
         $resolver       = new OptionsResolver();
         $resolver->setDefaults(
             [
@@ -361,7 +361,6 @@ class DiscordClient
                 }
             }
         }
-
         return $operations;
     }
 
@@ -431,7 +430,7 @@ class DiscordClient
                     if ($property['type'] !== 'array' && $property['type'] !== 'object') {
                         $models[$class]['properties'][$n] = [
                             'type'     => $property['type'],
-                            'location' => 'json',
+                            'location' => $property['location'] ?? 'json',
                         ];
                     }
                 }

@@ -12,7 +12,7 @@ $client->emoji->getGuildEmoji($parameters);
 
 ## Description
 
-
+emoji
 
 ## Parameters
 
@@ -24,8 +24,5 @@ emoji.id | string | true | *null*
 
 ## Response
 
-Returns an emoji object for the given guild and emoji IDs
+Possibly No Response
 
-Can Return:
-
-* emoji

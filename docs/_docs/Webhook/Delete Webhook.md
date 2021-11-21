@@ -12,7 +12,7 @@ $client->webhook->deleteWebhook($parameters);
 
 ## Description
 
-Delete a webhook permanently. User must be owner.
+
 
 ## Parameters
 
@@ -23,5 +23,5 @@ webhook.id | snowflake | true | *null*
 
 ## Response
 
-Returns a 204 NO CONTENT response on success.
+Possibly No Response
 

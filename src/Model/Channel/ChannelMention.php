@@ -11,26 +11,40 @@
  * @license     MIT
  */
 
-namespace RestCord\Model\Guild;
+namespace RestCord\Model\Channel;
 
 /**
- * GuildEmbed Model
+ * ChannelMention Model
  */
-class GuildEmbed {
+class ChannelMention {
 
 	/**
-	 * the embed channel id
+	 * id of the guild containing the channel
 	 *
 	 * @var int
 	 */
-	public $channel_id;
+	public $guild_id;
 
 	/**
-	 * whether the embed is enabled
+	 * id of the channel
 	 *
-	 * @var bool
+	 * @var int
 	 */
-	public $enabled = false;
+	public $id;
+
+	/**
+	 * the name of the channel
+	 *
+	 * @var string
+	 */
+	public $name;
+
+	/**
+	 * the type of channel
+	 *
+	 * @var int
+	 */
+	public $type;
 
 	/**
 	 * @param array $content

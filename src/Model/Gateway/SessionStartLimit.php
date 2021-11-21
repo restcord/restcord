@@ -19,6 +19,13 @@ namespace RestCord\Model\Gateway;
 class SessionStartLimit {
 
 	/**
+	 * The number of identify requests allowed per 5 seconds
+	 *
+	 * @var int
+	 */
+	public $max_concurrency;
+
+	/**
 	 * The remaining number of session starts the current user is allowed
 	 *
 	 * @var int

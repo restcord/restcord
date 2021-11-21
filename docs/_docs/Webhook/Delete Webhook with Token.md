@@ -12,7 +12,7 @@ $client->webhook->deleteWebhookWithToken($parameters);
 
 ## Description
 
-Same as above, except this call does not require authentication.
+
 
 ## Parameters
 

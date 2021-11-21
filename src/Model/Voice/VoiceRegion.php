@@ -54,13 +54,6 @@ class VoiceRegion {
 	public $optimal = false;
 
 	/**
-	 * true if this is a vip-only server
-	 *
-	 * @var bool
-	 */
-	public $vip = false;
-
-	/**
 	 * @param array $content
 	 */
 	public function __construct(array $content = null) {

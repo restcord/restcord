@@ -12,7 +12,7 @@ $client->channel->getChannelMessages($parameters);
 
 ## Description
 
-If operating on a guild channel, this endpoint requires the VIEW_CHANNEL permission to be present on the current user. If the current user is missing the &#039;READ_MESSAGE_HISTORY&#039; permission in the channel then this will return no messages (since they cannot read the message history).
+message
 
 ## Parameters
 
@@ -27,8 +27,5 @@ limit | integer | false | 50
 
 ## Response
 
-Returns the messages for a channel.
+Possibly No Response
 
-Can Return:
-
-* message

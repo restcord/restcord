@@ -1,7 +1,7 @@
 ---
 title: Get Guild Invites
 category: Guild
-order: 28
+order: 32
 ---
 
 # `getGuildInvites`
@@ -12,7 +12,7 @@ $client->guild->getGuildInvites($parameters);
 
 ## Description
 
-Requires the MANAGE_GUILD permission.
+invite
 
 ## Parameters
 
@@ -23,9 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of invite objects (with invite metadata) for the guild.
+Possibly No Response
 
-Can Return:
-
-* invite
-* invite metadata

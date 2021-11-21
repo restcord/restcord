@@ -79,7 +79,6 @@ class OverriddenGuzzleClient extends GuzzleClient
                     new Command($name)
                 );
             }
-
             return $result;
         }
 

@@ -1,7 +1,7 @@
 ---
 title: Group Dm Add Recipient
 category: Channel
-order: 23
+order: 26
 ---
 
 # `groupDmAddRecipient`
@@ -12,7 +12,7 @@ $client->channel->groupDmAddRecipient($parameters);
 
 ## Description
 
-Adds a recipient to a Group DM using their access token
+
 
 ## Parameters
 
