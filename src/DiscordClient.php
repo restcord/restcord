@@ -361,6 +361,7 @@ class DiscordClient
                 }
             }
         }
+
         return $operations;
     }
 
