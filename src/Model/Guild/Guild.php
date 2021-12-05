@@ -116,6 +116,13 @@ class Guild {
 	public $features;
 
 	/**
+	 * the scheduled events in the guild
+	 *
+	 * @var array
+	 */
+	public $guild_scheduled_events;
+
+	/**
 	 * icon hash
 	 *
 	 * @var string
@@ -233,6 +240,13 @@ class Guild {
 	 * @var string
 	 */
 	public $preferred_locale;
+
+	/**
+	 * whether the guild has the boost progress bar enabled
+	 *
+	 * @var bool
+	 */
+	public $premium_progress_bar_enabled = false;
 
 	/**
 	 * the number of boosts this guild currently has

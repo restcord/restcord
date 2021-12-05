@@ -20,7 +20,7 @@ guild
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
-with_counts? | boolean | false | *null*
+with_counts | boolean | false | *null*
 
 ## Response
 

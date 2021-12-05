@@ -20,9 +20,9 @@ invite
 Name | Type | Required | Default
 --- | --- | --- | ---
 invite.code | string | true | *null*
-with_counts? | boolean | false | *null*
-with_expiration? | boolean | false | *null*
-guild_scheduled_event_id? | snowflake | false | *null*
+with_counts | boolean | false | *null*
+with_expiration | boolean | false | *null*
+guild_scheduled_event_id | snowflake | false | *null*
 
 ## Response
 

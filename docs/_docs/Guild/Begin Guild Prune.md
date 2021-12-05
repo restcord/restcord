@@ -23,7 +23,7 @@ guild.id | snowflake | true | *null*
 days | integer | false | 7
 compute_prune_count | boolean | false | true
 include_roles | array | false | none
-reason? | string | false | *null*
+reason | string | false | *null*
 
 ## Response
 

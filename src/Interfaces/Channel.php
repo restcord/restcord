@@ -45,7 +45,7 @@ interface Channel {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/channel#create-message
 	 *
-	 * @param array $options ['channel.id' => 'snowflake', 'content' => 'string', 'tts' => 'boolean', 'embeds' => 'array', 'embed (deprecated)' => 'object', 'allowed_mentions' => 'object', 'message_reference' => 'message reference', 'components' => 'array', 'sticker_ids' => 'array', 'files[n]' => 'file contents', 'payload_json' => 'string', 'attachments' => 'array']
+	 * @param array $options ['channel.id' => 'snowflake', 'content' => 'string', 'tts' => 'boolean', 'embeds' => 'array', 'embed (deprecated)' => 'object', 'allowed_mentions' => 'object', 'message_reference' => 'message reference', 'components' => 'array', 'sticker_ids' => 'array', 'files' => 'file contents', 'payload_json' => 'string', 'attachments' => 'array']
 	 * @return array
 	 */
 	public function createMessage(array $options);
@@ -133,7 +133,7 @@ interface Channel {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/channel#edit-message
 	 *
-	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'content' => 'string', 'embeds' => 'array', 'embed (deprecated)' => 'object', 'flags' => 'integer', 'allowed_mentions' => 'object', 'components' => 'array', 'files[n]' => 'file contents', 'payload_json' => 'string', 'attachments' => 'array']
+	 * @param array $options ['channel.id' => 'snowflake', 'message.id' => 'snowflake', 'content' => 'string', 'embeds' => 'array', 'embed (deprecated)' => 'object', 'flags' => 'integer', 'allowed_mentions' => 'object', 'components' => 'array', 'files' => 'file contents', 'payload_json' => 'string', 'attachments' => 'array']
 	 * @return array
 	 */
 	public function editMessage(array $options);

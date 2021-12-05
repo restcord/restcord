@@ -39,6 +39,7 @@ public_updates_channel_id | snowflake | false | *null*
 preferred_locale | string | false | *null*
 features | array | false | *null*
 description | string | false | *null*
+premium_progress_bar_enabled | boolean | false | *null*
 
 ## Response
 

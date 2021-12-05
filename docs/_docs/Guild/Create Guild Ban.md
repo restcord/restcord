@@ -21,8 +21,8 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
 user.id | snowflake | true | *null*
-delete_message_days? | integer | false | *null*
-reason? | string | false | *null*
+delete_message_days | integer | false | *null*
+reason | string | false | *null*
 
 ## Response
 

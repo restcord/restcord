@@ -22,7 +22,7 @@ Name | Type | Required | Default
 guild.id | snowflake | true | *null*
 user.id | snowflake | true | *null*
 channel_id | snowflake | false | *null*
-suppress? | boolean | false | *null*
+suppress | boolean | false | *null*
 
 ## Response
 

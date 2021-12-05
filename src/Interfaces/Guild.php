@@ -245,7 +245,7 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-current-member
 	 *
-	 * @param array $options ['guild.id' => 'snowflake', '?nick' => 'string']
+	 * @param array $options ['guild.id' => 'snowflake', 'nick' => 'string']
 	 * @return array
 	 */
 	public function modifyCurrentMember(array $options);
@@ -253,7 +253,7 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-current-user-nick
 	 *
-	 * @param array $options ['guild.id' => 'snowflake', '?nick' => 'string']
+	 * @param array $options ['guild.id' => 'snowflake', 'nick' => 'string']
 	 * @return array
 	 */
 	public function modifyCurrentUserNick(array $options);
@@ -269,7 +269,7 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-guild
 	 *
-	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'region' => 'string', 'verification_level' => 'integer', 'default_message_notifications' => 'integer', 'explicit_content_filter' => 'integer', 'afk_channel_id' => 'snowflake', 'afk_timeout' => 'integer', 'icon' => 'image data', 'owner_id' => 'snowflake', 'splash' => 'image data', 'discovery_splash' => 'image data', 'banner' => 'image data', 'system_channel_id' => 'snowflake', 'system_channel_flags' => 'integer', 'rules_channel_id' => 'snowflake', 'public_updates_channel_id' => 'snowflake', 'preferred_locale' => 'string', 'features' => 'array', 'description' => 'string']
+	 * @param array $options ['guild.id' => 'snowflake', 'name' => 'string', 'region' => 'string', 'verification_level' => 'integer', 'default_message_notifications' => 'integer', 'explicit_content_filter' => 'integer', 'afk_channel_id' => 'snowflake', 'afk_timeout' => 'integer', 'icon' => 'image data', 'owner_id' => 'snowflake', 'splash' => 'image data', 'discovery_splash' => 'image data', 'banner' => 'image data', 'system_channel_id' => 'snowflake', 'system_channel_flags' => 'integer', 'rules_channel_id' => 'snowflake', 'public_updates_channel_id' => 'snowflake', 'preferred_locale' => 'string', 'features' => 'array', 'description' => 'string', 'premium_progress_bar_enabled' => 'boolean']
 	 * @return array
 	 */
 	public function modifyGuild(array $options);
@@ -301,7 +301,7 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#modify-guild-role-positions
 	 *
-	 * @param array $options ['guild.id' => 'snowflake', 'id' => 'snowflake', '?position' => 'integer']
+	 * @param array $options ['guild.id' => 'snowflake', 'id' => 'snowflake', 'position' => 'integer']
 	 * @return array
 	 */
 	public function modifyGuildRolePositions(array $options);

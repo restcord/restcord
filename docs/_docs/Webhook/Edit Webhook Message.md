@@ -27,9 +27,9 @@ content | string | false | *null*
 embeds | array | false | *null*
 allowed_mentions | object | false | *null*
 components | array | false | *null*
-files[n] * | file contents | false | *null*
-payload_json * | string | false | *null*
-attachments * | array | false | *null*
+files | file contents | false | *null*
+payload_json | string | false | *null*
+attachments | array | false | *null*
 
 ## Response
 

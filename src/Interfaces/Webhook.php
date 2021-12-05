@@ -53,7 +53,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#edit-webhook-message
 	 *
-	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'message.id' => 'snowflake', 'thread_id' => 'snowflake', 'content' => 'string', 'embeds' => 'array', 'allowed_mentions' => 'object', 'components' => 'array', 'files[n]' => 'file contents', 'payload_json' => 'string', 'attachments' => 'array']
+	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'message.id' => 'snowflake', 'thread_id' => 'snowflake', 'content' => 'string', 'embeds' => 'array', 'allowed_mentions' => 'object', 'components' => 'array', 'files' => 'file contents', 'payload_json' => 'string', 'attachments' => 'array']
 	 * @return array
 	 */
 	public function editWebhookMessage(array $options);
@@ -77,7 +77,7 @@ interface Webhook {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/webhook#execute-webhook
 	 *
-	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'wait' => 'boolean', 'thread_id' => 'snowflake', 'content' => 'string', 'username' => 'string', 'avatar_url' => 'string', 'tts' => 'boolean', 'embeds' => 'array', 'allowed_mentions' => 'object', 'components' => 'array', 'files[n]' => 'file contents', 'payload_json' => 'string', 'attachments' => 'array']
+	 * @param array $options ['webhook.id' => 'snowflake', 'webhook.token' => 'string', 'wait' => 'boolean', 'thread_id' => 'snowflake', 'content' => 'string', 'username' => 'string', 'avatar_url' => 'string', 'tts' => 'boolean', 'embeds' => 'array', 'allowed_mentions' => 'object', 'components' => 'array', 'files' => 'file contents', 'payload_json' => 'string', 'attachments' => 'array']
 	 * @return array
 	 */
 	public function executeWebhook(array $options);

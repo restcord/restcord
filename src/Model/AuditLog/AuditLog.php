@@ -26,6 +26,13 @@ class AuditLog {
 	public $audit_log_entries;
 
 	/**
+	 * list of guild scheduled events found in the audit log
+	 *
+	 * @var array
+	 */
+	public $guild_scheduled_events;
+
+	/**
 	 * list of partial integration objects
 	 *
 	 * @var array

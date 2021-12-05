@@ -22,7 +22,7 @@ Name | Type | Required | Default
 application | object | false | *null*
 scopes | array | false | *null*
 expires | ISO8601 timestamp | false | *null*
-user? | object | false | *null*
+user | object | false | *null*
 
 ## Response
 

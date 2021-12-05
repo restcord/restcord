@@ -217,7 +217,7 @@ class MembershipScreening {
 	/**
 	 * value to set users nickname to
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $nick;
 
@@ -259,7 +259,7 @@ class MembershipScreening {
 	/**
 	 * sorting position of the role
 	 *
-	 * @var int|null
+	 * @var int
 	 */
 	public $position;
 
@@ -269,6 +269,13 @@ class MembershipScreening {
 	 * @var string
 	 */
 	public $preferred_locale;
+
+	/**
+	 * whether the guild's boost progress bar should be enabled.
+	 *
+	 * @var bool
+	 */
+	public $premium_progress_bar_enabled = false;
 
 	/**
 	 * the id of the channel where admins and moderators of Community guilds receive notices from Discord

@@ -21,8 +21,8 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
 channel_id | snowflake | false | *null*
-suppress? | boolean | false | *null*
-request_to_speak_timestamp? | ISO8601 timestamp | false | *null*
+suppress | boolean | false | *null*
+request_to_speak_timestamp | ISO8601 timestamp | false | *null*
 
 ## Response
 

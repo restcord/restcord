@@ -28,7 +28,7 @@ allowed_mentions | object | false | *null*
 message_reference | message reference | false | *null*
 components | array | false | *null*
 sticker_ids | array | false | *null*
-files[n] | file contents | false | *null*
+files | file contents | false | *null*
 payload_json | string | false | *null*
 attachments | array | false | *null*
 

@@ -20,8 +20,8 @@ type
 Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | true | *null*
-before? | ISO8601 timestamp | false | *null*
-limit? | integer | false | *null*
+before | ISO8601 timestamp | false | *null*
+limit | integer | false | *null*
 
 ## Response
 

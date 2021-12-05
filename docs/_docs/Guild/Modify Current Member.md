@@ -20,7 +20,7 @@ Guild Member Update
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
-?nick | string | false | *null*
+nick | string | false | *null*
 
 ## Response
 

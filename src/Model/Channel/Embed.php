@@ -145,7 +145,7 @@ class Embed {
 	public $type;
 
 	/**
-	 * source url of image (only supports http(s) and attachments)
+	 * url of author
 	 *
 	 * @var string
 	 */

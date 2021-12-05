@@ -93,9 +93,7 @@
                         "type": "boolean",
                         "description": "when true, will return approximate member and presence counts for the guild",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -237,6 +235,12 @@
                         "type": "string",
                         "nullable": true,
                         "description": "the description for the guild, if the guild is discoverable"
+                    },
+                    "premium_progress_bar_enabled": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "whether the guild's boost progress bar should be enabled.",
+                        "default": false
                     }
                 },
                 "parametersArray": false
@@ -611,7 +615,7 @@
                         "location": "uri",
                         "required": true
                     },
-                    "?nick": {
+                    "nick": {
                         "location": "json",
                         "type": "string",
                         "nullable": true,
@@ -636,7 +640,7 @@
                         "location": "uri",
                         "required": true
                     },
-                    "?nick": {
+                    "nick": {
                         "location": "json",
                         "type": "string",
                         "nullable": true,
@@ -902,7 +906,7 @@
                         "type": "snowflake",
                         "description": "role"
                     },
-                    "?position": {
+                    "position": {
                         "location": "json",
                         "type": "integer",
                         "nullable": true,
@@ -1347,6 +1351,7 @@
                 }
             }
         },
+        "application": {},
         "audit-log": {
             "getGuildAuditLog": {
                 "link": "https://discordapp.com/developers/docs/resources/audit-log#get-guild-audit-log",
@@ -1451,34 +1456,26 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get messages around this message ID",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "before": {
                         "location": "query",
                         "type": "snowflake",
                         "description": "get messages before this message ID",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "after": {
                         "location": "query",
                         "type": "snowflake",
                         "description": "get messages after this message ID",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "limit": {
                         "location": "query",
                         "type": "integer",
                         "description": "max number of messages to return (1-100)",
                         "default": 50,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -1521,90 +1518,68 @@
                         "location": "json",
                         "type": "string",
                         "description": "the message contents (up to 2000 characters)",
-                        "extra": {
-                            "Required": "one of content, file, embed(s), sticker_ids"
-                        }
+                        "required": false
                     },
                     "tts": {
                         "location": "json",
                         "type": "boolean",
                         "description": "true if this is a TTS message",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "embeds": {
                         "location": "json",
                         "type": "array",
                         "description": "embedded rich content (up to 6000 characters)",
-                        "extra": {
-                            "Required": "one of content, file, embed(s), sticker_ids"
-                        }
+                        "required": false
                     },
                     "embed (deprecated)": {
                         "location": "json",
                         "type": "object",
                         "description": "embedded rich content, deprecated in favor of embeds",
-                        "extra": {
-                            "Required": "one of content, file, embed(s), sticker_ids"
-                        }
+                        "required": false
                     },
                     "allowed_mentions": {
                         "location": "json",
                         "type": "object",
                         "description": "allowed mentions for the message",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "message_reference": {
                         "location": "json",
                         "type": "message reference",
                         "description": "include to make your message a reply",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "components": {
                         "location": "json",
                         "type": "array",
                         "description": "the components to include with the message",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "sticker_ids": {
                         "location": "json",
                         "type": "array",
                         "description": "IDs of up to 3 stickers in the server to send in the message",
-                        "extra": {
-                            "Required": "one of content, file, embed(s), sticker_ids"
-                        }
+                        "required": false
                     },
-                    "files[n]": {
+                    "files": {
                         "location": "json",
                         "type": "file contents",
                         "description": "the contents of the file being sent",
-                        "extra": {
-                            "Required": "one of content, file, embed(s), sticker_ids"
-                        }
+                        "required": false
                     },
                     "payload_json": {
                         "location": "json",
                         "type": "string",
                         "description": "JSON encoded body of non-file params",
-                        "extra": {
-                            "Required": "multipart/form-data only"
-                        }
+                        "required": false
                     },
                     "attachments": {
                         "location": "json",
                         "type": "array",
                         "description": "attachment objects with filename and description",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -1740,18 +1715,14 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get users after this user ID",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "limit": {
                         "location": "query",
                         "type": "integer",
                         "description": "max number of users to return (1-100)",
                         "default": 25,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -1851,7 +1822,7 @@
                         "type": "array",
                         "description": "the components to include with the message"
                     },
-                    "files[n]": {
+                    "files": {
                         "location": "json",
                         "type": "file contents",
                         "description": "the contents of the file being sent/edited"
@@ -2595,6 +2566,379 @@
                 "parametersArray": false
             }
         },
+        "guild-scheduled-event": {
+            "listScheduledEventsForGuild": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#list-scheduled-events-for-guild",
+                "resource": "guild-scheduled-event",
+                "name": "List Scheduled Events for Guild",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/scheduled-events",
+                "description": "guild scheduled event",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "with_user_count": {
+                        "location": "query",
+                        "type": "boolean",
+                        "description": "include number of users subscribed to each event",
+                        "default": false
+                    }
+                },
+                "parametersArray": false
+            },
+            "createGuildScheduledEvent": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#create-guild-scheduled-event",
+                "resource": "guild-scheduled-event",
+                "name": "Create Guild Scheduled Event",
+                "method": "POST",
+                "url": "/guilds/{guild.id}/scheduled-events",
+                "description": "guild scheduled event",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "channel_id": {
+                        "location": "json",
+                        "type": "snowflake *",
+                        "description": "the channel id of the scheduled event."
+                    },
+                    "entity_metadata": {
+                        "location": "json",
+                        "type": "entity metadata",
+                        "description": "the entity metadata of the scheduled event"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the name of the scheduled event"
+                    },
+                    "privacy_level": {
+                        "location": "json",
+                        "type": "privacy level",
+                        "description": "the privacy level of the scheduled event"
+                    },
+                    "scheduled_start_time": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "the time to schedule the scheduled event"
+                    },
+                    "scheduled_end_time": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "the time when the scheduled event is scheduled to end"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the description of the scheduled event"
+                    },
+                    "entity_type": {
+                        "location": "json",
+                        "type": "entity type",
+                        "description": "the entity type of the scheduled event"
+                    }
+                },
+                "parametersArray": false
+            },
+            "getGuildScheduledEvent": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#get-guild-scheduled-event",
+                "resource": "guild-scheduled-event",
+                "name": "Get Guild Scheduled Event",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}",
+                "description": "guild scheduled event",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "modifyGuildScheduledEvent": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#modify-guild-scheduled-event",
+                "resource": "guild-scheduled-event",
+                "name": "Modify Guild Scheduled Event",
+                "method": "PATCH",
+                "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}",
+                "description": "guild scheduled event",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "channel_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "nullable": true,
+                        "description": "the channel id of the scheduled event, set to null if changing entity type to EXTERNAL"
+                    },
+                    "entity_metadata": {
+                        "location": "json",
+                        "type": "entity metadata",
+                        "description": "the entity metadata of the scheduled event"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the name of the scheduled event"
+                    },
+                    "privacy_level": {
+                        "location": "json",
+                        "type": "privacy level",
+                        "description": "the privacy level of the scheduled event"
+                    },
+                    "scheduled_start_time": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "the time to schedule the scheduled event"
+                    },
+                    "scheduled_end_time": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "the time when the scheduled event is scheduled to end"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the description of the scheduled event"
+                    },
+                    "entity_type": {
+                        "location": "json",
+                        "type": "event entity type",
+                        "description": "the entity type of the scheduled event"
+                    },
+                    "status": {
+                        "location": "json",
+                        "type": "event status",
+                        "description": "the status of the scheduled event"
+                    }
+                },
+                "parametersArray": false
+            },
+            "deleteGuildScheduledEvent": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#delete-guild-scheduled-event",
+                "resource": "guild-scheduled-event",
+                "name": "Delete Guild Scheduled Event",
+                "method": "DELETE",
+                "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}",
+                "description": "",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "getGuildScheduledEventUsers": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#get-guild-scheduled-event-users",
+                "resource": "guild-scheduled-event",
+                "name": "Get Guild Scheduled Event Users",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/scheduled-events/{guild_scheduled_event.id}/users",
+                "description": "guild scheduled event user",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "limit": {
+                        "location": "query",
+                        "type": "number",
+                        "description": "how many users to receive from the event",
+                        "default": "100"
+                    },
+                    "with_member": {
+                        "location": "query",
+                        "type": "boolean",
+                        "description": "include guild member data if it exists",
+                        "default": false
+                    },
+                    "before": {
+                        "location": "query",
+                        "type": "snowflake",
+                        "description": "consider only users before given user id"
+                    },
+                    "after": {
+                        "location": "query",
+                        "type": "snowflake",
+                        "description": "consider only users after given user id"
+                    }
+                },
+                "parametersArray": false
+            }
+        },
+        "guild-template": {
+            "getGuildTemplate": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-template#get-guild-template",
+                "resource": "guild-template",
+                "name": "Get Guild Template",
+                "method": "GET",
+                "url": "/guilds/templates/{template.code}",
+                "description": "guild template",
+                "parameters": {
+                    "template.code": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "createGuildFromGuildTemplate": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-template#create-guild-from-guild-template",
+                "resource": "guild-template",
+                "name": "Create Guild from Guild Template",
+                "method": "POST",
+                "url": "/guilds/templates/{template.code}",
+                "description": "guild",
+                "parameters": {
+                    "template.code": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the guild (2-100 characters)"
+                    },
+                    "icon": {
+                        "location": "json",
+                        "type": "image data",
+                        "description": "base64 128x128 image for the guild icon"
+                    }
+                },
+                "parametersArray": false
+            },
+            "getGuildTemplates": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-template#get-guild-templates",
+                "resource": "guild-template",
+                "name": "Get Guild Templates",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/templates",
+                "description": "guild template",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "createGuildTemplate": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-template#create-guild-template",
+                "resource": "guild-template",
+                "name": "Create Guild Template",
+                "method": "POST",
+                "url": "/guilds/{guild.id}/templates",
+                "description": "guild template",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the template (1-100 characters)"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "nullable": true,
+                        "description": "description for the template (0-120 characters)"
+                    }
+                },
+                "parametersArray": false
+            },
+            "syncGuildTemplate": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-template#sync-guild-template",
+                "resource": "guild-template",
+                "name": "Sync Guild Template",
+                "method": "PUT",
+                "url": "/guilds/{guild.id}/templates/{template.code}",
+                "description": "guild template",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "template.code": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "modifyGuildTemplate": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-template#modify-guild-template",
+                "resource": "guild-template",
+                "name": "Modify Guild Template",
+                "method": "PATCH",
+                "url": "/guilds/{guild.id}/templates/{template.code}",
+                "description": "guild template",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "template.code": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the template (1-100 characters)"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "nullable": true,
+                        "description": "description for the template (0-120 characters)"
+                    }
+                },
+                "parametersArray": false
+            },
+            "deleteGuildTemplate": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-template#delete-guild-template",
+                "resource": "guild-template",
+                "name": "Delete Guild Template",
+                "method": "DELETE",
+                "url": "/guilds/{guild.id}/templates/{template.code}",
+                "description": "guild template",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "template.code": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            }
+        },
         "invite": {
             "getInvite": {
                 "link": "https://discordapp.com/developers/docs/resources/invite#get-invite",
@@ -2638,6 +2982,256 @@
                 "description": "invite",
                 "parameters": {
                     "invite.code": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            }
+        },
+        "stage-instance": {
+            "createStageInstance": {
+                "link": "https://discordapp.com/developers/docs/resources/stage-instance#create-stage-instance",
+                "resource": "stage-instance",
+                "name": "Create Stage Instance",
+                "method": "POST",
+                "url": "/stage-instances",
+                "description": "privacy level",
+                "parameters": {
+                    "channel_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "The id of the Stage channel"
+                    },
+                    "topic": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "The topic of the Stage instance (1-120 characters)"
+                    },
+                    "privacy_level": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "The privacy level of the Stage instance (default GUILD_ONLY)"
+                    }
+                },
+                "parametersArray": false
+            },
+            "getStageInstance": {
+                "link": "https://discordapp.com/developers/docs/resources/stage-instance#get-stage-instance",
+                "resource": "stage-instance",
+                "name": "Get Stage Instance",
+                "method": "GET",
+                "url": "/stage-instances/{channel.id}",
+                "description": "",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "modifyStageInstance": {
+                "link": "https://discordapp.com/developers/docs/resources/stage-instance#modify-stage-instance",
+                "resource": "stage-instance",
+                "name": "Modify Stage Instance",
+                "method": "PATCH",
+                "url": "/stage-instances/{channel.id}",
+                "description": "privacy level",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "topic": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "The topic of the Stage instance (1-120 characters)"
+                    },
+                    "privacy_level": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "The privacy level of the Stage instance"
+                    }
+                },
+                "parametersArray": false
+            },
+            "deleteStageInstance": {
+                "link": "https://discordapp.com/developers/docs/resources/stage-instance#delete-stage-instance",
+                "resource": "stage-instance",
+                "name": "Delete Stage Instance",
+                "method": "DELETE",
+                "url": "/stage-instances/{channel.id}",
+                "description": "",
+                "parameters": {
+                    "channel.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            }
+        },
+        "sticker": {
+            "getSticker": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#get-sticker",
+                "resource": "sticker",
+                "name": "Get Sticker",
+                "method": "GET",
+                "url": "/stickers/{sticker.id}",
+                "description": "sticker",
+                "parameters": {
+                    "sticker.id": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "listNitroStickerPacks": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#list-nitro-sticker-packs",
+                "resource": "sticker",
+                "name": "List Nitro Sticker Packs",
+                "method": "GET",
+                "url": "/sticker-packs",
+                "description": "sticker pack",
+                "parameters": {
+                    "sticker_packs": {
+                        "location": "json",
+                        "type": "array"
+                    }
+                },
+                "parametersArray": false
+            },
+            "listGuildStickers": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#list-guild-stickers",
+                "resource": "sticker",
+                "name": "List Guild Stickers",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/stickers",
+                "description": "sticker",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "getGuildSticker": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#get-guild-sticker",
+                "resource": "sticker",
+                "name": "Get Guild Sticker",
+                "method": "GET",
+                "url": "/guilds/{guild.id}/stickers/{sticker.id}",
+                "description": "sticker",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "sticker.id": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    }
+                },
+                "parametersArray": false
+            },
+            "createGuildSticker": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#create-guild-sticker",
+                "resource": "sticker",
+                "name": "Create Guild Sticker",
+                "method": "POST",
+                "url": "/guilds/{guild.id}/stickers",
+                "description": "sticker",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the sticker (2-30 characters)"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "description of the sticker (empty or 2-100 characters)"
+                    },
+                    "tags": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "autocomplete/suggestion tags for the sticker (max 200 characters)"
+                    },
+                    "file": {
+                        "location": "json",
+                        "type": "file contents",
+                        "description": "the sticker file to upload, must be a PNG, APNG, or Lottie JSON file, max 500 KB"
+                    }
+                },
+                "parametersArray": false
+            },
+            "modifyGuildSticker": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#modify-guild-sticker",
+                "resource": "sticker",
+                "name": "Modify Guild Sticker",
+                "method": "PATCH",
+                "url": "/guilds/{guild.id}/stickers/{sticker.id}",
+                "description": "sticker",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "sticker.id": {
+                        "type": "string",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the sticker (2-30 characters)"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "nullable": true,
+                        "description": "description of the sticker (2-100 characters)"
+                    },
+                    "tags": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "autocomplete/suggestion tags for the sticker (max 200 characters)"
+                    }
+                },
+                "parametersArray": false
+            },
+            "deleteGuildSticker": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#delete-guild-sticker",
+                "resource": "sticker",
+                "name": "Delete Guild Sticker",
+                "method": "DELETE",
+                "url": "/guilds/{guild.id}/stickers/{sticker.id}",
+                "description": "",
+                "parameters": {
+                    "guild.id": {
+                        "type": "snowflake",
+                        "location": "uri",
+                        "required": true
+                    },
+                    "sticker.id": {
                         "type": "string",
                         "location": "uri",
                         "required": true
@@ -2707,26 +3301,20 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get guilds before this guild ID",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "after": {
                         "location": "query",
                         "type": "snowflake",
                         "description": "get guilds after this guild ID",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "limit": {
                         "location": "query",
                         "type": "integer",
                         "description": "max number of guilds to return (1-200)",
                         "default": 200,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -3017,98 +3605,74 @@
                         "type": "boolean",
                         "description": "waits for server confirmation of message send before response, and returns the created message body (defaults to false; when false a message that is not saved does not return an error)",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "thread_id": {
                         "location": "query",
                         "type": "snowflake",
                         "description": "Send a message to the specified thread within a webhook's channel. The thread will automatically be unarchived.",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "content": {
                         "location": "json",
                         "type": "string",
                         "description": "the message contents (up to 2000 characters)",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
+                        "required": false
                     },
                     "username": {
                         "location": "json",
                         "type": "string",
                         "description": "override the default username of the webhook",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "avatar_url": {
                         "location": "json",
                         "type": "string",
                         "description": "override the default avatar of the webhook",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "tts": {
                         "location": "json",
                         "type": "boolean",
                         "description": "true if this is a TTS message",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "embeds": {
                         "location": "json",
                         "type": "array",
                         "description": "embedded rich content",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
+                        "required": false
                     },
                     "allowed_mentions": {
                         "location": "json",
                         "type": "object",
                         "description": "allowed mentions for the message",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "components": {
                         "location": "json",
                         "type": "array",
                         "description": "the components to include with the message",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
-                    "files[n]": {
+                    "files": {
                         "location": "json",
                         "type": "file contents",
                         "description": "the contents of the file being sent",
-                        "extra": {
-                            "Required": "one of content, file, embeds"
-                        }
+                        "required": false
                     },
                     "payload_json": {
                         "location": "json",
                         "type": "string",
                         "description": "JSON encoded body of non-file params",
-                        "extra": {
-                            "Required": "multipart/form-data only"
-                        }
+                        "required": false
                     },
                     "attachments": {
                         "location": "json",
                         "type": "array",
                         "description": "attachment objects with filename and description",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -3135,18 +3699,14 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "id of the thread to send the message in",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "wait": {
                         "location": "query",
                         "type": "boolean",
                         "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -3173,18 +3733,14 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "id of the thread to send the message in",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "wait": {
                         "location": "query",
                         "type": "boolean",
                         "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -3216,9 +3772,7 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "id of the thread the message is in",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -3250,9 +3804,7 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "id of the thread the message is in",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "content": {
                         "location": "json",
@@ -3274,7 +3826,7 @@
                         "type": "array",
                         "description": "the components to include with the message"
                     },
-                    "files[n]": {
+                    "files": {
                         "location": "json",
                         "type": "file contents",
                         "description": "the contents of the file being sent/edited"
@@ -3319,9 +3871,7 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "id of the thread the message is in",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     }
                 },
                 "parametersArray": false
@@ -3691,6 +4241,17 @@
                         "location": "json",
                         "type": "array",
                         "description": "custom guild stickers"
+                    },
+                    "guild_scheduled_events": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "the scheduled events in the guild"
+                    },
+                    "premium_progress_bar_enabled": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "whether the guild has the boost progress bar enabled",
+                        "default": false
                     }
                 }
             },
@@ -4060,32 +4621,38 @@
                         "location": "json",
                         "type": "string",
                         "nullable": true,
-                        "description": "voice region id (deprecated)"
+                        "description": "guild voice region id (deprecated)"
                     },
                     "icon": {
                         "location": "json",
                         "type": "image data",
-                        "description": "base64 128x128 image for the guild icon"
+                        "description": "the role's icon image (if the guild has the ROLE_ICONS feature)"
                     },
                     "verification_level": {
                         "location": "json",
                         "type": "integer",
+                        "nullable": true,
                         "description": "verification level"
                     },
                     "default_message_notifications": {
                         "location": "json",
                         "type": "integer",
+                        "nullable": true,
                         "description": "default message notification level"
                     },
                     "explicit_content_filter": {
                         "location": "json",
                         "type": "integer",
+                        "nullable": true,
                         "description": "explicit content filter level"
                     },
                     "roles": {
                         "location": "json",
                         "type": "array",
-                        "description": "new guild roles"
+                        "description": "array of role ids the member is assigned",
+                        "extra": {
+                            "Permission": "MANAGE_ROLES"
+                        }
                     },
                     "channels": {
                         "location": "json",
@@ -4095,6 +4662,7 @@
                     "afk_channel_id": {
                         "location": "json",
                         "type": "snowflake",
+                        "nullable": true,
                         "description": "id for afk channel"
                     },
                     "afk_timeout": {
@@ -4105,6 +4673,7 @@
                     "system_channel_id": {
                         "location": "json",
                         "type": "snowflake",
+                        "nullable": true,
                         "description": "the id of the channel where guild notices such as welcome messages and boost events are posted"
                     },
                     "system_channel_flags": {
@@ -4117,49 +4686,7 @@
                         "type": "boolean",
                         "description": "when true, will return approximate member and presence counts for the guild",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
-                    },
-                    "region": {
-                        "location": "json",
-                        "type": "string",
-                        "nullable": true,
-                        "description": "guild voice region id (deprecated)"
-                    },
-                    "verification_level": {
-                        "location": "json",
-                        "type": "integer",
-                        "nullable": true,
-                        "description": "verification level"
-                    },
-                    "default_message_notifications": {
-                        "location": "json",
-                        "type": "integer",
-                        "nullable": true,
-                        "description": "default message notification level"
-                    },
-                    "explicit_content_filter": {
-                        "location": "json",
-                        "type": "integer",
-                        "nullable": true,
-                        "description": "explicit content filter level"
-                    },
-                    "afk_channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "nullable": true,
-                        "description": "id for afk channel"
-                    },
-                    "afk_timeout": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "afk timeout in seconds"
-                    },
-                    "icon": {
-                        "location": "json",
-                        "type": "image data",
-                        "description": "the role's icon image (if the guild has the ROLE_ICONS feature)"
+                        "required": false
                     },
                     "owner_id": {
                         "location": "json",
@@ -4183,17 +4710,6 @@
                         "type": "image data",
                         "nullable": true,
                         "description": "base64 16:9 png/jpeg image for the guild banner (when the server has the BANNER feature)"
-                    },
-                    "system_channel_id": {
-                        "location": "json",
-                        "type": "snowflake",
-                        "nullable": true,
-                        "description": "the id of the channel where guild notices such as welcome messages and boost events are posted"
-                    },
-                    "system_channel_flags": {
-                        "location": "json",
-                        "type": "integer",
-                        "description": "system channel flags"
                     },
                     "rules_channel_id": {
                         "location": "json",
@@ -4222,6 +4738,12 @@
                         "location": "json",
                         "type": "string",
                         "description": "the server description to show in the welcome screen"
+                    },
+                    "premium_progress_bar_enabled": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "whether the guild's boost progress bar should be enabled.",
+                        "default": false
                     },
                     "type": {
                         "location": "json",
@@ -4252,7 +4774,7 @@
                         "location": "json",
                         "type": "integer",
                         "nullable": true,
-                        "description": "sorting position of the channel"
+                        "description": "sorting position of the role"
                     },
                     "permission_overwrites": {
                         "location": "json",
@@ -4311,17 +4833,10 @@
                     "nick": {
                         "location": "json",
                         "type": "string",
+                        "nullable": true,
                         "description": "value to set users nickname to",
                         "extra": {
-                            "Permission": "MANAGE_NICKNAMES"
-                        }
-                    },
-                    "roles": {
-                        "location": "json",
-                        "type": "array",
-                        "description": "array of role ids the member is assigned",
-                        "extra": {
-                            "Permission": "MANAGE_ROLES"
+                            "Permission": "CHANGE_NICKNAME"
                         }
                     },
                     "mute": {
@@ -4346,15 +4861,6 @@
                         "location": "json",
                         "type": "snowflake",
                         "description": "the id of the channel the user is currently in"
-                    },
-                    "?nick": {
-                        "location": "json",
-                        "type": "string",
-                        "nullable": true,
-                        "description": "value to set users nickname to",
-                        "extra": {
-                            "Permission": "CHANGE_NICKNAME"
-                        }
                     },
                     "delete_message_days": {
                         "location": "json",
@@ -4393,12 +4899,6 @@
                         "type": "boolean",
                         "description": "whether the role should be mentionable",
                         "default": false
-                    },
-                    "?position": {
-                        "location": "json",
-                        "type": "integer",
-                        "nullable": true,
-                        "description": "sorting position of the role"
                     },
                     "days": {
                         "location": "json",
@@ -4489,6 +4989,110 @@
                 }
             }
         },
+        "application": {
+            "application": {
+                "link": "https://discordapp.com/developers/docs/resources/application#application-object",
+                "resource": "application",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the id of the app"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the name of the app"
+                    },
+                    "icon": {
+                        "location": "json",
+                        "type": "string",
+                        "nullable": true,
+                        "description": "the icon hash of the app"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the description of the app"
+                    },
+                    "rpc_origins": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "an array of rpc origin urls, if rpc is enabled"
+                    },
+                    "bot_public": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "when false only app owner can join the app's bot to guilds",
+                        "default": false
+                    },
+                    "bot_require_code_grant": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "when true the app's bot will only join upon completion of the full oauth2 code grant flow",
+                        "default": false
+                    },
+                    "terms_of_service_url": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the url of the app's terms of service"
+                    },
+                    "privacy_policy_url": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the url of the app's privacy policy"
+                    },
+                    "owner": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "partial user object containing info on the owner of the application"
+                    },
+                    "summary": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "if this application is a game sold on Discord, this field will be the summary field for the store page of its primary sku"
+                    },
+                    "verify_key": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the hex encoded key for verification in interactions and the GameSDK's GetTicket"
+                    },
+                    "team": {
+                        "location": "json",
+                        "type": "object",
+                        "nullable": true,
+                        "description": "if the application belongs to a team, this will be a list of the members of that team"
+                    },
+                    "guild_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "if this application is a game sold on Discord, this field will be the guild to which it has been linked"
+                    },
+                    "primary_sku_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "if this application is a game sold on Discord, this field will be the id of the \"Game SKU\" that is created, if exists"
+                    },
+                    "slug": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "if this application is a game sold on Discord, this field will be the URL slug that links to the store page"
+                    },
+                    "cover_image": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the application's default rich presence invite cover image hash"
+                    },
+                    "flags": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the application's public flags"
+                    }
+                }
+            }
+        },
         "audit-log": {
             "auditLog": {
                 "link": "https://discordapp.com/developers/docs/resources/audit-log#audit-log-object",
@@ -4500,6 +5104,11 @@
                         "location": "json",
                         "type": "array",
                         "description": "list of audit log entries"
+                    },
+                    "guild_scheduled_events": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "list of guild scheduled events found in the audit log"
                     },
                     "integrations": {
                         "location": "json",
@@ -4995,11 +5604,6 @@
                         "type": "array",
                         "description": "fields information"
                     },
-                    "url": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "source url of image (only supports http(s) and attachments)"
-                    },
                     "proxy_url": {
                         "location": "json",
                         "type": "string",
@@ -5014,11 +5618,6 @@
                         "location": "json",
                         "type": "integer",
                         "description": "width of image"
-                    },
-                    "name": {
-                        "location": "json",
-                        "type": "string",
-                        "description": "name of provider"
                     },
                     "name": {
                         "location": "json",
@@ -5139,6 +5738,7 @@
                     "roles": {
                         "location": "json",
                         "type": "array",
+                        "nullable": true,
                         "description": "roles allowed to use this emoji"
                     },
                     "user": {
@@ -5174,12 +5774,266 @@
                         "location": "json",
                         "type": "image data",
                         "description": "the 128x128 emoji image"
-                    },
-                    "roles": {
+                    }
+                }
+            }
+        },
+        "guild-scheduled-event": {
+            "guildScheduledEvent": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object",
+                "resource": "guild-scheduled-event",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
                         "location": "json",
-                        "type": "array",
+                        "type": "snowflake",
+                        "description": "the id of the scheduled event"
+                    },
+                    "guild_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the guild id which the scheduled event belongs to"
+                    },
+                    "channel_id": {
+                        "location": "json",
+                        "type": "snowflake",
                         "nullable": true,
-                        "description": "roles allowed to use this emoji"
+                        "description": "the channel id in which the scheduled event will be hosted, or null if scheduled entity type is EXTERNAL"
+                    },
+                    "creator_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "nullable": true,
+                        "description": "the id of the user that created the scheduled event *"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the name of the scheduled event (1-100 characters)"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the description of the scheduled event (1-1000 characters)"
+                    },
+                    "scheduled_start_time": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "the time the scheduled event will start"
+                    },
+                    "scheduled_end_time": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "nullable": true,
+                        "description": "the time the scheduled event will end, required if entity_type is EXTERNAL"
+                    },
+                    "privacy_level": {
+                        "location": "json",
+                        "type": "privacy level",
+                        "description": "the privacy level of the scheduled event"
+                    },
+                    "status": {
+                        "location": "json",
+                        "type": "event status",
+                        "description": "the status of the scheduled event"
+                    },
+                    "entity_type": {
+                        "location": "json",
+                        "type": "scheduled entity type",
+                        "description": "the type of the scheduled event"
+                    },
+                    "entity_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "nullable": true,
+                        "description": "the id of an entity associated with a guild scheduled event"
+                    },
+                    "entity_metadata": {
+                        "location": "json",
+                        "type": "entity metadata",
+                        "nullable": true,
+                        "description": "additional metadata for the guild scheduled event"
+                    },
+                    "creator": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "the user that created the scheduled event"
+                    },
+                    "user_count": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the number of users subscribed to the scheduled event"
+                    }
+                }
+            },
+            "guildScheduledEventUser": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-user-object",
+                "resource": "guild-scheduled-event",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "guild_scheduled_event_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the scheduled event id which the user subscribed to"
+                    },
+                    "user": {
+                        "location": "json",
+                        "type": "user",
+                        "description": "user which subscribed to an event"
+                    },
+                    "member": {
+                        "location": "json",
+                        "type": "guild member",
+                        "description": "guild member data for this user for the guild which this event belongs to, if any"
+                    },
+                    "with_user_count": {
+                        "location": "query",
+                        "type": "boolean",
+                        "description": "include number of users subscribed to each event",
+                        "default": false
+                    },
+                    "channel_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "nullable": true,
+                        "description": "the channel id of the scheduled event, set to null if changing entity type to EXTERNAL"
+                    },
+                    "entity_metadata": {
+                        "location": "json",
+                        "type": "entity metadata",
+                        "description": "the entity metadata of the scheduled event"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the name of the scheduled event"
+                    },
+                    "privacy_level": {
+                        "location": "json",
+                        "type": "privacy level",
+                        "description": "the privacy level of the scheduled event"
+                    },
+                    "scheduled_start_time": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "the time to schedule the scheduled event"
+                    },
+                    "scheduled_end_time": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "the time when the scheduled event is scheduled to end"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the description of the scheduled event"
+                    },
+                    "entity_type": {
+                        "location": "json",
+                        "type": "event entity type",
+                        "description": "the entity type of the scheduled event"
+                    },
+                    "status": {
+                        "location": "json",
+                        "type": "event status",
+                        "description": "the status of the scheduled event"
+                    },
+                    "limit": {
+                        "location": "query",
+                        "type": "number",
+                        "description": "how many users to receive from the event",
+                        "default": "100"
+                    },
+                    "with_member": {
+                        "location": "query",
+                        "type": "boolean",
+                        "description": "include guild member data if it exists",
+                        "default": false
+                    },
+                    "before": {
+                        "location": "query",
+                        "type": "snowflake",
+                        "description": "consider only users before given user id"
+                    },
+                    "after": {
+                        "location": "query",
+                        "type": "snowflake",
+                        "description": "consider only users after given user id"
+                    }
+                }
+            }
+        },
+        "guild-template": {
+            "guildTemplate": {
+                "link": "https://discordapp.com/developers/docs/resources/guild-template#guild-template-object",
+                "resource": "guild-template",
+                "description": "Represents a code that when used, creates a guild based on a snapshot of an existing guild.",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "the template code (unique ID)"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the template (1-100 characters)"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "nullable": true,
+                        "description": "description for the template (0-120 characters)"
+                    },
+                    "usage_count": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "number of times this template has been used"
+                    },
+                    "creator_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the ID of the user who created the template"
+                    },
+                    "creator": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "the user who created the template"
+                    },
+                    "created_at": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "when this template was created"
+                    },
+                    "updated_at": {
+                        "location": "json",
+                        "type": "ISO8601 timestamp",
+                        "description": "when this template was last synced to the source guild"
+                    },
+                    "source_guild_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "the ID of the guild this template is based on"
+                    },
+                    "serialized_source_guild": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "the guild snapshot this template contains"
+                    },
+                    "is_dirty": {
+                        "location": "json",
+                        "type": "boolean",
+                        "nullable": true,
+                        "description": "whether the template has unsynced changes",
+                        "default": false
+                    },
+                    "icon": {
+                        "location": "json",
+                        "type": "image data",
+                        "description": "base64 128x128 image for the guild icon"
                     }
                 }
             }
@@ -5330,6 +6184,200 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "the guild scheduled event to include with the invite"
+                    }
+                }
+            }
+        },
+        "stage-instance": {
+            "stageInstance": {
+                "link": "https://discordapp.com/developers/docs/resources/stage-instance#stage-instance-object",
+                "resource": "stage-instance",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "The id of this Stage instance"
+                    },
+                    "guild_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "The guild id of the associated Stage channel"
+                    },
+                    "channel_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "The id of the associated Stage channel"
+                    },
+                    "topic": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "The topic of the Stage instance (1-120 characters)"
+                    },
+                    "privacy_level": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "The privacy level of the Stage instance"
+                    },
+                    "discoverable_disabled": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "Whether or not Stage Discovery is disabled",
+                        "default": false
+                    }
+                }
+            }
+        },
+        "sticker": {
+            "sticker": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#sticker-object",
+                "resource": "sticker",
+                "description": "Represents a sticker that can be sent in messages.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the sticker"
+                    },
+                    "pack_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "for standard stickers, id of the pack the sticker is from"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the sticker"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "nullable": true,
+                        "description": "description of the sticker"
+                    },
+                    "tags": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "autocomplete/suggestion tags for the sticker (max 200 characters)"
+                    },
+                    "asset": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "Deprecated previously the sticker asset hash, now an empty string"
+                    },
+                    "type": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "type of sticker"
+                    },
+                    "format_type": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "type of sticker format"
+                    },
+                    "available": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "whether this guild sticker can be used, may be false due to loss of Server Boosts",
+                        "default": false
+                    },
+                    "guild_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the guild that owns this sticker"
+                    },
+                    "user": {
+                        "location": "json",
+                        "type": "object",
+                        "description": "the user that uploaded the guild sticker"
+                    },
+                    "sort_value": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the standard sticker's sort order within its pack"
+                    }
+                }
+            },
+            "stickerItem": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#sticker-item-object",
+                "resource": "sticker",
+                "description": "The smallest amount of data required to render a sticker. A partial sticker object.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the sticker"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the sticker"
+                    },
+                    "format_type": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "type of sticker format"
+                    }
+                }
+            },
+            "stickerPack": {
+                "link": "https://discordapp.com/developers/docs/resources/sticker#sticker-pack-object",
+                "resource": "sticker",
+                "description": "Represents a pack of standard stickers.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the sticker pack"
+                    },
+                    "stickers": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "the stickers in the pack"
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "name of the sticker (2-30 characters)"
+                    },
+                    "sku_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the pack's SKU"
+                    },
+                    "cover_sticker_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of a sticker in the pack which is shown as the pack's icon"
+                    },
+                    "description": {
+                        "location": "json",
+                        "type": "string",
+                        "nullable": true,
+                        "description": "description of the sticker (2-100 characters)"
+                    },
+                    "banner_asset_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the sticker pack's banner image"
+                    },
+                    "sticker_packs": {
+                        "location": "json",
+                        "type": "array"
+                    },
+                    "tags": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "autocomplete/suggestion tags for the sticker (max 200 characters)"
+                    },
+                    "file": {
+                        "location": "json",
+                        "type": "file contents",
+                        "description": "the sticker file to upload, must be a PNG, APNG, or Lottie JSON file, max 500 KB"
                     }
                 }
             }
@@ -5541,26 +6589,20 @@
                         "location": "query",
                         "type": "snowflake",
                         "description": "get guilds before this guild ID",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "after": {
                         "location": "query",
                         "type": "snowflake",
                         "description": "get guilds after this guild ID",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "limit": {
                         "location": "query",
                         "type": "integer",
                         "description": "max number of guilds to return (1-200)",
                         "default": 200,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "recipient_id": {
                         "location": "json",
@@ -5770,28 +6812,18 @@
                         "type": "string",
                         "description": "the url used for executing the webhook (returned by the webhooks OAuth2 flow)"
                     },
-                    "avatar": {
-                        "location": "json",
-                        "type": "image data",
-                        "nullable": true,
-                        "description": "image for the default webhook avatar"
-                    },
                     "wait": {
                         "location": "query",
                         "type": "boolean",
                         "description": "waits for server confirmation of message send before response (defaults to true; when false a message that is not saved does not return an error)",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "thread_id": {
                         "location": "query",
                         "type": "snowflake",
                         "description": "id of the thread the message is in",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "content": {
                         "location": "json",
@@ -5802,26 +6834,20 @@
                         "location": "json",
                         "type": "string",
                         "description": "override the default username of the webhook",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "avatar_url": {
                         "location": "json",
                         "type": "string",
                         "description": "override the default avatar of the webhook",
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "tts": {
                         "location": "json",
                         "type": "boolean",
                         "description": "true if this is a TTS message",
                         "default": false,
-                        "extra": {
-                            "Required": "false"
-                        }
+                        "required": false
                     },
                     "embeds": {
                         "location": "json",
