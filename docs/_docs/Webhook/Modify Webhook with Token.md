@@ -12,7 +12,7 @@ $client->webhook->modifyWebhookWithToken($parameters);
 
 ## Description
 
-Same as above, except this call does not require authentication, does not accept a channel_id parameter in the body, and does not return a user in the webhook object.
+
 
 ## Parameters
 

@@ -12,7 +12,7 @@ $client->guild->getGuild($parameters);
 
 ## Description
 
-
+guild
 
 ## Parameters
 
@@ -20,11 +20,9 @@ $client->guild->getGuild($parameters);
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
+with_counts | boolean | false | *null*
 
 ## Response
 
-Returns the guild object for the given id.
+Possibly No Response
 
-Can Return:
-
-* guild

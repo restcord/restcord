@@ -12,7 +12,7 @@ $client->webhook->getWebhook($parameters);
 
 ## Description
 
-
+webhook
 
 ## Parameters
 
@@ -23,8 +23,5 @@ webhook.id | snowflake | true | *null*
 
 ## Response
 
-Returns the new webhook object for the given id.
+Possibly No Response
 
-Can Return:
-
-* webhook

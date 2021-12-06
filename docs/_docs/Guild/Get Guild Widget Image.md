@@ -1,7 +1,7 @@
 ---
 title: Get Guild Widget Image
 category: Guild
-order: 37
+order: 39
 ---
 
 # `getGuildWidgetImage`
@@ -12,8 +12,7 @@ $client->guild->getGuildWidgetImage($parameters);
 
 ## Description
 
-Requires no permissions or authentication.
-The same documentation also applies to embed.png.
+Example
 
 ## Parameters
 
@@ -25,5 +24,5 @@ style | string | false | shield
 
 ## Response
 
-Returns a PNG image widget for the guild.
+Possibly No Response
 

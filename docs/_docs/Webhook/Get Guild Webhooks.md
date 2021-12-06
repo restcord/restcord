@@ -12,7 +12,7 @@ $client->webhook->getGuildWebhooks($parameters);
 
 ## Description
 
-Requires the MANAGE_WEBHOOKS permission.
+webhook
 
 ## Parameters
 
@@ -23,8 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of guild webhook objects.
+Possibly No Response
 
-Can Return:
-
-* webhook

@@ -22,7 +22,7 @@ interface User {
 	 * @see https://discordapp.com/developers/docs/resources/user#create-dm
 	 *
 	 * @param array $options ['recipient_id' => 'snowflake']
-	 * @return \RestCord\Model\Channel\Channel Returns a DM channel object.
+	 * @return array
 	 */
 	public function createDm(array $options);
 
@@ -30,7 +30,7 @@ interface User {
 	 * @see https://discordapp.com/developers/docs/resources/user#create-group-dm
 	 *
 	 * @param array $options ['access_tokens' => 'array', 'nicks' => 'dict']
-	 * @return \RestCord\Model\Channel\Channel Returns a DM channel object.
+	 * @return array
 	 */
 	public function createGroupDm(array $options);
 
@@ -38,7 +38,7 @@ interface User {
 	 * @see https://discordapp.com/developers/docs/resources/user#get-current-user
 	 *
 	 * @param array $options []
-	 * @return \RestCord\Model\User\User Returns the user object of the requester's account.
+	 * @return array
 	 */
 	public function getCurrentUser(array $options);
 
@@ -46,7 +46,7 @@ interface User {
 	 * @see https://discordapp.com/developers/docs/resources/user#get-current-user-guilds
 	 *
 	 * @param array $options ['before' => 'snowflake', 'after' => 'snowflake', 'limit' => 'integer']
-	 * @return \RestCord\Model\Guild\Guild[] Returns a list of partial guild objects the current user is a member of.
+	 * @return array
 	 */
 	public function getCurrentUserGuilds(array $options);
 
@@ -54,7 +54,7 @@ interface User {
 	 * @see https://discordapp.com/developers/docs/resources/user#get-user
 	 *
 	 * @param array $options ['user.id' => 'snowflake']
-	 * @return \RestCord\Model\User\User Returns a user object for a given user ID.
+	 * @return array
 	 */
 	public function getUser(array $options);
 
@@ -62,31 +62,23 @@ interface User {
 	 * @see https://discordapp.com/developers/docs/resources/user#get-user-connections
 	 *
 	 * @param array $options []
-	 * @return \RestCord\Model\User\Connection[] Returns a list of connection objects.
+	 * @return array
 	 */
 	public function getUserConnections(array $options);
-
-	/**
-	 * @see https://discordapp.com/developers/docs/resources/user#get-user-dms
-	 *
-	 * @param array $options []
-	 * @return \RestCord\Model\Channel\Channel[] Returns a list of DM channel objects.
-	 */
-	public function getUserDms(array $options);
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/user#leave-guild
 	 *
 	 * @param array $options ['guild.id' => 'snowflake']
-	 * @return array Returns a 204 empty response on success.
+	 * @return array
 	 */
 	public function leaveGuild(array $options);
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/user#modify-current-user
 	 *
-	 * @param array $options ['username' => 'string', 'avatar' => 'avatar data']
-	 * @return \RestCord\Model\User\User Returns a user object on success.
+	 * @param array $options ['username' => 'string', 'avatar' => 'image data']
+	 * @return array
 	 */
 	public function modifyCurrentUser(array $options);
 }

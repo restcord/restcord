@@ -1,7 +1,7 @@
 ---
 title: Delete Message
 category: Channel
-order: 13
+order: 15
 ---
 
 # `deleteMessage`
@@ -12,7 +12,7 @@ $client->channel->deleteMessage($parameters);
 
 ## Description
 
-Delete a message. If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the MANAGE_MESSAGES permission.  Fires a Message Delete Gateway event.
+Message Delete
 
 ## Parameters
 
@@ -24,5 +24,5 @@ message.id | snowflake | true | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

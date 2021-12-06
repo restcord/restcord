@@ -26,13 +26,6 @@ class InviteMetadata {
 	public $created_at;
 
 	/**
-	 * user who created the invite
-	 *
-	 * @var array
-	 */
-	public $inviter;
-
-	/**
 	 * duration (in seconds) after which the invite expires
 	 *
 	 * @var int
@@ -45,13 +38,6 @@ class InviteMetadata {
 	 * @var int
 	 */
 	public $max_uses;
-
-	/**
-	 * whether this invite is revoked
-	 *
-	 * @var bool
-	 */
-	public $revoked = false;
 
 	/**
 	 * whether this invite only grants temporary membership

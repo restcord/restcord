@@ -19,10 +19,18 @@ namespace RestCord\Interfaces;
 interface Oauth2 {
 
 	/**
-	 * @see https://discordapp.com/developers/docs/topics/oauth2#get-current-application-information
+	 * @see https://discordapp.com/developers/docs/topics/oauth2#get-current-authorization-information
 	 *
-	 * @param array $options ['id' => 'snowflake', 'name' => 'string', 'icon' => 'string', 'description' => 'string', 'rpc_origins?' => 'array', 'bot_public' => 'boolean', 'bot_require_code_grant' => 'boolean', 'owner' => 'object']
-	 * @return array Returns the bot's OAuth2 application info.
+	 * @param array $options ['application' => 'object', 'scopes' => 'array', 'expires' => 'ISO8601 timestamp', 'user' => 'object']
+	 * @return array
 	 */
-	public function getCurrentApplicationInformation(array $options);
+	public function getCurrentAuthorizationInformation(array $options);
+
+	/**
+	 * @see https://discordapp.com/developers/docs/topics/oauth2#get-current-bot-application-information
+	 *
+	 * @param array $options []
+	 * @return array
+	 */
+	public function getCurrentBotApplicationInformation(array $options);
 }

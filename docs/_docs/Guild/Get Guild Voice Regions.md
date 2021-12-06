@@ -1,7 +1,7 @@
 ---
 title: Get Guild Voice Regions
 category: Guild
-order: 27
+order: 31
 ---
 
 # `getGuildVoiceRegions`
@@ -12,7 +12,7 @@ $client->guild->getGuildVoiceRegions($parameters);
 
 ## Description
 
-Unlike the similar /voice route, this returns VIP servers when the guild is VIP-enabled.
+voice region
 
 ## Parameters
 
@@ -23,8 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of voice region objects for the guild.
+Possibly No Response
 
-Can Return:
-
-* voice region

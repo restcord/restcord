@@ -1,7 +1,7 @@
 ---
 title: Get Pinned Messages
 category: Channel
-order: 20
+order: 23
 ---
 
 # `getPinnedMessages`
@@ -12,7 +12,7 @@ $client->channel->getPinnedMessages($parameters);
 
 ## Description
 
-
+message
 
 ## Parameters
 
@@ -23,8 +23,5 @@ channel.id | snowflake | true | *null*
 
 ## Response
 
-Returns all pinned messages in the channel as an array of message objects.
+Possibly No Response
 
-Can Return:
-
-* message

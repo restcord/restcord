@@ -12,7 +12,7 @@ $client->channel->createMessage($parameters);
 
 ## Description
 
-Before using this endpoint, you must connect to and identify with a gateway at least once.
+message
 
 ## Parameters
 
@@ -21,11 +21,16 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | true | *null*
 content | string | false | *null*
-nonce | snowflake | false | *null*
 tts | boolean | false | *null*
-file | file contents | false | *null*
-embed | object | false | *null*
+embeds | array | false | *null*
+embed (deprecated) | object | false | *null*
+allowed_mentions | object | false | *null*
+message_reference | message reference | false | *null*
+components | array | false | *null*
+sticker_ids | array | false | *null*
+files | file contents | false | *null*
 payload_json | string | false | *null*
+attachments | array | false | *null*
 
 ## Response
 

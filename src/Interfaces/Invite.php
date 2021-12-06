@@ -22,15 +22,15 @@ interface Invite {
 	 * @see https://discordapp.com/developers/docs/resources/invite#delete-invite
 	 *
 	 * @param array $options ['invite.code' => 'string']
-	 * @return \RestCord\Model\Invite\Invite Returns an invite object on success.
+	 * @return array
 	 */
 	public function deleteInvite(array $options);
 
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/invite#get-invite
 	 *
-	 * @param array $options ['invite.code' => 'string']
-	 * @return \RestCord\Model\Invite\Invite Returns an invite object for the given code.
+	 * @param array $options ['invite.code' => 'string', 'with_counts' => 'boolean', 'with_expiration' => 'boolean', 'guild_scheduled_event_id' => 'snowflake']
+	 * @return array
 	 */
 	public function getInvite(array $options);
 }

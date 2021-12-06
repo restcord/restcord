@@ -23,6 +23,13 @@ class User {
 	use AvatarTrait;
 
 	/**
+	 * the user's banner color encoded as an integer representation of hexadecimal color code
+	 *
+	 * @var int
+	 */
+	public $accent_color;
+
+	/**
 	 * the user's avatar hash
 	 *
 	 * @var string
@@ -30,9 +37,16 @@ class User {
 	public $avatar;
 
 	/**
+	 * the user's banner hash
+	 *
+	 * @var string
+	 */
+	public $banner;
+
+	/**
 	 * whether the user belongs to an OAuth2 application
 	 *
-	 * @var bool|null
+	 * @var bool
 	 */
 	public $bot = false;
 
@@ -46,14 +60,14 @@ class User {
 	/**
 	 * the user's email
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $email;
 
 	/**
 	 * the flags on a user's account
 	 *
-	 * @var int|null
+	 * @var int
 	 */
 	public $flags;
 
@@ -67,23 +81,37 @@ class User {
 	/**
 	 * the user's chosen language option
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $locale;
 
 	/**
 	 * whether the user has two factor enabled on their account
 	 *
-	 * @var bool|null
+	 * @var bool
 	 */
 	public $mfa_enabled = false;
 
 	/**
 	 * the type of Nitro subscription on a user's account
 	 *
-	 * @var int|null
+	 * @var int
 	 */
 	public $premium_type;
+
+	/**
+	 * the public flags on a user's account
+	 *
+	 * @var int
+	 */
+	public $public_flags;
+
+	/**
+	 * whether the user is an Official Discord System user (part of the urgent message system)
+	 *
+	 * @var bool
+	 */
+	public $system = false;
 
 	/**
 	 * the user's username, not unique across the platform
@@ -95,7 +123,7 @@ class User {
 	/**
 	 * whether the email on this account has been verified
 	 *
-	 * @var bool|null
+	 * @var bool
 	 */
 	public $verified = false;
 

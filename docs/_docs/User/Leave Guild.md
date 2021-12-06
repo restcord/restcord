@@ -12,7 +12,7 @@ $client->user->leaveGuild($parameters);
 
 ## Description
 
-Leave a guild.
+
 
 ## Parameters
 
@@ -23,5 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

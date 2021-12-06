@@ -12,7 +12,7 @@ $client->user->getCurrentUserGuilds($parameters);
 
 ## Description
 
-Requires the guilds OAuth2 scope.
+guild
 
 ## Parameters
 
@@ -21,12 +21,9 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 before | snowflake | false | *null*
 after | snowflake | false | *null*
-limit | integer | false | 100
+limit | integer | false | 200
 
 ## Response
 
-Returns a list of partial guild objects the current user is a member of.
+Possibly No Response
 
-Can Return:
-
-* guild

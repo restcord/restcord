@@ -12,7 +12,7 @@ $client->user->modifyCurrentUser($parameters);
 
 ## Description
 
-Modify the requester&#039;s user account settings.
+user
 
 ## Parameters
 
@@ -20,12 +20,9 @@ Modify the requester&#039;s user account settings.
 Name | Type | Required | Default
 --- | --- | --- | ---
 username | string | false | *null*
-avatar | avatar data | false | *null*
+avatar | image data | false | *null*
 
 ## Response
 
-Returns a user object on success.
+Possibly No Response
 
-Can Return:
-
-* user

@@ -12,7 +12,7 @@ $client->emoji->listGuildEmojis($parameters);
 
 ## Description
 
-
+emoji
 
 ## Parameters
 
@@ -23,8 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a list of emoji objects for the given guild.
+Possibly No Response
 
-Can Return:
-
-* emoji

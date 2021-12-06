@@ -21,9 +21,16 @@ class Emoji {
 	/**
 	 * whether this emoji is animated
 	 *
-	 * @var bool|null
+	 * @var bool
 	 */
 	public $animated = false;
+
+	/**
+	 * whether this emoji can be used, may be false due to loss of Server Boosts
+	 *
+	 * @var bool
+	 */
+	public $available = false;
 
 	/**
 	 * emoji id
@@ -35,14 +42,14 @@ class Emoji {
 	/**
 	 * the 128x128 emoji image
 	 *
-	 * @var string
+	 * @var image data
 	 */
 	public $image;
 
 	/**
 	 * whether this emoji is managed
 	 *
-	 * @var bool|null
+	 * @var bool
 	 */
 	public $managed = false;
 
@@ -56,12 +63,12 @@ class Emoji {
 	/**
 	 * whether this emoji must be wrapped in colons
 	 *
-	 * @var bool|null
+	 * @var bool
 	 */
 	public $require_colons = false;
 
 	/**
-	 * roles to which this emoji will be whitelisted
+	 * roles allowed to use this emoji
 	 *
 	 * @var array
 	 */
@@ -70,7 +77,7 @@ class Emoji {
 	/**
 	 * user that created this emoji
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $user;
 

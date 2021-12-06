@@ -1,7 +1,7 @@
 ---
 title: Delete Guild
 category: Guild
-order: 4
+order: 5
 ---
 
 # `deleteGuild`
@@ -12,7 +12,7 @@ $client->guild->deleteGuild($parameters);
 
 ## Description
 
-Delete a guild permanently. User must be owner.  Fires a Guild Delete Gateway event.
+Guild Delete
 
 ## Parameters
 
@@ -23,5 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns 204 No Content on success.
+Possibly No Response
 

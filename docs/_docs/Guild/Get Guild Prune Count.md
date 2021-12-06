@@ -1,7 +1,7 @@
 ---
 title: Get Guild Prune Count
 category: Guild
-order: 25
+order: 29
 ---
 
 # `getGuildPruneCount`
@@ -12,7 +12,7 @@ $client->guild->getGuildPruneCount($parameters);
 
 ## Description
 
-Requires the KICK_MEMBERS permission.
+
 
 ## Parameters
 
@@ -20,9 +20,10 @@ Requires the KICK_MEMBERS permission.
 Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
-days | integer | false | *null*
+days | integer | false | 7
+include_roles | array | false | none
 
 ## Response
 
-Returns an object with one &#039;pruned&#039; key indicating the number of members that would be removed in a prune operation.
+Possibly No Response
 

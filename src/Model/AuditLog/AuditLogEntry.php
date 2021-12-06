@@ -19,7 +19,7 @@ namespace RestCord\Model\AuditLog;
 class AuditLogEntry {
 
 	/**
-	 * type of action that occured
+	 * type of action that occurred
 	 *
 	 * @var audit log event
 	 */
@@ -28,7 +28,7 @@ class AuditLogEntry {
 	/**
 	 * changes made to the target_id
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $changes;
 
@@ -42,14 +42,14 @@ class AuditLogEntry {
 	/**
 	 * additional info for certain action types
 	 *
-	 * @var optional audit entry info|null
+	 * @var optional audit entry info
 	 */
 	public $options;
 
 	/**
 	 * the reason for the change (0-512 characters)
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $reason;
 

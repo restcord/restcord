@@ -1,7 +1,7 @@
 ---
 title: Get Guild Vanity Url
 category: Guild
-order: 36
+order: 38
 ---
 
 # `getGuildVanityUrl`
@@ -12,7 +12,7 @@ $client->guild->getGuildVanityUrl($parameters);
 
 ## Description
 
-Requires the MANAGE_GUILD permission. code will be null if a vanity url for the guild is not set.
+invite
 
 ## Parameters
 
@@ -23,8 +23,5 @@ guild.id | snowflake | true | *null*
 
 ## Response
 
-Returns a partial invite object for guilds with that feature enabled.
+Possibly No Response
 
-Can Return:
-
-* invite

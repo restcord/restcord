@@ -26,6 +26,20 @@ class Integration {
 	public $account;
 
 	/**
+	 * The bot/OAuth2 application for discord integrations
+	 *
+	 * @var array
+	 */
+	public $application;
+
+	/**
+	 * whether emoticons should be synced for this integration (twitch only currently)
+	 *
+	 * @var bool
+	 */
+	public $enable_emoticons = false;
+
+	/**
 	 * is this integration enabled
 	 *
 	 * @var bool
@@ -35,12 +49,12 @@ class Integration {
 	/**
 	 * the behavior of expiring subscribers
 	 *
-	 * @var int
+	 * @var integration expire behavior
 	 */
 	public $expire_behavior;
 
 	/**
-	 * the grace period before expiring subscribers
+	 * the grace period (in days) before expiring subscribers
 	 *
 	 * @var int
 	 */
@@ -61,11 +75,25 @@ class Integration {
 	public $name;
 
 	/**
+	 * has this integration been revoked
+	 *
+	 * @var bool
+	 */
+	public $revoked = false;
+
+	/**
 	 * id that this integration uses for "subscribers"
 	 *
 	 * @var int
 	 */
 	public $role_id;
+
+	/**
+	 * how many subscribers this integration has
+	 *
+	 * @var int
+	 */
+	public $subscriber_count;
 
 	/**
 	 * when this integration was last synced
@@ -82,7 +110,7 @@ class Integration {
 	public $syncing = false;
 
 	/**
-	 * integration type (twitch, youtube, etc)
+	 * integration type (twitch, youtube, or discord)
 	 *
 	 * @var string
 	 */
