@@ -3318,12 +3318,6 @@
                 "description": "",
                 "type": "object",
                 "properties": {
-                    "reason": {
-                        "location": "json",
-                        "type": "string",
-                        "nullable": true,
-                        "description": "the reason for the ban"
-                    },
                     "user": {
                         "location": "json",
                         "type": "object",
@@ -3510,6 +3504,7 @@
                     "reason": {
                         "location": "query",
                         "type": "string",
+                        "nullable": true,
                         "description": "reason for the ban"
                     },
                     "permissions": {
