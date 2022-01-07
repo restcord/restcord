@@ -49,14 +49,14 @@ class GuildScheduledEventUser {
 	/**
 	 * the entity metadata of the scheduled event
 	 *
-	 * @var entity metadata
+	 * @var array
 	 */
 	public $entity_metadata;
 
 	/**
 	 * the entity type of the scheduled event
 	 *
-	 * @var event entity type
+	 * @var int
 	 */
 	public $entity_type;
 
@@ -70,14 +70,14 @@ class GuildScheduledEventUser {
 	/**
 	 * how many users to receive from the event
 	 *
-	 * @var number
+	 * @var string Number as a string
 	 */
 	public $limit = '100';
 
 	/**
 	 * guild member data for this user for the guild which this event belongs to, if any
 	 *
-	 * @var guild member
+	 * @var GuildScheduledEventUser
 	 */
 	public $member;
 
