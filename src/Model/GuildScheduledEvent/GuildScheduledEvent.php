@@ -56,14 +56,14 @@ class GuildScheduledEvent {
 	/**
 	 * additional metadata for the guild scheduled event
 	 *
-	 * @var entity metadata
+	 * @var array
 	 */
 	public $entity_metadata;
 
 	/**
 	 * the type of the scheduled event
 	 *
-	 * @var scheduled entity type
+	 * @var int
 	 */
 	public $entity_type;
 
@@ -91,7 +91,7 @@ class GuildScheduledEvent {
 	/**
 	 * the privacy level of the scheduled event
 	 *
-	 * @var privacy level
+	 * @var int
 	 */
 	public $privacy_level;
 
@@ -112,7 +112,7 @@ class GuildScheduledEvent {
 	/**
 	 * the status of the scheduled event
 	 *
-	 * @var event status
+	 * @var int
 	 */
 	public $status;
 

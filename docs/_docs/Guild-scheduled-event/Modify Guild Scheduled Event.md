@@ -21,14 +21,14 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
 channel_id | snowflake | false | *null*
-entity_metadata | entity metadata | false | *null*
+entity_metadata | array | false | *null*
 name | string | false | *null*
-privacy_level | privacy level | false | *null*
-scheduled_start_time | ISO8601 timestamp | false | *null*
-scheduled_end_time | ISO8601 timestamp | false | *null*
+privacy_level | integer | false | *null*
+scheduled_start_time | string | false | *null*
+scheduled_end_time | string | false | *null*
 description | string | false | *null*
-entity_type | event entity type | false | *null*
-status | event status | false | *null*
+entity_type | array | false | *null*
+status | integer | false | *null*
 
 ## Response
 

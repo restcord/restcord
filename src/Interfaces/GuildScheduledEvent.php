@@ -21,7 +21,7 @@ interface GuildScheduledEvent {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild-scheduled-event#create-guild-scheduled-event
 	 *
-	 * @param array $options ['guild.id' => 'snowflake', 'channel_id' => 'snowflake *', 'entity_metadata' => 'entity metadata', 'name' => 'string', 'privacy_level' => 'privacy level', 'scheduled_start_time' => 'ISO8601 timestamp', 'scheduled_end_time' => 'ISO8601 timestamp', 'description' => 'string', 'entity_type' => 'entity type']
+	 * @param array $options ['guild.id' => 'snowflake', 'channel_id' => 'snowflake *', 'entity_metadata' => 'array', 'name' => 'string', 'privacy_level' => 'integer', 'scheduled_start_time' => 'string', 'scheduled_end_time' => 'string', 'description' => 'string', 'entity_type' => 'integer']
 	 * @return array
 	 */
 	public function createGuildScheduledEvent(array $options);
@@ -61,7 +61,7 @@ interface GuildScheduledEvent {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild-scheduled-event#modify-guild-scheduled-event
 	 *
-	 * @param array $options ['guild.id' => 'snowflake', 'channel_id' => 'snowflake', 'entity_metadata' => 'entity metadata', 'name' => 'string', 'privacy_level' => 'privacy level', 'scheduled_start_time' => 'ISO8601 timestamp', 'scheduled_end_time' => 'ISO8601 timestamp', 'description' => 'string', 'entity_type' => 'event entity type', 'status' => 'event status']
+	 * @param array $options ['guild.id' => 'snowflake', 'channel_id' => 'snowflake', 'entity_metadata' => 'array', 'name' => 'string', 'privacy_level' => 'integer', 'scheduled_start_time' => 'string', 'scheduled_end_time' => 'string', 'description' => 'string', 'entity_type' => 'integer', 'status' => 'integer']
 	 * @return array
 	 */
 	public function modifyGuildScheduledEvent(array $options);

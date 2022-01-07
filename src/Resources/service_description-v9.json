@@ -2609,7 +2609,7 @@
                     },
                     "entity_metadata": {
                         "location": "json",
-                        "type": "entity metadata",
+                        "type": "array",
                         "description": "the entity metadata of the scheduled event"
                     },
                     "name": {
@@ -2619,18 +2619,18 @@
                     },
                     "privacy_level": {
                         "location": "json",
-                        "type": "privacy level",
+                        "type": "integer",
                         "description": "the privacy level of the scheduled event"
                     },
                     "scheduled_start_time": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
-                        "description": "the time to schedule the scheduled event"
+                        "type": "string",
+                        "description": "the time to schedule the scheduled event (ISO8601 timestamp)"
                     },
                     "scheduled_end_time": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
-                        "description": "the time when the scheduled event is scheduled to end"
+                        "type": "string",
+                        "description": "the time when the scheduled event is scheduled to end (ISO8601 timestamp)"
                     },
                     "description": {
                         "location": "json",
@@ -2639,7 +2639,7 @@
                     },
                     "entity_type": {
                         "location": "json",
-                        "type": "entity type",
+                        "type": "integer",
                         "description": "the entity type of the scheduled event"
                     }
                 },
@@ -2682,7 +2682,7 @@
                     },
                     "entity_metadata": {
                         "location": "json",
-                        "type": "entity metadata",
+                        "type": "array",
                         "description": "the entity metadata of the scheduled event"
                     },
                     "name": {
@@ -2692,17 +2692,17 @@
                     },
                     "privacy_level": {
                         "location": "json",
-                        "type": "privacy level",
+                        "type": "integer",
                         "description": "the privacy level of the scheduled event"
                     },
                     "scheduled_start_time": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "string",
                         "description": "the time to schedule the scheduled event"
                     },
                     "scheduled_end_time": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "string",
                         "description": "the time when the scheduled event is scheduled to end"
                     },
                     "description": {
@@ -2712,12 +2712,12 @@
                     },
                     "entity_type": {
                         "location": "json",
-                        "type": "event entity type",
+                        "type": "integer",
                         "description": "the entity type of the scheduled event"
                     },
                     "status": {
                         "location": "json",
-                        "type": "event status",
+                        "type": "integer",
                         "description": "the status of the scheduled event"
                     }
                 },
@@ -5819,23 +5819,23 @@
                     },
                     "scheduled_start_time": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "string",
                         "description": "the time the scheduled event will start"
                     },
                     "scheduled_end_time": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "string",
                         "nullable": true,
                         "description": "the time the scheduled event will end, required if entity_type is EXTERNAL"
                     },
                     "privacy_level": {
                         "location": "json",
-                        "type": "privacy level",
+                        "type": "integer",
                         "description": "the privacy level of the scheduled event"
                     },
                     "status": {
                         "location": "json",
-                        "type": "event status",
+                        "type": "integer",
                         "description": "the status of the scheduled event"
                     },
                     "entity_type": {
@@ -5851,7 +5851,7 @@
                     },
                     "entity_metadata": {
                         "location": "json",
-                        "type": "entity metadata",
+                        "type": "array",
                         "nullable": true,
                         "description": "additional metadata for the guild scheduled event"
                     },
@@ -5902,7 +5902,7 @@
                     },
                     "entity_metadata": {
                         "location": "json",
-                        "type": "entity metadata",
+                        "type": "array",
                         "description": "the entity metadata of the scheduled event"
                     },
                     "name": {
@@ -5912,17 +5912,17 @@
                     },
                     "privacy_level": {
                         "location": "json",
-                        "type": "privacy level",
+                        "type": "integer",
                         "description": "the privacy level of the scheduled event"
                     },
                     "scheduled_start_time": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "string",
                         "description": "the time to schedule the scheduled event"
                     },
                     "scheduled_end_time": {
                         "location": "json",
-                        "type": "ISO8601 timestamp",
+                        "type": "string",
                         "description": "the time when the scheduled event is scheduled to end"
                     },
                     "description": {
@@ -5932,12 +5932,12 @@
                     },
                     "entity_type": {
                         "location": "json",
-                        "type": "event entity type",
+                        "type": "integer",
                         "description": "the entity type of the scheduled event"
                     },
                     "status": {
                         "location": "json",
-                        "type": "event status",
+                        "type": "integer",
                         "description": "the status of the scheduled event"
                     },
                     "limit": {
