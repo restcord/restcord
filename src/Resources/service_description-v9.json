@@ -1352,7 +1352,7 @@
             }
         },
         "application": {},
-        "audit-log": {
+        "auditLog": {
             "getGuildAuditLog": {
                 "link": "https://discordapp.com/developers/docs/resources/audit-log#get-guild-audit-log",
                 "resource": "audit-log",
@@ -2566,7 +2566,7 @@
                 "parametersArray": false
             }
         },
-        "guild-scheduled-event": {
+        "guildScheduledEvent": {
             "listScheduledEventsForGuild": {
                 "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#list-scheduled-events-for-guild",
                 "resource": "guild-scheduled-event",
@@ -2778,7 +2778,7 @@
                 "parametersArray": false
             }
         },
-        "guild-template": {
+        "guildTemplate": {
             "getGuildTemplate": {
                 "link": "https://discordapp.com/developers/docs/resources/guild-template#get-guild-template",
                 "resource": "guild-template",
@@ -2990,7 +2990,7 @@
                 "parametersArray": false
             }
         },
-        "stage-instance": {
+        "stageInstance": {
             "createStageInstance": {
                 "link": "https://discordapp.com/developers/docs/resources/stage-instance#create-stage-instance",
                 "resource": "stage-instance",
@@ -5093,7 +5093,7 @@
                 }
             }
         },
-        "audit-log": {
+        "auditLog": {
             "auditLog": {
                 "link": "https://discordapp.com/developers/docs/resources/audit-log#audit-log-object",
                 "resource": "audit-log",
@@ -5778,7 +5778,7 @@
                 }
             }
         },
-        "guild-scheduled-event": {
+        "guildScheduledEvent": {
             "guildScheduledEvent": {
                 "link": "https://discordapp.com/developers/docs/resources/guild-scheduled-event#guild-scheduled-event-object",
                 "resource": "guild-scheduled-event",
@@ -5965,7 +5965,7 @@
                 }
             }
         },
-        "guild-template": {
+        "guildTemplate": {
             "guildTemplate": {
                 "link": "https://discordapp.com/developers/docs/resources/guild-template#guild-template-object",
                 "resource": "guild-template",
@@ -6188,7 +6188,7 @@
                 }
             }
         },
-        "stage-instance": {
+        "stageInstance": {
             "stageInstance": {
                 "link": "https://discordapp.com/developers/docs/resources/stage-instance#stage-instance-object",
                 "resource": "stage-instance",

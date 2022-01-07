@@ -7,7 +7,7 @@ order: 2
 # `createGuildFromGuildTemplate`
 
 ```php
-$client->guild-template->createGuildFromGuildTemplate($parameters);
+$client->guildTemplate->createGuildFromGuildTemplate($parameters);
 ```
 
 ## Description

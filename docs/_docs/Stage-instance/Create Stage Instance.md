@@ -7,7 +7,7 @@ order: 1
 # `createStageInstance`
 
 ```php
-$client->stage-instance->createStageInstance($parameters);
+$client->stageInstance->createStageInstance($parameters);
 ```
 
 ## Description

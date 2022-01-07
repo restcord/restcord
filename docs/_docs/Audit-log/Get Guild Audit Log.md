@@ -7,7 +7,7 @@ order: 1
 # `getGuildAuditLog`
 
 ```php
-$client->audit-log->getGuildAuditLog($parameters);
+$client->auditLog->getGuildAuditLog($parameters);
 ```
 
 ## Description

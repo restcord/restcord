@@ -7,7 +7,7 @@ order: 2
 # `createGuildScheduledEvent`
 
 ```php
-$client->guild-scheduled-event->createGuildScheduledEvent($parameters);
+$client->guildScheduledEvent->createGuildScheduledEvent($parameters);
 ```
 
 ## Description
