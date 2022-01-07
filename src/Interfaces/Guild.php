@@ -53,7 +53,7 @@ interface Guild {
 	/**
 	 * @see https://discordapp.com/developers/docs/resources/guild#create-guild-ban
 	 *
-	 * @param array $options ['guild.id' => 'snowflake', 'user.id' => 'snowflake', 'delete-message-days?' => 'integer', 'reason?' => 'string']
+	 * @param array $options ['guild.id' => 'snowflake', 'user.id' => 'snowflake', 'delete-message-days' => 'integer', 'reason' => 'string']
 	 * @return array Returns a 204 empty response on success.
 	 */
 	public function createGuildBan(array $options);

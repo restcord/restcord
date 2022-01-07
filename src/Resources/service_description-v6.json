@@ -677,12 +677,12 @@
                         "location": "uri",
                         "required": true
                     },
-                    "delete-message-days?": {
+                    "delete-message-days": {
                         "location": "query",
                         "type": "integer",
                         "description": "number of days to delete messages for (0-7)"
                     },
-                    "reason?": {
+                    "reason": {
                         "location": "query",
                         "type": "string",
                         "description": "reason for the ban"
@@ -3502,12 +3502,12 @@
                             "Permission": "MOVE_MEMBERS"
                         }
                     },
-                    "delete-message-days?": {
+                    "delete-message-days": {
                         "location": "query",
                         "type": "integer",
                         "description": "number of days to delete messages for (0-7)"
                     },
-                    "reason?": {
+                    "reason": {
                         "location": "query",
                         "type": "string",
                         "description": "reason for the ban"
@@ -3670,7 +3670,7 @@
                         "type": "optional audit entry info",
                         "description": "additional info for certain action types"
                     },
-                    "reason?": {
+                    "reason": {
                         "location": "json",
                         "type": "string",
                         "description": "the reason for the change (0-512 characters)"
