@@ -2735,6 +2735,15 @@
                             "Required": "false"
                         }
                     },
+                    "thread_id": {
+                        "location": "query",
+                        "type": "snowflake",
+                        "description": "send a message to the specified thread within a webhook's channel. The thread will automatically be unarchived.",
+                        "default": false,
+                        "extra": {
+                            "Required": "false"
+                        }
+                    },
                     "content": {
                         "location": "json",
                         "type": "string",
