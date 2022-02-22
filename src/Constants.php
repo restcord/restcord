@@ -20,8 +20,10 @@ namespace RestCord;
  */
 class Constants
 {
-    const CDN_URL    = 'https://cdn.discordapp.com/';
-
-    const AVATAR_URL = self::CDN_URL.'avatars/';
-    const BANNER_URL = self::CDN_URL.'banners/';
+    const CDN_URL            = 'https://cdn.discordapp.com/';
+    const DEFAULT_AVATAR_URL = self::CDN_URL.'embed/avatars/';
+    const GUILD_ICON_URL     = self::CDN_URL.'icons/';
+    const GUILD_SPLASH_URL   = self::CDN_URL.'splashes/';
+    const AVATAR_URL         = self::CDN_URL.'avatars/';
+    const BANNER_URL         = self::CDN_URL.'banners/';
 }
