@@ -39,6 +39,12 @@ class Connection {
 	 */
 	public $avatar;
 
+    /**
+     * if passed, modifies the user's banner
+     *
+     * @var banner data
+     */
+    public $banner;
 	/**
 	 * get guilds before this guild ID
 	 *
