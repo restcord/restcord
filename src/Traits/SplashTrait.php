@@ -24,7 +24,7 @@ trait SplashTrait
 {
     public function getSplash($format = 'webp', $size = null)
     {
-        $url = Constants::AVATAR_URL.$this->id.'/'.$this->splash.'.'.$format;
+        $url = Constants::GUILD_SPLASH_URL.$this->id.'/'.$this->splash.'.'.$format;
         if ($size !== null) {
             $url .= '?size='.$size;
         }
