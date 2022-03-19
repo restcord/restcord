@@ -24,7 +24,8 @@ trait IconTrait
 {
     public function getIcon($format = 'webp', $size = null)
     {
-        $url = Constants::AVATAR_URL.$this->id.'/'.$this->icon.'.'.$format;
+        // Add const SERVER_URL = self::CDN_URL.'icons/'; to the Constants.php
+        $url = "https://cdn.discordapp.com/icons/".$this->id.'/'.$this->icon.'.'.$format;
         if ($size !== null) {
             $url .= '?size='.$size;
         }
