@@ -21,6 +21,7 @@ namespace RestCord;
 class Constants
 {
     const CDN_URL    = 'https://cdn.discordapp.com/';
-
+    const BANNER_URL = self::CDN_URL.'banners/';
+    const SERVER_URL = self::CDN_URL.'icons/';
     const AVATAR_URL = self::CDN_URL.'avatars/';
 }
