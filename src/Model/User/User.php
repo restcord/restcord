@@ -14,7 +14,6 @@
 namespace RestCord\Model\User;
 
 use RestCord\Traits\AvatarTrait;
-use RestCord\Traits\BannerTrait;
 
 /**
  * User Model
@@ -22,19 +21,13 @@ use RestCord\Traits\BannerTrait;
 class User {
 
 	use AvatarTrait;
-    use BannerTrait;
+
 	/**
 	 * the user's avatar hash
 	 *
 	 * @var string
 	 */
 	public $avatar;
-    /**
-     * the user's banner hash
-     *
-     * @var string
-     */
-    public $banner;
 
 	/**
 	 * whether the user belongs to an OAuth2 application
