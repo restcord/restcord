@@ -4486,6 +4486,11 @@
                         "type": "avatar data",
                         "description": "if passed, modifies the user's avatar"
                     },
+                    "banner": {
+                        "location": "json",
+                        "type": "banner data",
+                        "description": "if passed, modifies the user's banner"
+                    },
                     "before": {
                         "location": "query",
                         "type": "snowflake",
