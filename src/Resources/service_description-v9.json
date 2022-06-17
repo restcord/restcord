@@ -1419,6 +1419,57 @@
                         "type": "snowflake",
                         "location": "uri",
                         "required": true
+                    },
+                    "name": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "channel name (1-100 characters)"
+                    },
+                    "type": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the type of channel"
+                    },
+                    "topic": {
+                        "location": "json",
+                        "type": "string",
+                        "description": "channel topic (0-1024 characters)"
+                    },
+                    "bitrate": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the bitrate (in bits) of the voice channel (voice only)"
+                    },
+                    "user_limit": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "the user limit of the voice channel (voice only)"
+                    },
+                    "rate_limit_per_user": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "amount of seconds a user has to wait before sending another message (0-21600); bots, as well as users with the permission manage_messages or manage_channel, are unaffected"
+                    },
+                    "position": {
+                        "location": "json",
+                        "type": "integer",
+                        "description": "sorting position of the channel"
+                    },
+                    "permission_overwrites": {
+                        "location": "json",
+                        "type": "array",
+                        "description": "the channel's permission overwrites"
+                    },
+                    "parent_id": {
+                        "location": "json",
+                        "type": "snowflake",
+                        "description": "id of the parent category for a channel"
+                    },
+                    "nsfw": {
+                        "location": "json",
+                        "type": "boolean",
+                        "description": "whether the channel is nsfw",
+                        "default": false
                     }
                 },
                 "parametersArray": false
