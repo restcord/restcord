@@ -1,9 +1,13 @@
 <!-- @format -->
 
-1.0.0
+Version: 1.0.1
 
-# Change log
+# Changelog
 
-1.0.0
+1.0.1
+
+- Removed Symfony 6.0 support. We're not running PHP8
+
+  1.0.0
 
 - Updated Guzzle Version to ^7.0
