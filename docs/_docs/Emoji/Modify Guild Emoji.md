@@ -12,7 +12,7 @@ $client->emoji->modifyGuildEmoji($parameters);
 
 ## Description
 
-Modify the given emoji. Requires the MANAGE_EMOJIS permission.  Fires a Guild Emojis Update Gateway event.
+emoji
 
 ## Parameters
 
@@ -26,8 +26,5 @@ roles | array | false | *null*
 
 ## Response
 
-Returns the updated emoji object on success.
+Possibly No Response
 
-Can Return:
-
-* emoji

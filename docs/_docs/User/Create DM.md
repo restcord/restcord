@@ -1,7 +1,7 @@
 ---
 title: Create Dm
 category: User
-order: 7
+order: 6
 ---
 
 # `createDm`
@@ -12,7 +12,7 @@ $client->user->createDm($parameters);
 
 ## Description
 
-Create a new DM channel with a user.
+DM channel
 
 ## Parameters
 
@@ -23,8 +23,5 @@ recipient_id | snowflake | false | *null*
 
 ## Response
 
-Returns a DM channel object.
+Possibly No Response
 
-Can Return:
-
-* DM channel

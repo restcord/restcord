@@ -1,7 +1,7 @@
 ---
 title: Remove Guild Member
 category: Guild
-order: 15
+order: 19
 ---
 
 # `removeGuildMember`
@@ -12,7 +12,7 @@ $client->guild->removeGuildMember($parameters);
 
 ## Description
 
-Remove a member from a guild. Requires KICK_MEMBERS permission.  Fires a Guild Member Remove Gateway event.
+Guild Member Remove
 
 ## Parameters
 
@@ -24,5 +24,5 @@ user.id | snowflake | true | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

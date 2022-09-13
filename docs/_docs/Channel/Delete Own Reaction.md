@@ -1,7 +1,7 @@
 ---
 title: Delete Own Reaction
 category: Channel
-order: 8
+order: 9
 ---
 
 # `deleteOwnReaction`
@@ -12,7 +12,7 @@ $client->channel->deleteOwnReaction($parameters);
 
 ## Description
 
-Delete a reaction the current user has made for the message.
+URL Encoded
 
 ## Parameters
 
@@ -25,5 +25,5 @@ emoji | string | true | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

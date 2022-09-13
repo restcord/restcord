@@ -35,14 +35,14 @@ class VoiceState {
 	/**
 	 * the guild id this voice state is for
 	 *
-	 * @var int|null
+	 * @var int
 	 */
 	public $guild_id;
 
 	/**
 	 * the guild member this voice state is for
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $member;
 
@@ -52,6 +52,13 @@ class VoiceState {
 	 * @var bool
 	 */
 	public $mute = false;
+
+	/**
+	 * the time at which the user requested to speak
+	 *
+	 * @var \DateTimeImmutable
+	 */
+	public $request_to_speak_timestamp;
 
 	/**
 	 * whether this user is locally deafened
@@ -66,6 +73,20 @@ class VoiceState {
 	 * @var bool
 	 */
 	public $self_mute = false;
+
+	/**
+	 * whether this user is streaming using "Go Live"
+	 *
+	 * @var bool
+	 */
+	public $self_stream = false;
+
+	/**
+	 * whether this user's camera is enabled
+	 *
+	 * @var bool
+	 */
+	public $self_video = false;
 
 	/**
 	 * the session id for this voice state

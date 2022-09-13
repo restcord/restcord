@@ -12,7 +12,7 @@ $client->user->getUser($parameters);
 
 ## Description
 
-
+user
 
 ## Parameters
 
@@ -23,8 +23,5 @@ user.id | snowflake | true | *null*
 
 ## Response
 
-Returns a user object for a given user ID.
+Possibly No Response
 
-Can Return:
-
-* user

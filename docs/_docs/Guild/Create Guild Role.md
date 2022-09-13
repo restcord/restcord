@@ -1,7 +1,7 @@
 ---
 title: Create Guild Role
 category: Guild
-order: 21
+order: 25
 ---
 
 # `createGuildRole`
@@ -12,7 +12,7 @@ $client->guild->createGuildRole($parameters);
 
 ## Description
 
-Create a new role for the guild. Requires the MANAGE_ROLES permission.  Fires a Guild Role Create Gateway event. All JSON params are optional.
+role
 
 ## Parameters
 
@@ -21,15 +21,14 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 guild.id | snowflake | true | *null*
 name | string | false | &quot;new role&quot;
-permissions | integer | false | *null*
+permissions | string | false | @everyone permissions in guild
 color | integer | false | 0
 hoist | boolean | false | *null*
+icon | image data | false | null
+unicode_emoji | string | false | null
 mentionable | boolean | false | *null*
 
 ## Response
 
-Returns the new role object on success.
+Possibly No Response
 
-Can Return:
-
-* role

@@ -1,7 +1,7 @@
 ---
 title: Delete Guild Integration
 category: Guild
-order: 32
+order: 34
 ---
 
 # `deleteGuildIntegration`
@@ -12,7 +12,7 @@ $client->guild->deleteGuildIntegration($parameters);
 
 ## Description
 
-Delete the attached integration object for the guild. Requires the MANAGE_GUILD permission.  Fires a Guild Integrations Update Gateway event.
+integration
 
 ## Parameters
 
@@ -24,5 +24,5 @@ integration.id | string | true | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

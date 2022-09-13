@@ -19,6 +19,13 @@ namespace RestCord\Model\Permissions;
 class Role {
 
 	/**
+	 * the id of the bot this role belongs to
+	 *
+	 * @var int
+	 */
+	public $bot_id;
+
+	/**
 	 * integer representation of hexadecimal color code
 	 *
 	 * @var int
@@ -33,11 +40,25 @@ class Role {
 	public $hoist = false;
 
 	/**
+	 * role icon hash
+	 *
+	 * @var string
+	 */
+	public $icon;
+
+	/**
 	 * role id
 	 *
 	 * @var int
 	 */
 	public $id;
+
+	/**
+	 * the id of the integration this role belongs to
+	 *
+	 * @var int
+	 */
+	public $integration_id;
 
 	/**
 	 * whether this role is managed by an integration
@@ -63,7 +84,7 @@ class Role {
 	/**
 	 * permission bit set
 	 *
-	 * @var int
+	 * @var string
 	 */
 	public $permissions;
 
@@ -73,6 +94,27 @@ class Role {
 	 * @var int
 	 */
 	public $position;
+
+	/**
+	 * whether this is the guild's premium subscriber role
+	 *
+	 * @var null
+	 */
+	public $premium_subscriber;
+
+	/**
+	 * the tags this role has
+	 *
+	 * @var array
+	 */
+	public $tags;
+
+	/**
+	 * role unicode emoji
+	 *
+	 * @var string
+	 */
+	public $unicode_emoji;
 
 	/**
 	 * @param array $content

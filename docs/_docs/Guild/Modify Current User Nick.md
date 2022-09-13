@@ -1,7 +1,7 @@
 ---
 title: Modify Current User Nick
 category: Guild
-order: 12
+order: 16
 ---
 
 # `modifyCurrentUserNick`
@@ -12,7 +12,7 @@ $client->guild->modifyCurrentUserNick($parameters);
 
 ## Description
 
-Modifies the nickname of the current user in a guild.  Fires a Guild Member Update Gateway event.
+Modify Current Member
 
 ## Parameters
 
@@ -24,5 +24,5 @@ nick | string | false | *null*
 
 ## Response
 
-Returns a 200 with the nickname on success.
+Possibly No Response
 

@@ -1,7 +1,7 @@
 ---
 title: Get Guild Member
 category: Guild
-order: 8
+order: 10
 ---
 
 # `getGuildMember`
@@ -12,7 +12,7 @@ $client->guild->getGuildMember($parameters);
 
 ## Description
 
-
+guild member
 
 ## Parameters
 
@@ -24,8 +24,5 @@ user.id | snowflake | true | *null*
 
 ## Response
 
-Returns a guild member object for the specified user.
+Possibly No Response
 
-Can Return:
-
-* guild member

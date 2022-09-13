@@ -1,7 +1,7 @@
 ---
 title: Modify Guild Member
 category: Guild
-order: 11
+order: 14
 ---
 
 # `modifyGuildMember`
@@ -12,7 +12,7 @@ $client->guild->modifyGuildMember($parameters);
 
 ## Description
 
-Modify attributes of a guild member.  Fires a Guild Member Update Gateway event.
+guild member
 
 ## Parameters
 
@@ -29,5 +29,5 @@ channel_id | snowflake | false | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

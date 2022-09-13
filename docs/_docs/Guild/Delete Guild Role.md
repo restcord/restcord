@@ -1,7 +1,7 @@
 ---
 title: Delete Guild Role
 category: Guild
-order: 24
+order: 28
 ---
 
 # `deleteGuildRole`
@@ -12,7 +12,7 @@ $client->guild->deleteGuildRole($parameters);
 
 ## Description
 
-Delete a guild role. Requires the MANAGE_ROLES permission.  Fires a Guild Role Delete Gateway event.
+Guild Role Delete
 
 ## Parameters
 
@@ -24,5 +24,5 @@ role.id | string | true | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

@@ -21,63 +21,63 @@ class Embed {
 	/**
 	 * author information
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $author;
 
 	/**
 	 * color code of the embed
 	 *
-	 * @var int|null
+	 * @var int
 	 */
 	public $color;
 
 	/**
 	 * description of embed
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $description;
 
 	/**
 	 * fields information
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $fields;
 
 	/**
 	 * footer information
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $footer;
 
 	/**
 	 * height of image
 	 *
-	 * @var int|null
+	 * @var int
 	 */
 	public $height;
 
 	/**
 	 * url of footer icon (only supports http(s) and attachments)
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $icon_url;
 
 	/**
 	 * image information
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $image;
 
 	/**
 	 * whether or not this field should display inline
 	 *
-	 * @var bool|null
+	 * @var bool
 	 */
 	public $inline = false;
 
@@ -91,21 +91,21 @@ class Embed {
 	/**
 	 * provider information
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $provider;
 
 	/**
 	 * a proxied url of footer icon
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $proxy_icon_url;
 
 	/**
 	 * a proxied url of the image
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $proxy_url;
 
@@ -119,35 +119,35 @@ class Embed {
 	/**
 	 * thumbnail information
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $thumbnail;
 
 	/**
 	 * timestamp of embed content
 	 *
-	 * @var \DateTimeImmutable|null
+	 * @var \DateTimeImmutable
 	 */
 	public $timestamp;
 
 	/**
 	 * title of embed
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $title;
 
 	/**
 	 * type of embed (always "rich" for webhook embeds)
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $type;
 
 	/**
 	 * url of author
 	 *
-	 * @var string|null
+	 * @var string
 	 */
 	public $url;
 
@@ -161,14 +161,14 @@ class Embed {
 	/**
 	 * video information
 	 *
-	 * @var array|null
+	 * @var array
 	 */
 	public $video;
 
 	/**
 	 * width of image
 	 *
-	 * @var int|null
+	 * @var int
 	 */
 	public $width;
 

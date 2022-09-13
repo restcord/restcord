@@ -1,7 +1,7 @@
 ---
 title: Get User Connections
 category: User
-order: 9
+order: 8
 ---
 
 # `getUserConnections`
@@ -12,7 +12,7 @@ $client->user->getUserConnections($parameters);
 
 ## Description
 
-Requires the connections OAuth2 scope.
+connection
 
 ## Parameters
 
@@ -20,8 +20,5 @@ No Parameters
 
 ## Response
 
-Returns a list of connection objects.
+Possibly No Response
 
-Can Return:
-
-* connection

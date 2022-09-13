@@ -12,7 +12,7 @@ $client->invite->deleteInvite($parameters);
 
 ## Description
 
-Delete an invite. Requires the MANAGE_CHANNELS permission on the channel this invite belongs to, or MANAGE_GUILD to remove any invite across the guild.
+invite
 
 ## Parameters
 
@@ -23,8 +23,5 @@ invite.code | string | true | *null*
 
 ## Response
 
-Returns an invite object on success.
+Possibly No Response
 
-Can Return:
-
-* invite

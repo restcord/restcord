@@ -12,7 +12,7 @@ $client->gateway->getGatewayBot($parameters);
 
 ## Description
 
-This endpoint requires authentication using a valid bot token.
+Get Gateway
 
 ## Parameters
 
@@ -22,6 +22,7 @@ Name | Type | Required | Default
 total | integer | false | *null*
 remaining | integer | false | *null*
 reset_after | integer | false | *null*
+max_concurrency | integer | false | *null*
 
 ## Response
 

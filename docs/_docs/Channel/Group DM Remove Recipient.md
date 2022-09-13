@@ -1,7 +1,7 @@
 ---
 title: Group Dm Remove Recipient
 category: Channel
-order: 24
+order: 27
 ---
 
 # `groupDmRemoveRecipient`
@@ -12,7 +12,7 @@ $client->channel->groupDmRemoveRecipient($parameters);
 
 ## Description
 
-Removes a recipient from a Group DM
+
 
 ## Parameters
 

@@ -12,7 +12,7 @@ $client->channel->getChannel($parameters);
 
 ## Description
 
-Get a channel by ID.
+channel
 
 ## Parameters
 
@@ -23,8 +23,5 @@ channel.id | snowflake | true | *null*
 
 ## Response
 
-Returns a channel object.
+Possibly No Response
 
-Can Return:
-
-* channel

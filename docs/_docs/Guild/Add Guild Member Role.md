@@ -1,7 +1,7 @@
 ---
 title: Add Guild Member Role
 category: Guild
-order: 13
+order: 17
 ---
 
 # `addGuildMemberRole`
@@ -12,7 +12,7 @@ $client->guild->addGuildMemberRole($parameters);
 
 ## Description
 
-Adds a role to a guild member. Requires the MANAGE_ROLES permission.  Fires a Guild Member Update Gateway event.
+guild member
 
 ## Parameters
 
@@ -25,5 +25,5 @@ role.id | string | true | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

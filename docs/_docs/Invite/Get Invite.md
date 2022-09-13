@@ -12,7 +12,7 @@ $client->invite->getInvite($parameters);
 
 ## Description
 
-
+invite
 
 ## Parameters
 
@@ -20,11 +20,11 @@ $client->invite->getInvite($parameters);
 Name | Type | Required | Default
 --- | --- | --- | ---
 invite.code | string | true | *null*
+with_counts | boolean | false | *null*
+with_expiration | boolean | false | *null*
+guild_scheduled_event_id | snowflake | false | *null*
 
 ## Response
 
-Returns an invite object for the given code.
+Possibly No Response
 
-Can Return:
-
-* invite

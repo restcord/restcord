@@ -1,7 +1,7 @@
 ---
 title: List Guild Members
 category: Guild
-order: 9
+order: 11
 ---
 
 # `listGuildMembers`
@@ -12,7 +12,7 @@ $client->guild->listGuildMembers($parameters);
 
 ## Description
 
-
+guild member
 
 ## Parameters
 
@@ -25,8 +25,5 @@ after | snowflake | false | *null*
 
 ## Response
 
-Returns a list of guild member objects that are members of the guild.
+Possibly No Response
 
-Can Return:
-
-* guild member

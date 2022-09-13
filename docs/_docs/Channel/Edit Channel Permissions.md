@@ -1,7 +1,7 @@
 ---
 title: Edit Channel Permissions
 category: Channel
-order: 15
+order: 17
 ---
 
 # `editChannelPermissions`
@@ -12,7 +12,7 @@ $client->channel->editChannelPermissions($parameters);
 
 ## Description
 
-Edit the channel permission overwrites for a user or role in a channel. Only usable for guild channels. Requires the MANAGE_ROLES permission.  For more information about permissions, see permissions.
+permissions
 
 ## Parameters
 
@@ -21,11 +21,11 @@ Name | Type | Required | Default
 --- | --- | --- | ---
 channel.id | snowflake | true | *null*
 overwrite.id | string | true | *null*
-allow | integer | false | *null*
-deny | integer | false | *null*
-type | string | false | *null*
+allow | string | false | *null*
+deny | string | false | *null*
+type | integer | false | *null*
 
 ## Response
 
-Returns a 204 empty response on success.
+Possibly No Response
 

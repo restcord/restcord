@@ -12,7 +12,7 @@ $client->webhook->getWebhookWithToken($parameters);
 
 ## Description
 
-Same as above, except this call does not require authentication and returns no user in the webhook object.
+
 
 ## Parameters
 
