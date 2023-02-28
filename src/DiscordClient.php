@@ -21,8 +21,8 @@ use GuzzleHttp\Command\Result;
 use GuzzleHttp\HandlerStack;
 use function GuzzleHttp\json_decode;
 use GuzzleHttp\Middleware;
-use Monolog\Logger;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 use RestCord\Logging\MessageFormatter;
 use RestCord\RateLimit\Provider\AbstractRateLimitProvider;
 use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
@@ -57,7 +57,7 @@ class DiscordClient
     private $categories = [];
 
     /**
-     * @var Logger
+     * @var LoggerInterface
      */
     private $logger;
 
