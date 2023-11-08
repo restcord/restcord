@@ -27,6 +27,7 @@ use RestCord\RateLimit\Provider\AbstractRateLimitProvider;
 use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
 use RestCord\RateLimit\RateLimiter;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Monolog\Logger;
 
 use function GuzzleHttp\json_decode;
 
