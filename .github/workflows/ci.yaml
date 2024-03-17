@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  workflow_dispatch: { }
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        uses: php-actions/composer@master
+      - name: Run lint
+        run: ./bin/lint src
+  test-unit:
+    env:
+      extensions: mbstring
+    strategy:
+      matrix:
+        php: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        uses: php-actions/composer@master
+        with:
+          php_version: "${{ matrix.php }}"
+      - name: Run unit test
+        run: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
+  test-functional:
+    env:
+      extensions: mbstring,redis
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        uses: php-actions/composer@master
+      - name: Run functional test
+        run: php ./bin/stupidFunctionalTest.php $TOKEN $GUILD_ID $CHANNEL_ID
+        env:
+          TOKEN: ${{ secrets.token }}
+          GUILD_ID: ${{ secrets.guild_id }}
+          CHANNEL_ID: ${{ secrets.channel_id }}
+
