@@ -7,7 +7,7 @@
         "guzzlehttp/guzzle":          "^7.0",
         "guzzlehttp/guzzle-services": "^1.0",
         "netresearch/jsonmapper":     "^1.4",
-        "symfony/options-resolver":   "^3.4|^4.4|^5.1|^6.0",
+        "symfony/options-resolver":   "^3.4|^4.4|^5.1|^6.0|^7.0",
         "psr/log": "^2.0|^3.0"
     },
     "autoload":     {
