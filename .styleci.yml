@@ -15,5 +15,5 @@ disabled:
 
 finder:
   exclude:
-    - "src/Model"
-    - "src/Interfaces"
+    - "src/Generated"
+    - "src/Resources"
