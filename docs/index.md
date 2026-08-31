@@ -1,111 +1,130 @@
 ---
-title: RestCord - PHP Edition
+title: RestCord 0.9
 ---
 
-[![GitHub release](https://img.shields.io/github/release/restcord/restcord.svg)](https://www.github.com/restcord/restcord) [![Build Status](https://travis-ci.org/restcord/restcord.svg?branch=master)](https://travis-ci.org/restcord/restcord) [![Discord Chat](https://img.shields.io/badge/chat-Discord%20API-blue.svg)](https://discord.gg/sxeztzU) [![StyleCI](https://styleci.io/repos/79310512/shield?branch=master)](https://styleci.io/repos/79310512)
+# RestCord 0.9
 
-What is this?
-------------
+RestCord is a PHP client for Discord's REST API v10. It sends REST requests and does not connect to the Discord Gateway.
 
-This is a PHP library for the Discord API. This library is limited to the basic REST api that Discord provides.
-If you are doing anything heavy, or fancy, you should probably look at [the other php library][1].
- 
- 
-FAQ
----
+The generated clients come from Discord's [official OpenAPI specification](https://github.com/discord/discord-api-spec). Use Discord's [API reference](https://docs.discord.com/developers/reference) for endpoint rules and payload fields.
 
-1. Can I run RestCord on a webserver (e.g. Apache, nginx)?
-    - Yes. There are caveats though. Some of the requests aren't super fast, and can slow down your users responses. You should cache as much as you can.
-2. Can I use this to create a bot?
-    - Yes, but not the typical kind. This does not spawn a long running process, or connect to the websocket gateway like the other lib does.
-3. It wont let me send messages. Whats up?
-    - You have to have your bot connect to the websocket gateway at LEAST once before you can create messages. You can do that by
-    opening up `./extra/gateway.html` in your browser.
+## Install
 
-Getting Started
----------------
+RestCord 0.9 requires PHP 8.3 or newer.
 
-### Installing
+```shell
+composer require restcord/restcord:^0.9
+```
 
-RestCord is installed using [Composer](https://getcomposer.org). Make sure you have installed Composer and are used to how it operates.
-We require a minimum PHP version of PHP 7.0, but suggest keeping up with the current active versions of PHP: https://www.php.net/supported-versions.php
-This library REQUIRES 64bit PHP.
-
-This library has not been tested with HHVM.
-
-1. Run `composer require restcord/restcord`. This will install the lastest release.
-	- If you would like, you can also install the development branch by running `composer require restcord/restcord dev-master`.
-2. Include the Composer autoload file at the top of your main file:
-	- `include __DIR__.'/vendor/autoload.php';`
-3. Use it!
-
-Getting Started
----------------
-
-There's an example below, and more listed in the menu to the left. The `RestCord\DiscordClient` is broken out into 
-categories just like the api itself: channel, gateway, guild, invite, oauth2, user, voice, and webhook.
-
-You can view the methods of each of these categories by selecting the menu items on the left.
-
-
-Basic Example
--------------
+Load Composer's autoloader before you create the client.
 
 ```php
 <?php
 
-include __DIR__.'/vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use RestCord\DiscordClient;
 
-$discord = new DiscordClient(['token' => 'bot-token']); // Token is required
+$token = getenv('DISCORD_BOT_TOKEN') ?: throw new RuntimeException('DISCORD_BOT_TOKEN is not set.');
 
-var_dump($discord->guild->getGuild(['guild.id' => 81384788765712384]));
-
+$discord = new DiscordClient([
+    'token' => $token,
+]);
 ```
 
-## Options
+You can omit `token` for endpoints that Discord permits without authentication. Set `tokenType` to `OAuth` for an OAuth2 bearer token.
 
-Below is a table of the options available to the discord client
+## Call an operation
 
-Name | Type | Required | Default | Description
---- | --- | --- | --- | ---
-token | string | Yes | ~ | Your bot token
-version | string | No | `1.0.0` | The version of the API to use. Should probably be left alone
-logger | Psr\Log\LoggerInterface | false | `new Logger('Logger')` | An instance of Psr\Log\LoggerInterface - e.g. Monolog\Logger
-throwOnRatelimit | bool | false | `false` | Whether or not an exception is thrown when a ratelimit is supposed to hit
-apiUrl | string | false | `https://discordapp.com/api/v6` | Should leave this alone.
-tokenType | string | false | `Bot` | Either `Bot` or `OAuth`
- 
-## API Documentation
+Access operations through their generated category property. Common resource categories use plural names such as `channels`, `guilds`, `users`, and `webhooks`.
 
-API Documentation can be found in the menu to the left
+The complete category set is:
 
-## Contributing
-
-We are open to contributions. However, please make sure you follow our coding standards (PSR-4 autoloading and custom styling).
-We use StyleCI to format our code. Contributing is a little strange with this library. We use [a service definition generator][2]
-to create a service description for guzzle. All of the logic in this repo is built off of the service description in the
-src/Resources directory.
-
-To build a new service definition, just run:
-
-```bash
-$ ./bin/downloadServiceDefinition <version number>
+```text
+applications, channels, gateway, guilds, interactions, invites, lobbies,
+oauth2, partnerSdk, skus, soundboardDefaultSounds, stageInstances,
+stickerPacks, stickers, users, voice, webhooks
 ```
 
-To build new docs, run:
+All operation methods accept one options array. Use underscore keys for path, query, and header parameters.
 
-```bash
-$ ./bin/buildDocs <version number>
+```php
+$guild = $discord->guilds->getGuild([
+    'guild_id' => '81384788765712384',
+    'with_counts' => true,
+]);
 ```
 
-## Wrappers
+Put JSON and multipart payload fields under `body`.
 
-* [Laravel][3]
- 
-*Yes, I stole some of my docs from DiscordPHP* 
- 
-[1]: https://github.com/teamreflex/DiscordPHP
-[2]: https://github.com/aequasi/discord-service-definition-generator
-[3]: https://gitlab.com/more-cores/laravel-restcord
+```php
+$message = $discord->channels->createMessage([
+    'channel_id' => '81384788765712384',
+    'body' => [
+        'content' => 'Hello from RestCord.',
+    ],
+]);
+```
+
+Each sync method has an `Async` method with the same options. The async method returns a Guzzle `PromiseInterface`.
+
+```php
+$promise = $discord->guilds->getGuildAsync([
+    'guild_id' => '81384788765712384',
+]);
+
+$guild = $promise->wait();
+```
+
+Successful calls return one of these values:
+
+- JSON responses become decoded PHP arrays or scalar values.
+- File responses return a PSR-7 `StreamInterface`.
+- Empty responses return `null`.
+
+## Client options
+
+| Option | Type | Default | Purpose |
+| --- | --- | --- | --- |
+| `token` | `?string` | `null` | Discord bot or OAuth2 token. |
+| `tokenType` | `string` | `Bot` | Authorization type: `Bot` or `OAuth`. |
+| `logger` | `Psr\Log\LoggerInterface` | `NullLogger` | Request status and rate-limit warning logger. |
+| `guzzleOptions` | `array` | `[]` | Safe Guzzle request options, such as timeouts. |
+| `middleware` | `array` | `[]` | Callable Guzzle middleware entries. |
+| `rateLimitProvider` | `RateLimitProviderInterface` | `MemoryRateLimitProvider` | Stores Discord rate-limit state. |
+| `throwOnRatelimit` | `bool` | `false` | Throw instead of waiting or retrying after a rate limit. |
+| `httpHandler` | `?callable` | `null` | Custom Guzzle transport handler. |
+| `globalRateLimit` | `int` | `50` | Maximum bot requests reserved per rolling second. |
+
+`guzzleOptions` cannot replace `base_uri`, `handler`, `headers`, `auth`, or `http_errors`. RestCord owns these settings.
+
+## Rate limits
+
+The default `MemoryRateLimitProvider` coordinates one PHP process. It tracks route buckets and the global allowance in memory.
+
+Use `RedisRateLimitProvider` when workers must share rate-limit state. It requires the PHP Redis extension and uses Redis server time for atomic reservations.
+
+The provider accepts `prefix`, `host`, `port`, and a connected `Redis` instance through `client`.
+
+```php
+use RestCord\RateLimit\Provider\RedisRateLimitProvider;
+
+$discord = new DiscordClient([
+    'token' => $token,
+    'rateLimitProvider' => new RedisRateLimitProvider([
+        'host' => 'redis',
+        'port' => 6379,
+        'prefix' => 'restcord.ratelimit.',
+    ]),
+]);
+```
+
+By default, RestCord waits for known capacity and retries a Discord `429` response up to three times. Set `throwOnRatelimit` to `true` to receive `RatelimitException` without that wait or retry.
+
+Interaction routes do not count against the bot global allowance. Read Discord's [rate-limit documentation](https://docs.discord.com/developers/topics/rate-limits) before you change `globalRateLimit`.
+
+## Errors and migration
+
+`DiscordRequestException` includes Discord's HTTP status, error code, message, error details, and PSR-7 response. Rate-limit failures use `RatelimitException` or `RateLimitStorageException`.
+
+See the [examples](examples.md) for JSON, async, stream, and Redis calls. Users upgrading from an older RestCord release should follow the [0.9 migration map](migration-0.9.md).

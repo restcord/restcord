@@ -1,4 +1,5 @@
 vendor
+node_modules/
 composer.lock
 docs/Gemfile
 docs/Gemfile.lock

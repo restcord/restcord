@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{apiPackage}};
+
+use GuzzleHttp\Promise\PromiseInterface;
+use RestCord\ResourceClient;
+
+final class {{classname}}
+{
+    public function __construct(private readonly ResourceClient $client)
+    {
+    }
+{{#operations}}
+{{#operation}}
+
+    public function {{vendorExtensions.x-restcord-method-name}}(array $options = []): mixed
+    {
+        return $this->{{vendorExtensions.x-restcord-method-name}}Async($options)->wait();
+    }
+
+    public function {{vendorExtensions.x-restcord-method-name}}Async(array $options = []): PromiseInterface
+    {
+        return $this->client->requestAsync('{{vendorExtensions.x-restcord-operation-id}}', $options);
+    }
+{{/operation}}
+{{/operations}}
+}

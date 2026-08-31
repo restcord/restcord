@@ -24,10 +24,9 @@ social:
 
 permalink: pretty
 
-gems:
+plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-feed
 
 exclude:
   - Gemfile
@@ -35,25 +34,9 @@ exclude:
   - README.md
   - LICENCE
 
-collections:
-  docs:
-    title: Documentation
-    permalink: /:path/
-    output: true
-
 defaults:
   -
     scope:
       path: ""
     values:
       layout: default
-  -
-    scope:
-      path: ""
-      type: "docs"
-    values:
-      seo:
-        type: Article
-      _comments:
-        category: Group navigation links with this field
-        order: Used to sort links in the navigation
