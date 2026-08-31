@@ -440,6 +440,9 @@ LUA;
         $globalStateKey      = $this->getKey('global:'.$globalHash);
 
         try {
+            if (!$this->redis->isConnected()) {
+                throw new \RedisException('Redis connection is not established.');
+            }
             $reservation = $this->redis->eval(self::RESERVE_SCRIPT, [
                 $this->getKey('alias:'.$routeHash),
                 $provisionalStateKey,
@@ -512,6 +515,9 @@ LUA;
         $knownReset          = $this->knownReset($response, $retryAfter);
 
         try {
+            if (!$this->redis->isConnected()) {
+                throw new \RedisException('Redis connection is not established.');
+            }
             $updated = $this->redis->eval(self::UPDATE_SCRIPT, [
                 $this->getKey('alias:'.$routeHash),
                 $provisionalStateKey,

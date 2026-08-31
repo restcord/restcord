@@ -251,7 +251,11 @@ final class RedisRateLimitProviderTest extends TestCase
     public function testDisconnectedReservationFailsClosed(): void
     {
         $provider = new RedisRateLimitProvider([
-            'client' => new \Redis(),
+            'client' => new \Redis([
+                'host'           => $this->host,
+                'port'           => 6379,
+                'connectTimeout' => 1.0,
+            ]),
             'prefix' => $this->prefix,
         ]);
 
@@ -262,7 +266,11 @@ final class RedisRateLimitProviderTest extends TestCase
     public function testFailedResponseUpdateBlocksReservationsUntilTheKnownWindowEnds(): void
     {
         $redisProperty = new \ReflectionProperty($this->provider, 'redis');
-        $redisProperty->setValue($this->provider, new \Redis());
+        $redisProperty->setValue($this->provider, new \Redis([
+            'host'           => $this->host,
+            'port'           => 6379,
+            'connectTimeout' => 1.0,
+        ]));
 
         try {
             $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', $this->limitedResponse('failed-update', 0, 5.0));
