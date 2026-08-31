@@ -1,47 +1,659 @@
 #!/usr/bin/env php
 <?php
 
+declare(strict_types=1);
+
+const METHODS = ['delete', 'get', 'patch', 'post', 'put'];
+const RESPONSE_MEDIA_TYPES = ['application/json', 'image/png', 'text/csv'];
+const AUDIT_LOG_REASON_OPERATIONS = [
+    'update_guild', 'create_guild_channel', 'update_guild_member', 'update_my_guild_member',
+    'add_guild_member_role', 'delete_guild_member_role', 'delete_guild_member', 'ban_user_from_guild',
+    'unban_user_from_guild', 'bulk_ban_users_from_guild', 'create_guild_role', 'bulk_update_guild_roles',
+    'update_guild_role', 'delete_guild_role', 'prune_guild', 'delete_guild_integration',
+    'update_guild_widget_settings', 'update_guild_welcome_screen', 'put_guilds_onboarding',
+    'create_auto_moderation_rule', 'update_auto_moderation_rule', 'delete_auto_moderation_rule',
+    'update_channel', 'update_voice_channel_status', 'delete_channel', 'set_channel_permission_overwrite',
+    'create_channel_invite', 'delete_channel_permission_overwrite', 'follow_channel',
+    'create_thread_from_message', 'create_thread', 'create_guild_emoji', 'update_guild_emoji',
+    'delete_guild_emoji', 'create_guild_scheduled_event', 'update_guild_scheduled_event', 'invite_revoke',
+    'delete_message', 'bulk_delete_messages', 'create_pin', 'delete_pin', 'create_guild_soundboard_sound',
+    'update_guild_soundboard_sound', 'delete_guild_soundboard_sound', 'create_stage_instance',
+    'update_stage_instance', 'delete_stage_instance', 'create_guild_sticker', 'update_guild_sticker',
+    'delete_guild_sticker', 'create_webhook', 'update_webhook', 'delete_webhook',
+];
+const FILES = ['files[0]', 'files[1]', 'files[2]', 'files[3]', 'files[4]', 'files[5]', 'files[6]', 'files[7]', 'files[8]', 'files[9]'];
+const MULTIPART = [
+    'upload_application_attachment' => ['binaryFields' => ['file']],
+    'create_channel_invite' => ['binaryFields' => ['target_users_file']],
+    'create_message' => ['binaryFields' => FILES, 'payloadJson' => true],
+    'update_message' => ['binaryFields' => FILES, 'payloadJson' => true],
+    'create_thread' => ['binaryFields' => FILES, 'payloadJson' => true],
+    'create_interaction_response' => ['binaryFields' => FILES, 'payloadJson' => true],
+    'create_guild_sticker' => ['binaryFields' => ['file']],
+    'update_invite_target_users' => ['binaryFields' => ['target_users_file']],
+    'execute_webhook' => ['binaryFields' => FILES, 'payloadJson' => true],
+    'update_original_webhook_message' => ['binaryFields' => FILES, 'payloadJson' => true],
+    'update_webhook_message' => ['binaryFields' => FILES, 'payloadJson' => true],
+];
+
+try {
+    ['check' => $check, 'source' => $source] = arguments($argv);
+    $config = openapiConfig(__DIR__.'/../composer.json');
+    $json = $source === null ? download($config) : readInputFile($source);
+
+    if (!hash_equals($config['sha256'], hash('sha256', $json))) {
+        fail('OpenAPI checksum does not match composer.json.');
+    }
+
+    $spec = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+    [$paths, $operations, $schemas, $categories, $auditOperations, $multipartOperations] = prepare($spec);
+    $registry = compileRegistry($spec, $config);
+    $temporary = generate($spec, $registry);
+    try {
+        $check ? checkGenerated($temporary) : replaceGenerated($temporary);
+    } finally {
+        removeDirectory($temporary);
+    }
+    printf("validated and prepared: %d paths, %d operations, %d schemas, %d categories; audit_log_reason=%d, multipart=%d\n", $paths, $operations, $schemas, $categories, $auditOperations, $multipartOperations);
+} catch (Throwable $error) {
+    fwrite(STDERR, "update: {$error->getMessage()}\n");
+    exit(1);
+}
+
+function arguments(array $argv): array
+{
+    $arguments = ['check' => false, 'source' => null];
+
+    foreach (array_slice($argv, 1) as $argument) {
+        if ($argument === '--check') {
+            if ($arguments['check']) {
+                fail('duplicate --check flag.');
+            }
+            $arguments['check'] = true;
+            continue;
+        }
+
+        if (str_starts_with($argument, '--source=')) {
+            if ($arguments['source'] !== null) {
+                fail('duplicate --source flag.');
+            }
+            $source = substr($argument, strlen('--source='));
+            if ($source === '') {
+                fail('--source requires a path.');
+            }
+            $arguments['source'] = $source;
+            continue;
+        }
+
+        fail("unknown argument {$argument}.");
+    }
+
+    return $arguments;
+}
+
+function openapiConfig(string $path): array
+{
+    $composer = json_decode(readInputFile($path), true, 512, JSON_THROW_ON_ERROR);
+    $config = $composer['extra']['discord-openapi'] ?? null;
+
+    if (!is_array($config)) {
+        fail('composer.json is missing extra.discord-openapi.');
+    }
+
+    foreach (['repository', 'path', 'commit', 'sha256'] as $key) {
+        if (!isset($config[$key]) || !is_string($config[$key]) || $config[$key] === '') {
+            fail("composer.json extra.discord-openapi.{$key} must be a non-empty string.");
+        }
+    }
+
+    if (!preg_match('/^[a-f0-9]{64}$/D', $config['sha256'])) {
+        fail('composer.json extra.discord-openapi.sha256 must be a SHA-256 checksum.');
+    }
+
+    return $config;
+}
+
+function download(array $config): string
+{
+    return readUrl("https://raw.githubusercontent.com/{$config['repository']}/{$config['commit']}/{$config['path']}");
+}
+
+function readUrl(string $url): string
+{
+    $contents = @file_get_contents($url);
+    if ($contents === false) {
+        fail("could not download {$url}");
+    }
+
+    return $contents;
+}
+
+function readInputFile(string $path): string
+{
+    $contents = @file_get_contents($path);
+    if ($contents === false) {
+        fail("could not read {$path}");
+    }
+
+    return $contents;
+}
+
+function prepare(array &$spec): array
+{
+    assertValue(($spec['openapi'] ?? null) === '3.1.0', 'OpenAPI version must be 3.1.0.');
+    assertValue((string) ($spec['info']['version'] ?? '') === '10', 'OpenAPI info version must be 10.');
+    assertValue(($spec['servers'] ?? null) === [['url' => 'https://discord.com/api/v10']], 'OpenAPI server must be https://discord.com/api/v10.');
+    assertValue(isset($spec['paths']) && is_array($spec['paths']) && count($spec['paths']) === 150, 'OpenAPI must contain 150 paths.');
+    assertValue(isset($spec['components']['schemas']) && is_array($spec['components']['schemas']) && count($spec['components']['schemas']) === 539, 'OpenAPI must contain 539 schemas.');
+    assertNoExternalReferences($spec);
+
+    $operationIds = [];
+    $methodNames = [];
+    $seenAuditOperations = [];
+    $seenMultipartOperations = [];
+    $categories = [];
+    $operations = 0;
+
+    foreach ($spec['paths'] as $path => &$pathItem) {
+        assertValue(is_string($path) && str_starts_with($path, '/') && is_array($pathItem), 'OpenAPI paths must be path-item objects.');
+        $category = category($path);
+        $categories[$category] = true;
+
+        foreach ($pathItem as $method => &$operation) {
+            if (in_array($method, ['parameters', 'summary', 'description', 'servers', '$ref'], true)) {
+                continue;
+            }
+
+            assertValue(in_array($method, METHODS, true), "unsupported HTTP method {$method} on {$path}.");
+            assertValue(is_array($operation), "{$method} {$path} must be an operation object.");
+            $operationId = $operation['operationId'] ?? null;
+            assertValue(is_string($operationId) && preg_match('/^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$/D', $operationId) === 1, "{$method} {$path} must have a snake_case operationId.");
+            assertValue(!isset($operationIds[$operationId]), "duplicate operationId {$operationId}.");
+
+            $methodName = camelCase($operationId);
+            assertValue(!isset($methodNames[$category][$methodName]), "duplicate {$category} method name {$methodName}.");
+            assertResponseMediaTypes($operation, $operationId);
+
+            $operationIds[$operationId] = true;
+            $methodNames[$category][$methodName] = true;
+            $operation['tags'] = [$category];
+            $operation['x-restcord-operation-id'] = $operationId;
+            $operation['x-restcord-method-name'] = $methodName;
+
+            if (in_array($operationId, AUDIT_LOG_REASON_OPERATIONS, true)) {
+                $operation['parameters'] ??= [];
+                $operation['parameters'][] = [
+                    'in' => 'header',
+                    'name' => 'X-Audit-Log-Reason',
+                    'required' => false,
+                    'schema' => ['type' => 'string'],
+                    'x-restcord-name' => 'audit_log_reason',
+                ];
+                $operation['x-restcord-audit-log-reason'] = true;
+                $seenAuditOperations[$operationId] = true;
+            }
+
+            if (isset(MULTIPART[$operationId])) {
+                $operation['x-restcord-multipart'] = MULTIPART[$operationId];
+                $seenMultipartOperations[$operationId] = true;
+            }
+
+            ++$operations;
+        }
+        unset($operation);
+    }
+    unset($pathItem);
+
+    assertValue($operations === 242, 'OpenAPI must contain 242 operations.');
+    assertValue(count($categories) === 17, 'OpenAPI must contain 17 categories.');
+    assertValue(count($seenAuditOperations) === count(AUDIT_LOG_REASON_OPERATIONS), 'audit-log-reason overlay contains an unknown operation.');
+    assertValue(count($seenMultipartOperations) === count(MULTIPART), 'multipart overlay contains an unknown operation.');
+
+    return [count($spec['paths']), $operations, count($spec['components']['schemas']), count($categories), count($seenAuditOperations), count($seenMultipartOperations)];
+}
+
+function category(string $path): string
+{
+    foreach (explode('/', $path) as $segment) {
+        if ($segment !== '' && $segment[0] !== '{') {
+            return preg_replace_callback('/-([a-z])/', static fn (array $match): string => strtoupper($match[1]), $segment);
+        }
+    }
+
+    fail("{$path} has no literal path segment.");
+}
+
+function camelCase(string $name): string
+{
+    $parts = explode('_', $name);
+    return array_shift($parts).implode('', array_map(ucfirst(...), $parts));
+}
+
+function compileRegistry(array $spec, array $config): array
+{
+    $operations = [];
+    $meta = [
+        '_meta' => [
+            'source' => [
+                'repository' => $config['repository'],
+                'path' => $config['path'],
+                'commit' => $config['commit'],
+                'checksum' => $config['sha256'],
+            ],
+            'openapiVersion' => $spec['openapi'],
+            'apiVersion' => $spec['info']['version'],
+            'pathCount' => count($spec['paths']),
+            'operationCount' => 0,
+        ],
+    ];
+
+    foreach ($spec['paths'] as $path => $pathItem) {
+        $pathParameters = parameters($spec, $pathItem['parameters'] ?? []);
+
+        foreach ($pathItem as $httpMethod => $operation) {
+            if (!in_array($httpMethod, METHODS, true)) {
+                continue;
+            }
+
+            $operationId = $operation['x-restcord-operation-id'];
+            $parameters = mergeParameters($pathParameters, parameters($spec, $operation['parameters'] ?? []));
+            $entry = [
+                'category' => $operation['tags'][0],
+                'method' => $operation['x-restcord-method-name'],
+                'operationId' => $operationId,
+                'httpMethod' => strtoupper($httpMethod),
+                'path' => $path,
+                'parameters' => $parameters,
+                'responses' => responses($spec, $operation['responses']),
+                'security' => $operation['security'] ?? $spec['security'] ?? [],
+                'interactionRoute' => $path === '/interactions/{interaction_id}/{interaction_token}/callback',
+                'majorParameters' => majorParameters($parameters),
+            ];
+            $body = requestBody($spec, $operation);
+            if ($body !== null) {
+                $entry['requestBody'] = $body;
+            }
+
+            $operations[$operationId] = $entry;
+        }
+    }
+
+    $meta['_meta']['operationCount'] = count($operations);
+
+    return $meta + ['operations' => $operations];
+}
+
+function parameters(array $spec, array $parameters): array
+{
+    $result = [];
+
+    foreach ($parameters as $parameter) {
+        $parameter = resolveReference($spec, $parameter);
+        assertValue(is_array($parameter), 'parameter must be an object.');
+        $location = $parameter['in'] ?? null;
+        $wireName = $parameter['name'] ?? null;
+        assertValue(is_string($location) && in_array($location, ['path', 'query', 'header'], true), 'parameter location must be path, query, or header.');
+        assertValue(is_string($wireName) && $wireName !== '', 'parameter name must be a non-empty string.');
+
+        $name = $parameter['x-restcord-name'] ?? $wireName;
+        $style = $parameter['style'] ?? ($location === 'query' ? 'form' : 'simple');
+        $explode = $parameter['explode'] ?? ($style === 'form');
+        $metadata = [
+            'name' => $name,
+            'location' => $location,
+            'required' => (bool) ($parameter['required'] ?? false),
+            'style' => $style,
+            'explode' => $explode,
+        ];
+        if ($name !== $wireName) {
+            $metadata['wireName'] = $wireName;
+        }
+        $result[] = $metadata;
+    }
+
+    return $result;
+}
+
+function mergeParameters(array $pathParameters, array $operationParameters): array
+{
+    $merged = [];
+
+    foreach (array_merge($pathParameters, $operationParameters) as $parameter) {
+        $merged["{$parameter['location']}\0{$parameter['name']}"] = $parameter;
+    }
+
+    return array_values($merged);
+}
+
+function requestBody(array $spec, array $operation): ?array
+{
+    if (!isset($operation['requestBody'])) {
+        return null;
+    }
+
+    $body = resolveReference($spec, $operation['requestBody']);
+    assertValue(is_array($body) && isset($body['content']) && is_array($body['content']), "{$operation['operationId']} request body must have content.");
+    $metadata = [
+        'required' => (bool) ($body['required'] ?? false),
+        'mediaTypes' => array_keys($body['content']),
+    ];
+    $multipart = $operation['x-restcord-multipart'] ?? null;
+    if ($multipart !== null) {
+        $metadata['binaryFields'] = $multipart['binaryFields'];
+        if (($multipart['payloadJson'] ?? false) === true) {
+            $metadata['payloadJson'] = true;
+        }
+    }
+
+    return $metadata;
+}
+
+function responses(array $spec, array $responses): array
+{
+    $result = [];
+
+    foreach ($responses as $status => $response) {
+        if (preg_match('/^2(?:\d{2}|XX)$/i', (string) $status) !== 1) {
+            continue;
+        }
+
+        $response = resolveReference($spec, $response);
+        assertValue(is_array($response), "response {$status} must be an object.");
+        $content = $response['content'] ?? [];
+        assertValue(is_array($content), "response {$status} content must be an object.");
+        $result[$status] = $content === [] ? 'empty' : (array_key_first($content) === 'application/json' ? 'json' : 'stream');
+    }
+
+    return $result;
+}
+
+function majorParameters(array $parameters): array
+{
+    $major = [];
+
+    foreach ($parameters as $parameter) {
+        if ($parameter['location'] === 'path' && in_array($parameter['name'], ['channel_id', 'guild_id', 'webhook_id', 'webhook_token'], true)) {
+            $major[] = $parameter['name'];
+        }
+    }
+
+    return $major;
+}
+
+function resolveReference(array $spec, mixed $value): mixed
+{
+    if (!is_array($value) || !isset($value['$ref'])) {
+        return $value;
+    }
+
+    $reference = $value['$ref'];
+    assertValue(is_string($reference) && str_starts_with($reference, '#/'), "unsupported reference {$reference}.");
+    $resolved = $spec;
+    foreach (explode('/', substr($reference, 2)) as $segment) {
+        $segment = str_replace(['~1', '~0'], ['/', '~'], $segment);
+        assertValue(is_array($resolved) && array_key_exists($segment, $resolved), "unresolved reference {$reference}.");
+        $resolved = $resolved[$segment];
+    }
+
+    return resolveReference($spec, $resolved);
+}
+
+function generate(array $spec, array $registry): string
+{
+    assertGeneratorVersion();
+    $temporary = sys_get_temp_dir().'/restcord-openapi-'.bin2hex(random_bytes(8));
+    $output = $temporary.'/output';
+    mkdir($temporary, 0700);
+    try {
+        file_put_contents($temporary.'/openapi.json', json_encode($spec, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+        file_put_contents($temporary.'/operations-v10.php', exportRegistry($registry));
+        runGenerator($temporary.'/openapi.json', $output);
+        copyGeneratedApis($output, $temporary.'/generated');
+
+        return $temporary;
+    } catch (Throwable $error) {
+        removeDirectory($temporary);
+        throw $error;
+    }
+}
+
+function exportRegistry(array $registry): string
+{
+    $header = <<<'PHP'
+<?php
+
+declare(strict_types=1);
+
 /*
- * This file is part of php-restcord.
- *
- * (c) Aaron Scherer <aequasi@gmail.com>
+ * Copyright 2017 Aaron Scherer
  *
  * This source file is subject to the license that is bundled
  * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
  */
 
-require __DIR__.'/../vendor/autoload.php';
+return
+PHP;
 
-use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Process\Process;
+    return $header.'  '.implode("\n", exportArray($registry)).";\n";
+}
 
-/** @noinspection PhpUnhandledExceptionInspection */
-(new Application('Updating', '1.0.0'))
-    ->register('update')
-    ->addArgument('version', InputArgument::REQUIRED, 'Version to build')
-    ->setCode(
-        function (InputInterface $input, OutputInterface $output) {
-            $style = new SymfonyStyle($input, $output);
-            $style->title("Building Docs for: ".$input->getArgument('version'));
+function exportArray(array $values, int $depth = 0): array
+{
+    $lines   = ['['];
+    $segment = [];
 
-            run($output, "./bin/downloadServiceDefinition -vvv " . $input->getArgument('version'));
-            run($output, "./bin/buildDocs -vvv " . $input->getArgument('version'));
-            run($output, "./bin/buildModelClasses -vvv " . $input->getArgument('version'));
-            run($output, "./bin/buildDummyClasses -vvv " . $input->getArgument('version'));
+    foreach ($values as $key => $value) {
+        $exportedKey = var_export($key, true);
+        if (is_array($value)) {
+            $nested    = exportArray($value, $depth + 1);
+            $segment[] = [$exportedKey, '['];
+            appendExportSegment($lines, $segment, $depth + 1);
+            $segment = [];
+            foreach (array_slice($nested, 1) as $line) {
+                $lines[] = $line;
+            }
+            $lines[array_key_last($lines)] .= ',';
+            continue;
         }
-    )
-    ->getApplication()
-    ->setDefaultCommand('update', true)
-    ->run();
 
+        $segment[] = [$exportedKey, var_export($value, true).','];
+    }
 
-function run(OutputInterface $output, $process) {
-    $process = new Process($process);
-    $process->run(function ($type, $buffer) use ($output) {
-        $output->write($buffer);
-    });
+    appendExportSegment($lines, $segment, $depth + 1);
+    $lines[] = str_repeat('    ', $depth).']';
+
+    return $lines;
+}
+
+function appendExportSegment(array &$lines, array $segment, int $depth): void
+{
+    if ($segment === []) {
+        return;
+    }
+
+    $width  = max(array_map(static fn (array $entry): int => strlen($entry[0]), $segment));
+    $indent = str_repeat('    ', $depth);
+    foreach ($segment as [$key, $value]) {
+        $lines[] = $indent.str_pad($key, $width).' => '.$value;
+    }
+}
+
+function assertGeneratorVersion(): void
+{
+    $wrapper = __DIR__.'/../node_modules/@openapitools/openapi-generator-cli/package.json';
+    $package = json_decode(readInputFile($wrapper), true, 512, JSON_THROW_ON_ERROR);
+    assertValue(($package['version'] ?? null) === '2.41.0', 'OpenAPI Generator wrapper must be version 2.41.0.');
+
+    $command = [__DIR__.'/../node_modules/.bin/openapi-generator-cli', 'version'];
+    $process = proc_open($command, [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pipes, __DIR__.'/..');
+    assertValue(is_resource($process), 'could not start OpenAPI Generator.');
+    $stdout = stream_get_contents($pipes[1]);
+    $stderr = stream_get_contents($pipes[2]);
+    fclose($pipes[1]);
+    fclose($pipes[2]);
+    assertValue(proc_close($process) === 0 && preg_match('/(?:^|\\R)7\\.25\\.0$/D', trim($stdout.$stderr)) === 1, 'OpenAPI Generator engine must be version 7.25.0.');
+}
+
+function runGenerator(string $input, string $output): void
+{
+    $command = [
+        __DIR__.'/../node_modules/.bin/openapi-generator-cli', 'generate', '--skip-validate-spec', '-i', $input, '-g', 'php', '-o', $output,
+        '-t', __DIR__.'/../tools/openapi/templates', '--global-property', 'apis,models=false,apiDocs=false,apiTests=false,modelDocs=false,modelTests=false,supportingFiles=false',
+        '--additional-properties', 'apiPackage=Generated,invokerPackage=RestCord',
+    ];
+    $process = proc_open($command, [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pipes, __DIR__.'/..');
+    assertValue(is_resource($process), 'could not start OpenAPI Generator.');
+    $stdout = stream_get_contents($pipes[1]);
+    $stderr = stream_get_contents($pipes[2]);
+    fclose($pipes[1]);
+    fclose($pipes[2]);
+    if (proc_close($process) !== 0) {
+        fail("OpenAPI Generator failed:\n{$stdout}{$stderr}");
+    }
+}
+
+function copyGeneratedApis(string $output, string $destination): void
+{
+    $files = generatedApiFiles($output);
+    assertValue(count($files) === 17, 'OpenAPI Generator must emit exactly 17 API classes.');
+    mkdir($destination, 0700);
+    foreach ($files as $name => $file) {
+        copy($file, $destination.'/'.$name);
+    }
+}
+
+function generatedApiFiles(string $directory): array
+{
+    $files = [];
+    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::SKIP_DOTS));
+    foreach ($iterator as $file) {
+        if ($file->isFile() && str_ends_with($file->getFilename(), 'Api.php')) {
+            $name = $file->getFilename();
+            assertValue(!isset($files[$name]), "OpenAPI Generator emitted duplicate {$name}.");
+            $files[$name] = $file->getPathname();
+        }
+    }
+    ksort($files, SORT_STRING);
+
+    return $files;
+}
+
+function replaceGenerated(string $temporary): void
+{
+    $expected = generatedApiFiles($temporary.'/generated');
+    $destination = __DIR__.'/../src/Generated';
+    if (!is_dir($destination)) {
+        mkdir($destination, 0755, true);
+    }
+
+    foreach (glob($destination.'/*Api.php') ?: [] as $file) {
+        if (!isset($expected[basename($file)])) {
+            unlink($file);
+        }
+    }
+    foreach ($expected as $name => $file) {
+        copy($file, $destination.'/'.$name);
+    }
+    copy($temporary.'/operations-v10.php', __DIR__.'/../src/Resources/operations-v10.php');
+}
+
+function checkGenerated(string $temporary): void
+{
+    $expected = generatedApiFiles($temporary.'/generated');
+    $destination = __DIR__.'/../src/Generated';
+    $actual = is_dir($destination) ? generatedApiFiles($destination) : [];
+    $changed = [];
+
+    foreach ($expected as $name => $file) {
+        $path = $destination.'/'.$name;
+        if (!isset($actual[$name]) || file_get_contents($file) !== file_get_contents($path)) {
+            $changed[] = 'src/Generated/'.$name;
+        }
+    }
+    foreach ($actual as $name => $_) {
+        if (!isset($expected[$name])) {
+            $changed[] = 'src/Generated/'.$name;
+        }
+    }
+
+    $registry = __DIR__.'/../src/Resources/operations-v10.php';
+    if (!is_file($registry) || file_get_contents($temporary.'/operations-v10.php') !== file_get_contents($registry)) {
+        $changed[] = 'src/Resources/operations-v10.php';
+    }
+
+    if ($changed !== []) {
+        sort($changed, SORT_STRING);
+        fail("generated files are out of date:\n".implode("\n", $changed));
+    }
+}
+
+function removeDirectory(string $path): void
+{
+    if (!is_dir($path)) {
+        return;
+    }
+    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
+    foreach ($iterator as $item) {
+        $item->isDir() ? rmdir($item->getPathname()) : unlink($item->getPathname());
+    }
+    rmdir($path);
+}
+
+function assertResponseMediaTypes(array $operation, string $operationId): void
+{
+    assertValue(isset($operation['responses']) && is_array($operation['responses']), "{$operationId} has no responses.");
+    $hasSuccessResponse = false;
+
+    foreach ($operation['responses'] as $status => $response) {
+        if (preg_match('/^2(?:\d{2}|XX)$/i', (string) $status) !== 1) {
+            continue;
+        }
+
+        $hasSuccessResponse = true;
+        assertValue(is_array($response), "{$operationId} response {$status} must be an object.");
+        if (!isset($response['content'])) {
+            continue;
+        }
+
+        assertValue(is_array($response['content']), "{$operationId} response {$status} content must be an object.");
+        if ($response['content'] === []) {
+            continue;
+        }
+
+        assertValue(count($response['content']) === 1, "{$operationId} response {$status} must have one classifiable media type.");
+        $mediaType = array_key_first($response['content']);
+        assertValue(is_string($mediaType) && in_array($mediaType, RESPONSE_MEDIA_TYPES, true), "{$operationId} response {$status} has unsupported media type {$mediaType}.");
+    }
+
+    assertValue($hasSuccessResponse, "{$operationId} has no 2xx response.");
+}
+
+function assertNoExternalReferences(mixed $value): void
+{
+    if (!is_array($value)) {
+        return;
+    }
+
+    foreach ($value as $key => $item) {
+        if ($key === '$ref') {
+            assertValue(is_string($item) && str_starts_with($item, '#/'), "external reference {$item} is not supported.");
+        }
+        assertNoExternalReferences($item);
+    }
+}
+
+function assertValue(bool $condition, string $message): void
+{
+    if (!$condition) {
+        fail($message);
+    }
+}
+
+function fail(string $message): never
+{
+    throw new RuntimeException($message);
 }

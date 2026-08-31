@@ -1,0 +1,130 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+
+jobs:
+  pr-title:
+    name: Conventional PR title
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Validate title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          pattern='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9][a-z0-9._/-]*\))?(!)?: [a-z0-9].*$'
+          if (( ${#PR_TITLE} > 72 )) || [[ ! $PR_TITLE =~ $pattern ]] || [[ $PR_TITLE == *. ]]; then
+            printf '%s\n' 'use an Angular title such as feat(api): add guild client (72 characters maximum, no period)'
+            exit 1
+          fi
+
+  php:
+    name: PHP ${{ matrix.php }} ${{ matrix.dependencies }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: '8.3'
+            dependencies: lowest
+          - php: '8.3'
+            dependencies: highest
+          - php: '8.4'
+            dependencies: highest
+          - php: '8.5'
+            dependencies: highest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: composer:v2
+      - name: Validate Composer package
+        if: matrix.php == '8.3' && matrix.dependencies == 'highest'
+        run: composer validate --strict
+      - name: Install lowest dependencies
+        if: matrix.dependencies == 'lowest'
+        run: composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction --no-progress
+      - name: Install highest dependencies
+        if: matrix.dependencies == 'highest'
+        run: composer update --prefer-dist --no-interaction --no-progress
+      - name: Audit Composer dependencies
+        if: matrix.php == '8.3' && matrix.dependencies == 'highest'
+        run: composer audit --abandoned=fail
+      - name: Check PHP syntax
+        run: |
+          find . -path ./vendor -prune -o -type f -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+          php -l bin/update
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --do-not-cache-result tests
+      - name: Set up Node.js
+        if: matrix.php == '8.3' && matrix.dependencies == 'highest'
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.10.0'
+          package-manager-cache: false
+      - name: Install Node.js dependencies
+        if: matrix.php == '8.3' && matrix.dependencies == 'highest'
+        run: npm ci
+      - name: Run Node.js tests
+        if: matrix.php == '8.3' && matrix.dependencies == 'highest'
+        run: npm test
+      - name: Audit Node.js dependencies
+        if: matrix.php == '8.3' && matrix.dependencies == 'highest'
+        run: npm audit
+      - name: Set up Java
+        if: matrix.php == '8.3' && matrix.dependencies == 'highest'
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '11'
+      - name: Check generated clients
+        if: matrix.php == '8.3' && matrix.dependencies == 'highest'
+        run: php bin/update --check
+
+  redis:
+    name: PHP 8.5 Redis
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      redis:
+        image: redis:8.10.1-alpine3.23
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 1s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: redis-6.3.0
+          coverage: none
+          tools: composer:v2
+        env:
+          fail-fast: true
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction --no-progress
+      - name: Check PHP syntax
+        run: |
+          find . -path ./vendor -prune -o -type f -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+          php -l bin/update
+      - name: Run PHPUnit with Redis
+        env:
+          RESTCORD_REDIS_HOST: 127.0.0.1
+        run: vendor/bin/phpunit --do-not-cache-result --fail-on-skipped tests

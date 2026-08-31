@@ -1,112 +1,123 @@
 ---
-title: Examples
+title: RestCord 0.9 examples
 ---
 
----
+# RestCord 0.9 examples
 
-Basic Example
--------------
+These examples use PHP 8.3 or newer and RestCord `^0.9`.
 
-This example just creates a client, and grabs a guild object by ID.
+## Create a client
 
 ```php
 <?php
 
-include __DIR__.'/vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use RestCord\DiscordClient;
 
-$discord = new DiscordClient(['token' => 'bot-token']); // Token is required
+$token = getenv('DISCORD_BOT_TOKEN') ?: throw new RuntimeException('DISCORD_BOT_TOKEN is not set.');
 
-var_dump($discord->guild->getGuild(['guild.id' => 81384788765712384]));
+$discord = new DiscordClient([
+    'token' => $token,
+]);
 ```
 
----
+## Read a JSON response
 
-Send Message
-------------
-
-In order to send a message, your bot needs to have connected to Discords websocket gateway at least once.
-This is not something you can do with this library. 
+`getGuild()` returns a decoded array. Path and query parameters use underscore keys.
 
 ```php
-<?php
+$guild = $discord->guilds->getGuild([
+    'guild_id' => '81384788765712384',
+    'with_counts' => true,
+]);
 
-include __DIR__.'/vendor/autoload.php';
-
-use RestCord\DiscordClient;
-
-$discord = new DiscordClient(['token' => 'bot-token']); // Token is required
-
-var_dump($discord->channel->createMessage(['channel.id' => 81384788765712384, 'content' => 'Foo Bar Baz']));
-var_dump(
-    $client->channel->createMessage([
-         'channel.id' => $channelId,
-         'content'    => "this `supports` __a__ **subset** *of* ~~markdown~~ 😃 ```js
- function foo(bar) {
-   console.log(bar);
- }
- 
- foo(1);```",
-         'embed'      => [
-             "title" => "title ~~(did you know you can have markdown here too?)~~",
-             "description" => "this supports [named links](https://discordapp.com) on top of the previously shown subset of markdown. ```\nyes, even code blocks```",
-             "url" => "https://discordapp.com",
-             "color" => 14290439,
-             "timestamp" => "2017-02-20T18:05:58.512Z",
-             "footer" => [
-                 "icon_url" => "https://cdn.discordapp.com/embed/avatars/0.png",
-                 "text" => "footer text"
-             ],
-             "thumbnail" => [
-                 "url" => "https://cdn.discordapp.com/embed/avatars/0.png"
-             ],
-             "image" => [
-                 "url" => "https://cdn.discordapp.com/embed/avatars/0.png"
-             ],
-             "author" => [
-                 "name" => "author name",
-                 "url" => "https://discordapp.com",
-                 "icon_url" => "https://cdn.discordapp.com/embed/avatars/0.png"
-             ],
-             "fields" => [
-                 [
-                     "name" => "Foo",
-                     "value" => "some of these properties have certain limits..."
-                 ],
-                 [
-                     "name" => "Bar",
-                     "value" => "try exceeding some of them!"
-                 ],
-                 [
-                     "name" => " 😃",
-                     "value" => "an informative error should show up, and this view will remain as-is until all issues are fixed"
-                 ],
-                 [
-                     "name" => "<:thonkang:219069250692841473>",
-                     "value" => "???"
-                 ]
-             ]
-         ]
-     ])
- );
+echo $guild['name'];
 ```
 
----
+Discord documents this operation under [Get Guild](https://docs.discord.com/developers/resources/guild#get-guild).
 
-Get Guild Roles
----------------
+## Send a JSON body
 
-This fetches the roles of a guild.
+Put the endpoint payload in `body`. Keep path parameters at the top level.
 
 ```php
-<?php
-
-include __DIR__.'/vendor/autoload.php';
-
-use RestCord\DiscordClient;
-
-$discord = new DiscordClient(['token' => 'bot-token']); // Token is required
-
-var_dump($discord->guild->getGuildRoles(['guild.id' => 81384788765712384]));
+$message = $discord->channels->createMessage([
+    'channel_id' => '81384788765712384',
+    'body' => [
+        'content' => 'Hello from RestCord.',
+        'allowed_mentions' => [
+            'parse' => [],
+        ],
+    ],
+]);
 ```
+
+See Discord's [Create Message](https://docs.discord.com/developers/resources/message#create-message) documentation for supported body fields.
+
+## Run calls concurrently
+
+Each generated method has an `Async` pair. `Utils::all()` waits for both promises and preserves their results.
+
+```php
+use GuzzleHttp\Promise\Utils;
+
+[$guild, $roles] = Utils::all([
+    $discord->guilds->getGuildAsync([
+        'guild_id' => '81384788765712384',
+    ]),
+    $discord->guilds->listGuildRolesAsync([
+        'guild_id' => '81384788765712384',
+    ]),
+])->wait();
+```
+
+## Handle empty and file responses
+
+Methods return `null` when Discord sends an empty success response.
+
+```php
+$result = $discord->channels->deleteMessage([
+    'channel_id' => '81384788765712384',
+    'message_id' => '112233445566778899',
+    'audit_log_reason' => 'Removed duplicate message',
+]);
+
+assert($result === null);
+```
+
+File responses return a PSR-7 stream.
+
+```php
+$png = $discord->guilds->getGuildWidgetPng([
+    'guild_id' => '81384788765712384',
+]);
+
+file_put_contents(__DIR__.'/widget.png', $png->getContents());
+```
+
+## Share rate limits through Redis
+
+The default memory provider coordinates one PHP process. Use Redis when several workers share a bot token or anonymous clients share an egress IP.
+
+```php
+use RestCord\DiscordClient;
+use RestCord\RateLimit\Provider\RedisRateLimitProvider;
+
+$rateLimits = new RedisRateLimitProvider([
+    'host' => 'redis',
+    'port' => 6379,
+    'prefix' => 'restcord.ratelimit.',
+]);
+
+$discord = new DiscordClient([
+    'token' => $token,
+    'rateLimitProvider' => $rateLimits,
+]);
+```
+
+Install the PHP Redis extension. Enable it before you create `RedisRateLimitProvider`. All processes that share a token must use the same Redis prefix. Anonymous clients behind one egress IP must also share that prefix.
+
+Redis failures are fail closed. A reservation failure blocks the request before Discord receives it. A failed response update preserves the Discord response. RestCord blocks later requests through the known reset window and until a Redis reservation succeeds.
+
+Read the [0.9 migration map](migration-0.9.md) when converting calls from an older release. Discord's [API reference](https://docs.discord.com/developers/reference) and [rate-limit documentation](https://docs.discord.com/developers/topics/rate-limits) define current endpoint behavior.

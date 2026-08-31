@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * Copyright 2017 Aaron Scherer
  *
@@ -13,207 +15,172 @@
 
 namespace RestCord\RateLimit;
 
+use GuzzleHttp\Promise\Create;
+use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Psr7\CachingStream;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
-use RestCord\RateLimit\Provider\AbstractRateLimitProvider;
+use Psr\Log\NullLogger;
+use RestCord\RateLimit\Provider\RateLimitProviderInterface;
 
-/**
- * Guzzle middleware which delays requests if they exceed a rate allowance.
- *
- * @see https://github.com/rtheunissen/guzzle-rate-limiter/blob/master/src/RateLimiter.php
- */
-class RateLimiter
+final class RateLimiter
 {
-    /**
-     * @var MemoryRateLimitProvider
-     */
-    private $provider;
+    public const OPTION = '_restcord_rate_limit';
 
-    /**
-     * @var array
-     */
-    private $options;
+    private readonly \Closure $clock;
 
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    private $logger;
+    private readonly LoggerInterface $logger;
 
-    /**
-     * @var string|callable Constant or callable that accepts a Response.
-     */
-    protected $logLevel;
-
-    /**
-     * Creates a callable middleware rate limiter.
-     *
-     * @param MemoryRateLimitProvider $provider A rate data provider.
-     * @param array                   $options
-     * @param LoggerInterface         $logger
-     */
-    public function __construct(AbstractRateLimitProvider $provider, array $options, LoggerInterface $logger = null)
-    {
-        $this->provider = $provider;
-        $this->options  = $options;
-        $this->logger   = $logger;
+    public function __construct(
+        private readonly RateLimitProviderInterface $provider,
+        private readonly bool $throwOnRatelimit = false,
+        private readonly int $globalLimit = 50,
+        ?LoggerInterface $logger = null,
+        ?callable $clock = null
+    ) {
+        $this->logger = $logger ?? new NullLogger();
+        $this->clock  = $clock === null ? static fn (): float => microtime(true) : $clock(...);
     }
 
-    /**
-     * Delays and logs the request then sets the allowance for the next request.
-     *
-     * @param callable $handler
-     *
-     * @throws RatelimitException
-     *
-     * @return \Closure
-     */
-    public function __invoke(callable $handler)
+    public function __invoke(callable $handler): callable
     {
-        return function (RequestInterface $request, $options) use ($handler) {
-            // Amount of time to delay the request by
-            while (($delay = $this->getDelay($request)) > 0) {
-                // Throw an exception if configured to do so, this will NOT delay the request and raise an Exception
-                if ($this->options['throwOnRatelimit']) {
-                    throw new RatelimitException($request->getMethod().' '.$request->getUri());
+        return function (RequestInterface $request, array $options) use ($handler): PromiseInterface {
+            try {
+                $metadata = $options[self::OPTION];
+                unset($options[self::OPTION]);
+                $body = $request->getBody();
+                if (!$body->isSeekable()) {
+                    $body    = new CachingStream($body);
+                    $request = $request->withBody($body);
                 }
-
-                $this->log($request, $delay);
-                $this->delay($delay);
+                $bodyPosition = $metadata['bodyPosition'] ?? $body->tell();
+                unset($metadata['bodyPosition']);
+            } catch (\Throwable $exception) {
+                return Create::rejectionFor($exception);
             }
 
-            // Sets the time when this request is beind made,
-            // which allows calculation of allowance later on.
-            $this->provider->setLastRequestTime($request);
-
-            // Set the allowance when the response was received
-            return $handler($request, $options)->then($this->setAllowance($request));
+            return $this->attempt($handler, $request, $options, $metadata, 0, 0.0, $bodyPosition);
         };
     }
 
-    /**
-     * Logs a request which is being delayed by a specified amount of time.
-     *
-     * @param RequestInterface $request request being delayed.
-     * @param float            $delay   The amount of time that the request is delayed for.
-     */
-    protected function log(RequestInterface $request, $delay)
-    {
-        if (isset($this->logger)) {
-            $level   = $this->getLogLevel($request);
-            $message = $this->getLogMessage($request, $delay);
-            $context = compact('request', 'delay');
-
-            $this->logger->log($level, $message, $context);
-        }
-    }
-
-    /**
-     * Formats a request and delay time as a log message.
-     *
-     * @param RequestInterface $request The request being logged.
-     * @param float            $delay   The amount of time that the request is delayed for.
-     *
-     * @return string Log message
-     */
-    protected function getLogMessage(RequestInterface $request, $delay)
-    {
-        return vsprintf(
-            "[%s] %s %s will be delayed by {$delay}us",
-            [
-                gmdate('d/M/Y:H:i:s O'),
-                $request->getMethod(),
-                $request->getUri(),
-            ]
-        );
-    }
-
-    /**
-     * Returns the default log level.
-     *
-     * @return string LogLevel
-     */
-    protected function getDefaultLogLevel()
-    {
-        return LogLevel::DEBUG;
-    }
-
-    /**
-     * Sets the log level to use, which can be either a string or a callable
-     * that accepts a response (which could be null). A log level could also
-     * be null, which indicates that the default log level should be used.
-     *
-     * @param string|callable|null
-     */
-    public function setLogLevel($logLevel)
-    {
-        $this->logLevel = $logLevel;
-    }
-
-    /**
-     * Returns a log level for a given response.
-     *
-     * @param RequestInterface $request The request being logged.
-     *
-     * @return string LogLevel
-     */
-    protected function getLogLevel(RequestInterface $request)
-    {
-        if (!$this->logLevel) {
-            return $this->getDefaultLogLevel();
+    private function attempt(
+        callable $handler,
+        RequestInterface $request,
+        array $options,
+        array $metadata,
+        int $retries,
+        float $retryAt,
+        int $bodyPosition
+    ): PromiseInterface {
+        try {
+            $now          = ($this->clock)();
+            $minimumDelay = max(
+                0.0,
+                $retryAt - $now,
+                ((float) ($options['delay'] ?? 0)) / 1000
+            );
+            $reservation = $this->provider->reserve(
+                $metadata['method'],
+                $metadata['route'],
+                $metadata['majorScope'],
+                $metadata['interactionRoute'],
+                $metadata['globalScope'],
+                $this->globalLimit,
+                $minimumDelay,
+                $this->throwOnRatelimit
+            );
+            if (!is_finite($reservation->sendAt) || $reservation->sendAt < $now + $minimumDelay - 0.000001) {
+                throw new \UnexpectedValueException('Rate-limit provider returned an invalid reservation time.');
+            }
+            $delay = max(0.0, $reservation->sendAt - ($this->clock)());
+            if (!$reservation->reserved) {
+                return Create::rejectionFor(new RatelimitException($metadata['operationId'], $delay));
+            }
+            $attemptOptions          = $options;
+            $attemptOptions['delay'] = ceil($delay * 1000);
+            $request->getBody()->seek($bodyPosition);
+            $promise                 = $handler($request, $attemptOptions);
+        } catch (\Throwable $exception) {
+            return Create::rejectionFor($exception);
         }
 
-        if (is_callable($this->logLevel)) {
-            return call_user_func($this->logLevel, $request);
+        return $promise->then(function (ResponseInterface $response) use ($handler, $request, $options, $metadata, $retries, $bodyPosition): ResponseInterface|PromiseInterface {
+            $retryAfter = null;
+            if ($response->getStatusCode() === 429) {
+                [$retryAfter, $response] = $this->retryAfter($response);
+            }
+
+            if (!$this->updateProvider($metadata, $response)) {
+                return $response;
+            }
+            if ($response->getStatusCode() !== 429) {
+                return $response;
+            }
+            if ($this->throwOnRatelimit || $retryAfter === null || $retries >= 3) {
+                throw new RatelimitException($metadata['operationId'], $retryAfter ?? 0.0, $response);
+            }
+
+            return $this->attempt(
+                $handler,
+                $request,
+                $options,
+                $metadata,
+                $retries + 1,
+                ($this->clock)() + $retryAfter,
+                $bodyPosition
+            );
+        });
+    }
+
+    private function updateProvider(array $metadata, ResponseInterface $response): bool
+    {
+        try {
+            $this->provider->updateFromResponse(
+                $metadata['method'],
+                $metadata['route'],
+                $metadata['majorScope'],
+                $metadata['interactionRoute'],
+                $metadata['globalScope'],
+                $response
+            );
+        } catch (RateLimitStorageException) {
+            $this->logger->warning('Rate-limit response update failed.', [
+                'operationId' => $metadata['operationId'],
+                'status'      => $response->getStatusCode(),
+            ]);
+
+            return false;
         }
 
-        return (string) $this->logLevel;
+        return true;
     }
 
-    /**
-     * Returns the delay duration for the given request (in microseconds).
-     *
-     * @param RequestInterface $request Request to get the delay duration for.
-     *
-     * @return float The delay duration (in microseconds).
-     */
-    protected function getDelay(RequestInterface $request)
+    private function retryAfter(ResponseInterface $response): array
     {
-        $lastRequestTime  = $this->provider->getLastRequestTime($request);
-        $requestAllowance = $this->provider->getRequestAllowance($request);
-        $requestTime      = $this->provider->getRequestTime($request);
+        $body = $response->getBody();
+        if ($body->isSeekable()) {
+            $position = $body->tell();
+            $body->rewind();
+            $content = $body->getContents();
+            $body->seek($position);
+        } else {
+            $content  = $body->getContents();
+            $response = $response->withBody(Utils::streamFor($content));
+        }
 
-        // If lastRequestTime is null or false, the max will be 0.
-        return max(0, $requestAllowance - ($requestTime - $lastRequestTime));
-    }
+        $payload = json_decode($content, true);
+        $value   = is_array($payload) ? ($payload['retry_after'] ?? null) : null;
+        if ((is_int($value) || is_float($value)) && is_finite((float) $value) && $value >= 0) {
+            return [(float) $value, $response];
+        }
 
-    /**
-     * Delays the given request by an amount of microseconds.
-     *
-     * @param float $time The amount of time (in microseconds) to delay by.
-     *
-     * @codeCoverageIgnore
-     */
-    protected function delay($time)
-    {
-        usleep($time);
-    }
+        $value = trim($response->getHeaderLine('Retry-After'));
+        if ($value !== '' && is_numeric($value) && is_finite((float) $value) && (float) $value >= 0) {
+            return [(float) $value, $response];
+        }
 
-    /**
-     * Returns a callable handler which allows the provider to set the request
-     * allowance for the next request, using the current response.
-     *
-     * @param RequestInterface $request
-     *
-     * @return \Closure Handler to set request allowance on the rate provider.
-     */
-    protected function setAllowance(RequestInterface $request)
-    {
-        return function (ResponseInterface $response) use ($request) {
-            $this->provider->setRequestAllowance($request, $response);
-
-            return $response;
-        };
+        return [null, $response];
     }
 }

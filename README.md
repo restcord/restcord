@@ -1,22 +1,39 @@
-RestCord - PHP Edition
-======================
+# RestCord
 
-[![GitHub release](https://img.shields.io/github/release/restcord/restcord.svg)](https://www.github.com/restcord/restcord) [![Build Status](https://travis-ci.org/restcord/restcord.svg?branch=master)](https://travis-ci.org/restcord/restcord) [![Discord Chat](https://img.shields.io/badge/chat-Discord%20API-blue.svg)](https://discord.gg/khC2PP8) [![StyleCI](https://styleci.io/repos/79310512/shield?branch=master)](https://styleci.io/repos/79310512)
+[![CI](https://github.com/restcord/restcord/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/restcord/restcord/actions/workflows/ci.yml) [![Latest Stable Version](https://img.shields.io/packagist/v/restcord/restcord.svg)](https://packagist.org/packages/restcord/restcord) [![PHP Version](https://img.shields.io/packagist/php-v/restcord/restcord.svg)](https://packagist.org/packages/restcord/restcord) [![License](https://img.shields.io/packagist/l/restcord/restcord.svg)](LICENSE)
 
-What is this?
-------------
+RestCord is a PHP client for Discord's REST API v10. It uses clients generated from Discord's [official OpenAPI specification](https://github.com/discord/discord-api-spec). RestCord does not connect to the Discord Gateway.
 
-This is a PHP library for the Discord API. This library is limited to the basic REST api that Discord provides.
-If you are doing anything heavy, or fancy, you should probably look at [DiscordPHP][1] or [Yasmin][2].
+RestCord 0.9 requires PHP 8.3 or newer.
 
-## [Documentation](https://www.restcord.com/)
+## Install
 
-Documentation can be found [here](https://www.restcord.com/).
+```shell
+composer require restcord/restcord:^0.9
+```
 
-### Wrappers
+## Use
 
-* [Laravel](https://gitlab.com/more-cores/laravel-restcord)
+```php
+<?php
 
+require __DIR__.'/vendor/autoload.php';
 
-[1]: https://github.com/teamreflex/DiscordPHP
-[2]: https://github.com/laravel-discord/Yasmin
+use RestCord\DiscordClient;
+
+$token = getenv('DISCORD_BOT_TOKEN') ?: throw new RuntimeException('DISCORD_BOT_TOKEN is not set.');
+
+$discord = new DiscordClient([
+    'token' => $token,
+]);
+
+$guild = $discord->guilds->getGuild([
+    'guild_id' => '81384788765712384',
+]);
+```
+
+Methods use underscore option keys and place request payloads under `body`. Each sync method has an `Async` pair. Calls return decoded arrays, PSR-7 streams, or `null`.
+
+The in-memory rate limiter is the default. Use `RedisRateLimitProvider` when several PHP processes must share Discord rate-limit state.
+
+Read the [documentation](docs/index.md), [examples](docs/examples.md), and [0.9 migration map](docs/migration-0.9.md). Discord's [API reference](https://docs.discord.com/developers/reference) and [rate-limit documentation](https://docs.discord.com/developers/topics/rate-limits) define endpoint behavior.
