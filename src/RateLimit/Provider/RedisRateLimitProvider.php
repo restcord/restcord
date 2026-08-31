@@ -2,6 +2,17 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord\RateLimit\Provider;
 
 use Psr\Http\Message\ResponseInterface;
@@ -368,7 +379,7 @@ LUA;
     public function __construct(array $options = [])
     {
         $this->options = $this->validateOptions($options);
-        $this->redis = $this->options['client'] ?? new \Redis();
+        $this->redis   = $this->options['client'] ?? new \Redis();
         if ($this->options['client'] === null) {
             try {
                 if (!$this->redis->connect($this->options['host'], $this->options['port'])) {
@@ -422,11 +433,11 @@ LUA;
             throw new RateLimitStorageException('Redis rate-limit state is unsafe after a failed response update.');
         }
 
-        $routeHash = hash('sha256', strtoupper($method).' '.$route);
-        $majorHash = hash('sha256', $majorScope);
-        $globalHash = hash('sha256', $globalScope);
+        $routeHash           = hash('sha256', strtoupper($method).' '.$route);
+        $majorHash           = hash('sha256', $majorScope);
+        $globalHash          = hash('sha256', $globalScope);
         $provisionalStateKey = $this->getKey('state:route:'.$routeHash.':'.$majorHash);
-        $globalStateKey = $this->getKey('global:'.$globalHash);
+        $globalStateKey      = $this->getKey('global:'.$globalHash);
 
         try {
             $reservation = $this->redis->eval(self::RESERVE_SCRIPT, [
@@ -446,12 +457,12 @@ LUA;
             if (!is_array($reservation) || count($reservation) !== 3 || !is_numeric($reservation[0]) || !is_numeric($reservation[1]) || !in_array((string) $reservation[2], ['0', '1'], true)) {
                 throw new \UnexpectedValueException('Redis returned an invalid reservation time.');
             }
-            $redisNowUs = (float) $reservation[0];
+            $redisNowUs    = (float) $reservation[0];
             $redisSendAtUs = (float) $reservation[1];
             if (!is_finite($redisNowUs) || !is_finite($redisSendAtUs) || $redisSendAtUs < $redisNowUs) {
                 throw new \UnexpectedValueException('Redis returned an invalid reservation time.');
             }
-            $sendAt = microtime(true) + (($redisSendAtUs - $redisNowUs) / 1000000);
+            $sendAt   = microtime(true) + (($redisSendAtUs - $redisNowUs) / 1000000);
             $reserved = (string) $reservation[2] === '1';
         } catch (\Throwable $exception) {
             throw new RateLimitStorageException('Unable to reserve Redis rate-limit capacity.', 0, $exception);
@@ -470,35 +481,35 @@ LUA;
         string $globalScope,
         ResponseInterface $response
     ): void {
-        $routeHash = hash('sha256', strtoupper($method).' '.$route);
-        $majorHash = hash('sha256', $majorScope);
-        $globalHash = hash('sha256', $globalScope);
-        $bucket = trim($response->getHeaderLine('X-RateLimit-Bucket'));
-        $bucketHash = $bucket === '' ? '' : hash('sha256', $bucket);
-        $scope = strtolower(trim($response->getHeaderLine('X-RateLimit-Scope')));
+        $routeHash                 = hash('sha256', strtoupper($method).' '.$route);
+        $majorHash                 = hash('sha256', $majorScope);
+        $globalHash                = hash('sha256', $globalScope);
+        $bucket                    = trim($response->getHeaderLine('X-RateLimit-Bucket'));
+        $bucketHash                = $bucket === '' ? '' : hash('sha256', $bucket);
+        $scope                     = strtolower(trim($response->getHeaderLine('X-RateLimit-Scope')));
         [$retryAfter, $bodyGlobal] = $response->getStatusCode() === 429
             ? $this->retryState($response)
             : [null, false];
         $global = $scope === 'global'
             || strtolower(trim($response->getHeaderLine('X-RateLimit-Global'))) === 'true'
             || $bodyGlobal;
-        $limit = $global ? null : $this->integerHeader($response, 'X-RateLimit-Limit', true);
-        $remaining = $global ? null : $this->integerHeader($response, 'X-RateLimit-Remaining');
-        $resetAfter = $global ? null : $this->floatHeader($response, 'X-RateLimit-Reset-After');
-        $resetAbsolute = $global || $resetAfter !== null ? null : $this->floatHeader($response, 'X-RateLimit-Reset');
-        $routeRetryAfter = $response->getStatusCode() === 429 && !$global ? $retryAfter : null;
+        $limit            = $global ? null : $this->integerHeader($response, 'X-RateLimit-Limit', true);
+        $remaining        = $global ? null : $this->integerHeader($response, 'X-RateLimit-Remaining');
+        $resetAfter       = $global ? null : $this->floatHeader($response, 'X-RateLimit-Reset-After');
+        $resetAbsolute    = $global || $resetAfter !== null ? null : $this->floatHeader($response, 'X-RateLimit-Reset');
+        $routeRetryAfter  = $response->getStatusCode() === 429 && !$global ? $retryAfter : null;
         $globalRetryAfter = null;
         if (!$interaction && $global) {
-            $absoluteReset = $this->floatHeader($response, 'X-RateLimit-Reset');
+            $absoluteReset    = $this->floatHeader($response, 'X-RateLimit-Reset');
             $globalRetryAfter = $retryAfter
                 ?? $this->floatHeader($response, 'X-RateLimit-Reset-After')
                 ?? ($absoluteReset === null ? null : max(0.0, $absoluteReset - microtime(true)));
         }
 
         $provisionalStateKey = $this->getKey('state:route:'.$routeHash.':'.$majorHash);
-        $canonicalStateKey = $this->getKey('state:bucket:'.($bucketHash === '' ? hash('sha256', '') : $bucketHash).':'.$majorHash);
-        $globalStateKey = $this->getKey('global:'.$globalHash);
-        $knownReset = $this->knownReset($response, $retryAfter);
+        $canonicalStateKey   = $this->getKey('state:bucket:'.($bucketHash === '' ? hash('sha256', '') : $bucketHash).':'.$majorHash);
+        $globalStateKey      = $this->getKey('global:'.$globalHash);
+        $knownReset          = $this->knownReset($response, $retryAfter);
 
         try {
             $updated = $this->redis->eval(self::UPDATE_SCRIPT, [
@@ -556,7 +567,7 @@ LUA;
 
     private function retryState(ResponseInterface $response): array
     {
-        $body = $response->getBody();
+        $body     = $response->getBody();
         $position = null;
         if ($body->isSeekable()) {
             try {
@@ -588,10 +599,10 @@ LUA;
 
     private function knownReset(ResponseInterface $response, ?float $retryAfter): ?float
     {
-        $now = microtime(true);
-        $resetAfter = $this->floatHeader($response, 'X-RateLimit-Reset-After');
+        $now           = microtime(true);
+        $resetAfter    = $this->floatHeader($response, 'X-RateLimit-Reset-After');
         $resetAbsolute = $this->floatHeader($response, 'X-RateLimit-Reset');
-        $knownReset = $resetAfter === null ? $resetAbsolute : $now + $resetAfter;
+        $knownReset    = $resetAfter === null ? $resetAbsolute : $now + $resetAfter;
         if ($retryAfter !== null) {
             $knownReset = max($knownReset ?? 0.0, $now + $retryAfter);
         }

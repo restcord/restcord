@@ -2,6 +2,17 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord\RateLimit\Provider;
 
 use Psr\Http\Message\ResponseInterface;
@@ -45,12 +56,12 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
             throw new \InvalidArgumentException('minimumDelay must be a finite non-negative number.');
         }
 
-        $now = ($this->clock)();
+        $now      = ($this->clock)();
         $baseline = $now + $minimumDelay;
         if (!is_finite($baseline)) {
             throw new \InvalidArgumentException('minimumDelay produces an invalid reservation time.');
         }
-        $routeKey = $this->routeKey($method, $route);
+        $routeKey  = $this->routeKey($method, $route);
         $bucketKey = $this->stateKey($routeKey, $majorScope);
         $this->expireBucket($bucketKey, $now);
 
@@ -65,7 +76,7 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
         $sendAt = $baseline;
         do {
             $previous = $sendAt;
-            $sendAt = max($sendAt, $this->routeSendAt($bucketKey, $sendAt));
+            $sendAt   = max($sendAt, $this->routeSendAt($bucketKey, $sendAt));
             if (!$interaction) {
                 $sendAt = max($sendAt, $this->globalSendAt($globalKey, $globalLimit, $sendAt));
             }
@@ -95,16 +106,16 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
         string $globalScope,
         ResponseInterface $response
     ): void {
-        $now = ($this->clock)();
-        $routeKey = $this->routeKey($method, $route);
+        $now        = ($this->clock)();
+        $routeKey   = $this->routeKey($method, $route);
         $currentKey = $this->stateKey($routeKey, $majorScope);
         $this->expireBucket($currentKey, $now);
         [$retryAfter, $bodyGlobal] = $response->getStatusCode() === 429
             ? $this->retryState($response)
             : [null, false];
-        $global = $this->isGlobalResponse($response) || $bodyGlobal;
+        $global        = $this->isGlobalResponse($response) || $bodyGlobal;
         $responseState = $global ? null : $this->responseState($response, $now, $retryAfter);
-        $pending = $this->pending[$currentKey] ?? 0;
+        $pending       = $this->pending[$currentKey] ?? 0;
         if ($responseState !== null && isset($responseState['remaining'])) {
             $responseState['remaining'] = max(0, $responseState['remaining'] - max(0, $pending - 1));
         }
@@ -116,7 +127,7 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
                 ?? ($absoluteReset === null ? null : max(0.0, $absoluteReset - $now));
         }
         if (!$interaction && $global && $retryAfter !== null) {
-            $globalKey = hash('sha256', $globalScope);
+            $globalKey                       = hash('sha256', $globalScope);
             $this->globalResetAt[$globalKey] = max($this->globalResetAt[$globalKey] ?? 0.0, $now + $retryAfter);
         }
 
@@ -140,8 +151,8 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
         if ($currentKey !== $canonicalKey) {
             $states[] = $this->buckets[$currentKey] ?? null;
         }
-        $states[] = $responseState;
-        $state = $this->mergeStates(...$states);
+        $states[]                 = $responseState;
+        $state                    = $this->mergeStates(...$states);
         $this->aliases[$routeKey] = $bucket;
         if ($state !== null) {
             $this->buckets[$canonicalKey] = $state;
@@ -176,11 +187,11 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
 
     private function globalSendAt(string $globalKey, int $limit, float $candidate): float
     {
-        $candidate = max($candidate, $this->globalResetAt[$globalKey] ?? 0.0);
+        $candidate    = max($candidate, $this->globalResetAt[$globalKey] ?? 0.0);
         $reservations = $this->globalReservations[$globalKey] ?? [];
         while (true) {
             $conflictUntil = null;
-            $anchors = [$candidate];
+            $anchors       = [$candidate];
             foreach ($reservations as $reservation) {
                 if ($reservation >= $candidate && $reservation < $candidate + 1.0) {
                     $anchors[] = $reservation;
@@ -192,7 +203,7 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
                     static fn (float $reservation): bool => $reservation > $anchor - 1.0 && $reservation <= $anchor
                 ));
                 if (count($window) >= $limit) {
-                    $boundary = min($window) + 1.0;
+                    $boundary      = min($window) + 1.0;
                     $conflictUntil = max($conflictUntil ?? $candidate, $boundary > $candidate ? $boundary : $candidate + 0.000001);
                 }
             }
@@ -218,8 +229,8 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
         }
 
         while (true) {
-            $windowIndex = $this->windowIndex($candidate, $state['resetAt'], $state['window']);
-            $windowEnd = $state['resetAt'] + (($windowIndex + 1) * $state['window']);
+            $windowIndex  = $this->windowIndex($candidate, $state['resetAt'], $state['window']);
+            $windowEnd    = $state['resetAt'] + (($windowIndex + 1) * $state['window']);
             $reservations = array_filter(
                 $state['future'] ?? [],
                 fn (float $reservation): bool => $this->windowIndex($reservation, $state['resetAt'], $state['window']) === $windowIndex
@@ -236,10 +247,10 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
     {
         $index = (int) floor(($timestamp - $resetAt) / $window);
         while ($timestamp < $resetAt + ($index * $window)) {
-            --$index;
+            $index--;
         }
         while ($timestamp >= $resetAt + (($index + 1) * $window)) {
-            ++$index;
+            $index++;
         }
 
         return $index;
@@ -252,7 +263,7 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
         }
         if ($sendAt < $this->buckets[$bucketKey]['resetAt']) {
             if (isset($this->buckets[$bucketKey]['remaining']) && $this->buckets[$bucketKey]['remaining'] > 0) {
-                --$this->buckets[$bucketKey]['remaining'];
+                $this->buckets[$bucketKey]['remaining']--;
             }
 
             return;
@@ -272,10 +283,10 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
             return;
         }
 
-        $window = $this->buckets[$bucketKey]['window'];
+        $window      = $this->buckets[$bucketKey]['window'];
         $windowIndex = $this->windowIndex($now, $this->buckets[$bucketKey]['resetAt'], $window);
-        $windowEnd = $this->buckets[$bucketKey]['resetAt'] + (($windowIndex + 1) * $window);
-        $future = array_values(array_filter(
+        $windowEnd   = $this->buckets[$bucketKey]['resetAt'] + (($windowIndex + 1) * $window);
+        $future      = array_values(array_filter(
             $this->buckets[$bucketKey]['future'] ?? [],
             fn (float $reservation): bool => $this->windowIndex($reservation, $this->buckets[$bucketKey]['resetAt'], $window) >= $windowIndex
         ));
@@ -284,22 +295,22 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
             fn (float $reservation): bool => $this->windowIndex($reservation, $this->buckets[$bucketKey]['resetAt'], $window) === $windowIndex
         ));
         $this->buckets[$bucketKey]['remaining'] = max(0, $this->buckets[$bucketKey]['limit'] - $reserved);
-        $this->buckets[$bucketKey]['resetAt'] = $windowEnd;
-        $this->buckets[$bucketKey]['future'] = $future;
+        $this->buckets[$bucketKey]['resetAt']   = $windowEnd;
+        $this->buckets[$bucketKey]['future']    = $future;
     }
 
     private function responseState(ResponseInterface $response, float $now, ?float $retryAfter): ?array
     {
-        $limit = $this->integerHeader($response, 'X-RateLimit-Limit');
-        $remaining = $this->integerHeader($response, 'X-RateLimit-Remaining');
+        $limit      = $this->integerHeader($response, 'X-RateLimit-Limit');
+        $remaining  = $this->integerHeader($response, 'X-RateLimit-Remaining');
         $resetAfter = $this->floatHeader($response, 'X-RateLimit-Reset-After');
-        $reset = $this->floatHeader($response, 'X-RateLimit-Reset');
-        $resetAt = $resetAfter !== null ? $now + $resetAfter : $reset;
-        $window = $resetAfter ?? ($resetAt === null ? null : max(0.0, $resetAt - $now));
+        $reset      = $this->floatHeader($response, 'X-RateLimit-Reset');
+        $resetAt    = $resetAfter !== null ? $now + $resetAfter : $reset;
+        $window     = $resetAfter ?? ($resetAt === null ? null : max(0.0, $resetAt - $now));
         if ($response->getStatusCode() === 429 && $retryAfter !== null) {
             $remaining = 0;
-            $resetAt = max($resetAt ?? 0.0, $now + $retryAfter);
-            $window = max($window ?? 0.0, $retryAfter);
+            $resetAt   = max($resetAt ?? 0.0, $now + $retryAfter);
+            $window    = max($window ?? 0.0, $retryAfter);
         }
 
         if ($limit === null && $remaining === null && $resetAt === null) {
@@ -315,7 +326,7 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
         }
         if ($resetAt !== null) {
             $state['resetAt'] = $resetAt;
-            $state['window'] = $window;
+            $state['window']  = $window;
         }
 
         return $state;
@@ -348,7 +359,7 @@ class MemoryRateLimitProvider implements RateLimitProviderInterface
 
     private function retryState(ResponseInterface $response): array
     {
-        $body = $response->getBody();
+        $body     = $response->getBody();
         $position = null;
         if ($body->isSeekable()) {
             try {

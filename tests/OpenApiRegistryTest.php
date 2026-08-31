@@ -2,6 +2,17 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord\Tests;
 
 use GuzzleHttp\Promise\PromiseInterface;
@@ -24,13 +35,13 @@ final class OpenApiRegistryTest extends TestCase
         $this->assertSame([
             'source' => [
                 'repository' => 'discord/discord-api-spec',
-                'path' => 'specs/openapi.json',
-                'commit' => '4e5c3dbe385cc148dde582325314e598fddbd7a9',
-                'checksum' => '49efa428e0dd5babf5527aa3046e2d29d0c3d9daef2c7100c2619cb440c57cf6',
+                'path'       => 'specs/openapi.json',
+                'commit'     => '4e5c3dbe385cc148dde582325314e598fddbd7a9',
+                'checksum'   => '49efa428e0dd5babf5527aa3046e2d29d0c3d9daef2c7100c2619cb440c57cf6',
             ],
             'openapiVersion' => '3.1.0',
-            'apiVersion' => '10',
-            'pathCount' => 150,
+            'apiVersion'     => '10',
+            'pathCount'      => 150,
             'operationCount' => 242,
         ], $this->registry['_meta']);
         $this->assertCount(242, $this->registry['operations']);
@@ -42,23 +53,23 @@ final class OpenApiRegistryTest extends TestCase
         ksort($counts);
 
         $this->assertSame([
-            'applications' => 33,
-            'channels' => 48,
-            'gateway' => 2,
-            'guilds' => 91,
-            'interactions' => 1,
-            'invites' => 5,
-            'lobbies' => 15,
-            'oauth2' => 4,
-            'partnerSdk' => 5,
-            'skus' => 2,
+            'applications'            => 33,
+            'channels'                => 48,
+            'gateway'                 => 2,
+            'guilds'                  => 91,
+            'interactions'            => 1,
+            'invites'                 => 5,
+            'lobbies'                 => 15,
+            'oauth2'                  => 4,
+            'partnerSdk'              => 5,
+            'skus'                    => 2,
             'soundboardDefaultSounds' => 1,
-            'stageInstances' => 4,
-            'stickerPacks' => 2,
-            'stickers' => 1,
-            'users' => 12,
-            'voice' => 1,
-            'webhooks' => 15,
+            'stageInstances'          => 4,
+            'stickerPacks'            => 2,
+            'stickers'                => 1,
+            'users'                   => 12,
+            'voice'                   => 1,
+            'webhooks'                => 15,
         ], $counts);
     }
 
@@ -67,37 +78,37 @@ final class OpenApiRegistryTest extends TestCase
         $operations = $this->registry['operations'];
 
         $this->assertSame([
-            'category' => 'guilds',
-            'method' => 'getGuild',
+            'category'    => 'guilds',
+            'method'      => 'getGuild',
             'operationId' => 'get_guild',
-            'httpMethod' => 'GET',
-            'path' => '/guilds/{guild_id}',
-            'parameters' => [
+            'httpMethod'  => 'GET',
+            'path'        => '/guilds/{guild_id}',
+            'parameters'  => [
                 ['name' => 'guild_id', 'location' => 'path', 'required' => true, 'style' => 'simple', 'explode' => false],
                 ['name' => 'with_counts', 'location' => 'query', 'required' => false, 'style' => 'form', 'explode' => true],
             ],
-            'responses' => [200 => 'json'],
-            'security' => [['BotToken' => []]],
+            'responses'        => [200 => 'json'],
+            'security'         => [['BotToken' => []]],
             'interactionRoute' => false,
-            'majorParameters' => ['guild_id'],
+            'majorParameters'  => ['guild_id'],
         ], $operations['get_guild']);
         $this->assertSame([
-            'required' => true,
+            'required'   => true,
             'mediaTypes' => ['application/json'],
         ], $operations['update_guild']['requestBody']);
         $this->assertSame([
-            'name' => 'audit_log_reason',
+            'name'     => 'audit_log_reason',
             'location' => 'header',
             'required' => false,
-            'style' => 'simple',
-            'explode' => false,
+            'style'    => 'simple',
+            'explode'  => false,
             'wireName' => 'X-Audit-Log-Reason',
         ], $operations['update_guild']['parameters'][1]);
         $this->assertSame([
-            'required' => true,
-            'mediaTypes' => ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
+            'required'     => true,
+            'mediaTypes'   => ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'],
             'binaryFields' => ['files[0]', 'files[1]', 'files[2]', 'files[3]', 'files[4]', 'files[5]', 'files[6]', 'files[7]', 'files[8]', 'files[9]'],
-            'payloadJson' => true,
+            'payloadJson'  => true,
         ], $operations['create_message']['requestBody']);
         $this->assertSame([200 => 'stream'], $operations['get_guild_widget_png']['responses']);
         $this->assertSame([[], ['BotToken' => []]], $operations['create_interaction_response']['security']);
@@ -130,7 +141,7 @@ final class OpenApiRegistryTest extends TestCase
             $this->assertSame(1, preg_match('#^/#D', $operation['path']), $operationId);
 
             $this->assertIsArray($operation['parameters']);
-            $parameters = [];
+            $parameters     = [];
             $parameterNames = [];
             foreach ($operation['parameters'] as $parameter) {
                 $parameterKeys = array_keys($parameter);
@@ -154,7 +165,7 @@ final class OpenApiRegistryTest extends TestCase
                 $this->assertNotSame('', $wireName, $operationId);
                 $parameterKey = $parameter['location']."\0".$wireName;
                 $this->assertArrayNotHasKey($parameterKey, $parameters, $operationId);
-                $parameters[$parameterKey] = $parameter;
+                $parameters[$parameterKey]          = $parameter;
                 $parameterNames[$parameter['name']] = $parameter['location'];
             }
 
@@ -226,19 +237,19 @@ final class OpenApiRegistryTest extends TestCase
     {
         $expected = [];
         foreach ($this->registry['operations'] as $operation) {
-            $class = 'RestCord\\Generated\\'.ucfirst($operation['category']).'Api';
+            $class                                  = 'RestCord\\Generated\\'.ucfirst($operation['category']).'Api';
             $expected[$class][$operation['method']] = $operation['operationId'];
         }
         ksort($expected);
 
-        $files = glob(__DIR__.'/../src/Generated/*Api.php') ?: [];
+        $files       = glob(__DIR__.'/../src/Generated/*Api.php') ?: [];
         $actualFiles = array_map('basename', $files);
         sort($actualFiles, SORT_STRING);
         $expectedFiles = array_map(static fn (string $class): string => substr(strrchr($class, '\\'), 1).'.php', array_keys($expected));
         sort($expectedFiles, SORT_STRING);
         $this->assertSame($expectedFiles, $actualFiles);
 
-        $syncMethods = 0;
+        $syncMethods  = 0;
         $asyncMethods = 0;
         foreach ($expected as $class => $operations) {
             ksort($operations);
@@ -271,8 +282,8 @@ final class OpenApiRegistryTest extends TestCase
                 $this->assertSame(PromiseInterface::class, $asyncReturnType->getName(), "{$class}::{$method}Async");
                 $this->assertStringContainsString("return \$this->{$method}Async(\$options)->wait();", $source, "{$class}::{$method}");
                 $this->assertStringContainsString("requestAsync('{$operationId}', \$options)", $source, "{$class}::{$method}Async");
-                ++$syncMethods;
-                ++$asyncMethods;
+                $syncMethods++;
+                $asyncMethods++;
             }
         }
 

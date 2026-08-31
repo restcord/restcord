@@ -2,6 +2,17 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord;
 
 use Composer\InstalledVersions;
@@ -24,7 +35,7 @@ class DiscordClient
     public function __construct(array $options = [])
     {
         $options = $this->validateOptions($options);
-        $stack = HandlerStack::create($options['httpHandler']);
+        $stack   = HandlerStack::create($options['httpHandler']);
         foreach ($options['middleware'] as $middleware) {
             $stack->push($middleware);
         }
@@ -35,15 +46,15 @@ class DiscordClient
             $options['logger']
         ), 'restcord_rate_limiter');
 
-        $registry = require __DIR__.'/Resources/operations-v10.php';
+        $registry             = require __DIR__.'/Resources/operations-v10.php';
         $this->resourceClient = new ResourceClient(
             $registry['operations'],
             new Client([
                 ...$options['guzzleOptions'],
-                'base_uri' => 'https://discord.com/api/v10/',
-                'headers' => ['User-Agent' => 'DiscordBot (https://github.com/restcord/restcord, '.$this->version().')'],
+                'base_uri'    => 'https://discord.com/api/v10/',
+                'headers'     => ['User-Agent' => 'DiscordBot (https://github.com/restcord/restcord, '.$this->version().')'],
                 'http_errors' => false,
-                'handler' => $stack,
+                'handler'     => $stack,
             ]),
             $options['token'],
             $options['tokenType'],
@@ -67,15 +78,15 @@ class DiscordClient
     private function validateOptions(array $options): array
     {
         $defaults = [
-            'token' => null,
-            'tokenType' => 'Bot',
-            'logger' => new NullLogger(),
-            'guzzleOptions' => [],
-            'middleware' => [],
+            'token'             => null,
+            'tokenType'         => 'Bot',
+            'logger'            => new NullLogger(),
+            'guzzleOptions'     => [],
+            'middleware'        => [],
             'rateLimitProvider' => new MemoryRateLimitProvider(),
-            'throwOnRatelimit' => false,
-            'httpHandler' => null,
-            'globalRateLimit' => 50,
+            'throwOnRatelimit'  => false,
+            'httpHandler'       => null,
+            'globalRateLimit'   => 50,
         ];
         foreach ($options as $name => $_) {
             if (!array_key_exists($name, $defaults)) {

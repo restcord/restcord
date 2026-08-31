@@ -2,6 +2,17 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord;
 
 use GuzzleHttp\ClientInterface;
@@ -36,8 +47,8 @@ final class ResourceClient
 
         try {
             $operation = $this->operations[$operationId];
-            $request = $this->request($operationId, $operation, $options);
-            $promise = $this->client->requestAsync($operation['httpMethod'], $request['path'], $request['options']);
+            $request   = $this->request($operationId, $operation, $options);
+            $promise   = $this->client->requestAsync($operation['httpMethod'], $request['path'], $request['options']);
         } catch (\Throwable $exception) {
             return Create::rejectionFor($exception);
         }
@@ -69,6 +80,7 @@ final class ResourceClient
         }
 
         $content = (string) $response->getBody();
+
         return $content === '' ? null : json_decode($content, true, flags: JSON_THROW_ON_ERROR);
     }
 
@@ -77,7 +89,7 @@ final class ResourceClient
         $payload = json_decode((string) $response->getBody(), true);
         $payload = is_array($payload) ? $payload : [];
         $message = isset($payload['message']) && is_string($payload['message']) ? $payload['message'] : null;
-        $code = isset($payload['code']) && is_int($payload['code']) ? $payload['code'] : null;
+        $code    = isset($payload['code']) && is_int($payload['code']) ? $payload['code'] : null;
 
         return new DiscordRequestException(
             $response->getStatusCode(),
@@ -111,8 +123,8 @@ final class ResourceClient
             }
         }
 
-        $path = $operation['path'];
-        $query = [];
+        $path    = $operation['path'];
+        $query   = [];
         $headers = [];
         foreach ($operation['parameters'] as $parameter) {
             $name = $parameter['name'];
@@ -153,17 +165,17 @@ final class ResourceClient
                 continue;
             }
 
-            $value = $this->scalar($options[$name]);
+            $value   = $this->scalar($options[$name]);
             $major[] = $name.'='.($name === 'webhook_token' ? hash('sha256', $value) : rawurlencode($value));
         }
 
         return [
-            'operationId' => $operationId,
-            'method' => $operation['httpMethod'],
-            'route' => $operation['path'],
+            'operationId'      => $operationId,
+            'method'           => $operation['httpMethod'],
+            'route'            => $operation['path'],
             'interactionRoute' => $operation['interactionRoute'] ?? false,
-            'majorScope' => implode('|', $major),
-            'globalScope' => $this->token === null || $this->token === '' ? 'anonymous' : hash('sha256', $this->token),
+            'majorScope'       => implode('|', $major),
+            'globalScope'      => $this->token === null || $this->token === '' ? 'anonymous' : hash('sha256', $this->token),
         ];
     }
 
@@ -220,9 +232,9 @@ final class ResourceClient
     private function authorize(string $operationId, array $operation, array &$headers): void
     {
         $alternatives = $operation['security'] ?? [[]];
-        $anonymous = in_array([], $alternatives, true);
-        $scheme = $this->tokenType === 'OAuth' ? 'OAuth2' : 'BotToken';
-        $allowed = false;
+        $anonymous    = in_array([], $alternatives, true);
+        $scheme       = $this->tokenType === 'OAuth' ? 'OAuth2' : 'BotToken';
+        $allowed      = false;
         foreach ($alternatives as $alternative) {
             if (array_key_exists($scheme, $alternative)) {
                 $allowed = true;
@@ -270,8 +282,8 @@ final class ResourceClient
 
     private function multipart(string $operationId, array $body, array $payload): array
     {
-        $files = array_flip($body['binaryFields'] ?? []);
-        $parts = [];
+        $files  = array_flip($body['binaryFields'] ?? []);
+        $parts  = [];
         $fields = [];
         foreach ($payload as $name => $value) {
             if (!isset($files[$name])) {
@@ -300,14 +312,14 @@ final class ResourceClient
 
         if (($body['payloadJson'] ?? false) === true) {
             array_unshift($parts, [
-                'name' => 'payload_json',
+                'name'     => 'payload_json',
                 'contents' => json_encode($fields, JSON_THROW_ON_ERROR),
-                'headers' => ['Content-Type' => 'application/json'],
+                'headers'  => ['Content-Type' => 'application/json'],
             ]);
         } else {
             foreach ($fields as $name => $value) {
                 $parts[] = [
-                    'name' => $name,
+                    'name'     => $name,
                     'contents' => is_array($value) || is_object($value)
                         ? json_encode($value, JSON_THROW_ON_ERROR)
                         : $this->scalar($value),

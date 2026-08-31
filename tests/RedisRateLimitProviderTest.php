@@ -2,10 +2,21 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord\Tests;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\PumpStream;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 use RestCord\RateLimit\Provider\RedisRateLimitProvider;
@@ -33,9 +44,10 @@ final class RedisRateLimitProviderTest extends TestCase
             self::markTestSkipped('RESTCORD_REDIS_HOST is not set.');
         }
 
-        $this->host = $host;
+        $this->host   = $host;
         $this->prefix = 'restcord.test.'.bin2hex(random_bytes(8)).'.';
-        $this->redis = new \Redis();
+        $this->redis  = new \Redis();
+
         try {
             $this->redis->connect($this->host, 6379, 1.0);
         } catch (\RedisException $exception) {
@@ -94,9 +106,9 @@ final class RedisRateLimitProviderTest extends TestCase
 
     public function testRollingGlobalCeilingUsesAbsoluteFractionalRedisTime(): void
     {
-        $first = $this->reserve(globalLimit: 2);
+        $first  = $this->reserve(globalLimit: 2);
         $second = $this->reserve(globalLimit: 2);
-        $third = $this->reserve(globalLimit: 2);
+        $third  = $this->reserve(globalLimit: 2);
 
         self::assertGreaterThan(1_000_000_000.0, $first);
         self::assertEqualsWithDelta($first, $second, 0.05);
@@ -109,9 +121,9 @@ final class RedisRateLimitProviderTest extends TestCase
             $route = '/fractional/'.$index;
             $major = 'fractional:'.$index;
             $this->provider->updateFromResponse('GET', $route, $major, true, 'scope', new Response(200, [
-                'X-RateLimit-Bucket' => 'fractional-bucket-'.$index,
-                'X-RateLimit-Limit' => '1',
-                'X-RateLimit-Remaining' => '0',
+                'X-RateLimit-Bucket'      => 'fractional-bucket-'.$index,
+                'X-RateLimit-Limit'       => '1',
+                'X-RateLimit-Remaining'   => '0',
                 'X-RateLimit-Reset-After' => (string) $window,
             ]));
 
@@ -128,7 +140,7 @@ final class RedisRateLimitProviderTest extends TestCase
 
     public function testKnownAliasReceivesBucketlessShared429(): void
     {
-        $route = '/channels/{channel_id}/known-alias';
+        $route     = '/channels/{channel_id}/known-alias';
         $startedAt = microtime(true);
         $this->provider->updateFromResponse('GET', $route, 'channel:1', true, 'scope', $this->limitedResponse('known-alias-bucket', 1, 0.25));
         $this->provider->updateFromResponse('GET', $route, 'channel:1', true, 'scope', new Response(429, [
@@ -158,7 +170,7 @@ final class RedisRateLimitProviderTest extends TestCase
 
     public function testMinimumDelayIsAppliedInsideTheReservation(): void
     {
-        $startedAt = microtime(true);
+        $startedAt   = microtime(true);
         $reservation = $this->reservation(interaction: true, minimumDelay: 0.25);
 
         self::assertTrue($reservation->reserved);
@@ -167,9 +179,9 @@ final class RedisRateLimitProviderTest extends TestCase
 
     public function testMixedRoutesAccountForFutureGlobalSlots(): void
     {
-        $first = $this->reserve(route: '/future/a', majorScope: '', globalLimit: 2, minimumDelay: 0.4);
+        $first  = $this->reserve(route: '/future/a', majorScope: '', globalLimit: 2, minimumDelay: 0.4);
         $second = $this->reserve(route: '/future/b', majorScope: '', globalLimit: 2, minimumDelay: 0.5);
-        $third = $this->reserve(route: '/future/c', majorScope: '', globalLimit: 2);
+        $third  = $this->reserve(route: '/future/c', majorScope: '', globalLimit: 2);
 
         self::assertGreaterThanOrEqual(min($first, $second) + 0.99, $third);
         $this->assertGlobalRollingCeiling('scope', 2);
@@ -187,9 +199,9 @@ final class RedisRateLimitProviderTest extends TestCase
 
     public function testInteractionExemptionAndGlobalScopesAreIndependent(): void
     {
-        $first = $this->reserve(globalScope: 'scope-a', globalLimit: 1);
+        $first       = $this->reserve(globalScope: 'scope-a', globalLimit: 1);
         $interaction = $this->reserve(route: '/interactions/{id}/{token}/callback', interaction: true, globalScope: 'scope-a', globalLimit: 1);
-        $otherScope = $this->reserve(globalScope: 'scope-b', globalLimit: 1);
+        $otherScope  = $this->reserve(globalScope: 'scope-b', globalLimit: 1);
 
         self::assertLessThan($first + 0.1, $interaction);
         self::assertLessThan($first + 0.1, $otherScope);
@@ -223,10 +235,10 @@ final class RedisRateLimitProviderTest extends TestCase
 
     public function testKeysNeverContainRoutesBucketsTokensOrOpaqueScopes(): void
     {
-        $route = '/webhooks/{webhook_id}/secret-webhook-token';
+        $route  = '/webhooks/{webhook_id}/secret-webhook-token';
         $bucket = 'secret-bucket-id';
-        $major = 'webhook:42:secret-webhook-token';
-        $scope = 'Bot secret-auth-token';
+        $major  = 'webhook:42:secret-webhook-token';
+        $scope  = 'Bot secret-auth-token';
         $this->provider->updateFromResponse('POST', $route, $major, false, $scope, $this->limitedResponse($bucket, 1, 1.0));
         $this->provider->reserve('POST', $route, $major, false, $scope, 50);
         $keys = implode("\n", $this->keys());
@@ -251,6 +263,7 @@ final class RedisRateLimitProviderTest extends TestCase
     {
         $redisProperty = new \ReflectionProperty($this->provider, 'redis');
         $redisProperty->setValue($this->provider, new \Redis());
+
         try {
             $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', $this->limitedResponse('failed-update', 0, 5.0));
             self::fail('The failed update did not throw.');
@@ -258,6 +271,7 @@ final class RedisRateLimitProviderTest extends TestCase
         }
 
         $redisProperty->setValue($this->provider, $this->redis);
+
         try {
             $this->reserve();
             self::fail('The unhealthy provider allowed an early reservation.');
@@ -277,11 +291,11 @@ final class RedisRateLimitProviderTest extends TestCase
             'X-RateLimit-Scope' => 'global',
         ], '{"retry_after":3.0,"global":true}'));
         $this->provider->updateFromResponse('GET', '/users/@me', '', false, 'scope-user', new Response(429, [
-            'X-RateLimit-Scope' => 'user',
+            'X-RateLimit-Scope'  => 'user',
             'X-RateLimit-Bucket' => 'user-bucket',
         ], '{"retry_after":4.0}'));
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope-shared', new Response(429, [
-            'X-RateLimit-Scope' => 'shared',
+            'X-RateLimit-Scope'  => 'shared',
             'X-RateLimit-Bucket' => 'shared-bucket',
         ], '{"retry_after":5.0}'));
 
@@ -293,13 +307,13 @@ final class RedisRateLimitProviderTest extends TestCase
     public function testSuccessfulNonseekableResponseBodyIsNotConsumed(): void
     {
         $chunks = ['binary-body', false];
-        $body = new PumpStream(static function () use (&$chunks): string|false {
+        $body   = new PumpStream(static function () use (&$chunks): string|false {
             return array_shift($chunks);
         });
         $response = new Response(200, [
-            'X-RateLimit-Bucket' => 'stream-bucket',
-            'X-RateLimit-Limit' => '2',
-            'X-RateLimit-Remaining' => '1',
+            'X-RateLimit-Bucket'      => 'stream-bucket',
+            'X-RateLimit-Limit'       => '2',
+            'X-RateLimit-Remaining'   => '1',
             'X-RateLimit-Reset-After' => '1',
         ], $body);
 
@@ -314,7 +328,7 @@ final class RedisRateLimitProviderTest extends TestCase
         $body = Utils::streamFor($json);
         $body->read(3);
         $response = new Response(429, [
-            'X-RateLimit-Scope' => 'shared',
+            'X-RateLimit-Scope'  => 'shared',
             'X-RateLimit-Bucket' => 'cursor-bucket',
         ], $body);
 
@@ -360,8 +374,8 @@ final class RedisRateLimitProviderTest extends TestCase
     private function limitedResponse(string $bucket, int $remaining, float $resetAfter): Response
     {
         $headers = [
-            'X-RateLimit-Limit' => '2',
-            'X-RateLimit-Remaining' => (string) $remaining,
+            'X-RateLimit-Limit'       => '2',
+            'X-RateLimit-Remaining'   => (string) $remaining,
             'X-RateLimit-Reset-After' => (string) $resetAfter,
         ];
         if ($bucket !== '') {
@@ -376,12 +390,11 @@ final class RedisRateLimitProviderTest extends TestCase
         string $majorScope,
         int $globalLimit = 50,
         bool $distinctRoutes = false
-    ): array
-    {
-        $barrier = bin2hex(random_bytes(4));
+    ): array {
+        $barrier  = bin2hex(random_bytes(4));
         $readyKey = $this->prefix.'barrier.'.$barrier.'.ready';
-        $goKey = $this->prefix.'barrier.'.$barrier.'.go';
-        $code = <<<'PHP'
+        $goKey    = $this->prefix.'barrier.'.$barrier.'.go';
+        $code     = <<<'PHP'
 require 'vendor/autoload.php';
 $redis = new Redis();
 $redis->connect($argv[1], 6379, 1.0);
@@ -399,7 +412,7 @@ fwrite(STDOUT, (string) $provider->reserve('GET', $argv[3], $argv[4], false, 'sc
 PHP;
         $processes = [];
         foreach (range(1, 2) as $index) {
-            $pipes = [];
+            $pipes   = [];
             $process = proc_open([PHP_BINARY, '-r', $code, '--', $this->host, $this->prefix, $distinctRoutes ? $route.'/'.$index : $route, $majorScope, $readyKey, $goKey, (string) $globalLimit], [
                 ['pipe', 'r'],
                 ['pipe', 'w'],
@@ -420,7 +433,7 @@ PHP;
         $sendTimes = [];
         foreach ($processes as [$process, $pipes]) {
             $output = stream_get_contents($pipes[1]);
-            $error = stream_get_contents($pipes[2]);
+            $error  = stream_get_contents($pipes[2]);
             fclose($pipes[1]);
             fclose($pipes[2]);
             self::assertSame(0, proc_close($process), $error);
@@ -462,7 +475,7 @@ PHP;
     private function keys(): array
     {
         $iterator = null;
-        $keys = [];
+        $keys     = [];
         do {
             $batch = $this->redis->scan($iterator, $this->prefix.'*', 100);
             if (is_array($batch)) {

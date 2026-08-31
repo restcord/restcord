@@ -2,6 +2,17 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord\RateLimit;
 
 use GuzzleHttp\Promise\Create;
@@ -29,7 +40,7 @@ final class RateLimiter
         ?callable $clock = null
     ) {
         $this->logger = $logger ?? new NullLogger();
-        $this->clock = $clock === null ? static fn (): float => microtime(true) : $clock(...);
+        $this->clock  = $clock === null ? static fn (): float => microtime(true) : $clock(...);
     }
 
     public function __invoke(callable $handler): callable
@@ -55,7 +66,7 @@ final class RateLimiter
         float $retryAt
     ): PromiseInterface {
         try {
-            $now = ($this->clock)();
+            $now          = ($this->clock)();
             $minimumDelay = max(
                 0.0,
                 $retryAt - $now,
@@ -78,9 +89,9 @@ final class RateLimiter
             if (!$reservation->reserved) {
                 return Create::rejectionFor(new RatelimitException($metadata['operationId'], $delay));
             }
-            $attemptOptions = $options;
+            $attemptOptions          = $options;
             $attemptOptions['delay'] = ceil($delay * 1000);
-            $promise = $handler($request, $attemptOptions);
+            $promise                 = $handler($request, $attemptOptions);
         } catch (\Throwable $exception) {
             return Create::rejectionFor($exception);
         }
@@ -126,7 +137,7 @@ final class RateLimiter
         } catch (RateLimitStorageException) {
             $this->logger->warning('Rate-limit response update failed.', [
                 'operationId' => $metadata['operationId'],
-                'status' => $response->getStatusCode(),
+                'status'      => $response->getStatusCode(),
             ]);
 
             return false;
@@ -144,12 +155,12 @@ final class RateLimiter
             $content = $body->getContents();
             $body->seek($position);
         } else {
-            $content = $body->getContents();
+            $content  = $body->getContents();
             $response = $response->withBody(Utils::streamFor($content));
         }
 
         $payload = json_decode($content, true);
-        $value = is_array($payload) ? ($payload['retry_after'] ?? null) : null;
+        $value   = is_array($payload) ? ($payload['retry_after'] ?? null) : null;
         if ((is_int($value) || is_float($value)) && is_finite((float) $value) && $value >= 0) {
             return [(float) $value, $response];
         }

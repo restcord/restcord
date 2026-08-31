@@ -2,6 +2,17 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord\Tests;
 
 use GuzzleHttp\Psr7\Response;
@@ -18,13 +29,13 @@ final class MemoryRateLimitProviderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->now = 0.0;
+        $this->now      = 0.0;
         $this->provider = new MemoryRateLimitProvider(fn (): float => $this->now);
     }
 
     public function testFiftyFirstDefaultReservationWaitsOneSecond(): void
     {
-        for ($request = 0; $request < 50; ++$request) {
+        for ($request = 0; $request < 50; $request++) {
             self::assertSame(0.0, $this->reserve());
         }
 
@@ -33,7 +44,7 @@ final class MemoryRateLimitProviderTest extends TestCase
 
     public function testGlobalScheduleRefillsAfterOneSecond(): void
     {
-        for ($request = 0; $request < 50; ++$request) {
+        for ($request = 0; $request < 50; $request++) {
             $this->reserve();
         }
 
@@ -51,7 +62,7 @@ final class MemoryRateLimitProviderTest extends TestCase
 
     public function testInteractionRouteSkipsGlobalReservation(): void
     {
-        for ($request = 0; $request < 50; ++$request) {
+        for ($request = 0; $request < 50; $request++) {
             $this->reserve();
         }
 
@@ -60,7 +71,7 @@ final class MemoryRateLimitProviderTest extends TestCase
 
     public function testAuthScopesHaveIndependentGlobalSchedules(): void
     {
-        for ($request = 0; $request < 50; ++$request) {
+        for ($request = 0; $request < 50; $request++) {
             $this->reserve(globalScope: 'scope-a');
         }
 
@@ -88,14 +99,14 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testSharedBucketAliasReconcilesConservatively(): void
     {
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', new Response(200, [
-            'X-RateLimit-Bucket' => 'shared',
-            'X-RateLimit-Limit' => '5',
-            'X-RateLimit-Remaining' => '2',
+            'X-RateLimit-Bucket'      => 'shared',
+            'X-RateLimit-Limit'       => '5',
+            'X-RateLimit-Remaining'   => '2',
             'X-RateLimit-Reset-After' => '1',
         ]));
         $this->provider->updateFromResponse('POST', '/channels/{channel_id}/messages', 'channel:1', false, 'scope', new Response(200, [
-            'X-RateLimit-Limit' => '5',
-            'X-RateLimit-Remaining' => '0',
+            'X-RateLimit-Limit'       => '5',
+            'X-RateLimit-Remaining'   => '0',
             'X-RateLimit-Reset-After' => '2',
         ]));
         $this->provider->updateFromResponse('POST', '/channels/{channel_id}/messages', 'channel:1', false, 'scope', new Response(200, [
@@ -108,11 +119,11 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testResetAfterSupportsFractionsAndWinsOverReset(): void
     {
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', new Response(200, [
-            'X-RateLimit-Bucket' => 'channel',
-            'X-RateLimit-Limit' => '1',
-            'X-RateLimit-Remaining' => '0',
+            'X-RateLimit-Bucket'      => 'channel',
+            'X-RateLimit-Limit'       => '1',
+            'X-RateLimit-Remaining'   => '0',
             'X-RateLimit-Reset-After' => '0.25',
-            'X-RateLimit-Reset' => '10',
+            'X-RateLimit-Reset'       => '10',
         ]));
 
         self::assertSame(0.25, $this->reserve());
@@ -121,11 +132,11 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testMalformedResponseHeadersDoNotCreateAWait(): void
     {
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', new Response(200, [
-            'X-RateLimit-Bucket' => 'channel',
-            'X-RateLimit-Limit' => '-1',
-            'X-RateLimit-Remaining' => 'unknown',
+            'X-RateLimit-Bucket'      => 'channel',
+            'X-RateLimit-Limit'       => '-1',
+            'X-RateLimit-Remaining'   => 'unknown',
             'X-RateLimit-Reset-After' => 'NaN',
-            'X-RateLimit-Reset' => 'later',
+            'X-RateLimit-Reset'       => 'later',
         ]));
 
         self::assertSame(0.0, $this->reserve());
@@ -142,9 +153,9 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testKnownAliasUpdateDoesNotDuplicateFutureReservations(): void
     {
         $response = new Response(200, [
-            'X-RateLimit-Bucket' => 'channel',
-            'X-RateLimit-Limit' => '2',
-            'X-RateLimit-Remaining' => '0',
+            'X-RateLimit-Bucket'      => 'channel',
+            'X-RateLimit-Limit'       => '2',
+            'X-RateLimit-Remaining'   => '0',
             'X-RateLimit-Reset-After' => '1',
         ]);
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', $response);
@@ -160,9 +171,9 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testLearnedLimitStillCoordinatesReservationsAfterReset(): void
     {
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', new Response(200, [
-            'X-RateLimit-Bucket' => 'channel',
-            'X-RateLimit-Limit' => '2',
-            'X-RateLimit-Remaining' => '0',
+            'X-RateLimit-Bucket'      => 'channel',
+            'X-RateLimit-Limit'       => '2',
+            'X-RateLimit-Remaining'   => '0',
             'X-RateLimit-Reset-After' => '1',
         ]));
         $this->now = 1.0;
@@ -175,17 +186,17 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testResponseAfterResetCanReplenishRemainingCapacity(): void
     {
         $response = new Response(200, [
-            'X-RateLimit-Bucket' => 'channel',
-            'X-RateLimit-Limit' => '2',
-            'X-RateLimit-Remaining' => '0',
+            'X-RateLimit-Bucket'      => 'channel',
+            'X-RateLimit-Limit'       => '2',
+            'X-RateLimit-Remaining'   => '0',
             'X-RateLimit-Reset-After' => '1',
         ]);
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', $response);
         $this->now = 1.0;
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', new Response(200, [
-            'X-RateLimit-Bucket' => 'channel',
-            'X-RateLimit-Limit' => '2',
-            'X-RateLimit-Remaining' => '1',
+            'X-RateLimit-Bucket'      => 'channel',
+            'X-RateLimit-Limit'       => '2',
+            'X-RateLimit-Remaining'   => '1',
             'X-RateLimit-Reset-After' => '1',
         ]));
 
@@ -196,7 +207,7 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testFractionalWindowsAdvanceAtCurrentEpoch(): void
     {
         foreach ([0.1, 0.3] as $window) {
-            $this->now = 1_800_000_000.0;
+            $this->now      = 1_800_000_000.0;
             $this->provider = new MemoryRateLimitProvider(fn (): float => $this->now);
             $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', $this->limitedResponse($window));
 
@@ -209,9 +220,9 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testExpiredFutureReservationsDoNotConsumeTheNextWindow(): void
     {
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}', 'channel:1', false, 'scope', new Response(200, [
-            'X-RateLimit-Bucket' => 'channel',
-            'X-RateLimit-Limit' => '2',
-            'X-RateLimit-Remaining' => '0',
+            'X-RateLimit-Bucket'      => 'channel',
+            'X-RateLimit-Limit'       => '2',
+            'X-RateLimit-Remaining'   => '0',
             'X-RateLimit-Reset-After' => '1',
         ]));
         $this->now = 1.0;
@@ -270,7 +281,7 @@ final class MemoryRateLimitProviderTest extends TestCase
     public function testRepeatedRejectedReservationsLeaveRouteAndGlobalStateUnchanged(): void
     {
         $this->provider->updateFromResponse('GET', '/slow', 'channel:1', false, 'scope', $this->limitedResponse(1.0));
-        for ($attempt = 0; $attempt < 2; ++$attempt) {
+        for ($attempt = 0; $attempt < 2; $attempt++) {
             $reservation = $this->reservation(route: '/slow', rejectDelayed: true);
             self::assertFalse($reservation->reserved);
             self::assertSame(1.0, $reservation->sendAt);
@@ -281,7 +292,7 @@ final class MemoryRateLimitProviderTest extends TestCase
 
         $this->provider = new MemoryRateLimitProvider(fn (): float => $this->now);
         self::assertSame(0.0, $this->reserve(route: '/first', globalLimit: 1));
-        for ($attempt = 0; $attempt < 2; ++$attempt) {
+        for ($attempt = 0; $attempt < 2; $attempt++) {
             $reservation = $this->reservation(route: '/second', globalLimit: 1, rejectDelayed: true);
             self::assertFalse($reservation->reserved);
             self::assertSame(1.0, $reservation->sendAt);
@@ -296,9 +307,9 @@ final class MemoryRateLimitProviderTest extends TestCase
         self::assertSame(0.0, $this->reserve(route: '/channels/{channel_id}/messages'));
         self::assertSame(0.0, $this->reserve(route: '/channels/{channel_id}/messages'));
         $this->provider->updateFromResponse('GET', '/channels/{channel_id}/messages', 'channel:1', false, 'scope', new Response(200, [
-            'X-RateLimit-Bucket' => 'messages',
-            'X-RateLimit-Limit' => '2',
-            'X-RateLimit-Remaining' => '1',
+            'X-RateLimit-Bucket'      => 'messages',
+            'X-RateLimit-Limit'       => '2',
+            'X-RateLimit-Remaining'   => '1',
             'X-RateLimit-Reset-After' => '1',
         ]));
 
@@ -309,7 +320,7 @@ final class MemoryRateLimitProviderTest extends TestCase
     {
         foreach (['user', 'shared'] as $scope) {
             $this->provider = new MemoryRateLimitProvider(fn (): float => $this->now);
-            $route = '/'.$scope;
+            $route          = '/'.$scope;
             $this->provider->updateFromResponse('GET', $route, 'channel:1', false, 'scope', new Response(429, [
                 'X-RateLimit-Scope' => $scope,
             ], '{"retry_after":0.25,"global":false}'));
@@ -367,9 +378,9 @@ final class MemoryRateLimitProviderTest extends TestCase
     private function limitedResponse(float $resetAfter): Response
     {
         return new Response(200, [
-            'X-RateLimit-Bucket' => 'channel',
-            'X-RateLimit-Limit' => '1',
-            'X-RateLimit-Remaining' => '0',
+            'X-RateLimit-Bucket'      => 'channel',
+            'X-RateLimit-Limit'       => '1',
+            'X-RateLimit-Remaining'   => '0',
             'X-RateLimit-Reset-After' => (string) $resetAfter,
         ]);
     }

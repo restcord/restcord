@@ -2,6 +2,17 @@
 
 declare(strict_types=1);
 
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
 namespace RestCord\Tests;
 
 use GuzzleHttp\Client;
@@ -25,8 +36,8 @@ use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
 use RestCord\RateLimit\Provider\RateLimitProviderInterface;
 use RestCord\RateLimit\Provider\RedisRateLimitProvider;
 use RestCord\RateLimit\RateLimiter;
-use RestCord\RateLimit\RateLimitReservation;
 use RestCord\RateLimit\RatelimitException;
+use RestCord\RateLimit\RateLimitReservation;
 use RestCord\ResourceClient;
 
 final class ResourceClientTest extends TestCase
@@ -51,7 +62,7 @@ final class ResourceClientTest extends TestCase
 
     public function testDiscordClientDefaultsToNullLogger(): void
     {
-        $client = new DiscordClient();
+        $client   = new DiscordClient();
         $resource = (new \ReflectionProperty($client, 'resourceClient'))->getValue($client);
 
         self::assertInstanceOf(NullLogger::class, (new \ReflectionProperty($resource, 'logger'))->getValue($resource));
@@ -59,28 +70,28 @@ final class ResourceClientTest extends TestCase
 
     public function testDiscordClientOwnsTheTransportAndRunsMiddleware(): void
     {
-        $requests = [];
+        $requests        = [];
         $middlewareCalls = 0;
-        $handler = static function ($request, array $options) use (&$requests): PromiseInterface {
+        $handler         = static function ($request, array $options) use (&$requests): PromiseInterface {
             $requests[] = [$request, $options];
 
             return Create::promiseFor(new Response(200, [], '{"url":"wss://gateway.discord.gg"}'));
         };
         $middleware = static function (callable $next) use (&$middlewareCalls): callable {
             return static function ($request, array $options) use ($next, &$middlewareCalls): PromiseInterface {
-                ++$middlewareCalls;
+                $middlewareCalls++;
 
                 return $next($request, $options);
             };
         };
         $client = new DiscordClient([
-            'token' => 'top-secret',
-            'guzzleOptions' => ['timeout' => 1],
-            'middleware' => [$middleware],
+            'token'             => 'top-secret',
+            'guzzleOptions'     => ['timeout' => 1],
+            'middleware'        => [$middleware],
             'rateLimitProvider' => new MemoryRateLimitProvider(),
-            'throwOnRatelimit' => true,
-            'httpHandler' => $handler,
-            'globalRateLimit' => 60,
+            'throwOnRatelimit'  => true,
+            'httpHandler'       => $handler,
+            'globalRateLimit'   => 60,
         ]);
 
         self::assertSame(['url' => 'wss://gateway.discord.gg'], $client->gateway->getGateway());
@@ -96,9 +107,9 @@ final class ResourceClientTest extends TestCase
 
     public function testMandatoryRateLimiterWrapsUserMiddleware(): void
     {
-        $provider = new class implements RateLimitProviderInterface {
+        $provider = new class() implements RateLimitProviderInterface {
             public array $reservations = [];
-            public int $updates = 0;
+            public int $updates        = 0;
 
             public function reserve(string $method, string $route, string $majorScope, bool $interaction, string $globalScope, int $globalLimit, float $minimumDelay = 0.0, bool $rejectDelayed = false): RateLimitReservation
             {
@@ -109,19 +120,19 @@ final class ResourceClientTest extends TestCase
 
             public function updateFromResponse(string $method, string $route, string $majorScope, bool $interaction, string $globalScope, ResponseInterface $response): void
             {
-                ++$this->updates;
+                $this->updates++;
             }
         };
         $transportCalls = 0;
-        $client = new DiscordClient([
-            'token' => 'bot-secret',
+        $client         = new DiscordClient([
+            'token'             => 'bot-secret',
             'rateLimitProvider' => $provider,
-            'globalRateLimit' => 60,
-            'middleware' => [static fn (callable $next): callable => static fn (): PromiseInterface => Create::promiseFor(
+            'globalRateLimit'   => 60,
+            'middleware'        => [static fn (callable $next): callable => static fn (): PromiseInterface => Create::promiseFor(
                 new Response(200, [], '{"url":"wss://gateway.discord.gg"}')
             )],
             'httpHandler' => static function () use (&$transportCalls): PromiseInterface {
-                ++$transportCalls;
+                $transportCalls++;
 
                 return Create::promiseFor(new Response(500));
             },
@@ -135,27 +146,27 @@ final class ResourceClientTest extends TestCase
 
     public function testDiscordClientRejectsInvalidOptions(): void
     {
-        $validHandler = static fn (): PromiseInterface => Create::promiseFor(new Response());
+        $validHandler    = static fn (): PromiseInterface => Create::promiseFor(new Response());
         $validMiddleware = static fn (callable $next): callable => $next;
-        $invalidOptions = [
+        $invalidOptions  = [
             ['unknown' => true],
-            ['token' => true],
-            ['tokenType' => 1],
-            ['tokenType' => 'Bearer'],
-            ['logger' => new \stdClass()],
-            ['guzzleOptions' => true],
-            ['guzzleOptions' => ['base_uri' => 'https://example.com']],
-            ['guzzleOptions' => ['handler' => $validHandler]],
-            ['guzzleOptions' => ['headers' => []]],
-            ['guzzleOptions' => ['auth' => ['top-secret']]],
-            ['guzzleOptions' => ['http_errors' => true]],
-            ['middleware' => true],
-            ['middleware' => [new \stdClass()]],
+            ['token'             => true],
+            ['tokenType'         => 1],
+            ['tokenType'         => 'Bearer'],
+            ['logger'            => new \stdClass()],
+            ['guzzleOptions'     => true],
+            ['guzzleOptions'     => ['base_uri' => 'https://example.com']],
+            ['guzzleOptions'     => ['handler' => $validHandler]],
+            ['guzzleOptions'     => ['headers' => []]],
+            ['guzzleOptions'     => ['auth' => ['top-secret']]],
+            ['guzzleOptions'     => ['http_errors' => true]],
+            ['middleware'        => true],
+            ['middleware'        => [new \stdClass()]],
             ['rateLimitProvider' => new \stdClass()],
-            ['throwOnRatelimit' => 1],
-            ['httpHandler' => true],
-            ['globalRateLimit' => '50'],
-            ['globalRateLimit' => 0],
+            ['throwOnRatelimit'  => 1],
+            ['httpHandler'       => true],
+            ['globalRateLimit'   => '50'],
+            ['globalRateLimit'   => 0],
         ];
 
         foreach ($invalidOptions as $options) {
@@ -169,7 +180,7 @@ final class ResourceClientTest extends TestCase
 
         new DiscordClient(['middleware' => [$validMiddleware], 'httpHandler' => $validHandler]);
         new DiscordClient([
-            'rateLimitProvider' => new class implements RateLimitProviderInterface {
+            'rateLimitProvider' => new class() implements RateLimitProviderInterface {
                 public function reserve(string $method, string $route, string $majorScope, bool $interaction, string $globalScope, int $globalLimit, float $minimumDelay = 0.0, bool $rejectDelayed = false): RateLimitReservation
                 {
                     return new RateLimitReservation(microtime(true) + $minimumDelay, true);
@@ -186,7 +197,7 @@ final class ResourceClientTest extends TestCase
 
     public function testDiscordClientLogsOnlyOperationAndStatus(): void
     {
-        $logs = [];
+        $logs   = [];
         $logger = new class($logs) extends \Psr\Log\AbstractLogger {
             public function __construct(private array &$logs)
             {
@@ -198,8 +209,8 @@ final class ResourceClientTest extends TestCase
             }
         };
         $client = new DiscordClient([
-            'token' => 'top-secret',
-            'logger' => $logger,
+            'token'       => 'top-secret',
+            'logger'      => $logger,
             'httpHandler' => static fn (): PromiseInterface => Create::promiseFor(new Response(400, [], '{"message":"webhook-secret"}')),
         ]);
 
@@ -216,9 +227,9 @@ final class ResourceClientTest extends TestCase
     public function testRateLimitMetadataHashesAuthAndWebhookTokens(): void
     {
         $captured = [];
-        $http = new Client([
+        $http     = new Client([
             'base_uri' => 'https://discord.com/api/v10/',
-            'handler' => static function ($request, array $options) use (&$captured): PromiseInterface {
+            'handler'  => static function ($request, array $options) use (&$captured): PromiseInterface {
                 $captured = $options[RateLimiter::OPTION];
 
                 return Create::promiseFor(new Response(200, [], '{}'));
@@ -227,27 +238,27 @@ final class ResourceClientTest extends TestCase
         $client = new ResourceClient([
             'execute_webhook' => [
                 'httpMethod' => 'POST',
-                'path' => '/webhooks/{webhook_id}/{webhook_token}',
+                'path'       => '/webhooks/{webhook_id}/{webhook_token}',
                 'parameters' => [
                     ['name' => 'webhook_id', 'location' => 'path', 'required' => true],
                     ['name' => 'webhook_token', 'location' => 'path', 'required' => true],
                 ],
-                'responses' => [200 => 'json'],
-                'security' => [['BotToken' => []]],
+                'responses'        => [200 => 'json'],
+                'security'         => [['BotToken' => []]],
                 'interactionRoute' => false,
-                'majorParameters' => ['webhook_id', 'webhook_token'],
+                'majorParameters'  => ['webhook_id', 'webhook_token'],
             ],
         ], $http, 'bot-secret');
 
         $client->requestAsync('execute_webhook', ['webhook_id' => '123', 'webhook_token' => 'webhook-secret'])->wait();
 
         self::assertSame([
-            'operationId' => 'execute_webhook',
-            'method' => 'POST',
-            'route' => '/webhooks/{webhook_id}/{webhook_token}',
+            'operationId'      => 'execute_webhook',
+            'method'           => 'POST',
+            'route'            => '/webhooks/{webhook_id}/{webhook_token}',
             'interactionRoute' => false,
-            'majorScope' => 'webhook_id=123|webhook_token='.hash('sha256', 'webhook-secret'),
-            'globalScope' => hash('sha256', 'bot-secret'),
+            'majorScope'       => 'webhook_id=123|webhook_token='.hash('sha256', 'webhook-secret'),
+            'globalScope'      => hash('sha256', 'bot-secret'),
         ], $captured);
         self::assertStringNotContainsString('bot-secret', json_encode($captured, JSON_THROW_ON_ERROR));
         self::assertStringNotContainsString('webhook-secret', json_encode($captured, JSON_THROW_ON_ERROR));
@@ -256,9 +267,9 @@ final class ResourceClientTest extends TestCase
     public function testAnonymousInteractionMetadataDoesNotExposeItsToken(): void
     {
         $captured = [];
-        $http = new Client([
+        $http     = new Client([
             'base_uri' => 'https://discord.com/api/v10/',
-            'handler' => static function ($request, array $options) use (&$captured): PromiseInterface {
+            'handler'  => static function ($request, array $options) use (&$captured): PromiseInterface {
                 $captured = $options[RateLimiter::OPTION];
 
                 return Create::promiseFor(new Response(204));
@@ -267,20 +278,20 @@ final class ResourceClientTest extends TestCase
         $client = new ResourceClient([
             'create_interaction_response' => [
                 'httpMethod' => 'POST',
-                'path' => '/interactions/{interaction_id}/{interaction_token}/callback',
+                'path'       => '/interactions/{interaction_id}/{interaction_token}/callback',
                 'parameters' => [
                     ['name' => 'interaction_id', 'location' => 'path', 'required' => true],
                     ['name' => 'interaction_token', 'location' => 'path', 'required' => true],
                 ],
-                'responses' => [204 => 'empty'],
-                'security' => [[]],
+                'responses'        => [204 => 'empty'],
+                'security'         => [[]],
                 'interactionRoute' => true,
-                'majorParameters' => [],
+                'majorParameters'  => [],
             ],
         ], $http);
 
         $client->requestAsync('create_interaction_response', [
-            'interaction_id' => '123',
+            'interaction_id'    => '123',
             'interaction_token' => 'interaction-secret',
         ])->wait();
 
@@ -293,22 +304,22 @@ final class ResourceClientTest extends TestCase
     public function testRateLimitMajorScopeSeparatesChannelIds(): void
     {
         $captured = [];
-        $http = new Client([
+        $http     = new Client([
             'base_uri' => 'https://discord.com/api/v10/',
-            'handler' => static function ($request, array $options) use (&$captured): PromiseInterface {
+            'handler'  => static function ($request, array $options) use (&$captured): PromiseInterface {
                 $captured[] = $options[RateLimiter::OPTION]['majorScope'];
 
                 return Create::promiseFor(new Response(200, [], '{}'));
             },
         ]);
         $operation = [
-            'httpMethod' => 'GET',
-            'path' => '/channels/{channel_id}',
-            'parameters' => [['name' => 'channel_id', 'location' => 'path', 'required' => true]],
-            'responses' => [200 => 'json'],
-            'security' => [[]],
+            'httpMethod'       => 'GET',
+            'path'             => '/channels/{channel_id}',
+            'parameters'       => [['name' => 'channel_id', 'location' => 'path', 'required' => true]],
+            'responses'        => [200 => 'json'],
+            'security'         => [[]],
             'interactionRoute' => false,
-            'majorParameters' => ['channel_id'],
+            'majorParameters'  => ['channel_id'],
         ];
         $client = new ResourceClient(['get_channel' => $operation], $http);
 
@@ -340,17 +351,17 @@ final class ResourceClientTest extends TestCase
     public function testRegistrySerializerTuplesUseTheWireFormat(): void
     {
         [$oauth, $oauthHistory] = $this->generatedClient([new Response(200, [], '{}')], 'oauth-token', 'OAuth');
-        [$bot, $botHistory] = $this->generatedClient([new Response(200, [], '{}')], 'bot-token');
+        [$bot, $botHistory]     = $this->generatedClient([new Response(200, [], '{}')], 'bot-token');
 
         $oauth->requestAsync('get_current_user_application_entitlements', [
-            'application_id' => 'a/b',
-            'sku_ids' => ['one', 'two'],
+            'application_id'   => 'a/b',
+            'sku_ids'          => ['one', 'two'],
             'exclude_consumed' => false,
         ])->wait();
         $bot->requestAsync('create_channel_invite', [
-            'channel_id' => '1',
+            'channel_id'       => '1',
             'audit_log_reason' => 'for béa',
-            'body' => [],
+            'body'             => [],
         ])->wait();
 
         self::assertSame('/api/v10/users/@me/applications/a%2Fb/entitlements', $oauthHistory->transactions[0]['request']->getUri()->getPath());
@@ -360,7 +371,7 @@ final class ResourceClientTest extends TestCase
 
     public function testRegistryRequestMediaTypesUseJsonOrMultipart(): void
     {
-        $registry = require __DIR__.'/../src/Resources/operations-v10.php';
+        $registry   = require __DIR__.'/../src/Resources/operations-v10.php';
         $mediaTypes = [];
         foreach ($registry['operations'] as $operation) {
             foreach ($operation['requestBody']['mediaTypes'] ?? [] as $mediaType) {
@@ -379,16 +390,16 @@ final class ResourceClientTest extends TestCase
     public function testMultipartOnlyRegistryOperationUsesLocalFilenameAndDefaultContentType(): void
     {
         [$client, $history] = $this->generatedClient([new Response(200, [], '{}')], 'bot-token');
-        $file = fopen(__FILE__, 'r');
+        $file               = fopen(__FILE__, 'r');
 
         try {
             $client->requestAsync('upload_application_attachment', [
                 'application_id' => '1',
-                'body' => ['file' => ['contents' => $file]],
+                'body'           => ['file' => ['contents' => $file]],
             ])->wait();
-            $request = $history->transactions[0]['request'];
+            $request     = $history->transactions[0]['request'];
             $contentType = $request->getHeaderLine('Content-Type');
-            $body = (string) $request->getBody();
+            $body        = (string) $request->getBody();
         } finally {
             fclose($file);
         }
@@ -402,16 +413,16 @@ final class ResourceClientTest extends TestCase
     {
         [$client, $history] = $this->client([
             'requestBody' => [
-                'required' => true,
-                'mediaTypes' => ['application/json', 'multipart/form-data'],
+                'required'     => true,
+                'mediaTypes'   => ['application/json', 'multipart/form-data'],
                 'binaryFields' => ['files[0]'],
-                'payloadJson' => true,
+                'payloadJson'  => true,
             ],
             'security' => [[]],
         ]);
 
         $client->requestAsync('test', ['body' => [
-            'content' => 'hello',
+            'content'  => 'hello',
             'files[0]' => ['contents' => 'file', 'filename' => 'example.txt', 'content_type' => 'text/plain'],
         ]])->wait();
 
@@ -425,10 +436,10 @@ final class ResourceClientTest extends TestCase
 
     public function testRegistrySecurityAlternativesUseAcceptedAuthentication(): void
     {
-        [$bot, $botHistory] = $this->generatedClient([new Response(200, [], '{}')], 'bot-token');
-        [$oauth, $oauthHistory] = $this->generatedClient([new Response(200, [], '{}')], 'oauth-token', 'OAuth');
-        [$anonymous, $anonymousHistory] = $this->generatedClient([new Response(200, [], '{}')]);
-        [$eitherBot, $eitherBotHistory] = $this->generatedClient([new Response(200, [], '{}')], 'bot-token');
+        [$bot, $botHistory]                 = $this->generatedClient([new Response(200, [], '{}')], 'bot-token');
+        [$oauth, $oauthHistory]             = $this->generatedClient([new Response(200, [], '{}')], 'oauth-token', 'OAuth');
+        [$anonymous, $anonymousHistory]     = $this->generatedClient([new Response(200, [], '{}')]);
+        [$eitherBot, $eitherBotHistory]     = $this->generatedClient([new Response(200, [], '{}')], 'bot-token');
         [$eitherOauth, $eitherOauthHistory] = $this->generatedClient([new Response(200, [], '{}')], 'oauth-token', 'OAuth');
 
         $bot->requestAsync('get_my_application')->wait();
@@ -465,7 +476,7 @@ final class ResourceClientTest extends TestCase
     {
         [$client] = $this->client([
             'requestBody' => ['required' => true, 'mediaTypes' => ['multipart/form-data'], 'binaryFields' => ['file']],
-            'security' => [[]],
+            'security'    => [[]],
         ]);
 
         $this->expectException(\InvalidArgumentException::class);
@@ -477,9 +488,9 @@ final class ResourceClientTest extends TestCase
     public function testUnknownAndRequiredOptionsRejectBeforeDispatch(): void
     {
         $dispatched = false;
-        $http = new Client([
+        $http       = new Client([
             'base_uri' => 'https://discord.com/api/v10/',
-            'handler' => static function () use (&$dispatched): PromiseInterface {
+            'handler'  => static function () use (&$dispatched): PromiseInterface {
                 $dispatched = true;
 
                 return Create::promiseFor(new Response());
@@ -487,11 +498,11 @@ final class ResourceClientTest extends TestCase
         ]);
         $client = new ResourceClient([
             'test' => [
-                'httpMethod' => 'POST',
-                'path' => '/guilds/{guild_id}',
-                'parameters' => [['name' => 'guild_id', 'location' => 'path', 'required' => true, 'style' => 'simple', 'explode' => false]],
+                'httpMethod'  => 'POST',
+                'path'        => '/guilds/{guild_id}',
+                'parameters'  => [['name' => 'guild_id', 'location' => 'path', 'required' => true, 'style' => 'simple', 'explode' => false]],
                 'requestBody' => ['required' => true, 'mediaTypes' => ['application/json']],
-                'security' => [[]],
+                'security'    => [[]],
             ],
         ], $http);
 
@@ -508,9 +519,9 @@ final class ResourceClientTest extends TestCase
     public function testUnknownOperationAndMissingAuthenticationRejectBeforeDispatch(): void
     {
         $dispatched = false;
-        $http = new Client([
+        $http       = new Client([
             'base_uri' => 'https://discord.com/api/v10/',
-            'handler' => static function () use (&$dispatched): PromiseInterface {
+            'handler'  => static function () use (&$dispatched): PromiseInterface {
                 $dispatched = true;
 
                 return Create::promiseFor(new Response());
@@ -547,7 +558,7 @@ final class ResourceClientTest extends TestCase
 
     public function testRegistryResponseCodecsDecodeJsonEmptyAndStreams(): void
     {
-        $stream = Utils::streamFor("\x89PNG");
+        $stream   = Utils::streamFor("\x89PNG");
         [$client] = $this->generatedClient([
             new Response(200, [], '{"url":"wss://gateway.discord.gg"}'),
             new Response(204),
@@ -561,8 +572,8 @@ final class ResourceClientTest extends TestCase
 
     public function testGeneratedApisReturnOriginalPngAndCsvStreams(): void
     {
-        $png = Utils::streamFor("\x89PNG");
-        $csv = Utils::streamFor("id,name\n1,restcord\n");
+        $png      = Utils::streamFor("\x89PNG");
+        $csv      = Utils::streamFor("id,name\n1,restcord\n");
         [$client] = $this->generatedClient([
             new Response(200, [], $png),
             new Response(200, [], $csv),
@@ -574,9 +585,9 @@ final class ResourceClientTest extends TestCase
 
     public function testGeneratedAsyncAndSyncErrorsCarryDiscordFields(): void
     {
-        $response = new Response(400, [], '{"code":50035,"message":"Invalid Form Body","errors":{"name":{"_errors":[{"code":"BASE_TYPE_REQUIRED"}]}}}');
-        [$client] = $this->generatedClient([$response, $response], 'token');
-        $api = new GatewayApi($client);
+        $response   = new Response(400, [], '{"code":50035,"message":"Invalid Form Body","errors":{"name":{"_errors":[{"code":"BASE_TYPE_REQUIRED"}]}}}');
+        [$client]   = $this->generatedClient([$response, $response], 'token');
+        $api        = new GatewayApi($client);
         $exceptions = [];
 
         foreach ([false, true] as $sync) {
@@ -617,23 +628,24 @@ final class ResourceClientTest extends TestCase
 
     public function testGeneratedSyncAndAsyncResultsMatch(): void
     {
-        $body = '{"url":"wss://gateway.discord.gg"}';
+        $body     = '{"url":"wss://gateway.discord.gg"}';
         [$client] = $this->generatedClient([new Response(200, [], $body), new Response(200, [], $body)]);
-        $api = new GatewayApi($client);
+        $api      = new GatewayApi($client);
 
         self::assertSame($api->getGatewayAsync()->wait(), $api->getGateway());
     }
 
     public function testGeneratedSyncAndAsyncRateLimitExceptionsMatch(): void
     {
-        $response = new Response(429, [], '{"retry_after":0.125,"message":"response-secret"}');
+        $response   = new Response(429, [], '{"retry_after":0.125,"message":"response-secret"}');
         $exceptions = [];
 
         foreach ([false, true] as $sync) {
             $client = new DiscordClient([
                 'throwOnRatelimit' => true,
-                'httpHandler' => static fn (): PromiseInterface => Create::promiseFor($response),
+                'httpHandler'      => static fn (): PromiseInterface => Create::promiseFor($response),
             ]);
+
             try {
                 $sync ? $client->gateway->getGateway() : $client->gateway->getGatewayAsync()->wait();
                 self::fail('Expected the request to reject.');
@@ -654,13 +666,13 @@ final class ResourceClientTest extends TestCase
     public function testAsyncRequestsCanRemainInFlightTogether(): void
     {
         $pending = [];
-        $client = new DiscordClient([
+        $client  = new DiscordClient([
             'httpHandler' => static function () use (&$pending): PromiseInterface {
                 return $pending[] = new Promise();
             },
         ]);
 
-        $first = $client->gateway->getGatewayAsync();
+        $first  = $client->gateway->getGatewayAsync();
         $second = $client->gateway->getGatewayAsync();
 
         self::assertCount(2, $pending);
@@ -682,18 +694,18 @@ final class ResourceClientTest extends TestCase
     public function testEveryRegistryOperationBuildsARequest(): void
     {
         $registry = require __DIR__.'/../src/Resources/operations-v10.php';
-        $built = 0;
+        $built    = 0;
 
         foreach ($registry['operations'] as $operationId => $operation) {
-            $security = array_merge(...array_map('array_keys', $operation['security'] ?? [[]]));
+            $security  = array_merge(...array_map('array_keys', $operation['security'] ?? [[]]));
             $tokenType = in_array('BotToken', $security, true) ? 'Bot' : 'OAuth';
-            $token = $security === [] ? null : 'token';
-            $status = (int) array_key_first($operation['responses']);
-            $body = $operation['responses'][$status] === 'json' ? '{}' : '';
-            $http = new Client([
+            $token     = $security === [] ? null : 'token';
+            $status    = (int) array_key_first($operation['responses']);
+            $body      = $operation['responses'][$status] === 'json' ? '{}' : '';
+            $http      = new Client([
                 'base_uri' => 'https://discord.com/api/v10/',
-                'handler' => static function () use (&$built, $status, $body): PromiseInterface {
-                    ++$built;
+                'handler'  => static function () use (&$built, $status, $body): PromiseInterface {
+                    $built++;
 
                     return Create::promiseFor(new Response($status, [], $body));
                 },
@@ -710,7 +722,7 @@ final class ResourceClientTest extends TestCase
     {
         foreach ([false, true] as $sync) {
             [$client] = $this->generatedClient([new Response(200, [], '{')]);
-            $api = new GatewayApi($client);
+            $api      = new GatewayApi($client);
 
             try {
                 $sync ? $api->getGateway() : $api->getGatewayAsync()->wait();
@@ -725,7 +737,7 @@ final class ResourceClientTest extends TestCase
     {
         [$client] = $this->client([
             'responses' => [200 => 'json'],
-            'security' => [[]],
+            'security'  => [[]],
         ], null, 'Bot', new Response(201, [], '{}'));
 
         $this->expectException(\UnexpectedValueException::class);
@@ -734,16 +746,16 @@ final class ResourceClientTest extends TestCase
 
     private function generatedClient(array $responses, ?string $token = null, string $tokenType = 'Bot'): array
     {
-        $registry = require __DIR__.'/../src/Resources/operations-v10.php';
-        $history = new \stdClass();
+        $registry              = require __DIR__.'/../src/Resources/operations-v10.php';
+        $history               = new \stdClass();
         $history->transactions = [];
-        $stack = HandlerStack::create(new MockHandler($responses));
+        $stack                 = HandlerStack::create(new MockHandler($responses));
         $stack->push(Middleware::history($history->transactions));
 
         return [
             new ResourceClient($registry['operations'], new Client([
-                'base_uri' => 'https://discord.com/api/v10/',
-                'handler' => $stack,
+                'base_uri'    => 'https://discord.com/api/v10/',
+                'handler'     => $stack,
                 'http_errors' => false,
             ]), $token, $tokenType),
             $history,
@@ -769,9 +781,9 @@ final class ResourceClientTest extends TestCase
 
     private function client(array $operation, ?string $token = null, string $tokenType = 'Bot', ?ResponseInterface $response = null): array
     {
-        $history = new \stdClass();
+        $history               = new \stdClass();
         $history->transactions = [];
-        $stack = HandlerStack::create(new MockHandler([$response ?? new Response(200)]));
+        $stack                 = HandlerStack::create(new MockHandler([$response ?? new Response(200)]));
         $stack->push(Middleware::history($history->transactions));
         $operation += ['httpMethod' => 'POST', 'path' => '/test', 'parameters' => [], 'responses' => [200 => 'json']];
 
