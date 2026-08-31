@@ -150,4 +150,6 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
       - name: Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: npx semantic-release

@@ -12,18 +12,35 @@ import semanticRelease from 'semantic-release';
 const run = promisify(execFile);
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const packageJson = JSON.parse(await readFile(join(projectRoot, 'package.json'), 'utf8'));
+const workflow = await readFile(join(projectRoot, '.github/workflows/ci.yml'), 'utf8');
 const releaseConfig = {
     branches: ['develop'],
     tagFormat: '${version}',
+    plugins: [
+        '@semantic-release/commit-analyzer',
+        '@semantic-release/release-notes-generator',
+        [
+            '@semantic-release/github',
+            {
+                successComment: false,
+                failComment: false,
+                releasedLabels: false,
+            },
+        ],
+    ],
+};
+const analysisConfig = {
+    ...releaseConfig,
     plugins: ['@semantic-release/commit-analyzer'],
 };
 
-test('semantic-release uses the analyzer-only tag configuration', () => {
+test('semantic-release publishes tags and GitHub releases', () => {
     assert.deepEqual(packageJson.release, releaseConfig);
     assert.equal(packageJson.engines.node, '>=24.10.0 <25');
     assert.equal(packageJson.devDependencies['@openapitools/openapi-generator-cli'], '2.41.0');
     assert.match(packageJson.devDependencies['semantic-release'], /^\^25\./);
     assert.equal(packageJson.devDependencies['@semantic-release/commit-analyzer'], '^13.0.1');
+    assert.match(workflow, /GITHUB_TOKEN: \$\{\{ github\.token \}\}/);
 });
 
 const releases = [
@@ -79,7 +96,7 @@ for (const [name, messages, expectedVersion] of releases) {
             },
         });
         const result = await semanticRelease({
-            ...releaseConfig,
+            ...analysisConfig,
             repositoryUrl: pathToFileURL(remote).href,
             dryRun: true,
             ci: false,
