@@ -406,8 +406,7 @@ function generate(array $spec, array $registry): string
     mkdir($temporary, 0700);
     try {
         file_put_contents($temporary.'/openapi.json', json_encode($spec, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
-        $registryCode = str_replace("=> \n", "=>\n", var_export($registry, true));
-        file_put_contents($temporary.'/operations-v10.php', "<?php\n\ndeclare(strict_types=1);\n\nreturn {$registryCode};\n");
+        file_put_contents($temporary.'/operations-v10.php', exportRegistry($registry));
         runGenerator($temporary.'/openapi.json', $output);
         copyGeneratedApis($output, $temporary.'/generated');
 
@@ -415,6 +414,71 @@ function generate(array $spec, array $registry): string
     } catch (Throwable $error) {
         removeDirectory($temporary);
         throw $error;
+    }
+}
+
+function exportRegistry(array $registry): string
+{
+    $header = <<<'PHP'
+<?php
+
+declare(strict_types=1);
+
+/*
+ * Copyright 2017 Aaron Scherer
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE
+ *
+ * @package     restcord/restcord
+ * @copyright   Aaron Scherer 2017
+ * @license     MIT
+ */
+
+return
+PHP;
+
+    return $header.'  '.implode("\n", exportArray($registry)).";\n";
+}
+
+function exportArray(array $values, int $depth = 0): array
+{
+    $lines   = ['['];
+    $segment = [];
+
+    foreach ($values as $key => $value) {
+        $exportedKey = var_export($key, true);
+        if (is_array($value)) {
+            $nested    = exportArray($value, $depth + 1);
+            $segment[] = [$exportedKey, '['];
+            appendExportSegment($lines, $segment, $depth + 1);
+            $segment = [];
+            foreach (array_slice($nested, 1) as $line) {
+                $lines[] = $line;
+            }
+            $lines[array_key_last($lines)] .= ',';
+            continue;
+        }
+
+        $segment[] = [$exportedKey, var_export($value, true).','];
+    }
+
+    appendExportSegment($lines, $segment, $depth + 1);
+    $lines[] = str_repeat('    ', $depth).']';
+
+    return $lines;
+}
+
+function appendExportSegment(array &$lines, array $segment, int $depth): void
+{
+    if ($segment === []) {
+        return;
+    }
+
+    $width  = max(array_map(static fn (array $entry): int => strlen($entry[0]), $segment));
+    $indent = str_repeat('    ', $depth);
+    foreach ($segment as [$key, $value]) {
+        $lines[] = $indent.str_pad($key, $width).' => '.$value;
     }
 }
 
