@@ -98,7 +98,7 @@ file_put_contents(__DIR__.'/widget.png', $png->getContents());
 
 ## Share rate limits through Redis
 
-The default memory provider coordinates one PHP process. Use Redis when several workers send requests with the same bot token.
+The default memory provider coordinates one PHP process. Use Redis when several workers share a bot token or anonymous clients share an egress IP.
 
 ```php
 use RestCord\DiscordClient;
@@ -116,6 +116,8 @@ $discord = new DiscordClient([
 ]);
 ```
 
-Install the PHP Redis extension. Enable it before you create `RedisRateLimitProvider`. All processes that share a token must also share the same Redis prefix.
+Install the PHP Redis extension. Enable it before you create `RedisRateLimitProvider`. All processes that share a token must use the same Redis prefix. Anonymous clients behind one egress IP must also share that prefix.
+
+Redis failures are fail closed. A reservation failure blocks the request before Discord receives it. A failed response update preserves the Discord response. RestCord blocks later requests through the known reset window and until a Redis reservation succeeds.
 
 Read the [0.9 migration map](migration-0.9.md) when converting calls from an older release. Discord's [API reference](https://docs.discord.com/developers/reference) and [rate-limit documentation](https://docs.discord.com/developers/topics/rate-limits) define current endpoint behavior.

@@ -18,6 +18,9 @@ namespace RestCord;
 use Composer\InstalledVersions;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Psr7\CachingStream;
+use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RestCord\RateLimit\Provider\MemoryRateLimitProvider;
@@ -36,10 +39,22 @@ class DiscordClient
     {
         $options = $this->validateOptions($options);
         $stack   = HandlerStack::create($options['httpHandler']);
+        $stack->unshift(static function (callable $handler): callable {
+            return static function (RequestInterface $request, array $requestOptions) use ($handler): PromiseInterface {
+                $body = $request->getBody();
+                if (!$body->isSeekable()) {
+                    $body    = new CachingStream($body);
+                    $request = $request->withBody($body);
+                }
+                $requestOptions[RateLimiter::OPTION]['bodyPosition'] = $body->tell();
+
+                return $handler($request, $requestOptions);
+            };
+        }, 'restcord_replayable_body');
         foreach ($options['middleware'] as $middleware) {
             $stack->push($middleware);
         }
-        $stack->unshift(new RateLimiter(
+        $stack->push(new RateLimiter(
             $options['rateLimitProvider'],
             $options['throwOnRatelimit'],
             $options['globalRateLimit'],

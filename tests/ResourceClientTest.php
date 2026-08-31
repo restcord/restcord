@@ -22,6 +22,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Psr7\NoSeekStream;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
@@ -105,7 +106,7 @@ final class ResourceClientTest extends TestCase
         );
     }
 
-    public function testMandatoryRateLimiterWrapsUserMiddleware(): void
+    public function testMandatoryRateLimiterWrapsAndReplaysEveryUserMiddlewareSend(): void
     {
         $provider = new class() implements RateLimitProviderInterface {
             public array $reservations = [];
@@ -123,25 +124,39 @@ final class ResourceClientTest extends TestCase
                 $this->updates++;
             }
         };
-        $transportCalls = 0;
-        $client         = new DiscordClient([
+        $sentBodies = [];
+        $client     = new DiscordClient([
             'token'             => 'bot-secret',
             'rateLimitProvider' => $provider,
             'globalRateLimit'   => 60,
-            'middleware'        => [static fn (callable $next): callable => static fn (): PromiseInterface => Create::promiseFor(
-                new Response(200, [], '{"url":"wss://gateway.discord.gg"}')
-            )],
-            'httpHandler' => static function () use (&$transportCalls): PromiseInterface {
-                $transportCalls++;
+            'middleware'        => [static fn (callable $next): callable => static function ($request, array $options) use ($next): PromiseInterface {
+                return $next($request, $options)->then(static fn (): PromiseInterface => $next($request, $options));
+            }],
+            'httpHandler' => static function ($request) use (&$sentBodies): PromiseInterface {
+                $sentBodies[] = $request->getBody()->getContents();
 
-                return Create::promiseFor(new Response(500));
+                return Create::promiseFor(new Response(200, [], '{}'));
             },
         ]);
 
-        self::assertSame(['url' => 'wss://gateway.discord.gg'], $client->gateway->getGateway());
-        self::assertSame([['GET', '/gateway', '', false, hash('sha256', 'bot-secret'), 60, 0.0, false]], $provider->reservations);
-        self::assertSame(1, $provider->updates);
-        self::assertSame(0, $transportCalls);
+        self::assertSame([], $client->channels->createMessage([
+            'channel_id' => 1,
+            'body'       => [
+                'content'  => 'hello',
+                'files[0]' => [
+                    'contents' => new NoSeekStream(Utils::streamFor('file-data')),
+                    'filename' => 'file.txt',
+                ],
+            ],
+        ]));
+        self::assertSame([
+            ['POST', '/channels/{channel_id}/messages', 'channel_id=1', false, hash('sha256', 'bot-secret'), 60, 0.0, false],
+            ['POST', '/channels/{channel_id}/messages', 'channel_id=1', false, hash('sha256', 'bot-secret'), 60, 0.0, false],
+        ], $provider->reservations);
+        self::assertSame(2, $provider->updates);
+        self::assertCount(2, $sentBodies);
+        self::assertSame($sentBodies[0], $sentBodies[1]);
+        self::assertStringContainsString('file-data', $sentBodies[0]);
     }
 
     public function testDiscordClientRejectsInvalidOptions(): void

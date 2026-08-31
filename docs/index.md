@@ -104,6 +104,8 @@ The default `MemoryRateLimitProvider` coordinates one PHP process. It tracks rou
 
 Use `RedisRateLimitProvider` when workers must share rate-limit state. It requires the PHP Redis extension and uses Redis server time for atomic reservations.
 
+Clients that share a bot token must use the same Redis prefix. Anonymous clients behind one egress IP must also share a prefix.
+
 The provider accepts `prefix`, `host`, `port`, and a connected `Redis` instance through `client`.
 
 ```php
@@ -120,6 +122,8 @@ $discord = new DiscordClient([
 ```
 
 By default, RestCord waits for known capacity and retries a Discord `429` response up to three times. Set `throwOnRatelimit` to `true` to receive `RatelimitException` without that wait or retry.
+
+Redis failures are fail closed. A reservation failure blocks the request before Discord receives it. A failed response update preserves the Discord response. RestCord blocks later requests through the known reset window and until a Redis reservation succeeds.
 
 Interaction routes do not count against the bot global allowance. Read Discord's [rate-limit documentation](https://docs.discord.com/developers/topics/rate-limits) before you change `globalRateLimit`.
 

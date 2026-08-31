@@ -17,6 +17,7 @@ namespace RestCord\RateLimit;
 
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Psr7\CachingStream;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -49,11 +50,18 @@ final class RateLimiter
             try {
                 $metadata = $options[self::OPTION];
                 unset($options[self::OPTION]);
+                $body = $request->getBody();
+                if (!$body->isSeekable()) {
+                    $body    = new CachingStream($body);
+                    $request = $request->withBody($body);
+                }
+                $bodyPosition = $metadata['bodyPosition'] ?? $body->tell();
+                unset($metadata['bodyPosition']);
             } catch (\Throwable $exception) {
                 return Create::rejectionFor($exception);
             }
 
-            return $this->attempt($handler, $request, $options, $metadata, 0, 0.0);
+            return $this->attempt($handler, $request, $options, $metadata, 0, 0.0, $bodyPosition);
         };
     }
 
@@ -63,7 +71,8 @@ final class RateLimiter
         array $options,
         array $metadata,
         int $retries,
-        float $retryAt
+        float $retryAt,
+        int $bodyPosition
     ): PromiseInterface {
         try {
             $now          = ($this->clock)();
@@ -91,12 +100,13 @@ final class RateLimiter
             }
             $attemptOptions          = $options;
             $attemptOptions['delay'] = ceil($delay * 1000);
+            $request->getBody()->seek($bodyPosition);
             $promise                 = $handler($request, $attemptOptions);
         } catch (\Throwable $exception) {
             return Create::rejectionFor($exception);
         }
 
-        return $promise->then(function (ResponseInterface $response) use ($handler, $request, $options, $metadata, $retries): ResponseInterface|PromiseInterface {
+        return $promise->then(function (ResponseInterface $response) use ($handler, $request, $options, $metadata, $retries, $bodyPosition): ResponseInterface|PromiseInterface {
             $retryAfter = null;
             if ($response->getStatusCode() === 429) {
                 [$retryAfter, $response] = $this->retryAfter($response);
@@ -118,7 +128,8 @@ final class RateLimiter
                 $options,
                 $metadata,
                 $retries + 1,
-                ($this->clock)() + $retryAfter
+                ($this->clock)() + $retryAfter,
+                $bodyPosition
             );
         });
     }

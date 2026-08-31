@@ -18,7 +18,9 @@ namespace RestCord\Tests;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\NoSeekStream;
+use GuzzleHttp\Psr7\PumpStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -140,6 +142,38 @@ final class RateLimiterTest extends TestCase
         self::assertSame([0.0, 0.25, 0.5], array_column($provider->reservations, 6));
         self::assertSame('user', $provider->updates[0][5]->getHeaderLine('X-RateLimit-Scope'));
         self::assertSame('shared', $provider->updates[1][5]->getHeaderLine('X-RateLimit-Scope'));
+    }
+
+    public function test429RetryReplaysNonseekableMultipartBody(): void
+    {
+        $chunks = ['file-data', false];
+        $file   = new PumpStream(static function () use (&$chunks): string|false {
+            return array_shift($chunks);
+        });
+        $body   = new MultipartStream([[
+            'name'     => 'file',
+            'contents' => $file,
+            'filename' => 'file.txt',
+        ]], 'restcord-boundary');
+        $responses = [
+            new Response(429, [], '{"retry_after":0}'),
+            new Response(200),
+        ];
+        $sentBodies = [];
+        $handler    = static function (Request $request) use (&$responses, &$sentBodies): PromiseInterface {
+            $sentBodies[] = $request->getBody()->getContents();
+
+            return Create::promiseFor(array_shift($responses));
+        };
+        $middleware = new RateLimiter(new RecordingRateLimitProvider([0.0, 0.0]), clock: static fn (): float => 0.0);
+        $request    = new Request('POST', 'https://discord.com/api/v10/channels/1/messages', [], $body);
+
+        $response = $middleware($handler)($request, $this->metadata())->wait();
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertCount(2, $sentBodies);
+        self::assertSame($sentBodies[0], $sentBodies[1]);
+        self::assertStringContainsString('file-data', $sentBodies[0]);
     }
 
     public function test429RetryExhaustionRejectsAfterThreeRetries(): void
