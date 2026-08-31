@@ -14,6 +14,6 @@ disabled:
   - no_empty_phpdoc
 
 finder:
-  exclude:
+  not-path:
     - "src/Generated"
     - "src/Resources"
